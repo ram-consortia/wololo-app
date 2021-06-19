@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/pay.css" />
+</head>
+<body>
+    <div class="content flex-vertical" id="wrap">
+
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'选择支付方式' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="main flex-item-vertical">
+
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+        APP._htmlPath = 'assemble/pay_frm.html';
+        fnOpen(APP._htmlPath, {
+            rect: {
+                marginTop: $('.header').height()
+            }
+        });
+    });
+
+    function fnListenerAlipay(){
+        api.addEventListener({
+            name: 'resume'
+        }, function(ret, err){
+            api.execScript({
+                frameName: fnGetPathName_public(APP._htmlPath),
+                script: 'fnCheckWAIsPay();'
+            });
+        });
+    }
+</script>
+</html>

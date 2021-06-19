@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../framework/iosSelect.css">
+    <link rel="stylesheet" href="../../css/aPublicCitySelector_pop.css">
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../framework/iosSelect.js"></script>
+<script type="text/javascript" src="../../framework/areaData_v2.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    // fnInit('');
+    // fnInit('重庆市/重庆市/沙坪坝区');
+    // fnInit('500000/500100/500106');
+    // fnInit(['重庆市', '重庆市', '沙坪坝区']);
+    // fnInit(['500000', '500100', '500106']);
+    APP.init(function() {
+        fnInit(APP._param.city, APP._param.len || 3);
+    });
+
+
+    function fnInit(_city, _len) {
+        if( typeof _city === 'string' ){
+            _city = _city.split(/[/:]/);
+        }
+        if( !_city ){
+            _city = [];
+        }
+        var _param = {
+            title: '地址选择',
+            itemHeight: 35,
+            relation: [1, 1],
+            callback: function (selectOneObj, selectTwoObj, selectThreeObj) {
+                var _names = [],
+                    _ids = [];
+                if( selectOneObj ){
+                    _names.push(selectOneObj.value);
+                    _ids.push(selectOneObj.id);
+                }
+                if( selectTwoObj ){
+                    _names.push(selectTwoObj.value);
+                    _ids.push(selectTwoObj.id);
+                }
+                if( selectThreeObj ){
+                    _names.push(selectThreeObj.value);
+                    _ids.push(selectThreeObj.id);
+                }
+                fnSubmit({
+                    cityNames: _names.join('/'),
+                    cityIds: _ids.join('/')
+                });
+            },
+            fallback: function () {
+                // 选择取消后的回调函数
+                fnCloseModel();
+            },
+            maskCallback: function () {
+                // 点击背景层关闭组件时触发的方法
+                fnCloseModel();
+            }
+        };
+        if( _city[0] ){
+            var _data = fnFind(iosProvinces, _city[0]);
+            if( _data.id ){
+                _param.oneLevelId = _data.id;
+            }
+        }
+        if( _city[1] ){
+            var _data = fnFind(iosCitys, _city[1]);
+            if( _data.id ){
+                _param.twoLevelId = _data.id;
+            }
+        }
+        if( _city[2] ){
+            var _data = fnFind(iosAreas, _city[2]);
+            if( _data.id ){
+                _param.threeLevelId = _data.id;
+            }
+        }
+        // _city.length
+        new IosSelect(_len, [iosProvinces, iosCitys, iosAreas], _param);
+    }
+
+    function fnFind(_data, _value){
+        for( var x in _data ){
+            if( _data[x].value == _value || _data[x].id == _value ){
+                return _data[x];
+            }
+        }
+        return {};
+    }
+
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.CITY_SELECTOR,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_data) {
+        fnClosePop(_data);
+    }
+</script>
+</html>

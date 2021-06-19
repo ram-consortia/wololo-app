@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="content flex-item-vertical">
+            <div class="top">
+                <div class="img">
+                    <div class="img-box" tapmode="hover" onclick="fnOpen('order/writeOff_win.html')">
+                        <div class="img-item">待付款</div>
+                        <div class="assemble">查看拼团详情</div>
+                    </div>
+                    <p class="time">还剩29分自动关闭</p>
+                </div>
+            </div>
+            <div class="discount">
+                <div class="location">
+                    <div class="location-box">
+                        <div class="information">
+                            <div class="info-name">韩梅梅</div>
+                            <span class="phone">18528472849</span>
+                        </div>
+                        <div class="loca">北京市海淀区北三环中路44号院杏坛路东门文教产业园东门F座4层</div>
+                    </div>
+                </div>
+                <p class="shopping shop-edge" tapmode="hover" onclick="fnOpen('home/storeDetails_win.html')">西单大悦成新月美食街喜茶店<span class="right"></span></p>
+                <div class="coupon-img" tapmode="hover" onclick="fnOpen('home/couponsDetails_win.html')">
+                    <div class="img"></div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <!-- 已失效代金券加invalid -->
+                            <div class="price invalid">
+                                <p class="num">￡<span class="size">20</span></p>
+                                <p class="voucher">代金券 x2</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">特色单品节日优惠</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-ul">
+                    <div class="order-li">
+                        <div class="order-name">单价</div>
+                        <div class="order-price">￡100</div>
+                    </div>
+                    <div class="order-li">
+                        <div class="order-name">优惠券数量</div>
+                        <div class="order-price">x2</div>
+                    </div>
+                    <div class="order-li">
+                        <div class="order-name">已付</div>
+                        <div class="order-price">￡200</div>
+                    </div>
+                    <div class="order-li">
+                        <div class="order-name">优惠券数量</div>
+                        <div class="number">
+                            <span class="reduce"></span>
+                            <span class="num">
+                                <input type="text" readonly value="11">
+                            </span>
+                            <span class="add"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-ul">
+                    <div class="order-li">
+                        <div class="order-name">已核销数量</div>
+                        <div class="order-price">x3</div>
+                        <span class="right"></span>
+                    </div>
+                </div>
+                <div class="order-ul">
+                    <div class="order-li">
+                        <div class="order-name">订单编号</div>
+                        <div class="order-price">234589639246</div>
+                    </div>
+                    <div class="order-li">
+                        <div class="order-name">成团时间</div>
+                        <div class="order-price">2018-12-24 13:45</div>
+                    </div>
+                    <div class="order-li">
+                        <div class="order-name">支付方式</div>
+                        <div class="order-price">支付宝</div>
+                    </div>
+                    <div class="order-li">
+                        <div class="order-name">支付时间</div>
+                        <div class="order-price">2018-12-24 13:45</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bot bot-bottom">
+                <p class="bot-item">￡<span class="size">120</span>.00</p>
+                <!-- 默认已评价、在线客服、申请退款、取消订单，加not-evaluated立即付款、打开二维码、立即使用、配送完成、去评价 -->
+                <span class="del-order">在线客服</span>
+                <!-- 打开二维码order/discountCode_win.html
+                立即使用order/orderInformation_win.html
+                去评价home/evaluate_win.html
+                立即付款assemble/pay_win.html -->
+                <span class="del-order" tapmode="hover" onclick="fnOpen('my/refund_win.html')">申请退款</span>
+                <span class="del-order not-evaluated" tapmode="hover" onclick="fnOpen('order/orderInformation_win.html')">立即使用</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixTabBar('.bottom');
+    });
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/messageDetails.css" />
+</head>
+<body>
+    <div id="wrap">
+        <!-- <div class="content"> T 环境；Aplcloud  10 余个城市，服务能力辐射全国；凭借创新的开发技术和商业模式，早在 2016 年，APIC</div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="content rich-text pre-text">{{#_newsDetail.content}}</div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnTinit();
+    });
+
+    function fnTinit(){
+        var _param = {
+            url: 'user/news/detail',
+            method: 'GET',
+            data: {
+                id: APP._param.id
+            }
+        }
+
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                APP._newsDetail = ret.data;
+                fnValue('#wrap', template('wrap-template', APP));
+
+                api.sendEvent({
+                    name: APP.EV_NAME.MESSAGE,
+                    extra: {}
+                });
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+</script>
+</html>

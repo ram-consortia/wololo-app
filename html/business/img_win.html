@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/img.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">图片管理</div>
+            <div class="back word right" tapmode="hover" onclick="fnEmpty()">编辑</div>
+        </header>
+        <div class="content flex-item-vertical">
+            <div class="imgs">
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel active"></span>
+                            <span class="homepage active">主页</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel active"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="save">删除(3)</div>
+        </div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'图片管理' | fnLanguage_public}}</div>
+            <div class="back word right" tapmode="hover" onclick="fnEdit(this)" id="edit">{{'编辑' | fnLanguage_public}}</div>
+        </header>
+        <div class="content flex-item-vertical">
+            <div class="imgs">
+                {{if _user.auth.images && _user.auth.images.length}}
+                    {{each _user.auth.images}}
+                        {{include 'images-template' $value}}
+                    {{/each}}
+                {{/if}}
+                <div id="no-data" class="height8 hide">{{'暂无上传图片' | fnLanguage_public}}</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div tapmode="hover" onclick="fnGetPicture();" class="save sw sw-upload">{{'上传图片' | fnLanguage_public}}</div>
+            <div tapmode="hover" onclick="fnDelete();" class="save sw sw-delete hide">{{'删除' | fnLanguage_public}}(<span id="deleteNum">0</span>)</div>
+        </div>
+    </script>
+
+    <script type="text/html" id="images-template">
+        <div tapmode="hover" onclick="fnPhotoBrowser(this);" class="img">
+            <div class="pho-img">
+                <img src="../../image/icon-background1.png">
+                <span data-img-url="{{url}}" data-img-type="!avatar" data-id="{{filepath || file_name}}" class="pho">
+                    <span tapmode="hover" onclick="fnSwitchRedio(this);" class="sel sw sw-delete hide"></span>
+
+                    <!-- <span class="homepage sw sw-delete active hide">主页</span> -->
+                    <span tapmode="hover" onclick="fnSetHome(this);" class="homepage sw sw-delete hide">{{'设为主页' | fnLanguage_public}}</span>
+                </span>
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                APP._images_maxlength = 30;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+                APP.fixTabBar('.bottom');
+                fnIsHomeInit();
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    });
+
+
+
+    function fnEdit(_el){
+        fnSwitchRedio_base({
+            el: _el
+        }, function(ret){
+            $('.sw').addClass('hide');
+            APP._isEdit = ret.isChoice;
+            fnValue(_el, ['编辑', '完成'][ret.isChoice]);
+            fnIsHomeInit();
+        })
+    }
+
+    function fnGetPicture(){
+        if( $('.pho-img').length < APP._images_maxlength ){
+            APP._index = 0;
+            fnGetPicture_public({
+                // el: _el,                             //可选 |           | Element |  如果该元素有图片地址，弹出菜单会有一个查看大图的选项
+                isClip: false,                       //可选 | false     | Boolean |  是否需要裁剪（如果max参数大于2，该字段无效）
+                max: APP._images_maxlength - $('.pho-img').length,                              //可选 | 1         | Number  |  选择照片时，可以最大选择几张图片
+                // compressQuality: 'medium',           //可选 | 'medium'  | String  |  图片压缩质量（high：超清、medium：高清、low：普通）
+                // isCameraOption: true,                //可选 | true      | Boolean |  是否需要拍照选项
+                // isAlbumOption: false,                //可选 | true      | Boolean |  是否需要选择图片选项
+                // isUploadServer: false,               //可选 | true      | Boolean |  是否需要使用服务器返回的图片地址数据，否则返回本地的图片地址信息
+                // finishText: '发送'                    //可选 | '确定'     | String  |  选择照片点击确定按钮的文字
+            }, function(ret) {
+                // alert(debugAlert(arguments))
+                // ret.url                       //必返     |           |  String           |  网络图片地址或者本地图片地址
+                // ret.filepath                  //非必返   |           |  String           |  网络图片名称（isUploadServer为false时该字段不返回）
+                ++APP._index;
+                $('.imgs').append(template('images-template', ret));
+                // alert(debugAlert(APP._index, ret.selectImgNum, APP._index >= ret.selectImgNum))
+                fnImgLengthInit();
+
+                if( APP._index >= ret.selectImgNum ){
+                    fnSetImage();
+                }
+            })
+        }else{
+            fnToast('最多可上传30张')
+        }
+    }
+
+    function fnImgLengthInit(){
+        if( $('.imgs .img').length ){
+            $('#no-data').addClass('hide');
+        }else{
+            $('#no-data').removeClass('hide');
+        }
+    }
+
+    function fnSetImage(){
+        var _images = [];
+        $('.pho').each(function(_index, _el){
+            _images.push($(_el).data('id'));
+        })
+
+        fnUpdateStoreInfo_base({
+            images: _images.length ? _images.join() : 'deleteAll'
+        }, function(ret){
+            fnIsHomeInit();
+        })
+    }
+
+    function fnSetHome(_el){
+        fnAlert_public({
+            title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '是否设为主页？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            $('.imgs').prepend(template('images-template', {
+                url: $(_el).closest('.pho').attr('data-img-url'),
+                filepath: $(_el).closest('.pho').attr('data-id')
+            }));
+
+            $(_el).closest('.img').remove();
+
+            setTimeout(function(){
+                fnSetImage();
+            }, 300)
+        }
+    }
+
+    function fnDelete(){
+        fnAlert_public({
+            title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '确定删除图片？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            $('.sel.active').each(function(_index, _el){
+                $(_el).closest('.img').remove();
+            })
+            fnEdit('#edit');
+
+            setTimeout(function(){
+                fnSetImage();
+            }, 300)
+        }
+    }
+
+    function fnIsHomeInit(){
+        $('.homepage').each(function(_index, _el){
+            if( $(_el).closest('.img').index() ){
+                fnValue(_el, fnLanguage_public('设为主页'));
+                $(_el).removeClass('no-onclick');
+            }else{
+                fnValue(_el, fnLanguage_public('主页'));
+                $(_el).addClass('no-onclick');
+            }
+        })
+
+        if( APP._isEdit ){
+            $('.sw-delete').removeClass('hide');
+        }else{
+            $('.sw-upload').removeClass('hide');
+        }
+
+        fnImgLengthInit();
+    }
+
+    function fnSwitchRedio(_el){
+        fnSwitchRedio_base({
+            el: _el
+        }, function(){
+            fnValue('#deleteNum', $('.sel.active').length)
+        })
+    }
+
+
+    function fnPhotoBrowser(_el){
+        var _pics = [];
+        $('.pho').each(function(_index, _el){
+            _pics.push($(_el).attr('data-img-url'));
+        })
+        fnPhotoBrowser_public({
+            pics: _pics,    // [] | Array | 必传 | 图片数组
+            default: $(_el).index() || 0  // 0 | number | 首次显示图片索引
+        });
+    }
+</script>
+</html>

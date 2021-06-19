@@ -1,0 +1,129 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .center{
+                        padding: pxToRem(40) pxToRem(80);
+                        .rule{
+                            display: inline-block;
+                            position: relative;
+                            .agreement{
+                                min-width: pxToRem(160);
+                                padding: pxToRem(15) pxToRem(24);
+                                border: pxToRem(1) solid #EAEAEA;
+                                border-radius: pxToRem(4);
+                                line-height: pxToRem(34);
+                                font-size: pxToRem(24);
+                                color: #666;
+                                &::after{
+                                    content: '';
+                                    display: inline-block;
+                                    width: pxToRem(20);
+                                    height: pxToRem(34);
+                                    vertical-align: bottom;
+                                    margin-left: pxToRem(40);
+                                    @include set-bg-img( $name: "web-down.png", $size: pxToRem(20) auto, $position: center center);
+                                };
+                            }
+                            &:hover{
+                                content: '';
+                                .agreement{
+                                    &::after{
+                                        @include set-bg-img( $name: "web-up.png", $size: pxToRem(20) auto, $position: center center);
+                                    };
+                                }
+                                .ul{
+                                    display: block;
+                                }
+                            };
+                            .ul{
+                                display: none;
+                                background-color: #FFFCFB;
+                                position: relative;
+                                position: absolute;
+                                top: pxToRem(78);
+                                left: pxToRem(0);
+                                border: pxToRem(2) solid #EAEAEA;
+                                border-radius: pxToRem(4);
+                                width: pxToRem(206);
+                                &::before{
+                                    content: '';
+                                    display: inline-block;
+                                    width: pxToRem(40);
+                                    height: pxToRem(40);
+                                    position: absolute;
+                                    top: pxToRem(-36);
+                                    right: pxToRem(22);
+                                    @include set-bg-img( $name: "web-top2.png", $size: pxToRem(40) auto, $position: center center);
+                                };
+                                .li{
+                                    height: pxToRem(64);
+                                    line-height: pxToRem(64);
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    text-align: center;
+                                    &.active,&:hover{
+                                        background-color: $bg-color;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                        .text{
+                            margin-top: pxToRem(40);
+                            font-size: pxToRem(28);
+                            color: #333;
+                            line-height: pxToRem(58);
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

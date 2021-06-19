@@ -1,0 +1,87 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body{
+    &.gray{
+        background-color: #F3F3F3;
+    }
+    .wrap{
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        background-color: white;
+        border-radius: pxToRem(14);
+        @include prefixCss3( $property: transform, $value: translate(-50%, -50%));
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        &.active{
+            @include prefixCss3( $property: transform, $value: translate(-50%, -120%));
+        }
+        .text{
+            // padding: pxToRem(30) pxToRem(40);
+            .title{
+                padding: pxToRem(40) pxToRem(40) 0;
+                font-size: pxToRem(34);
+                color: #000;
+            }
+            .input{
+                margin: pxToRem(40) pxToRem(80) pxToRem(62);
+                @include flex-box($align: center);
+                // background: rgba(255,255,255,1);
+                border-radius: pxToRem(8);
+                border: pxToRem(2) solid rgba(221,221,221,1);
+                height: pxToRem(80);
+                padding: 0 pxToRem(30);
+                input{
+                    font-size: pxToRem(30);
+                    color: #333;
+                }
+            }
+        }
+        .footer{
+            @include border-top-m(solid, #eee);
+            @include flex-box();
+            .item{
+                @include flex-item();
+                line-height: pxToRem(100);
+                color: #000;
+                font-size: pxToRem(32);
+                &:not(:first-child){
+                    // border-left: pxToRem(2) solid #e5e5e5;
+                    @include border-left-m(solid, #eee);
+                }
+                &.active{
+                    color: $bg-color;
+                }
+            }
+        }
+    }
+
+    .con{
+        padding: pxToRem(40) pxToRem(30);
+        color: #666;
+        line-height: pxToRem(42);
+        font-size: pxToRem(30);
+        background-color: #fff;
+        textarea{
+            height: pxToRem(650);
+        }
+        .limit{
+            color: #999;
+            text-align: right;
+        }
+    }
+
+    .update{
+        position: relative;
+        margin: pxToRem(60) pxToRem(30);
+        height: pxToRem(90);
+        line-height: pxToRem(90);
+        text-align: center;
+        font-size: pxToRem(30);
+        color: #fff;
+        @extend .gradient;
+        border-radius: pxToRem(8);
+    }
+}

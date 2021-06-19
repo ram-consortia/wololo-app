@@ -1,0 +1,375 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .pagination{
+                padding-bottom: 0;
+                padding-top: pxToRem(32);
+            }
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .order-title{
+                        padding: pxToRem(37) pxToRem(60);
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        font-size: pxToRem(32);
+                        color: #333;
+                        line-height: pxToRem(44);
+                        font-weight: bold;
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            width: pxToRem(6);
+                            height: pxToRem(34);
+                            background-color: $bg-color;
+                            vertical-align: sub;
+                            margin-right: pxToRem(14);
+                            border-top-left-radius: pxToRem(4);
+                            border-top-right-radius: pxToRem(4);
+                            border-bottom-left-radius: pxToRem(4);
+                            border-bottom-right-radius: pxToRem(4);
+                        };
+                        .del{
+                            font-size: pxToRem(24);
+                            color: #666;
+                            line-height: pxToRem(44);
+                            float: right;
+                            font-weight: normal;
+                        }
+                    }
+                    .order-details{
+                        padding: pxToRem(40);
+                        .order-top{
+                            @include flex-box();
+                            margin-bottom: pxToRem(40);
+                            width: 100%;
+                            min-height: pxToRem(222);
+                            padding: pxToRem(40) 0;
+                            font-size: pxToRem(32);
+                            color: #fff;
+                            line-height: pxToRem(44);
+                            @include set-bg-img( $name: "web-background2.png", $size: 100% 100%);
+                            box-shadow:0px -24px 40px 0px rgba(255,124,73,0.1);
+                            .subtitle{
+                                @include flex-item();
+                                padding-left: pxToRem(120);
+                                @include prefixCss3($property: align-self, $value: center);
+                                .time{
+                                    font-size: pxToRem(26);
+                                    padding-top: pxToRem(26);
+                                    line-height: pxToRem(36);
+                                }
+                            }
+                            .order-right{
+                                padding-right: pxToRem(80);
+                                @include prefixCss3($property: align-self, $value: center);
+                                &::after{
+                                    content: '';
+                                    display: inline-block;
+                                    width: pxToRem(28);
+                                    height: pxToRem(44);
+                                    margin-left: pxToRem(8);
+                                    vertical-align: text-top;
+                                    @include set-bg-img( $name: "icon-back1.png", $size: pxToRem(28) auto, $position: center center);
+                                };
+                            }
+                        }
+                        .address{
+                            border: pxToRem(2) solid #EAEAEA;
+                            padding: 0 pxToRem(40) pxToRem(30);
+                            margin-bottom: pxToRem(40);
+                            .add-name{
+                                padding: pxToRem(34) 0 pxToRem(32);
+                                font-size: pxToRem(24);
+                                color: #333;
+                                line-height: pxToRem(34);
+                                font-weight: bold;
+                            }
+                            .site{
+                                @include flex-box();
+                                background-color: #F7F7F7;
+                                border-radius: pxToRem(4);
+                                padding: pxToRem(29) pxToRem(38);
+                                .site-img{
+                                    display: inline-block;
+                                    width: pxToRem(32);
+                                    height: pxToRem(32);
+                                    margin-right: pxToRem(36);
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    @include set-bg-img( $name: "web-location.png", $size: pxToRem(32) auto, $position: center center);
+                                }
+                                .site-message{
+                                    font-size: pxToRem(24);
+                                    color: #666;
+                                    line-height: pxToRem(34);
+                                    .site-name{
+                                        padding-bottom: pxToRem(24);
+                                        .phone{
+                                            padding-left: pxToRem(74);
+                                        }
+                                    }
+                                    .location{
+                                        
+                                    }
+                                }
+                                    
+                            }
+                        }
+                    }
+                    .tables{
+                        /*padding: pxToRem(40);*/
+                        .table{
+                            width: 100%;
+                            border: pxToRem(2) solid #EAEAEA;  
+                            .tr{
+                                @include flex-box();
+                                overflow: hidden;
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                &:last-of-type{
+                                    content: '';
+                                    border-bottom: none;
+                                };
+                                .th{
+                                    padding: pxToRem(33) 0 pxToRem(33) pxToRem(40);
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(34);
+                                    font-weight: bold;
+                                }
+                                .td{
+                                    position: relative;
+                                    float: left;
+                                    padding: pxToRem(28) 0;
+                                    &.forty-percent{
+                                        width: 40%;
+                                    }
+                                    &.twenty-percent{
+                                        width: 20%;
+                                        text-align: center;
+                                    }
+                                    &.thirty-percent{
+                                        width: 30%;
+                                        text-align: center;
+                                    }
+                                    
+                                    .number-edit{
+                                        @include flex-box();
+                                        width: pxToRem(202);
+                                        height: pxToRem(58);
+                                        border: pxToRem(2) solid #E1E1E5;
+                                        border-radius: pxToRem(4);
+                                        .reduce{
+                                            width: pxToRem(58);
+                                            height: pxToRem(58);
+                                            @include set-bg-img( $name: "icon-reduce.png", $size: pxToRem(24) auto, $position: center center);
+                                            border-right: pxToRem(2) solid #E1E1E5;
+                                            &.no-onclick{
+                                                @include set-bg-img( $name: "icon-reduce1.png", $size: pxToRem(24) auto, $position: center center);
+                                            }
+                                        }
+                                        .num{
+                                            @include flex-item();
+                                            line-height: pxToRem(58);
+                                            font-size: pxToRem(28);
+                                            color: #323233;
+                                            input{
+                                                text-align: center;
+                                            }
+                                        }
+                                        .add{
+                                            width: pxToRem(58);
+                                            height: pxToRem(58);
+                                            @include set-bg-img( $name: "icon-add.png", $size: pxToRem(24) auto, $position: center center);
+                                            border-left: pxToRem(2) solid #E1E1E5;
+                                            &.no-onclick{
+                                                @include set-bg-img( $name: "icon-add1.png", $size: pxToRem(24) auto, $position: center center);
+                                            }
+                                        }
+                                    }
+                                    
+                                    .message-item{
+                                        @include flex-box();
+                                        .img{
+                                            width: pxToRem(160);
+                                            height: pxToRem(160);
+                                            margin-right: pxToRem(40);
+                                            margin-left: pxToRem(28);
+                                            @include set-bg-img( $name: "icon-background1.png");
+                                        }
+                                        .base{
+                                            @include flex-item();
+                                            .shop-name{
+                                                font-size: pxToRem(28);
+                                                color: #333;
+                                                line-height: pxToRem(40);
+                                                /*@include text-overflow(1);*/
+                                            }
+                                            .subtitle{
+                                                padding-top: pxToRem(24);
+                                                padding-bottom: pxToRem(24); 
+                                                font-size: pxToRem(24);
+                                                color: #666;
+                                                line-height: pxToRem(34);
+                                                /*@include text-overflow(1);*/
+                                            }
+                                            .time{
+                                                font-size: pxToRem(24);
+                                                color: #666;
+                                                line-height: pxToRem(34);
+                                                /*@include text-overflow(1);*/
+                                            }
+                                        }
+                                    }
+                                    .cash-coupon{
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%)); 
+                                        margin: 0 auto;
+                                        width: pxToRem(160);
+                                        padding: pxToRem(18) 0 pxToRem(14);
+                                        background-color: rgba(255,124,74,0.05);
+                                        border-radius: pxToRem(6);
+                                        text-align: center;
+                                        color: #FF7C4A;
+                                        font-size: pxToRem(24);
+                                        line-height: pxToRem(34);
+                                        .size{
+                                            font-size: pxToRem(32);
+                                            line-height: pxToRem(44);
+                                            padding-bottom: pxToRem(12);
+                                            /*font-weight: bold;*/
+                                        }
+                                    }
+                                    .number{
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%)); 
+                                        color: #666;
+                                        font-size: pxToRem(24);
+                                        line-height: pxToRem(34);
+                                        min-width: pxToRem(100);
+                                    }
+                                    .td-box{
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%)); 
+                                        .td-item{
+                                            font-size: pxToRem(24);
+                                            color: #FF7C4A;
+                                            width: pxToRem(164);
+                                            height: pxToRem(52);
+                                            text-align: center;
+                                            line-height: pxToRem(52);
+                                            border: pxToRem(2) solid #FF7C4A;
+                                            border-radius: pxToRem(8);
+                                            margin: pxToRem(20) auto;
+                                        }
+                                        .receipt{
+                                            font-size: pxToRem(24);
+                                            color: #FF7C4A;
+                                            line-height: pxToRem(34);
+                                            &.close{
+                                                color: #666;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .information{
+                                padding: 0 pxToRem(40) pxToRem(30);
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                .add-name{
+                                    padding: pxToRem(34) 0 pxToRem(38);
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(34);
+                                    font-weight: bold;
+                                }
+                                .order{
+                                    .order-box{
+                                        @include flex-box();
+                                        padding: pxToRem(14) 0;
+                                        font-size: pxToRem(24);
+                                        color: #666;
+                                        line-height: pxToRem(34);
+                                        .border-item{
+                                            @include flex-item();
+                                        }
+                                        .price{
+                                            .width{
+                                                display: inline-block;
+                                                min-width: pxToRem(116);
+                                                text-align: right;
+                                                &.color{
+                                                    color: $bg-color;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .write-off{
+                                @include flex-box();
+                                padding: pxToRem(24) pxToRem(40);
+                                .verification{
+                                    @include flex-item();
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(34); 
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    &::after{
+                                        content: '';
+                                        display: inline-block;
+                                        width: pxToRem(24);
+                                        height: pxToRem(34);
+                                        margin-left: pxToRem(8);
+                                        vertical-align: bottom;
+                                        @include set-bg-img( $name: "icon-back.png", $size: pxToRem(24) auto, $position: center center);
+                                    };
+                                    &.no-arrow{
+                                        &::after{
+                                            display: none;
+                                        }
+                                    }
+                                }
+                                .refund{
+                                    display: inline-block;
+                                    width: pxToRem(164);
+                                    height: pxToRem(52);
+                                    text-align: center;
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(52);
+                                    border: pxToRem(2) solid #979797;
+                                    border-radius: pxToRem(8);
+                                    margin-left: pxToRem(40);
+                                    &.color{
+                                        border: pxToRem(2) solid #FF7C4A;
+                                        color: #FF7C4A;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

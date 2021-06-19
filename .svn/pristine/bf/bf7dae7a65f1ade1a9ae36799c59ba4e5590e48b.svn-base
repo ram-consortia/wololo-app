@@ -1,0 +1,102 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .order-title{
+                        padding: pxToRem(37) pxToRem(60);
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        font-size: pxToRem(32);
+                        color: #333;
+                        line-height: pxToRem(44);
+                        font-weight: bold;
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            width: pxToRem(6);
+                            height: pxToRem(34);
+                            background-color: $bg-color;
+                            vertical-align: sub;
+                            margin-right: pxToRem(14);
+                            border-top-left-radius: pxToRem(4);
+                            border-top-right-radius: pxToRem(4);
+                            border-bottom-left-radius: pxToRem(4);
+                            border-bottom-right-radius: pxToRem(4);
+                        };
+                    }
+                    .ul{
+                        padding: 0 pxToRem(60);
+                        .li{
+                            border-bottom: pxToRem(2) solid #EAEAEA;
+                            .li-box{
+                                padding: pxToRem(32) 0 pxToRem(26);
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(40);
+                                @include flex-box();
+                                .li-item{
+                                    @include flex-item();
+                                    font-weight: bold;
+                                }
+                                .time{
+                                    font-size: pxToRem(24);
+                                    color: #999;
+                                    line-height: pxToRem(40);
+                                }
+                            }
+                            .text{
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(48);
+                                padding-bottom: pxToRem(30);
+                            }
+                            .imgs{
+                                overflow: hidden;
+                                margin: 0 pxToRem(-16);
+                                .img{
+                                    position: relative;
+                                    float: left;
+                                    display: inline-block;
+                                    width: pxToRem(172);
+                                    height: pxToRem(172);
+                                    margin: pxToRem(16);
+                                    border-radius: pxToRem(8);
+                                    @include set-bg-img( $name: "icon-background1.png");
+                                }
+                            }
+                            .reply{
+                                background-color: #F7F7F7;
+                                border-radius: pxToRem(4);
+                                padding: pxToRem(30) pxToRem(28);
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(40);
+                                margin-bottom: pxToRem(30);
+                                .color{
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                        
+                }
+            } 
+            
+        }
+    }
+      
+}

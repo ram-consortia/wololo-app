@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        div{
+          height: 100px;
+        }
+        .red{
+          background: red;
+        }
+        .orange{
+          background: orange;
+        }
+        .green{
+          background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="red" onclick="toShare()"></div>
+    <div class="orange" onclick="toShare1()"></div>
+    <div class="green" onclick="toShare2()"></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    };
+    function toShare(){
+      var sharedModule = api.require('shareAction');
+        sharedModule.share({
+            text: 'Wololo',
+            path: "http://baidu.com",
+            type: 'url',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 400,                  //宽度，数字类型
+                    h: 400,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 400,                  //宽度，数字类型
+                    h: 400                   //高度，数字类型
+                },
+                fixedOn: "",              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+
+        });
+    }
+    function toShare1(){
+      var sharedModule = api.require('shareAction');
+        sharedModule.share({
+            text: 'Wololo',
+            path: "http://baidu.com",
+            type: 'url',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 0,                  //宽度，数字类型
+                    h: 0,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 0,                  //宽度，数字类型
+                    h: 0                   //高度，数字类型
+                },
+                fixedOn: "",              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+
+        });
+    }
+    function toShare2(){
+      api.openFrame({
+          name: 'shareFrame',
+          url: './share.html',
+          rect: {
+              x: 100,
+              y: 200,
+              w: 320,
+              h: 480
+          },
+          pageParam: {
+              name: 'test'
+          },
+          bounces: true,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: true,
+          hScrollBarEnabled: true
+      });
+    }
+</script>
+
+</html>

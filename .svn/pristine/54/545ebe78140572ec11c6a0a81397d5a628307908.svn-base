@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../framework/mobileSelect.css">
+    <link rel="stylesheet" href="../../css/groupOften_win.css">
+</head>
+
+<body>
+    <div class="content flex-vertical" id="wrap"></div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'设置时间' | fnLanguage_public}}</div>
+        </header>
+        <div class='wrap'>
+            <div class="time_wrap">
+                <div class='time'>
+                    <div id="trigger1">lianlianlina</div>
+                </div>
+               <div class='text'>
+                    <p>Setting the timer will allow others to join your group.</p>
+                    <p> Once the timer expires you will be able to claim the discount</p>
+                    <p> according to how many have joined the group.</p>
+               </div>
+              
+            </div>
+          
+            <div class="sure" tapmode="hover" onclick="fnSubmit()">
+                {{'设置时间' | fnLanguage_public}}
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/mobileSelect.min.js"></script>
+
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function () {
+        fnValue('#wrap', template('wrap-template', APP));
+        console.log(JSON.stringify(APP))
+        // fnFocus_public("#day");
+        // fnFormat();
+        // fnInit(APP._param.expire_time);
+        var mobileSelect1 = new MobileSelect({
+            trigger: '#trigger1',
+            title: '单项选择',
+            wheels: [
+                {
+                    data: [
+                        { id: '1', value: '附近' },
+                        { id: '2', value: '上城区' },
+                        { id: '3', value: '下城区' },
+                        { id: '4', value: '江干区' },
+                        { id: '5', value: '拱墅区' },
+                        { id: '6', value: '西湖区' }
+                    ]
+                },
+                {
+                    data: [
+                        { id: '1', value: '1000米' },
+                        { id: '2', value: '2000米' },
+                        { id: '3', value: '3000米' },
+                        { id: '4', value: '5000米' },
+                        { id: '5', value: '10000米' }
+                    ]
+                }
+            ],
+            callback: function (indexArr, data) {
+                console.log(data); //返回选中的json数据
+            }
+        });
+
+    });
+
+
+
+
+
+    function fnFormat() {
+        if ($('#day').length) {
+            fnValue('#day', parseInt(APP._param.expire_time / 24 / 60 / 60));
+        }
+
+        if ($('#hour').length) {
+            fnValue('#hour', parseInt(APP._param.expire_time / 60 / 60 % 24));
+        }
+
+        if ($('#minute').length) {
+            var _minute = APP._param.expire_time / 60 % 60;
+            // console.log(APP._param, _minute)
+            if (_minute > 0) {
+                _minute -= 0.01;
+                _minute = _minute.toFixed(2);
+            }
+            // console.log(APP._param, _minute)
+            fnValue('#minute', _minute);
+        }
+    }
+
+
+    function fnInput() {
+        var _day = +fnValue('#day'),
+            _hour = +fnValue('#hour'),
+            _minute = +fnValue('#minute');
+        APP._expire_time = 0;
+        if (_day) {
+            APP._expire_time = _day * 24 * 60 * 60;
+        }
+        if (_hour) {
+            APP._expire_time += _hour * 60 * 60;
+        }
+        if (_minute) {
+            APP._expire_time += _minute * 60;
+        }
+        if (APP._expire_time <= APP._param.expire_time) {
+
+        } else {
+            fnFormat();
+        }
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.CHOICE_GROUP_TIME,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit() {
+        console.log()
+        fnOpen('pop/aPublicTimeSelector_pop.html', {
+            date: APP._param.expire_time
+        });
+        // if (APP._expire_time) {
+        //     fnClosePop({
+        //         expire_time: APP._expire_time
+        //     });
+        // } else {
+        //     fnToast('请输入时间')
+        // }
+    }
+</script>
+
+</html>

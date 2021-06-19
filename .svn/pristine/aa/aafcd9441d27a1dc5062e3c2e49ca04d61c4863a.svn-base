@@ -1,0 +1,94 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    .fixed{
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background:rgba(0,0,0,0.4);
+    }
+    .screen{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        border-top-right-radius: pxToRem(24);
+        border-top-left-radius: pxToRem(24);
+        .preparation{
+            @include flex-box();
+            position: relative;
+            padding: pxToRem(34) pxToRem(30);
+                text-align: center;
+            .close{
+                width: pxToRem(44);
+                height: pxToRem(44);
+                @include set-bg-img( $name: "icon-close.png", $size: pxToRem(44) auto, $position: center center);
+            }
+
+        }
+        .li{
+            @include flex-box();
+            margin: 0 pxToRem(30) pxToRem(70);
+            padding: pxToRem(19) 0;
+            @include border-bottom-m;
+            &::after{
+                border-color: #EAEAEA;
+            };
+            @include border-top-m;
+            &::before{
+                border-color: #EAEAEA;
+            };
+            .name{
+                @include flex-item();
+                font-size: pxToRem(30);
+                color: #333;
+                line-height: pxToRem(62);
+            }
+            .time{
+                font-size: pxToRem(28);
+                color: #323233;
+                line-height: pxToRem(58);
+                .day{
+                    display: inline-block;
+                    margin: 0 pxToRem(5);
+                }
+                .hour{
+                    display: inline-block;
+                    margin-left: pxToRem(8);
+                }
+                .input{
+                    display: inline-block;
+                    border: pxToRem(2) solid #E1E1E5;
+                    width: pxToRem(70);
+                    padding: 0 pxToRem(5);
+                    input{
+                        text-align: center;
+                    }
+
+                }
+            }
+        }
+        .bottom{
+            overflow: hidden;
+            @include border-top-m;
+            &::before{
+                border-color: #eee;
+            };
+            .sure{
+                margin: pxToRem(10) pxToRem(30);
+                height: pxToRem(92);
+                font-size: pxToRem(30);
+                color: #fff;
+                line-height: pxToRem(92);
+                @extend .font-m;
+                border-radius: pxToRem(8);
+                text-align: center;
+                @include set-bg-img( $name: "icon-submint.png");
+            }
+        }
+    }
+
+}

@@ -1,0 +1,390 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+</head>
+<body>
+<div id="box"></div>
+
+</body>
+<script type="text/javascript" src="./framework/zepto.min.js"></script>
+<script type="text/javascript" src="./script/public.js"></script>
+<script type="text/javascript" src="./script/base.js"></script>
+<script type="text/javascript">
+// 测试12
+    const debugPage="home/home_win.html";
+
+    function fnScriptCrossDomain(_obj, _cb){
+        var _url = _obj.url + fnConvertParam_public(_obj.data);
+        var _script = document.createElement('script');
+        _script.src = _url;
+        document.body.appendChild(_script);
+    }
+    function fnJumpHome(){
+        if( ! APP._isAuthLogin ){
+            debugAlert('自动登录还没有加载完')
+        }else if( APP._user ){
+            if (APP._user.user_type == APP.USER_TYPE.store.value) {
+                if( !(APP._user.auth.id && + APP._user.auth.is_can_app) ){
+                    fnOpen('sign/business_win.html', {
+                        repeat: APP.YES
+                    });
+                }else{
+                    fnOpen('business/business_win.html');
+                }
+            } else {
+                fnOpen('home/home_win.html')
+            }
+        }
+    }
+    function fnPlay(){
+        if( fnCookie(APP.LC_NAME.USER) ){
+            fnJoinHomeLogic_base({
+                hasProgress: APP.NO,
+                isNotJumpHome: APP.YES
+            }, function(_user){
+                setTimeout(()=>{
+                    api.removeLaunchView();
+                },500)
+                if (_user) {
+                    // 当前登陆了用户
+                    APP._isAuthLogin = APP.YES;
+                    APP._user = _user.user;
+                    fnJumpHome();
+                } else {
+                    // 当前没有登陆用户
+                    fnOpen('sign/signIn_win.html', {
+                        animation: { //打开的动画
+                            type: 'none'
+                        }
+                    });
+                }
+            });
+
+            /*setTimeout(function(){
+                debugAlert('视频关闭了');
+                fnRemoveVideo();
+            }, 4000)*/
+        }else{
+            APP._isAuthLogin = APP.YES;
+            fnOpen('sign/signIn_win.html', {
+                animation: { //打开的动画
+                    type: 'none'
+                }
+            });
+            setTimeout(()=>{
+                api.removeLaunchView();
+            },500)
+        }
+        return;
+        /*setTimeout(function(){
+            debugAlert('视频关闭了');
+            fnRemoveVideo();
+        }, 10000)*/
+    }
+
+    // 页面初始化
+    APP.init(function() {
+        // api.closeWin();
+        // fnCookie(APP.LC_NAME.HAS_NOT_WELCOME,false)
+        api.addEventListener({
+            name:'viewdisappear'
+        },function(){
+            api.removeLaunchView();
+            api.closeWin();
+        });
+        fnJoinHomeLogic_base(function (){
+            api.removeLaunchView();
+        });
+        return;
+        fnJoinAPP(APP.YES);
+    });
+
+    function fnJoinAPP(_env) {
+        if (fnHasEmpty_public(_env)) {
+            fnOpen('public/aPublicDemo_win.html', {
+                animation: { //打开的动画
+                    type: 'none'
+                }
+            });
+        } else {
+            fnCookie(APP.LC_NAME.ENV, _env, function() {
+                _isVpn(APP.NO);
+            });
+        }
+
+        function _isVpn(_isVpn){
+            fnCookie(APP.LC_NAME.IS_VPN, _isVpn, function() {
+                _start();
+            });
+        }
+
+        function _start(){
+            fnInit();
+
+            if(fnCookie(APP.LC_NAME.HAS_NOT_WELCOME) ){
+                fnPlay();
+            }else{
+                fnOpen('public/welcomeTo.html', {
+                    animation: {
+                        type: 'none'
+                    }
+                });
+                api.addEventListener({
+                    name: APP.EV_NAME.SUBMIT_JOIN_HOME
+                }, function(ret, err){
+                    api.removeEventListener({
+                        name: APP.EV_NAME.SUBMIT_JOIN_HOME
+                    });
+                });
+            }
+        }
+    }
+
+    function fnInit(){
+        /*fnOpen('sign/signIn_win.html', {
+            animation: { //打开的动画
+                type: 'none'
+            }
+        });*/
+
+        fnSetStatusBarStyle_public({
+            style: 'dark',
+            color: 'rgba(0, 0, 0, 0)'
+        })
+
+        fnPushInit();
+    }
+
+    // 融云相关
+    function fnUIRongCloudInit(){
+        var _UIRongCloud = api.require('UIRongCloud');
+        _UIRongCloud.init(function(ret, err) {
+            debugAlert('融云init结束', arguments)
+            if (ret.status == 'success'){
+
+            }else{
+
+            }
+        });
+
+        _UIRongCloud.setOnReceiveMessageListener(function(ret, err) {
+            debugAlert('融云setOnReceiveMessageListener结束', arguments)
+            api.sendEvent({
+                name: UIRongCloud.EV_NAME.LISTENER_MSG,
+                extra: {
+                    ret: ret,
+                    err: err
+                }
+            });
+        })
+
+
+        fnAddEv('connect', function(_param){
+            debugAlert('融云connect开始', _param)
+            _UIRongCloud.connect(_param, function(ret, err) {
+                debugAlert('融云connect结束', arguments)
+                if( ret.status == 'success' ){
+                    _UIRongCloud.configNotificationHint({
+                        alertTitle: fnLanguage_public("您有一条新消息"),
+                        showDetail: false
+                    });
+                }
+                fnSendEv('connect', ret, err);
+            });
+        })
+
+        fnAddEv('openConversation', function(_param){
+            debugAlert('融云openConversation开始', _param)
+            _UIRongCloud.openConversation(_param, function(ret, err) {
+                debugAlert('融云openConversation结束', arguments)
+                fnSendEv('openConversation', ret, err);
+            });
+        })
+
+        fnAddEv('configChatButtons', function(_param){
+            _param.pluginItems = ['image', 'sight'];
+            debugAlert('融云configChatButtons开始', _param)
+            _UIRongCloud.configChatButtons(_param, function(ret, err) {
+                debugAlert('融云configChatButtons结束', arguments)
+                fnSendEv('configChatButtons', ret, err);
+            });
+        })
+
+        fnAddEv('getUnreadCount', function(_param){
+            debugAlert('融云getUnreadCount开始', _param)
+            _param.targetId += '';
+            _UIRongCloud.getUnreadCount(_param, function(ret, err) {
+                debugAlert('融云getUnreadCount结束', arguments)
+                fnSendEv('getUnreadCount', ret, err);
+            });
+        })
+
+        fnAddEv('getConversationList', function(_param){
+            debugAlert('融云getConversationList开始', _param)
+            _UIRongCloud.getConversationList(function(ret, err) {
+                debugAlert('融云getConversationList结束', arguments)
+                fnSendEv('getConversationList', ret, err);
+            });
+        })
+
+        fnAddEv('deleteMessages', function(_param){
+            debugAlert('融云deleteMessages开始', _param)
+            _UIRongCloud.deleteMessages(_param, function(ret, err) {
+                debugAlert('融云deleteMessages结束', arguments)
+                fnSendEv('deleteMessages', ret, err);
+            });
+        })
+
+        fnAddEv('clearMessagesUnreadStatus', function(_param){
+            debugAlert('融云clearMessagesUnreadStatus开始', _param)
+            _UIRongCloud.clearMessagesUnreadStatus(_param, function(ret, err) {
+                debugAlert('融云clearMessagesUnreadStatus结束', arguments)
+                fnSendEv('clearMessagesUnreadStatus', ret, err);
+            });
+        })
+
+        fnAddEv('removeConversation', function(_param){
+            debugAlert('融云removeConversation开始', _param)
+            _UIRongCloud.removeConversation(_param, function(ret, err) {
+                debugAlert('融云removeConversation结束', arguments)
+                fnSendEv('removeConversation', ret, err);
+            });
+        })
+
+        fnAddEv('setUserAvatar', function(_param){
+            // debugAlert('融云addNeedAvatarListener开始', _param)
+            // _UIRongCloud.addNeedAvatarListener(function(ret) {
+            //     debugAlert('融云addNeedAvatarListener结束', arguments)
+            // });
+            debugAlert('融云setUserAvatar开始', _param)
+            _UIRongCloud.setUserAvatar(_param, function(ret, err) {
+
+            });
+            debugAlert('融云setUserAvatar结束')
+            fnSendEv('setUserAvatar');
+        })
+
+        fnAddEv('getTotalUnreadCount', function(_param){
+            debugAlert('融云getTotalUnreadCount开始', _param)
+            _UIRongCloud.getTotalUnreadCount(function(ret, err) {
+                debugAlert('融云getTotalUnreadCount结束', arguments)
+                if(ret.result < 0){
+                    ret.result = 0;
+                }
+                fnSendEv('getTotalUnreadCount', ret, err);
+            });
+        })
+    }
+
+    // 发送事件
+    function fnSendEv(_fn_name, ret, err){
+        api.sendEvent({
+            name: [UIRongCloud.EV_NAME.EXEC, _fn_name, 'cb'].join(),
+            extra: {
+                ret: ret,
+                err: err
+            }
+        });
+    }
+
+    // 监听事件
+    function fnAddEv(_fn_name, _cb){
+        api.addEventListener({
+            name: [UIRongCloud.EV_NAME.EXEC, _fn_name].join()
+        }, function(ret, err){
+            _cb && _cb(ret.value || {});
+        });
+    }
+
+    // <!-- 极光推送 -->
+    function fnPushInit() {
+        APP._jpush = api.require('ajpush');
+        api.addEventListener({
+            name: 'noticeclicked'
+        }, function(ret, err) {
+            // alert(debugAlert('点击通知回调', arguments))
+            debugAlert('点击通知回调', arguments)
+            if( ret.value.result && ret.value.result.message ){
+                var _data = {
+                    extra: ret.value.result.message
+                };
+                _data.extra.type = APP.NOTICE.chat.type;
+                fnPushMsg(_data);
+            }else{
+                fnPushMsg(ret.value);
+            }
+        });
+
+        (APP._jpush||{setListener(){}}).setListener(function(ret) {
+            // 不需要收到推送自动跳转
+            // alert(debugAlert('监听消息', arguments))
+            debugAlert('监听消息', arguments)
+            // fnPushMsg(ret);
+            api.sendEvent({
+                name: APP.EV_NAME.ORDER_UPDATE,
+                extra: {}
+            });
+        });
+
+        // api.addEventListener({
+        //     name: 'pause'
+        // }, function(ret, err) {
+        //     onPause(); //监听应用进入后台，通知jpush暂停事件
+        // })
+        //
+        AJPUSH.setBadge();
+        api.addEventListener({
+            name: 'resume'
+        }, function(ret, err) {
+            AJPUSH.setBadge();
+        })
+
+        if (APP.hasIos()) {
+
+        } else {
+            (APP._jpush||{init(){}}).init(function(ret, err) {
+                if (ret && ret.status) {
+
+                } else {
+                    // alert('操作失败!');
+                }
+            });
+            api.addEventListener({
+                name: 'appintent'
+            }, function(ret, err) {
+                // alert(debugAlert('应用启动回调', arguments))
+                debugAlert('应用启动回调', arguments)
+                if (ret) {
+                    if( ret.appParam.ajpush ){
+                        fnPushMsg(ret.appParam.ajpush);
+                    }else if( ret.appParam.rong_params ){
+                        var _data = {
+                            extra: JSON.parse(ret.appParam.rong_params)
+                        };
+                        _data.extra.type = APP.NOTICE.chat.type;
+                        fnPushMsg(_data);
+                    }else{
+                        var _data = {
+                            extra: ret.appParam
+                        };
+                        fnPushMsg(_data);
+                    }
+                }
+            })
+        }
+    }
+
+    function fnPushMsg(_data){
+        _data = _data.extra;
+        api.sendEvent({
+            name: APP.EV_NAME.JPUSH_JUMP,
+            extra: _data
+        });
+        fnCookie(APP.LC_NAME.JPUSH_JUMP, _data);
+    }
+</script>
+</html>

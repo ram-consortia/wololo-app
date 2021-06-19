@@ -1,0 +1,1211 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicDemo_win.css">
+</head>
+
+<body>
+
+    <ul data-title="公共">
+        <li tapmode="hover" onclick="fnAlert()">打开一个 alert 弹窗</li>
+        <li tapmode="hover" onclick="fnTimeSelector(this)">打开一个年(<span>2018</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelector(this)">打开一个年、月(<span>2018/10</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelector(this)">打开一个年、月、日(<span>2018/12/12</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelector(this)">打开一个年、月、日、时分(<span>2018/12/12 21:56</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelector(this)">打开一个年、月、日、时分秒(<span>2018/12/12 21:56:45</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelectorQuarter(this)">打开一个刻度时间(<span>2018/12/12 21:56:45</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelectorContinuity(this)">打开一个选择多个时间的(<span>2018/12/12</span>)选择器</li>
+        <li tapmode="hover" onclick="fnTimeSelectorStartEnd(this)">打开一个可以选择起始时间和结束时间的(<span>2018/12/12</span>)选择器</li>
+        <li tapmode="hover" onclick="fnRedioSelector(this)" data-id="10">打开一个单项选择器&nbsp;&nbsp;<span>10天</span></li>
+        <li tapmode="hover" onclick="fnMultistageSelector(this)">打开一个二级无联动选择器</li>
+        <li tapmode="hover" onclick="fnOpenInputPop(this)">打开一个输入文本框弹窗</li>
+        <li tapmode="hover" onclick="fnInputText(this)">打开一个大文本域输入窗口</li>
+        <li tapmode="hover" onclick="fnOpenBarCode(this)">打开扫码</li>
+        <li tapmode="hover" onclick="fnGetPicture(this)">选择图片/拍照获取图片</li>
+        <li tapmode="hover" onclick="fnAjaxTest(this)">一个简单的发送短信 ajax 实例< /li>
+
+
+        <li tapmode="hover" onclick="fnChoiceActionSheet()">打开一个地步选择弹窗</li>
+        <li tapmode="hover" onclick="fnCitySelector(this)">城市选择器&nbsp;&nbsp;<span>重庆市/重庆市/沙坪坝区</span></li>
+        <li tapmode="hover" onclick="fnCitySelector(this, 2)">选择两级城市选择器&nbsp;&nbsp;<span>重庆市/重庆市/沙坪坝区</span></li>
+        <li tapmode="hover" onclick="fnQuery(this)">打开一个卡片信息弹窗</li>
+        <li tapmode="hover" onclick="fnPhotoBrowser()">打开一个图片浏览</li>
+        <li tapmode="hover" onclick="fnSelectMap()">打开一个地图选择</li>
+    </ul>
+
+    <ul data-title="项目相关">
+        <li tapmode="hover" onclick="fnNewUnit()">打开一个可以输入单位的弹窗</li>
+        <li tapmode="hover" onclick="fnCartMenu()">打开一个购物车顶部样式弹窗选择器</li>
+        <li tapmode="hover" onclick="fnSortScreeningBulletWindow()">打开一个排序筛弹窗选择器</li>
+        <li tapmode="hover" onclick="fnBillByElectionPop()">打开一个顶部单选弹窗选择器</li>
+        <li tapmode="hover" onclick="fnUnitConversion()">计算单位组通过换算成基础单位以后的总数以及每个单位对应的比例值</li>
+        <li tapmode="hover" onclick="fnAddGoodsBarCode()">商品增加条形码</li>
+        <li tapmode="hover" onclick="fnOpenSelete(this)" data-type="DEFAULT">单选列表(本地数据)</li>
+        <li tapmode="hover" onclick="fnOpenSelete(this)" data-type="DEFAULT_OFFER">单选列表(接口数据)</li>
+    </ul>
+
+
+    <ul data-title="打印机板块">
+        <li tapmode="hover" onclick="fnPrint()">选择一台打印机，并且打印一个测试页</li>
+    </ul>
+
+
+
+
+
+
+    <ul data-title="函数能力">
+
+        <li tapmode="hover" onclick="fnGetLocation()">获取用户当前经纬度</li>
+        <li tapmode="hover" onclick="fnHideFormat(this)">隐藏银行卡中间号码<span>6456456456645646</span></li>
+        <li tapmode="hover" onclick="fnHideMobile(this)">隐藏手机中间号码<span>17388214567</span></li>
+        <li tapmode="hover" onclick="fnMD5(this)">MD5加密<span>123456</span></li>
+        <li tapmode="hover" onclick="fnOpenBack_public()">打开一个固定在左上角的返回键</li>
+        <li tapmode="hover" onclick="fnDateTransfer(6000)">秒转时分秒格式6000</li>
+        <li class="flex-wrap">
+            <div id="cache" class="flex-item"></div>
+            <div tapmode="hover" tapmode="hover" onclick="fnClearCache_public()">清除缓存</div>
+        </li>
+        <li tapmode="hover" onclick="fnLongPress(this)">长按事件</li>
+    </ul>
+
+
+    <ul data-title="模块相关">
+        <li tapmode="hover" onclick="fnFileBrowserOpen()">打开本地文件系统</li>
+        <li tapmode="hover" onclick="fnCheckVersionUpdate_public()">版本更新</li>
+    </ul>
+
+
+
+
+
+
+
+
+    <ul data-title="css 相关">
+        <li class="gradient" tapmode="hover" onclick="alert('@include gradient()')">渐变函数</li>
+    </ul>
+    <ul data-title="金蝶身份验证">
+        <li tapmode="hover" onclick="fnFaceRecognitionCheck()">金蝶人脸识别与身份验证</li>
+    </ul>
+    <ul data-title="页面">
+        <li tapmode="hover" onclick="fnChoiceCity()">从城市列表选择一个城市信息</li>
+    </ul>
+    <ul data-title="函数能力">
+        <li tapmode="hover" onclick="fnAjaxTest()">一个ajax实例</li>
+        <li tapmode="hover" onclick="fnGetLocation()">获取用户当前经纬度</li>
+        <li tapmode="hover" onclick="fnHideFormat(this)">隐藏银行卡中间号码<span>6456456456645646</span></li>
+        <li tapmode="hover" onclick="fnHideMobile(this)">隐藏手机中间号码<span>17388214567</span></li>
+        <li tapmode="hover" onclick="fnMD5(this)">MD5加密<span>123456</span></li>
+        <li tapmode="hover" onclick="fnOpenBack_public()">打开一个固定在左上角的返回键</li>
+        <li tapmode="hover" onclick="fnDateTransfer(6000)">秒转时分秒格式6000</li>
+        <li class="flex-wrap">
+            <div id="cache" class="flex-item"></div>
+            <div tapmode="hover" tapmode="hover" onclick="fnClearCache_public()">清除缓存</div>
+        </li>
+        <li tapmode="hover" onclick="fnLongPress(this)">长按事件</li>
+    </ul>
+    <ul data-title="模块相关">
+        <li tapmode="hover" onclick="fnCheckVersionUpdate_public()">版本更新</li>
+    </ul>
+    <ul data-title="项目相关">
+        <li tapmode="hover" onclick="fnGetUserInfo()">获取用户信息</li>
+        <li tapmode="hover" onclick="fnGetUserInfo()">设置是否推送</li>
+        <li tapmode="hover" onclick="fnConstellations_public()">获取当前时段的星座</li>
+        <li tapmode="hover" onclick="fnOpen('public/home_win.html')">首页动画</li>
+    </ul>
+    <ul data-title="会话列表">
+        <li tapmode="hover" onclick="fnOpen('public/chatList_win.html')">会话列表</li>
+    </ul>
+    <ul data-title="实名认证">
+        <li class="flex-wrap">
+            <input id="username" class="flex-item" type="text" maxlength="10" placeholder="请输入您的姓名">
+        </li>
+        <li class="flex-wrap">
+            <input id="id-card" class="flex-item" type="tel" maxlength="18" placeholder="请输入您的身份证号码">
+        </li>
+        <li tapmode="hover" onclick="fnIdentification()">认证</li>
+    </ul>
+
+    <ul data-title="设置称呼">
+        <!-- <li tapmode="hover" onclick="fnGetNickname()">获取昵称列表</li> -->
+        <li id="calls" class="flex-wrap">
+            <!-- <div class="flex-item name active" tapmode="hover">获取验证码</div>
+            <div class="flex-item name" tapmode="hover">获取验证码</div>
+            <div class="flex-item name" tapmode="hover">获取验证码</div>
+            <div class="flex-item name" tapmode="hover">获取验证码</div> -->
+        </li>
+        <script type="text/html" id="calls-template">
+            {{each _calls}}
+            <div class="flex-item name" tapmode="hover">{{$value.name}}</div>
+            {{/each}}
+        </script>
+        <li id="name-wrap" class="flex-wrap">
+            <input id="nickname" class="flex-item" type="tel" maxlength="5" placeholder="请输入自定义称呼">
+        </li>
+        <li tapmode="hover" onclick="fnSetNickname()">确定</li>
+    </ul>
+    <ul data-title="输入验证相关">
+        <!-- <li class="flex-wrap">
+            <input id="phone" class="flex-item" type="tel" maxlength="11" placeholder="请输入手机号">
+            <div tapmode="hover" tapmode="hover" onclick="fnVerifyPhone()">验证</div>
+        </li>
+        <li class="flex-wrap">
+            <input id="password" class="flex-item" type="password" maxlength="12" placeholder="请输入8-12位密码">
+            <div tapmode="hover" tapmode="hover" onclick="fnVerifyPassword()">验证</div>
+        </li> -->
+        <li class="flex-wrap">
+            <input id="date-format" class="flex-item" type="text" placeholder="请输入时间戳">
+            <div tapmode="hover" tapmode="hover" onclick="fnDateForamt()">格式化</div>
+        </li>
+        <li class="flex-wrap">
+            <input id="listen-content" class="flex-item" type="text" maxlength="12" placeholder="监听输入内容">
+        </li>
+    </ul>
+    <ul data-title="注册">
+        <li class="flex-wrap">
+            <input id="mobile" class="flex-item" type="tel" maxlength="11" placeholder="手机号">
+        </li>
+        <li class="flex-wrap">
+            <input id="code" class="flex-item" type="tel" maxlength="11" placeholder="短信验证码">
+            <div tapmode="hover" tapmode="hover" onclick="fnSendMessage()">获取验证码</div>
+        </li>
+        <li class="flex-wrap">
+            <input id="password" class="flex-item" type="password" maxlength="12" placeholder="请输入8-12位密码">
+        </li>
+        <li tapmode="hover" onclick="fnRegister()">注册</li>
+    </ul>
+    <ul data-title="账号登录">
+        <li class="flex-wrap">
+            <input id="phone" class="flex-item" type="tel" maxlength="11" placeholder="手机号">
+        </li>
+        <li class="flex-wrap">
+            <input id="login-password" class="flex-item" type="password" maxlength="12" placeholder="请输入8-12位密码">
+        </li>
+        <!-- <li class="flex-wrap">
+            <input id="login-code" class="flex-item" type="tel" maxlength="11" placeholder="验证码">
+            <div tapmode="hover" tapmode="hover" onclick="fnSendMessage()">获取验证码</div>
+        </li> -->
+        <li tapmode="hover" onclick="fnLogin()">登录</li>
+    </ul>
+    <ul data-title="验证码登录">
+        <li class="flex-wrap">
+            <input id="code-phone" class="flex-item" type="tel" maxlength="11" placeholder="手机号">
+        </li>
+        <li class="flex-wrap">
+            <input id="code-login" class="flex-item" type="tel" maxlength="11" placeholder="验证码">
+            <div tapmode="hover" tapmode="hover" onclick="fnSendMessage2()">获取验证码</div>
+        </li>
+        <li tapmode="hover" onclick="fnCodeLogin()">验证码登录</li>
+    </ul>
+    <ul data-title="重置密码">
+        <li class="flex-wrap">
+            <input id="reset-phone" class="flex-item" type="tel" maxlength="11" placeholder="手机号">
+        </li>
+        <li class="flex-wrap">
+            <input id="reset-code" class="flex-item" type="tel" maxlength="11" placeholder="短信验证码">
+            <div tapmode="hover" tapmode="hover" onclick="fnSendMessage1()">获取验证码</div>
+        </li>
+        <li class="flex-wrap">
+            <input id="reset-password" class="flex-item" type="password" maxlength="12" placeholder="请输入8-12位密码">
+        </li>
+        <li tapmode="hover" onclick="fnResetPassword()">确认重置密码</li>
+    </ul>
+    <ul data-title="第三方相关">
+        <li tapmode="hover" onclick="fnQQLogin()">QQ登录</li>
+        <li tapmode="hover" onclick="fnWeixinLogin()">微信登录</li>
+        <li tapmode="hover" onclick="fnWeiboLogin()">微博登录</li>
+        <li tapmode="hover" onclick="fnQQShare()">QQ分享</li>
+        <li tapmode="hover" onclick="fnWeixinShare()">微信分享</li>
+        <li tapmode="hover" onclick="fnWeiboShare()">微博分享</li>
+    </ul>
+
+    <ul data-title="侧滑">
+        <li id="sideslip" tapmode="hover">
+            <div class="text">侧滑</div>
+            <div class="right-btns">删除</div>
+        </li>
+    </ul>
+
+
+    <ul data-title="API 相关">
+        <li tapmode="hover" onclick="fnSetStatusBarStyle('dark')">设置状态拦为黑色</li>
+        <li tapmode="hover" onclick="fnSetStatusBarStyle('light')">设置状态拦为白色</li>
+        <li tapmode="hover" onclick="fnCall_public(17388214789)">拨打电话</li>
+        <li tapmode="hover" onclick="fnSetKeepScreenOn_public(true)">禁止屏幕息屏</li>
+        <li tapmode="hover" onclick="fnStartProximity()">近接传感器</li>
+        <li tapmode="hover" onclick="fnPlay(this)" data-path="http://yspfy.suuzi.cn/Uploads/20190114/5c3c2ec4a18ea.amr">播放音频</li>
+    </ul>
+    <ul data-title="signature 模块">
+        <li tapmode="hover" onclick="fnMd5()">MD5大写加密</li>
+    </ul>
+    <ul data-title="docReader 模块">
+        <li tapmode="hover" onclick="fnOpenReader('excel.xlsx')">打开一个 excel</li>
+        <li tapmode="hover" onclick="fnOpenReader('pdf.pdf')">打开一个 pdf</li>
+        <li tapmode="hover" onclick="fnOpenReader('doc.docx')">打开一个 doc</li>
+    </ul>
+    <ul data-title="baiduOCRRecognizer 模块">
+        <li tapmode="hover" onclick="fnScanCardID()">扫描一个身份证</li>
+        <li tapmode="hover" onclick="fnRecognizeIDCard(true)">识别身份证正面</li>
+        <li tapmode="hover" onclick="fnRecognizeIDCard()">识别身份证反面</li>
+        <li tapmode="hover" onclick="fnRecognizeBankCard()">银行卡识别</li>
+    </ul>
+
+    <ul data-title="优资莱项目相关">
+        <li tapmode="hover" onclick="fnGetYZLUser()">获取会员信息</li>
+    </ul>
+</body>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+
+        fnIniRightBtns("#sideslip");
+        // fnGetNickname();
+
+        // fnInputListener_public(["#listen-content"],function(ret){
+        //     if(ret["#listen-content"].length){
+        //         alert(debugAlert("您输入的是"+ret["#listen-content"]));
+        //     }
+        // })
+
+        fnGetCacheSize_public(function(size) {
+            fnValue("#cache", size + 'M');
+        })
+    });
+
+
+
+    function fnBillByElectionPop(){
+        var _data = [];
+        for (var i = 1; i < 30; i++) {
+            _data.push({
+                id: i, //必填 |           | Number/String |  选项 id
+                value: i + '月' //必填 |           | String        |  选项显示的值
+            });
+        }
+        fnBillByElectionPop_public({
+            top: 100,                       //可选 |     0      | Number |  弹窗距离头部的高度
+            active: 1,                      //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+            data: _data                     //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+        }, function(ret) {                  //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            // ret.                         //必返 |           |  Object           |  返回选中的对象数据
+            alert(debugAlert(arguments))
+        });
+    }
+
+
+
+    function fnSortScreeningBulletWindow(){
+        fnSortScreeningBulletWindow_public({
+            top: 100,                           //可选 |     0      | Number |  弹窗距离头部的高度
+            buttons: [{                         //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '拿货时间',                //必选 |    ''      | string     |  按钮文案
+                order: '',                      //可选 |    ''      | string     |  排序类型。（asc 升序，desc 降序）
+                callback: function() {          //必选 |            | Function   | 点击按钮时触发该回调函数
+                    alert(debugAlert('拿货时间', arguments))
+                }
+            }, {                         //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '编辑时间',                //必选 |    ''      | string     |  按钮文案
+                order: 'asc',                   //可选 |    ''      | string     |  排序类型。（asc 升序，desc 降序）
+                callback: function() {          //必选 |            | Function   | 点击按钮时触发该回调函数
+                    alert(debugAlert('编辑时间', arguments))
+                }
+            }, {                         //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '单价',                //必选 |    ''      | string     |  按钮文案
+                order: 'desc',                   //可选 |    ''      | string     |  排序类型。（asc 升序，desc 降序）
+                callback: function() {          //必选 |            | Function   | 点击按钮时触发该回调函数
+                    alert(debugAlert('单价', arguments))
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+    }
+
+    function fnCartMenu(){
+        fnCartMenu_public({
+            top: 100,                           //可选 |     0      | Number |  弹窗距离头部的高度
+            buttons: [{                         //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '保存草稿',                //必选 |    ''      | string     |  按钮文案
+                class: 'icon icon-save',        //可选 |    ''      | string     |  按钮 class
+                callback: function() {          //必选 |            | Function   | 点击按钮时触发该回调函数
+                    alert(debugAlert('保存至单据', arguments))
+                }
+            }, {
+                text: '取消下单',
+                class: 'icon icon-cancel-order',
+                callback: function() {
+                    alert(debugAlert('取消下单', arguments))
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+    }
+
+    function fnPrint(){
+        // 选择一台蓝牙打印机或者网络打印机
+        fnChoicePrint_public(function(ret){
+            // ret.name                             //必返     |           |  String           |  打印机名称
+            // ret.address                          //必返     |           |  String           |  打印机 MAC 地址
+            // ret.isBonded                         //必返     |           |  Boolean          |  是否绑定了打印机
+            alert(debugAlert(arguments))
+            var _content =      "<CA>xxxx人</CA><BR>";
+                    _content += "单号：x234234234243<BR>";
+                    _content += "日期：2018-12-12<BR>";
+                    _content += "经手人：xxxx人<BR>";
+                    _content += "名称　　　　　 单价  数量 金额<BR>";
+                    _content += "--------------------------------<BR>";
+                    _content += "番　　　　　　 1.0    1   1.0<BR>";
+                    _content += "番茄　　　　　 10.0   10  10.0<BR>";
+                    _content += "番茄炒　　　　 10.0   100 100.0<BR>";
+                    _content += "番茄炒粉　　　 100.0  100 100.0<BR>";
+                    _content += "番茄炒粉粉　　 1000.0 1   100.0<BR>";
+                    _content += "番茄炒粉粉粉粉 100.0  100 100.0<BR>";
+                    _content += "番茄炒粉粉粉粉 15.0   1   15.0<BR>";
+                    _content += "--------------------------------<BR>";
+                    _content += "合计         3           23.12<BR>";
+                    _content += "折扣率：100.00%<BR>";
+                    _content += "折后应收：43.00<BR>";
+                    _content += "结算账户：支付宝<BR>";
+                    _content += "备注：是否史蒂夫史蒂夫史蒂夫史蒂夫是否是多福多寿发生的是否史蒂夫上分身乏术地方<BR>";
+                    _content += "--------------------------------<BR>";
+                    _content += "收货人：xxxx人<BR>";
+                    _content += "收货地址：*史蒂夫史蒂夫是否舒服的舒服的沙发上发呆<BR>";
+                    _content += "<BR><BR>";
+            POS_PRINTER.print({
+                printerAddr: ret.address,
+                content: _content
+            }, function(){
+                alert(debugAlert(arguments))
+            })
+        })
+    }
+
+    function fnOpenBarCode(){
+        fnOpenBarCode_public(function(ret){
+            alert(debugAlert(arguments))
+        })
+    }
+
+
+
+    function fnGetPicture(_el) {
+        fnGetPicture_public({
+            el: _el,                             //可选 |           | Element |  如果该元素有图片地址，弹出菜单会有一个查看大图的选项
+            isClip: false,                       //可选 | false     | Boolean |  是否需要裁剪（如果max参数大于2，该字段无效）
+            max: 8,                              //可选 | 1         | Number  |  选择照片时，可以最大选择几张图片
+            compressQuality: 'medium',           //可选 | 'medium'  | String  |  图片压缩质量（high：超清、medium：高清、low：普通）
+            isCameraOption: true,                //可选 | true      | Boolean |  是否需要拍照选项
+            isAlbumOption: false,                 //可选 | true      | Boolean |  是否需要选择图片选项
+            isUploadServer: false,                //可选 | true      | Boolean |  是否需要使用服务器返回的图片地址数据，否则返回本地的图片地址信息
+        }, function(ret) {
+            alert(debugAlert(arguments))
+            // ret.url                       //必返     |           |  String           |  网络图片地址或者本地图片地址
+            // ret.filename                  //非必返   |           |  String           |  网络图片名称（isUploadServer为false时该字段不返回）
+        })
+    }
+
+    function fnUnitConversion() {
+        fnUnitConversion_public({
+            unit: [{                             //必填 |           |  Array            |  单位数据
+                "typeId": "3",
+                "typeValue": "箱",
+                "prevNum": "2",
+                "value": "1"
+            }, {
+                "typeId": "2",
+                "typeValue": "盒",
+                "prevNum": "5",
+                "value": ""
+            }, {
+                "typeId": "1",
+                "typeValue": "个",
+                "prevNum": "",
+                "value": ""
+            }]
+                //  unit[].typeId                  //必填 |           |  String           |  单位索引typeId
+                //  unit[].typeValue               //必填 |           |  String           |  单位名称
+                //  unit[].prevNum                 //必填 |           |  Number           |  与上一级的数量关系
+                //  unit[].value                   //选填 |           |  Number           |  当前单位数量值
+        }, function(ret) {
+            // ret.total                           //必返 |           |  Number           |  默认单位换算出的总数量
+            //  unit                               //必返 |           |  Array            |  单位数据
+            //  unit[].typeId                      //必返 |           |  String           |  单位索引typeId
+            //  unit[].typeValue                   //必返 |           |  String           |  单位名称
+            //  unit[].prevNum                     //必返 |           |  Number           |  与上一级的数量关系
+            //  unit[].value                       //必返 |           |  Number           |  当前单位数量值
+            //  unit[].valueConversionBasics       //必返 |           |  Number           |  当前单位换算成基础单位的数量值
+            //  unit[].rateBasics                  //必返 |           |  Number           |  当前单位与基础单位之间的进率
+            //  unit[].valueNew                    //必返 |           |  Number           |  根据单位换算以后的实际数量
+            alert(debugAlert(arguments))
+        })
+    }
+
+    function fnInputText() {
+        fnInputText_public({
+            title: '提示', //选填 |    ''        |  String    |  页面标题
+            msg: '回显内容', //选填 |    ''        |  String    |  默认输入的内容
+            placeholder: '提示内容', //选填 |    ''        |  String    |  提示文案
+            maxlength: 100, //选填 |              |  Number    |  最大输入长度（不设置就没有长度限制）
+            submitText: '保存', //选填 |    '保存'    |  Number    |  提交按钮的文案
+            isForcedInput: true //选填 | false        |  Boolean   |  是否强制输入
+        }, function(ret) {
+            // ret.msg                     //必返 |              |  String    |  输入的内容
+            alert(debugAlert(arguments))
+        })
+    }
+
+
+    function fnNewUnit() {
+        fnNewUnit_public({
+            title: '添加批发价',                          //必填 |           |  String            |  标题
+            unit: [{                                    //必填 |           |  Array             |  单位组
+                id: 1,                                  //必填 |           |  String/Number     |  单位id
+                value: '个'                             //必填 |           |  String             |  单位名
+            }, {
+                id: 2,
+                value: '台',
+                isDefault: true                          //选填 |     false     |  Boolean    |  是否显示为默认值，不传或者为false则显示数组第一个值
+            }],
+            unitValue: '新单位11',                        //选填 |     ''     |  String    |  单位输入框默认值
+            unitValuePlaceholder: '请输入新单位',          //必填 |     ''     |  String    |  单位输入框提示内容默认值
+            unitValueInputLimit: 'Money',                //选填 |     ''     |  String    |  单位输入框提输入限制规则，规则类型见 fnVerifyInput_public 函数
+            numValue: '数量1',                            //选填 |     ''     |  String    |  数量输入框默认值
+            numValuePlaceholder: '请输入数量',             //必填 |     ''     |  String    |  数量输入框提示内容默认值
+            numValueInputLimit: 'Money',                 //选填 |     ''     |  String    |  单位输入框提输入限制规则，规则类型见 fnVerifyInput_public 函数
+            isDefault: true,                             //选填 |     false  |  Boolean   |  是否显示默认选中单位选择按钮
+            isDefaultShow: true,                         //选填 |     false  |  Boolean   |  是否显示设置默认值
+            isForcedInput: true,                         //选填 | false      |  Boolean   |  是否强制输入
+            buttons: [{                                  //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '测试环境',                         //必选 |    ''      | string     |  按钮文案
+                active: true,                            //可选 |    false   | Boolean    |  是否高亮
+                callback: function(ret) {                //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // ret.unitValue             单位输入框的内容
+                    // ret.numValue              数量输入框的内容
+                    // ret.isDefault             如果传参时 isDefault 参数为 true， 则会返回该字段
+                    // ret.unit.id               单位id
+                    // ret.unit.value            单位名称
+                    debugAlert(arguments)
+                    alert('测试环境')
+                }
+            }, {
+                text: '正式环境',
+                callback: function() {
+                    debugAlert(arguments)
+                    alert('正式环境')
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            alert(1)
+        });
+    }
+
+    function fnAddGoodsBarCode(){
+        fnAddGoodsBarCode_public({
+            isScan: false,                   //选填 |    false  |  Boolean           |  是否通过扫码添加条码
+            unit: [{                         //必填 |           |  Array             |  单位组
+                id: 1,                       //必填 |           |  String/Number     |  单位id
+                value: '个'                  //必填 |           |  String             |  单位名
+            }, {
+                id: 2,
+                value: '台',
+            }],
+        }, function(ret){
+            // ret.code_num                 //必返     |           |  String           |  条码
+            // ret.code                     //必返     |           |  Array            |  关联的单位 type-id
+            alert(debugAlert(arguments))
+        })
+    }
+
+
+    function fnAjaxTest() {
+        var _param = {
+            url: 'user/verification_code/send',
+            method: 'post',
+            data: {
+                username: '18883881016'
+            }
+        }
+        fnAjax(_param, function(ret, err) {
+            if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                alert(debugAlert('发送短信成功', arguments))
+            } else {
+                fnToast(ret.msg);
+            }
+        });
+    }
+
+    function fnOpenInputPop() {
+        fnOpenInputPop_public({
+            title: '批量修改起订量',                           //选填 |           |  String    |  选项 id
+            msg: '',                                         //必填 |           |  String    |  选项 id
+            placeholder: '多单位货品，起订量是指最小单位的数量',   //选填 |           |  String    |  输入域提示文案
+            isForcedInput: false,                            //选填 | false     |  Boolean   |  是否强制输入
+            maxlength: 10,                                   //选填 |            |  Number   |  最大输入长度（不设置就没有长度限制）
+            inputLimit: 'Number',                            //选填 |            |  Number   |  最大输入长度（不设置就没有长度限制）
+            buttons: [{                                      //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '测试环境',                             //必选 |    ''      | string     |  按钮文案
+                active: true,                                //可选 |    false   | Boolean    |  是否高亮
+                callback: function(ret) {                    //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // ret.text             输入的内容
+                    debugAlert(arguments)
+                    alert('测试环境')
+                }
+            }, {
+                text: '正式环境',
+                callback: function(ret) {
+                    debugAlert(arguments)
+                    alert('正式环境')
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+    }
+
+    function fnFileBrowserOpen() {
+        var fileBrowser = api.require('fileBrowser');
+        fileBrowser.open(function(ret) {
+            fileBrowser.close();
+            alert(debugAlert(arguments))
+        });
+    }
+
+    function fnRedioSelector(_el) {
+        var _data = [];
+        for (var i = 1; i < 30; i++) {
+            _data.push({
+                id: i, //必填 |           | Number/String |  选项 id
+                value: i + '月' //必填 |           | String        |  选项显示的值
+            });
+        }
+        fnMultistageSelector_public({
+            active: [$(_el).attr('data-id')], //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+            data: [_data], //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+            title: '多级选择器'
+        }, function(ret) {
+            // ret                             // Array |  如果点击确定按钮该回调则会触发，并返回数组数据，数组索引与传入数据源 data 一一对应
+            alert(debugAlert(arguments))
+            $(_el).attr('data-id', ret[0].id);
+            fnValue($(_el).find('span')[0], ret[0].value);
+        })
+
+    }
+
+    function fnMultistageSelector() {
+        var _data = [],
+            _data2 = [];
+        for (var i = 1; i < 30; i++) {
+            _data.push({
+                id: i, //必填 |           | Number/String |  选项 id
+                value: i + '月' //必填 |           | String        |  选项显示的值
+            });
+        }
+        for (var i = 1; i < 30; i++) {
+            _data2.push({
+                id: i,
+                value: i + '天'
+            });
+        }
+
+        fnMultistageSelector_public({
+            active: [4, 5], //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+            data: [_data, _data2], //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+            title: '多级选择器'
+        }, function(ret) {
+            // ret                               // Array |  如果点击确定按钮该回调则会触发，并返回数组数据，数组索引与传入数据源 data 一一对应
+            alert(debugAlert(arguments))
+        })
+    }
+
+
+    function fnGetLocation() {
+        fnGetLocation_public({
+            isPopFailed: false //如果定位失败是否需要弹出定位失败弹窗
+        }, function(ret) {
+            alert(debugAlert(ret))
+        })
+    }
+
+    function fnChoiceCity() {
+        fnChoiceCity_public(function(ret) {
+            alert(debugAlert(ret))
+        })
+    }
+
+    function fnDateForamt() {
+        var _date = fnValue("#date-format");
+
+        alert(dateFormat.natureDate(_date));
+    }
+
+    function fnPlay(_el) {
+        fnDownloadFile_public({
+            url: $(_el).attr('data-path'),
+            hasProgress: false
+        }, function(ret) {
+            if (ret.path) {
+                debugAlert('下载完成', ret);
+                fnStartProximity_public(function(_ret) {
+                    if (_ret.proximity) {
+                        audioPlay.onCall();
+                        debugAlert('听筒播放', _ret);
+                    } else {
+                        audioPlay.onNormal();
+                        debugAlert('扬声器播放', _ret);
+                    }
+                    api.startPlay({
+                        path: ret.path
+                    }, function(ret, err) {
+                        debugAlert('完成播放', arguments);
+                        if (ret) {
+                            audioPlay.onNormal();
+                            fnStopProximity_public();
+                            api.stopPlay();
+                        }
+                    });
+                })
+            }
+        })
+    }
+
+    function fnStartProximity() {
+        fnStartProximity_public(function(ret) {
+            fnStopProximity_public();
+            alert(debugAlert(ret));
+        })
+    }
+
+    function fnIdentification() {
+        var _username = fnValue("#username");
+        var _idCard = fnValue("#id-card");
+
+        if (!_username) {
+            fnToast("姓名不能为空");
+            return;
+        }
+
+        if (_username.length > APP.USERNAME_MAX_LENGTH) {
+            fnToast("姓名最多输入10个汉字");
+            return;
+        }
+
+        if (!fnVerify_public('ID').test(_idCard)) {
+            fnToast("请输入正确的身份证号码");
+            return;
+        }
+
+        fnAjax({
+            url: 'user/Setting/setRealnameAuth',
+            method: 'POST',
+            data: {
+                real_name: _username,
+                identity_number: _idCard
+            }
+        }, function(ret) {
+            if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                fnToast(ret.msg);
+            } else {
+                fnToast(ret.msg);
+            }
+        })
+    }
+
+    function fnSetNickname() {
+        var _nickname = '';
+        if ($("#name-wrap").hasClass("hide")) {
+            _nickname = fnValue("name.active");
+        } else {
+            _nickname = fnValue("#nickname");
+        }
+
+        fnAjax({
+            url: 'user/Setting/setUserCall',
+            method: 'POST',
+            data: {
+                call_name: _nickname
+            }
+        }, function(ret) {
+            if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                fnToast(ret.msg);
+            } else {
+                fnToast(ret.msg);
+            }
+        })
+    }
+
+    function fnGetUserInfo() {
+        fnUser_public(function(_user) {
+            alert(debugAlert(_user))
+        })
+    }
+
+    function fnMD5(_el) {
+        fnMd5_public({
+            data: fnValue($(_el).find('span')[0])
+        }, function(ret) {
+            alert(debugAlert(arguments))
+        })
+    }
+
+    function fnLongPress(_el) {
+        fnLongPress_public({
+            el: _el
+        }, function() {
+            fnToast("触发了长按事件");
+        })
+    }
+
+    // 秒转时分秒格式
+    function fnDateTransfer(seconds) {
+        alert(formatTime_public(seconds));
+    }
+
+    function fnGetYZLUser() {
+        // 测试手机号
+        // 13577777777
+        // 13566666666
+        // 13588888888
+        // 12312312312
+        // 13524827675
+        // 13122781686
+        // 15300867986
+
+        var _secret = 'q2oCeeEAc010072QjJkJpxzsm2rcgY',
+            _appid = 'bb2d5a14847d464a806a396ea1010072',
+            _ts = new Date().Format('yyyyMMddhhmmss'),
+            // _ts = '20190107103056',
+            _v = '2.0',
+            _param = {
+                appid: _appid,
+                ts: _ts,
+                v: _v,
+                sign: _appid + _secret + _ts + _v,
+
+                // 更新积分
+                model: 'customer',
+                method: 'updatePoint',
+                msg: {
+                    mobile: '12312312312',
+
+                    store_code: '123456',
+                    point: 1000
+                }
+
+                // 获取会员信息
+                // model: 'customer',
+                // method: 'get',
+                // msg: {
+                //     store_code: '123456',
+                //     mobile: '12312312312'
+                // }
+            }
+        debugAlert(11, _param)
+        fnMd5_public({
+            data: _param.sign,
+            uppercase: true
+        }, function(ret) {
+            debugAlert(33, arguments)
+            if (ret.value) {
+                _param.sign = ret.value;
+                var _aParam = {
+                    url: 'http://precsb.bigaka.net/openAPI' + fnConvertParam_public(_param),
+                    method: 'get',
+                    data: {}
+                };
+                debugAlert('发起请求', _aParam)
+                api.ajax(_aParam, function(ret, err) {
+                    debugAlert(222, arguments)
+                });
+            }
+        })
+    }
+
+    function fnFaceRecognitionCheck() {
+        APP._jdFace = api.require('jdFace');
+        var _param = {
+            actions: [0, 1, 2, 3],
+            complexity: 1,
+            voice: true,
+            immersion: false
+        };
+        debugAlert('打开金蝶', _param)
+        APP._jdFace.detectActive(_param, function(ret, err) {
+            var _a = arguments;
+            setTimeout(function() {
+                debugAlert('打开金蝶返回', _a)
+                    // var _rr = arguments;
+                if (ret) {
+                    if (ret.status) {
+                        var _param = {
+                            url: 'https://www.bigdataxy.com/api/v1/verify/idcardnum/verification/liveness',
+                            method: 'post',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            data: {
+                                // values: {
+                                //     "client_id": "201580",
+                                //     "client_secret": "f7293251b7845f8b67a1d812c471c644",
+                                //     "name": "毕明兴",
+                                //     "idnumber": "500236199303104672",
+                                //     "livenessId": ret.id,
+                                // },
+                                body: JSON.stringify({
+                                    "client_id": "201580",
+                                    "client_secret": "f7293251b7845f8b67a1d812c471c644",
+                                    "name": "毕明兴",
+                                    "idnumber": "500236199303104672",
+                                    "livenessId": ret.id,
+                                })
+                            }
+                        }
+                        debugAlert('开始请求', _param);
+                        api.ajax(_param, function(ret, err) {
+                            debugAlert(arguments)
+                        });
+                    } else {
+                        fnToast(ret.msg);
+                    }
+                } else {
+                    fnToast(err.msg);
+                }
+            }, 3000)
+        });
+    }
+
+    function fnHideFormat(_el) {
+        var _txt = fnHideFormat_public({
+            separator: ' ',
+            value: fnValue($(_el).find('span')[0])
+        });
+
+        alert(_txt)
+    }
+
+    function fnRecognizeIDCard(_isCardFront) {
+        var baiduOCRRecognizer = api.require('baiduOCRRecognizer');
+        baiduOCRRecognizer.init({
+            appKey: '66syojpAINcX7bN32GiqukFb',
+            appSecret: 'UgeDZuMgQht3r7oQtfhSOdYjSF9RyMYZ'
+        }, function(ret) {
+            alert(debugAlert('百度 AI 初始化', arguments));
+            if (ret.state) {
+
+                // 获取图片
+                fnGetPicture_public({
+                    el: null
+                }, function(ret) {
+
+                    var _param = {
+                        path: ret.path,
+                        DetectDirection: true,
+                        accuracy: 'auto',
+                        isFront: _isCardFront || false
+                    };
+                    alert(debugAlert('身份证正面识别', _param));
+                    baiduOCRRecognizer.recognizeIDCard(_param, function(ret, err) {
+                        alert(debugAlert('身份证正面识别结果', arguments))
+                    });
+
+                })
+            } else {
+
+            }
+        });
+    }
+
+    function fnRecognizeBankCard() {
+        var baiduOCRRecognizer = api.require('baiduOCRRecognizer');
+        baiduOCRRecognizer.init({
+            appKey: '66syojpAINcX7bN32GiqukFb',
+            appSecret: 'UgeDZuMgQht3r7oQtfhSOdYjSF9RyMYZ'
+        }, function(ret) {
+            alert(debugAlert('百度 AI 初始化', arguments));
+            if (ret.state) {
+
+                // 获取图片
+                fnGetPicture_public({
+                    el: null
+                }, function(ret) {
+
+                    var _param = {
+                        path: ret.path
+                    };
+                    alert(debugAlert('银行卡识别', _param));
+                    baiduOCRRecognizer.recognizeBankCard(_param, function(ret, err) {
+                        alert(debugAlert('银行卡识别', arguments))
+                    });
+
+                })
+            } else {
+
+            }
+        });
+
+    }
+
+    function fnOpenIDCardCut(_isCardFront) {
+        // var UIBaiduOCR = api.require('UIBaiduOCR');
+        // UIBaiduOCR.openIDCard({
+        //     isCardFront: _isCardFront || false,
+        //     isNativeManual: false
+        // },function(ret, err){
+        //     debugAlert(arguments);
+        // });
+        // UIBaiduOCR.initAccessTokenWithAkSk({
+        //     apiKey: 'vBrfvOFxXUZy3fcXOIIWLBHx',
+        //     secretKey: 'Wm9GRVstmcrDrc3YPqgXRZv2jULpwMGt'
+        // }, function(ret, err) {
+        //     debugAlert(arguments);
+        // });
+        if (APP.hasIos()) {
+            if (_isCardFront) {
+                api.require('iDCardORC').takePictureIDCardFrontFace(function(ret, err) {
+                    debugAlert(arguments);
+                });
+            } else {
+                api.require('iDCardORC').takePictureIDCardOppositeSide(function(ret, err) {
+                    debugAlert(arguments);
+                });
+            }
+        } else {
+
+        }
+    }
+
+    function fnOpenReader(_name) {
+        api.require('docReader').open({
+            path: 'widget://res/' + _name,
+            autorotation: false
+        }, function(ret, err) {
+            debugAlert(arguments);
+        });
+    }
+
+    function fnAlert() {
+        fnAlert_public({
+            title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '要打开哪个环境？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '测试环境', //必选 |    ''      | string     |  按钮文案
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+                    alert('点击测试环境')
+                }
+            }, {
+                text: '正式环境',
+                callback: function() {
+                    alert('点击正式环境')
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+    }
+
+
+
+    function fnTimeSelectorQuarter(_el) {
+        fnTimeSelector_public({
+            date: fnValue($(_el).find('span')[0]),
+            is_quarter: true
+        }, function(ret) {
+            debugAlert(arguments)
+            fnValue($(_el).find('span')[0], new Date(ret.date).Format('yyyy/MM/dd'));
+        })
+    }
+
+    function fnTimeSelector(_el) {
+        fnTimeSelector_public({
+            date: fnValue($(_el).find('span')[0])
+        }, function(ret) {
+            debugAlert(arguments)
+            fnValue($(_el).find('span')[0], new Date(ret.date).Format('yyyy/MM/dd'));
+        })
+    }
+
+    function fnTimeSelectorContinuity(_el) {
+        fnTimeSelector_public({
+            date: fnValue($(_el).find('span')[0]), //可选     |   ''       | String/Date/时间戳 |  设置默认显示的时间（格式 'yyyy/MM/dd hh:mm:ss'显示年月日时分秒 |'yyyy/MM/dd hh'显示年月日时 | 'yyyy/MM/dd' 显示年月日| 'yyyy/MM' 显示年月| 'yyyy' 显示年| new Date()、1541224673842，如果参数不存在则显示当前时间
+            title: ['选择时间1', '选择时间2', '选择时间3'], //可选     | '时间选择'  | String/Array      |  选择器标题，如果是数组多个值，那么打开的选择器将根据标题的顺序进行多次选择
+            is_quarter: false, //可选     | false      | Boolean           |  是否将以刻度的方式显示分
+            itemShowCount: 5, //可选     |    5       | Number            |  显示的行数
+            itemHeight: 55, //可选     |    55      | Number            |  行高度（单位px）
+            is_show_unit: true //可选     | true       | Boolean           |  是否显示时间的单位
+        }, function(ret) {
+            //ret.date |             | String/Array      |  如果title为字符串或者数组长度为1，这里返回一个时间格式字符串，否则返回一个title长度一致的数组
+            debugAlert(arguments)
+            fnValue($(_el).find('span')[0], new Date(ret.date[0]).Format('yyyy/MM/dd'));
+        })
+    }
+
+    function fnTimeSelectorStartEnd(_el) {
+        fnTimeSelectorStartEnd_public({
+            date: [fnValue($(_el).find('span')[0]), fnValue($(_el).find('span')[0])], //可选     |   ''       | String/Date/时间戳 |  设置默认显示的时间（格式 'yyyy/MM/dd hh:mm:ss'显示年月日时分秒 |'yyyy/MM/dd hh'显示年月日时 | 'yyyy/MM/dd' 显示年月日| 'yyyy/MM' 显示年月| 'yyyy' 显示年| new Date()、1541224673842，如果参数不存在则显示当前时间
+            title: '请选择开始时间和结束时间', //可选     | '时间选择'  | String/Array      |  选择器标题，如果是数组多个值，那么打开的选择器将根据标题的顺序进行多次选择
+            itemShowCount: 5, //可选     |    5       | Number            |  显示的行数
+            itemHeight: 55, //可选     |    55      | Number            |  行高度（单位px）
+            is_show_unit: false //可选     | true       | Boolean           |  是否显示时间的单位
+        }, function(ret) {
+            //ret.date |             | Array      |  否则返回一个date长度一致的数组
+            alert(debugAlert(arguments))
+            fnValue($(_el).find('span')[0], new Date(ret.date[0]).Format('yyyy/MM/dd'));
+        })
+    }
+
+
+
+    function fnChoiceActionSheet() {
+        fnActionSheet_public({
+            buttons: [{ //’’ | 至少传入一个按钮 |数组有多少就显示多少按钮
+                text: '拍照', //’确认’ | 至少传入一个按钮 |按钮文案
+                callback: function() { //function | 必传 |点击按钮时触发该回调函数
+                    alert('拍照按钮')
+                }
+            }, {
+                text: '图库',
+                callback: function() {
+                    alert('图库按钮')
+                }
+            }]
+        }, function() { //如果设置回调函数，打开的弹窗有取消按钮，并触发该回调函数
+            debugAlert('取消按钮')
+        });
+    }
+
+    function fnSelectMap() {
+        fnSelectMap_public({
+            end: {
+                lon: 0,
+                lat: 0,
+            }
+        })
+    }
+
+    function fnSetStatusBarStyle(_style) {
+        fnSetStatusBarStyle_public({
+            style: _style
+        })
+    }
+
+    function fnScanCardID() {
+        fnScanCardID_public(function(ret) {
+            debugAlert(arguments)
+        })
+    }
+
+    function fnCitySelector(_el, _len) {
+        fnCitySelector_public({
+            city: fnValue($(_el).find('span')[0]),
+            len: _len || 3
+        }, function(ret) {
+            fnValue($(_el).find('span')[0], ret.cityNames);
+        })
+    }
+
+    function fnMd5() {
+        fnMd5_public({
+            data: '000000als'
+        }, function() {
+            alert(debugAlert(arguments))
+        })
+    }
+
+    function fnPhotoBrowser() {
+        fnPhotoBrowser_public({
+            pics: [
+                'http://pic188.nipic.com/pic/20181030/20020614_151903767037_4.jpg',
+                'http://pic188.nipic.com/pic/20181029/12398452_180040873000_4.jpg',
+                'http://pic187.nipic.com/pic/20181023/18540348_125506644246_4.jpg',
+                'http://pic185.nipic.com/pic/20181013/12398452_094807532000_4.jpg',
+                'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2534139616,883121964&fm=26&gp=0.jpg',
+                'http://pic166.nipic.com/pic/20180525/12398452_101108860000_4.jpg',
+                'http://pic189.nipic.com/pic/20181104/12398452_183550637036_4.jpg'
+            ], // [] | Array | 必传 | 图片数组
+            default: 3 // 0 | number | 首次显示图片索引
+        });
+    }
+
+    function fnHideMobile(_el) {
+        var _tel = fnValue($(_el).find('span')[0]);
+        var _txt = fnHideMobile_public(_tel);
+
+        alert(_txt)
+    }
+
+    function fnVerifyPassword() {
+        var _password = fnValue("#password");
+        if (_password.length <= APP.PASSWORD_LENGTH.MAX && _password.length >= APP.PASSWORD_LENGTH.MIN) {
+            fnToast("密码格式正确")
+        } else {
+            fnToast("密码格式错误");
+        }
+    }
+
+    function fnVerifyPhone() {
+        var _phone = fnValue("#phone");
+
+        if (fnVerify_public('Phone').test(_phone)) {
+            fnToast("格式正确");
+        } else {
+            fnToast("格式错误");
+        }
+    }
+
+    function fnQQLogin() {
+        QQPlus.login(function(ret) {
+            alert(debugAlert(ret));
+        })
+    }
+
+    function fnWeixinLogin() {
+        WX.login(function(ret) {
+            alert(debugAlert(ret));
+        })
+    }
+
+    function fnWeiboLogin() {
+        WEIBO.login(function(ret) {
+            alert(debugAlert(ret));
+        })
+    }
+
+    function fnQQShare() {
+        QQPlus.shareNews(function(ret) {
+            fnToast("分享成功");
+        });
+    }
+
+    function fnWeixinShare() {
+        WX.shareWebPage(function(ret) {
+            fnToast("分享成功");
+        });
+    }
+
+    function fnWeiboShare() {
+        WEIBO.shareWebPage(function(ret) {
+            fnToast("分享成功");
+        });
+    }
+
+    function fnOpenSelete(_el){
+        var _type = $(_el).data('type');
+        var _obj = APP.SELECT_PAGE[_type];
+
+        fnSelectPage_public(_obj,function(ret){
+            alert(debugAlert(ret));
+        })
+    }
+</script>
+
+</html>

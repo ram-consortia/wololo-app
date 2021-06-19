@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/code.css" />
+</head>
+<body>
+    <div class="flex-vertical">
+        <div class="top">
+            <span class="back" tapmode="hover" onclick="fnClose()"></span>
+        </div>
+        <div class="main flex-item-vertical">
+            <div class="center">
+                <p class="word">Align the QR code into the frame to scan automatically</p>
+                <div class="scan" tapmode="hover" onclick="fnOpen('business/writeOff_win.html')">
+                    <span class="top-left"></span>
+                    <span class="top-right"></span>
+                    <span class="bottom-left"></span>
+                    <span class="bottom-right"></span>
+                    <div class="edge">
+                        <div class="gradation"></div>
+                    </div>
+
+                </div>
+                <div class="flashlight" tapmode="hover" onClick="fnSwitchLight(this)"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixStatusBar( $('.top')[0] );
+        // APP._htmlPath = 'business/writeOff_frm.html';
+        // fnOpen(APP._htmlPath, {
+        //     rect: {
+        //         marginTop: $('.header').height()
+        //     }
+        // });
+
+    });
+
+
+
+</script>
+</html>

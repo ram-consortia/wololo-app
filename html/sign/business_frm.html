@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/feedback.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <!-- <div class="content flex-item-vertical">
+            <div class="top">
+                <div class="img">
+                    <p class="state">售后成功</p>
+                    <p class="time">2018.8.12 18:16</p>
+                </div>
+            </div>
+            <div class="ul">
+                <div class="li top-line">
+                    <div class="feedback">*所在城市</div>
+                    <div class="input">
+                        <input type="text" readonly placeholder="请选择所在城市">
+                    </div>
+                    <div class="right"></div>
+                </div>
+                <div class="li">
+                    <div class="feedback">*门店类型</div>
+                    <div class="input">
+                        <input type="text" readonly placeholder="请选择门店类型">
+                    </div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <div class="con con-line">
+                <div class="til">*商家信息介绍<span class="num">（500字）</span></div>
+                <div class="textareas">
+                    <textarea placeholder="请输入商家信息介绍，方便平台进一步审核"></textarea>
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">*上传图片<span class="num">（1/9）</span></div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                </div>
+            </div>
+            <div class="after-sale">
+                <div class="service-til">售后说明</div>
+                <div class="rich-text">1、作为国内低代码开发平台的践行者，Apcloud（柚子（北京）科技有限公司）正在以高效的生产力工具与混合开发技术，为数以百万的企业与开发者构建高效的 T 环境； 2、Apicloudl 以北京总部为中心，将业务团队延伸至上海、深圳、重庆、青岛等 10 余个城市，服务能力辐射全国 3、凭借创新的开发技术和商业模式，早在 2016 年，Apicloud 被全球最具权威的 T 研究与顾问咨询机构 Gartner 评为中国区 Cool Vendor，成为全球企业客户部署移动战略时的推荐选择</div>
+            </div>
+        </div>
+        <div class="bottom">
+            不能点击加no-onclick
+            <div class="quit" tapmode="hover" onclick="fnOpen('my/refundSubmission_win.html')">提交</div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="content flex-item-vertical">
+            {{if _auth.status}}
+                <div class="top">
+                    <div class="img">
+                        <p class="state">{{ {'target': _auth.status, 'key': 'id', 'resKey': 'value', 'data': AUTH.status} | fnGetRelation_public }}</p>
+                        <p class="time">{{_auth.update_time | dateFormat 'yyyy/MM/dd hh:mm'}}</p>
+
+                        {{if _auth.status == AUTH.status.not.id}}
+                            <p class="time pre-text">{{'未通过理由' | fnLanguage_public}}:{{_auth.remarks}}</p>
+                        {{else if _auth.status == AUTH.status.success.id}}
+                            <p class="time pre-text">{{'备注信息' | fnLanguage_public}}:{{_auth.remarks}}</p>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/if}}
+
+            <div class="ul">
+                <div tapmode="hover" onclick="fnChoiceCity()" class="li top-line {{_isNotEdit && 'no-onclick'}}">
+                    <div class="feedback">*{{'所在城市' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="address_id" type="text" readonly placeholder="{{'请选择所在城市' | fnLanguage_public}}"
+                            {{if _auth.address_city_name}}
+                                value="{{_auth.address_city_name}}"
+                            {{/if}}
+                            {{if _auth.address_id}}
+                                data-id="{{_auth.address_id}}"
+                            {{/if}}
+                        >
+                    </div>
+                    <div class="right"></div>
+                </div>
+                <div tapmode="hover" onclick="fnMultistageSelector()" class="li {{_isNotEdit && 'no-onclick'}}">
+                    <div class="feedback">*{{'门店类型' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="category_id" type="text"
+                            {{if _auth.category_id}}
+                                data-id="{{_auth.category_id}}"
+                                value="{{ {'target': _auth.category_id, 'key': 'id', 'resKey': 'value', 'data': _category.data} | fnGetRelation_public }}"
+                            {{/if}}
+                        readonly placeholder="{{'请选择门店类型' | fnLanguage_public}}">
+                    </div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <div class="con con-line">
+                <div class="til">
+                    *{{'商家信息介绍' | fnLanguage_public}}
+                    <span class="num">
+                        （<span class="already-introduce">0</span>/{{_introduce_maxlength}}{{'字' | fnLanguage_public}}）
+                    </span>
+                </div>
+                <div class="textareas">
+                    <textarea {{_isNotEdit && 'readonly'}} id="introduce" placeholder="{{'请输入商家信息介绍，方便平台进一步审核' | fnLanguage_public}}" maxlength="{{_introduce_maxlength}}">{{_auth.introduce}}</textarea>
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">*{{'上传图片' | fnLanguage_public}}
+                    <span class="num">
+                        （<span class="already-images">0</span>/{{_images_maxlength}}）
+                    </span>
+                </div>
+                <div class="imgs" id="images">
+                    {{each _auth.introduce_images _value}}
+                        {{include 'images-template' _value}}
+                    {{/each}}
+                    <!-- <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span> -->
+
+
+                    {{if !_isNotEdit}}
+                        <span class="img" tapmode="hover" onclick="fnGetPicture(this)" data-is-add></span>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="after-sale">
+                <div class="service-til">{{GET_OPTION.upload_ruleuser.title | fnLanguage_public}}</div>
+                <div class="rich-text pre-text" id="rule"></div>
+            </div>
+        </div>
+
+        {{if _auth.status }}
+            {{if _auth.status != AUTH.status.in.id}}
+                <div class="bottom">
+                    <!-- 不能点击加no-onclick -->
+                    {{if _auth.status == AUTH.status.not.id}}
+                        <div class="quit" tapmode="hover" onclick="fnSubmit()">
+                            {{'重新提交' | fnLanguage_public}}
+                        </div>
+                    {{else if _auth.status == AUTH.status.success.id}}
+                        <div class="quit" tapmode="hover" onclick="fnStartApp()">
+                            {{'立即体验' | fnLanguage_public}}
+                        </div>
+                    {{else}}
+                        <div class="quit" tapmode="hover" onclick="fnSubmit()">
+                            {{'提交' | fnLanguage_public}}
+                        </div>
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{else}}
+            <div class="bottom">
+                <div class="quit" tapmode="hover" onclick="fnSubmit()">
+                    {{'提交' | fnLanguage_public}}
+                </div>
+            </div>
+        {{/if}}
+    </script>
+
+    <script type="text/html" id="images-template">
+        <span data-img-url="{{url}}" data-img-type="!avatar" data-id="{{filepath || file_name}}" class="img pic" tapmode="hover" onclick="fnGetPicture(this)">
+            <span tapmode="hover" onClick="fnRemove(this)" class="del hide"></span>
+        </span>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+    });
+
+    function fnInit(){
+        fnUser_public({
+            isLastData: false,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                APP._auth = APP._user.auth || {};
+                APP._introduce_maxlength = 500;
+                APP._images_maxlength = 9;
+
+                fnGetCategoryAjax(function(){
+                    if( APP._auth.id ){
+                        var _param = {
+                            url: 'user/auth/detail',
+                            method: 'GET',
+                            data: {
+                                id: APP._auth.id
+                            }
+                        }
+                        fnAjax(_param, function(ret){
+                            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                                APP._auth = ret.data;
+                                fnLayout();
+                            }else{
+                                fnToast(ret.msg);
+                            }
+                        })
+                    }else{
+                        fnLayout();
+                    }
+                });
+            }else{
+                // 当前没有登陆用户
+
+            }
+        })
+    }
+
+    function fnLayout(){
+        APP._isNotEdit = APP._auth.status && (APP._auth.status == APP.AUTH.status.in.id || APP._auth.status == APP.AUTH.status.success.id);
+        if( APP._auth.category_id ){
+            var _category = fnGetRelation_public({
+                target: APP._auth.category_id,                      //必填 |           |  String/Number   |  需要对比的值
+                key: 'id',                      //选填 |     'id'  |  String          |  需要对比数据中的 key 值
+                resKey: 'obj',                //选填 |     'id'  |  String          |  需要对比数据中返回的 key 值
+                data: APP._category.data
+            })
+            if( _category ){
+                APP._category_id = [_category.parent_id ? _category.parent_id : _category.id, _category.id];
+            }
+        }
+
+        fnValue('#wrap', template('wrap-template', APP));
+        if( $('.bottom').length ){
+            APP.fixTabBar('.bottom');
+        }
+
+        fnGetPublicConfig_base(APP.GET_OPTION.upload_ruleuser, function(ret){
+            // ret.content                       配置信息
+            fnValue('#rule', ret.content);
+        })
+
+        fnInputListener_public(["#introduce"], function(ret){
+            fnCountNum();
+        })
+        fnCountNum();
+        fnHasShowAddImgBtn();
+    }
+
+    function fnGetCategoryAjax(_cb){
+        fnGetCategoryAjax_base({
+            page: APP.YES,
+            limit: 1000
+        }, function(ret){
+            APP._category = ret;
+            _cb && _cb();
+        })
+    }
+
+
+    function fnRemove(_el){
+        fnKeyboardBlur_public();
+        event && event.stopPropagation();
+        $(_el).closest('.pic').remove();
+        fnHasShowAddImgBtn();
+    }
+
+    function fnGetPicture(_el){
+        if( ! APP._isNotEdit ){
+            var _isAdd = $(_el).attr('data-is-add') === '';
+            fnGetPicture_public({
+                el: _el,                             //可选 |           | Element |  如果该元素有图片地址，弹出菜单会有一个查看大图的选项
+                isClip: false,                       //可选 | false     | Boolean |  是否需要裁剪（如果max参数大于2，该字段无效）
+                max: _isAdd ? APP._images_maxlength - $('#images .pic').length : 1,                              //可选 | 1         | Number  |  选择照片时，可以最大选择几张图片
+                // compressQuality: 'medium',           //可选 | 'medium'  | String  |  图片压缩质量（high：超清、medium：高清、low：普通）
+                // isCameraOption: true,                //可选 | true      | Boolean |  是否需要拍照选项
+                // isAlbumOption: false,                //可选 | true      | Boolean |  是否需要选择图片选项
+                // isUploadServer: false,               //可选 | true      | Boolean |  是否需要使用服务器返回的图片地址数据，否则返回本地的图片地址信息
+                // finishText: '发送'                    //可选 | '确定'     | String  |  选择照片点击确定按钮的文字
+            }, function(ret) {
+                // alert(debugAlert(arguments))
+                // ret.url                       //必返     |           |  String           |  网络图片地址或者本地图片地址
+                // ret.filepath                  //非必返   |           |  String           |  网络图片名称（isUploadServer为false时该字段不返回）
+                if( _isAdd ){
+                    $(APP.dom('#images [data-is-add]')).before(template('images-template', ret));
+                }else{
+                    $(_el).attr('data-img-url', ret.url);
+                    $(_el).attr('data-id', ret.filepath);
+                }
+                fnHasShowAddImgBtn();
+            })
+        }else {
+            var _pics = [];
+            $('#images .pic').each(function(_index, _el){
+                _pics.push($(_el).attr('data-img-url'));
+            })
+            fnPhotoBrowser_public({
+                pics: _pics,    // [] | Array | 必传 | 图片数组
+                default: $(_el).index() || 0  // 0 | number | 首次显示图片索引
+            });
+        }
+    }
+
+    function fnHasShowAddImgBtn(){
+        fnValue('.already-images', $('#images .pic').length);
+        if( $('#images .pic').length >= APP._images_maxlength ){
+            $(APP.dom('#images [data-is-add]')).addClass('hide');
+        }else{
+            $(APP.dom('#images [data-is-add]')).removeClass('hide');
+        }
+
+        if( ! APP._isNotEdit ){
+            $('.del').removeClass('hide');
+        }else {
+            $('.del').addClass('hide');
+        }
+        APP.initFn();
+    }
+
+    //计算已输入字数
+    function fnCountNum(){
+        var _content = fnValue("#introduce");
+        fnValue(".already-introduce", _content.length);
+    }
+
+
+    function fnChoiceCity(){
+        fnChoiceCity_base(function(ret){
+            fnValue('#address_id', ret.city);
+            $('#address_id').attr('data-id', ret.id);
+        })
+    }
+
+
+    function fnSubmit(){
+        if( ! fnValue('#address_id') ){
+            fnToast($('#address_id').attr('placeholder'));
+        }else if( ! fnValue('#category_id') ){
+            fnToast($('#category_id').attr('placeholder'));
+        }else if( ! fnValue('#introduce') ){
+            fnToast($('#introduce').attr('placeholder'));
+        }else{
+            var _param = {
+                url: 'user/auth/operationPost',
+                method: 'POST',
+                data: {
+                    address_city_name: fnValue('#address_id'),
+                    address_id: $('#address_id').data('id'),
+                    category_id: $('#category_id').data('id'),
+                    introduce: fnValue('#introduce'),
+                    introduce_images: []
+                }
+            }
+            $('#images .pic').each(function(_index, _el){
+                _param.data.introduce_images.push($(_el).data('id'));
+            })
+            _param.data.introduce_images = _param.data.introduce_images.join();
+            if( ! _param.data.introduce_images.length ){
+                fnToast('请上传图片');
+            }else {
+                fnAjax(_param, function(ret){
+                    if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                        fnInit();
+                        fnToast(ret.msg, function(){
+
+                        });
+                    }else{
+                        fnToast(ret.msg);
+                    }
+                })
+            }
+       }
+    }
+
+    function fnMultistageSelector() {
+        if( APP._category && APP._category._relationData ){
+            _start();
+        }else{
+            fnGetCategoryAjax(function(){
+                _start();
+            });
+        }
+
+        function _start(){
+            fnMultistageSelector_public({
+                active: APP._category_id ? APP._category_id : [0, 0], //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+                data: [APP._category._relationData[0], APP._category._relationData[1]], //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+                title: '请选择门店类型',
+                relation: [1, 1]
+            }, function(ret) {
+                // ret                               // Array |  如果点击确定按钮该回调则会触发，并返回数组数据，数组索引与传入数据源 data 一一对应
+                APP._category_id = [ret[0].id, ret[1].id];
+                ret = ret[1];
+                fnValue('#category_id', ret.value);
+                $('#category_id').attr('data-id', ret.id);
+            })
+        }
+    }
+
+    function fnStartApp(){
+        var _param = {
+            url: 'user/auth/start_app',
+            method: 'POST',
+            data: {
+
+            }
+        }
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                fnJoinHomeLogic_base();
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+</script>
+</html>

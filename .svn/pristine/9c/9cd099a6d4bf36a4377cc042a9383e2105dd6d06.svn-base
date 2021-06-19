@@ -1,0 +1,178 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+@mixin fontWCT($size, $color, $weight: normal, $text: none) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  text-decoration: $text;
+}
+body {
+  background-color: rgba(244,244,244,1);;
+
+  .messHeader{
+      background-color: rgba(255,255,255,1);
+      padding: pxToRem(20) pxToRem(30) 0 pxToRem(30);
+      @include flex-box($justify:space-between);
+      line-height: pxToRem(98);
+      color: rgba(51,51,51,1);;
+      .top{
+        height: pxToRem(98);
+      }
+      .headerLeft{
+        @include set-bg-img( $name: "icon-back.png", $size: pxToRem(24), $position: center );
+        width: pxToRem(24);
+      }
+      p{
+        padding-top: pxToRem(10);
+        margin-left: pxToRem(66);
+        font-size: pxToRem(30);
+        font-weight: 700;
+      }
+      .headerRight{
+        padding-top: pxToRem(10);
+        .icon{
+          display: inline-block;
+          width: pxToRem(22);
+          height: pxToRem(22);
+          @include set-bg-img( $name: "qingli.png", $size: pxToRem(22), $position: center );
+        }
+        .wenzi{
+          font-size: pxToRem(26);
+          color: rgba(51,51,51,1);;
+        }
+      }
+    }
+  .message{
+    background-color: rgba(255,255,255,1);
+    /*.tabTitle {
+      padding: 0 pxToRem(30);
+      line-height: pxToRem(80);
+
+      @include flex-box($justify:space-around);
+      div {
+        p {
+          display: block;
+        }
+        display: inline-block;
+        p:first-child {
+          @include fontWCT($size: pxToRem(34), $weight: 400, $color: $font-color);
+        }
+        p:last-child {
+          display: none;
+          width: pxToRem(40);
+          padding-bottom: pxToRem(7);
+          background: $bg-color;
+          border-radius: pxToRem(6) pxToRem(6) 0 0;
+          margin: pxToRem(6) auto;
+        }
+      }
+
+      .tab-mail {
+        padding-left: pxToRem(126);
+      }
+      .clickP {
+        p:first-child {
+          @include fontWCT($size: pxToRem(34), $weight: 500!important, $color: $bg-color!important);
+        }
+        p:last-child{
+          display: block;
+        }
+
+      }
+    }*/
+    .contentTab{
+      padding: 0 pxToRem(30);
+      height: pxToRem(80);
+
+      @include flex-box($justify:space-around);
+      p{
+        font-size: pxToRem(26);
+        color: #333;
+        margin-top: pxToRem(20);
+      }
+
+      .item{
+        p{
+          color: rgba(102,102,102,1);
+        }
+        &.active{
+          @include flex-box($align:center,$direction:column);
+          p{
+            color: rgba(254,143,49,1);
+            font-weight:800;
+          }
+          span{
+            margin-top: pxToRem(20);
+            display: block;
+            background-color: rgba(254,143,49,1);
+            width: pxToRem(40);
+            height: pxToRem(4);
+          }
+        }
+      }
+    }
+
+
+  }
+  .messageContent{
+    padding-top: pxToRem(30);
+    background-color: rgba(244, 244, 244, 1);
+    .content{
+      padding: 0 pxToRem(30) pxToRem(30) pxToRem(30);
+      word-wrap:break-word;
+      .contentSub{
+        padding: pxToRem(30);
+        margin-top: pxToRem(30);
+        background-color: rgba(255,255,255,1);
+        .subTop{
+          @include flex-box();
+          margin-bottom: pxToRem(30);
+          i{
+            display: inline-block;
+            width: pxToRem(80);
+            height: pxToRem(80);
+            margin-right: pxToRem(20);
+            //@include set-bg-img( $name: "Facebook.png", $size: pxToRem(80), $position: center );
+            position: relative;
+            .badge{
+              display: inline-block;
+              width: pxToRem(20);
+              height: pxToRem(20);
+              background-color: #FE8F31;
+              border-radius: 50%;
+              border: pxToRem(4) solid rgba(255,255,255,1);
+              position: absolute;
+              right: pxToRem(-16);
+              top: pxToRem(-4);
+              @include prefixCss3($property: align-self, $value: center);
+            }
+            /*span{
+              display: block;
+              width: pxToRem(20);
+              height: pxToRem(20);
+              background-color: rgba(255,96,67,1);
+              border: pxToRem(4) solid rgba(255,255,255,1);
+              border-radius: pxToRem(20);
+              position: absolute;
+              right: pxToRem(-16);
+              top: pxToRem(-4);
+            }*/
+          }
+          .subTopWenzi{
+            p{
+              line-height: pxToRem(40);
+              color: rgba(51,51,51,1);
+            }
+            .wenziS{
+              color: rgba(153,153,153,1);
+            }
+          }
+        }
+        .subFooter{
+          color: rgba(102,102,102,1);
+          line-height: pxToRem(40);
+        }
+      }
+    }
+  }
+}

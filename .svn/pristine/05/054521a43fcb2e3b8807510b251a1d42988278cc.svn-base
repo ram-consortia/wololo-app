@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+</head>
+<body>
+    <div class="evaluate" id="wrap">
+        <!-- <div class="evaluate-con">
+            <div class="evaluate-box">
+                <div class="pho"></div>
+                <div class="evaluate-message">
+                    <p class="evaluate-name">Karl Kalagin</p>
+                    <span class="stars">
+                        半星加half-star
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star half-star"></span>
+                    </span>
+                </div>
+                <div class="time">2018/06/14</div>
+            </div>
+            <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+            <div class="reply"><span class="color">商家回复：</span>如果你无法简介的表达你的想法，那说明你还不够了解他。</div>
+        </div>
+        <div class="evaluate-con">
+            <div class="evaluate-box">
+                <div class="pho"></div>
+                <div class="evaluate-message">
+                    <p class="evaluate-name">Karl Kalagin</p>
+                    <span class="stars">
+                        半星加half-star
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star half-star"></span>
+                    </span>
+                </div>
+                <div class="time">2018/06/14</div>
+            </div>
+            <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+            <div class="reply-input">
+                <textarea placeholder="回复一下吧～" rows="5"></textarea>
+            </div>
+        </div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="evaluate-con">
+            <div class="evaluate-box">
+                <div data-img-url="{{_data.user.avatar}}" data-img-type="!avatar" class="pho"></div>
+                <div class="evaluate-message">
+                    <p class="evaluate-name">{{_data.user | fnShowUserNickname_base}}</p>
+                    <span class="stars">
+                        <!-- 半星加half-star -->
+                        <% for(var i = 0; i < +_data.score; i++){ %>
+                            <span class="star"></span>
+                        <% } %>
+                    </span>
+                </div>
+                <div class="time">{{_data.create_time | dateFormat 'yyyy/MM/dd'}}</div>
+            </div>
+            <div class="text pre-text">{{_data.content}}</div>
+
+            {{if _user.user_type == USER_TYPE.store.value || _data.reply }}
+                <div class="reply-input">
+                    {{if _data.reply}}
+                        <div class="pre-text"><b class="color">{{'商家回复' | fnLanguage_public}}：</b>{{_data.reply}}</div>
+                    {{else}}
+                        <textarea class="pre-text" onblur="fnSubmit(this, {{_data.id}})" placeholder="回复一下吧～" rows="4" maxlength="{{_reply_maxlength}}"></textarea>
+                    {{/if}}
+                </div>
+            {{/if}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                APP._reply_maxlength = 500;
+                debugAlert(22222, APP._user)
+                fnInit();
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    });
+
+    function fnInit(){
+        var _param = {
+            url: 'base/comment/detail',
+            method: 'GET',
+            data: {
+                id: APP._param.id
+            }
+        }
+        fnAjax(_param, function(ret) {
+            if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                APP._data = ret.data;
+                fnValue('#wrap', template('wrap-template', APP));
+            } else {
+                fnToast(ret.msg);
+            }
+        })
+    }
+
+    function fnSubmit(_el, _id){
+        var _reply = fnValue(_el);
+        if( _reply && _reply.length ){
+            var _param = {
+                url: 'base/comment/reply',
+                method: 'POST',
+                data: {
+                    id: _id,
+                    reply: _reply
+                }
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    api.sendEvent({
+                        name: APP.EV_NAME.EV_EVALUATE_UPDATE,
+                        extra: {}
+                    });
+                    api.sendEvent({
+                        name: APP.EV_NAME.ORDER_UPDATE,
+                        extra: {}
+                    });
+
+                    fnToast(ret.msg, function(){
+                        fnClose();
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+</script>
+</html>

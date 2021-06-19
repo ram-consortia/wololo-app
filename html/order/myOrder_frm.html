@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <!--    <link rel="stylesheet" type="text/css" href="../../css/availableCoupons.css" />-->
+    <link rel="stylesheet" href="../../css/order.css">
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <style>
+        .filter{
+            filter: grayscale(1);
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+
+</div>
+
+<script type="text/html" id="wrap-template">
+    <div id="list" class="hide">
+
+    </div>
+    <div id="no-data" class="order hide">NO ORDERS FOUND !</div>
+</script>
+
+<script type="text/html" id="list-template">
+    {{each _list _value}}
+
+    <div class="gap swiper-slide relative {{_param._groupParam==2?'filter':''}}" onclick='toOrderDetail({{_value}})' tapmode="hover">
+        {{if _param._groupParam==1||_param._groupParam==3}}
+        <span class="time absolute color_red" style="right: 10%;top: 30px;">00:00:00</span>
+        {{/if}}
+        {{if _param._groupParam==2}}
+        <span class="absolute color_red" style="right: 10%;top: 30px;">Expired</span>
+        {{/if}}
+        <div class="left">
+            <div class="logo">
+                <img src="{{_value.deal.product.images[0]}}"/>
+            </div>
+            <div class="name">{{_value.store.user_nickname}}</div>
+        </div>
+        <div class="line"></div>
+        <div class="right">
+            <div class="flex flex_between">
+                {{if _value.deal.group_type==2}}
+                <span class="tag bg_blue">+1 DEAL</span>
+                {{else}}
+                <span class="tag bg_red">SUPERDEAL</span>
+                {{/if}}
+            </div>
+            <div style="padding: 10px 0">
+                {{if _param._groupParam==5}}
+                <span class="bold size20">£{{_value.group.total_price}}</span>
+                <span class="size16 through grey">£{{_value.product?_value.product.price:0}}</span>
+                {{/if}}
+            </div>
+            <div class="size12 color_grey">
+                {{_value.deal.name}}
+            </div>
+            <p class="grey size12">Tap to view more details</p>
+        </div>
+    </div>
+    {{/each}}
+
+
+</script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    APP.init(function () {
+        fnValue('#wrap', template('wrap-template', APP));
+        fnInit();
+        fnRefresh(function () {
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+        api.addEventListener({
+            name: APP.EV_NAME.GROUP_UPDATE
+        }, function (ret, err) {
+            fnInit();
+        });
+
+
+        api.addEventListener({
+            name: APP.EV_NAME.ORDER_UPDATE
+        }, function (ret, err) {
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: [api.winName, 'homeScreen', APP._param._groupName].join()
+        }, function (ret, err) {
+            debugAlert(33444, arguments)
+            var _data = ret.value;
+            if (_data.date) {
+                APP._date = _data.date;
+            } else {
+                delete APP._date;
+            }
+
+            if (_data.category_ids) {
+                APP._category_ids = _data.category_ids;
+            }
+
+            if (!fnHasEmpty_public(_data.coupon_type)) {
+                APP._coupon_type = _data.coupon_type;
+            }
+
+            if (!fnHasEmpty_public(_data.price_type)) {
+                APP._price_type = _data.price_type;
+            }
+            if (_data.frameName == api.frameName) {
+                fnStart();
+            } else if (!_data.frameName) {
+                fnStart();
+            }
+        });
+    });
+    let timer=[];
+    function fnInit() {
+        api.execScript({
+          script: 'fnOrderStart("' + api.frameName + '", "' + APP._param._groupName + '");'
+        });
+
+    }
+    function toOrderDetail(e){
+        if(APP._param._groupParam==1||APP._param._groupParam==2){
+            fnOpen("order/orderDetail_win.html",{
+                param:{
+                    id:e.id,
+                    paramType:'order',
+                    _groupParam:APP._param._groupParam
+                }
+            })
+        }
+        if(APP._param._groupParam==3){
+            fnOpen("order/superdPaid_win.html",{
+                param:{
+                    id:e.id
+                }
+            })
+        }
+    }
+
+    function fnStart() {
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet() {
+        var _param = {
+            url: 'order/order/index2',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 8,
+                // limit: APP.PAGE.SKIP_PAGE,
+                status: APP._param._groupParam
+            }
+        };
+        if (APP._category_ids) {
+            _param.data.category_ids = APP._category_ids;
+        }
+
+        if (APP._date) {
+            _param.data.date = APP._date;
+        }
+
+        if (APP._coupon_type) {
+            _param.data.coupon_type = APP._coupon_type;
+        }
+
+        if (APP._price_type) {
+            _param.data.price_type = APP._price_type;
+        }
+        fnGetList_base(_param, function (ret) {
+            timer.push(...APP._list);
+            setInterval(()=>{
+                for(let i =0;i<timer.length;i++){
+                    const date=new Date().valueOf();
+                    try{
+                        $(".time").eq(i).text(formatduring(timer[i].group.expire_time*1000-parseInt(date/1000)*1000))
+                    }catch (err){
+
+                    };
+                }
+            },1000)
+            if (ret.evType == 'scrolltobottom') {
+                fnGet();
+            }
+        })
+    }
+
+    function fnJump(_el) {
+        var _data = JSON.parse(fnValue($(_el).find('i.hide')[0]));
+        if (_data.status == APP.ORDER.status.in.id) {
+            fnJump_base('assemble/joinDelegation_win.html', _data.group_id);
+
+        }else if (_data.status == 2) {
+            //fnJump_base('order/myorderDetail_win.html', _data.id);
+            fnJump_base('assemble/pay_win.html', _data.id);
+
+        }else if (_data.status == 3) {
+          fnJump_base('order/myorderDetail_win.html', _data.id);
+
+          //fnJump_base('assemble/pay_win.html', _data.id);
+        }else if ( _data.status == 4) {
+          fnJump_base('order/myorderDetail_win.html', _data.id);
+          //fnJump_base('assemble/pay_win.html', _data.id);
+
+        }
+    }
+
+    function fnDeliveryCompletedOrder(_id) {
+        fnDeliveryCompletedOrder_base({
+            id: _id
+        }, function (ret) {
+            fnToast(ret.msg);
+        })
+    }
+
+    function fnJumpEvaluate() {
+        fnJump_base('home/evaluate_win.html', {
+            id: APP._data.store_id,
+            order_id: APP._data.id
+        })
+    }
+    
+    
+
+</script>
+</html>

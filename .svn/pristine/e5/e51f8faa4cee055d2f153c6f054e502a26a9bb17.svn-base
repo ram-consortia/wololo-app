@@ -1,0 +1,330 @@
+@charset 'utf-8';
+@import "public/config";
+// 设置字体，颜色，加粗，有无下划线
+// 调用：$size: pxToRem(60), $weight: 400!important, $color: $bg-color, $text: underline!important
+@mixin fontWCT($size, $color, $weight: normal, $text: none) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    text-decoration: $text;
+}
+@mixin paddingMix($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    padding: $top $right $bottom $left;
+}
+.no-onclick{
+    background: #eeeeee!important;
+}
+.bg-white{
+    background: #ffffff!important;
+}
+
+body {
+    background-color: #fff;
+    .hide {
+        display: none;
+    }
+    .password_wrap{
+        padding:0 pxToRem(80);
+    }
+    .login {
+
+        a {
+            @include fontWCT($size: pxToRem(30), $weight: 400!important, $color: $bg-color, $text: underline!important);
+        }
+        @include paddingMix($top: pxToRem(200), $right: pxToRem(60), $bottom: 0, $left: pxToRem(60));
+        .topTitle {
+            @include flex-box($justify: space-between, $align: center);
+            .register {
+                @include fontWCT($size: pxToRem(30), $weight: 400, $color: $font-color);
+            }
+            .title {
+                @include fontWCT($size: pxToRem(72), $weight: 500, $color: $font-color);
+            }
+        }
+        .phoneMailContent {
+            padding-top: pxToRem(70);
+
+
+            .tabContent {
+                .iconquxiao {
+                    @include fontWCT($size: pxToRem(36), $color: rgba(201, 201, 201, 1));
+                }
+                padding-top: pxToRem(114);
+                .tab-content {
+                    p {
+                        border-bottom: pxToRem(2) solid rgba(238, 238, 238, 1);
+                        height: pxToRem(119);
+                        @include flex-box($align: center, $justify: space-between);
+                        span {
+                            @include fontWCT($size: pxToRem(30), $weight: 400, $color: $font-color);
+                        }
+                        input {
+                            width: 60%;
+                            height: pxToRem(40);
+                            @include fontWCT($size: pxToRem(30), $weight: 400, $color: $font-color);
+                            @include fnPlaceholderColor($color: rgba(201, 201, 201, 1));
+                        }
+                    }
+                    .phoneNumber {
+                        justify-content: flex-start !important;
+                        input {
+                            padding-left: pxToRem(28);
+                        }
+                    }
+                    .identifyingCode {
+                        @include flex-box($justify: space-between, $align: center);
+                        input {
+                            padding-left: 0;
+                        }
+                        span {
+                            color: $bg-color;
+                        }
+                    }
+                    .password {
+                        @include flex-box($justify: space-between, $align: center);
+                        input {
+                            padding-left: 0;
+                        }
+                        .iconfont {
+                            @include fontWCT($size: pxToRem(36), $color: #c9c9c9);
+                        }
+                    }
+                    .setPassWord {
+                        @include flex-box($justify: flex-end, $align: center);
+                        @include fontWCT($size: pxToRem(30), $weight: 400, $color: rgba(34, 34, 34, 1));
+                    }
+                }
+            }
+            .agree {
+                @include flex-box($justify: center, $align: center);
+                padding-top: pxToRem(40);
+                @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(176, 176, 176, 1));
+                a {
+                    font-size: pxToRem(26);
+                }
+                input {
+                    display: inline-block;
+                    width: pxToRem(34);
+                    height: pxToRem(34);
+                    border: pxToRem(2) solid rgba(238, 238, 238, 1);
+                    appearance: revert;
+                    margin-right: pxToRem(26);
+                }
+                .custom-checkbox span {
+                    background-color: white;
+                    border-radius: 50%;
+                    width: pxToRem(36);
+                    height: pxToRem(36);
+                    border: pxToRem(2) solid rgba(238, 238, 238, 1);
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: middle;
+                    line-height: pxToRem(20);
+                }
+                .custom-checkbox input[type="checkbox"] {
+                    display: none;
+                }
+                .custom-checkbox input[type="checkbox"]:checked + span {
+                    position: relative;
+                    border: pxToRem(2) solid $bg-color;
+                }
+                .custom-checkbox input[type="checkbox"]:checked + span:after {
+                    content: "";
+                    border-radius: 50%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    position: absolute;
+                    background: $bg-color;
+                    border: pxToRem(2) solid $bg-color;
+                    height: pxToRem(18);
+                    width: pxToRem(18);
+                }
+            }
+        }
+        .confirm {
+            @include flex-box($justify: center, $align: center);
+            margin: pxToRem(28) auto;
+            height: pxToRem(92);
+            background: $bg-color;
+            color:#fff;
+            border-radius: pxToRem(46);
+            &.confirmTo{
+                margin: pxToRem(80) auto;
+                color:#B0B0B0;
+            }
+            button {
+                @include fontWCT($size: pxToRem(34), $weight: 500, $color: rgba(255, 255, 255, 1));
+            }
+        }
+
+
+    }
+    .other {
+        padding-top: pxToRem(150);
+        @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(176, 176, 176, 1));
+        @include flex-box($justify:center,$align:center)
+    }
+    .other:before {
+        content: "";
+        height: 1px;
+        top: 50%;
+        width: 33%;
+        height: 1px;
+        border-bottom: 1px solid rgba(238,238,238,1);
+        display: inline-block;
+        margin-right: pxToRem(11);
+        margin-bottom: pxToRem(4);
+    }
+    .other:after {
+        content: "";
+        top: 50%;
+        width: 33%;
+        height: 1px;
+        border-bottom: 1px solid rgba(238,238,238,1);
+        display: inline-block;
+        margin-left: pxToRem(9);
+        margin-bottom: pxToRem(4);
+    }
+    .otherLoginWay {
+        @include flex-box($justify: space-evenly);
+        padding-top: pxToRem(55);
+        a {
+            text-decoration: none !important;
+            text-align: center;
+            span {
+                margin: 0 auto;
+                display: block;
+            }
+            span:first-child {
+                width: pxToRem(54);
+                height: pxToRem(54);
+            }
+            span:last-child {
+                padding-top: pxToRem(22);
+                @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(176, 176, 176, 1));
+            }
+        }
+        a:first-child {
+            span:first-child {
+                @include set-bg-img($name: "Facebook.png");
+            }
+        }
+        a:nth-child(2) {
+            span:first-child {
+                @include set-bg-img($name: "Twitter.png");
+            }
+        }
+        a:nth-child(3) {
+            span:first-child {
+                @include set-bg-img($name: "Google.png");
+            }
+        }
+        a:last-child {
+            span:first-child {
+                @include set-bg-img($name: "Wx.png");
+            }
+        }
+    }
+    .phoneAreaCodeGet{
+        padding: pxToRem(113) pxToRem(60) 0 pxToRem(60);
+        .title{
+            span{
+                @include fontWCT($size:pxToRem(34),$color:$font-color)
+            }
+            span:last-child{
+                padding-left: pxToRem(57);
+            }
+            i{
+                @include fontWCT($size: pxToRem(36), $color: rgba(201, 201, 201, 1),$weight:bolder);
+            }
+
+        }
+        .areaCode{
+            ul{
+                width: 90%;
+                margin: 0 auto;
+                padding-top: pxToRem(5);
+
+                li{
+                    padding-top: pxToRem(70);
+                    @include flex-box($justify:space-between);
+                    .area{
+                        @include fontWCT($size: pxToRem(32), $color: $font-color,$weight:400); 
+                    }
+                    .code{
+                        @include fontWCT($size: pxToRem(32), $color: $bg-color,$weight:500);
+                      
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+.confirm {
+    @include flex-box($justify: center, $align: center);
+    margin: pxToRem(20) auto;
+    height: pxToRem(92);
+    background: $bg-color;
+    color:#fff;
+    border-radius: pxToRem(46);
+    &.confirmTo{
+        margin: pxToRem(80) auto;
+        color:#fff;
+    }
+    button {
+        @include fontWCT($size: pxToRem(34), $weight: 500, $color: rgba(255, 255, 255, 1));
+    }
+}
+.tabTitle {
+    @include flex-box();
+    justify-content: space-between;
+    div {
+         position: relative;
+        p {
+            display: block;
+        }
+        p:first-child {
+            @include fontWCT($size: pxToRem(34), $weight: 400, $color: $font-color);
+            margin-bottom: pxToRem(24);
+            padding:0 pxToRem(16);
+        }
+        p:last-child {
+            position: absolute;
+            bottom:pxToRem(2) ;
+            left:0;
+            display: none;
+            width:100%;
+            height:pxToRem(12);
+            background: $bg-color;
+            border-radius: pxToRem(20) pxToRem(20) 0 0;
+        }
+    }
+    .clickP {
+        p:first-child {
+            @include fontWCT($size: pxToRem(34), $weight: 500!important, $color: $bg-color!important);
+        }
+        p:last-child{
+            display: block;
+        }
+
+    }
+}
+.quick {
+    @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(117, 117, 117, 1));
+    margin: pxToRem(40) auto;
+    @include flex-box($justify: center);
+    a {
+        @include fontWCT(
+                $size: pxToRem(24),
+                $weight: 400,
+                $color: rgba(117, 117, 117, 1) !important,
+                $text: none!important
+        );
+    }
+    .iconfont {
+        @include fontWCT($size: pxToRem(22), $weight: bolder, $color: #979797);
+    }
+}

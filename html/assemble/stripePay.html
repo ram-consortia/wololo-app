@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/stripePay.css" />
+</head>
+
+<body>
+</body>
+<script type="text/html" id="wrap-template">
+    <header class="header">
+        <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+        <div class="title">Card</div>
+    </header>
+
+    <div class="main flex-item-vertical bkframe" id="wrap">
+        <form id="payment-form">
+            <div class="form-row">
+                <div id="card-element">
+                </div>
+                <!-- <div id="card-errors" role="alert"></div> -->
+            </div>
+        </form>
+        <div class="submit" id="submit">
+            <button class="payBtn">confirm</button>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+<script type="text/javascript">
+    // 页面初始化
+    // var api={getPrefs :function(){},parseTapmode :function(){}}
+    // fnValue('body', template('wrap-template', { _param: { client_secret:"pi_1HjzwCFZ19uZrJGnwMouIwyz_secret_bLWOR9LZBDYoNFQC4YBNe64Ac", } }));
+    // console.log()
+
+    APP.init(function () {
+        fnValue('body', template('wrap-template', APP));
+        APP.fixStatusBar($('.header')[0]);
+
+        initStripe();
+
+    });
+
+    function initStripe() {
+        var stripKey = 'pk_test_51Hek1UFZ19uZrJGnmmyhOlYkICujY9JMerEiDcgMLK3kQ8GX73EhBRHwuqJ6uDdIneec2RMOEjoVOvqNSU16tWyZ00K5vS2EJA';
+        var stripe = Stripe(stripKey);
+        APP._stripe = stripe;
+        let elements = stripe.elements({
+            locale: 'en-GB'
+        });
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element.
+        var card = elements.create('card', { style: style });
+        card.update({
+            hidePostalCode:true,
+        })
+        APP._card = card;
+
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
+
+        // Handle real-time validation errors from the card Element.
+        card.addEventListener('change', function (event) {
+            if (event.error) {
+                fnToast(event.error.message);
+            }
+        });
+
+        $('.payBtn').click(stripePay)
+    }
+
+
+    function stripePay(event) {
+        event.preventDefault();
+        var _param = {
+             url: 'order/order/pay',
+            method: 'POST',
+            data: {
+                id: APP._param.id,
+                pay_coupon_count: 1,
+                pay_method: APP.ORDER.pay_method.bankCard.id,
+                debug: APP.NO
+            }
+        }
+        fnAjax(_param, function (ret) {
+            APP._stripe.confirmCardPayment(ret.data.client_secret, { payment_method: { card: APP._card } }).then((result) => {
+                if (result.error) {
+                    fnToast(result.error.message);
+                } else {
+                    checkPay();
+                }
+            })
+        })
+
+    }
+
+    function checkPay() {
+        var _param = {
+            url: 'order/order/check_is_pay',
+            method: 'POST',
+            // hasProgress: {
+            //     status: 0
+            // },
+            data: {
+                id: APP._param.id,
+                pay_method: APP.ORDER.pay_method.bankCard.id
+            }
+        }
+        fnAjax(_param, function (ret) {
+            ret.type = ret.data.status ? 3 : 4;
+            fnPaySuccess(ret);
+        })
+    }
+
+    function fnPaySuccess(_param) {
+        let newParam = _param || {
+            id: 1,
+            type: 3
+        }
+        newParam.pay_method=APP.ORDER.pay_method.bankCard.id;
+        api.sendEvent({
+            name: APP.EV_NAME.ORDER_UPDATE,
+            extra: {}
+        });
+        api.sendEvent({
+            name: APP.EV_NAME.PAY_SUCCESS,
+            extra: {}
+        });
+        fnClose({}, function () {
+            fnOpen('my/refundSubmission_win.html', {
+                param: newParam
+            })
+        })
+
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" href="../../css/lijie.css"/>
+</head>
+<style>
+    .header {
+        height: 74px;
+        padding-top: 20px;
+    }
+
+    .left {
+        flex-shrink: 0;
+        color: #1E1E1E;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-size: 24px;
+    }
+
+    .right {
+        flex-shrink: 0;
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+        overflow: hidden;
+    }
+
+    .right img {
+        width: 100%;
+        height: 100%;
+    }
+
+    #name {
+        color: #000;
+        font-size: 32px;
+    }
+
+    .card {
+        border-radius: 12px;
+        border: 1px solid #EAEAEA;
+        height: 111px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-sizing: border-box;
+        margin-top: 40px;
+    }
+
+    .card_item {
+        height: 54px;
+        width: 41px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        font-size: 12px;
+        color: #1E1E1E;
+    }
+    .card_item img {
+        height: 32px;
+        width: 32px;
+    }
+    .loyalty{
+        margin-top: 32px;
+        height: 76px;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        background: -webkit-linear-gradient(157deg,#E8B521,#FED55F);
+    }
+    .loyalty1{
+        margin-top: 20px;
+        height: 76px;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        background: #F2F7FB;
+        border: 1px solid #DFE8EF;
+    }
+    .loyalty img{
+        width: 89px;
+        height: auto;
+    }
+    .loyalty_right{
+        padding: 17px 0;
+        box-sizing: border-box;
+        font-size: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-shrink: 0;
+    }
+    .loyalty1_left{
+        width: 89px;
+        height: 100%;
+    }
+    .loyalty1_left img{
+        width: 36px;
+        height: 36px;
+    }
+    .navigate_group li{
+        height: 60px;
+        border-bottom: 1px solid rgb(240,243,247);
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: url("../../image/v2/ic_arrow.png") right center no-repeat;
+        background-size: 10%;
+        font-size: 16px;
+    }
+    .footer{
+        color: #848484;
+        font-size: 14px;
+        height: 60px;
+    }
+</style>
+<body>
+<div class="main" id="wrap">
+    <div class="padding20">
+        <div class="header flex flex_between">
+            <div class="left">
+                <div>Hi,</div>
+                <div id="name" style="width: 200px" class="bold ellipsis">Wololo</div>
+            </div>
+            <div class="right">
+                <img id="avatar" src="../../image/icon-logo.png"/>
+            </div>
+        </div>
+        <div class="padding20 card">
+            <div class="card_item" tapmode="hover" onclick="fnOpen('sign/createProfile_win.html')">
+                <img src="../../image/v2/ic_profile_my.png"/>
+                <div class="margin_top10">
+                    User Profile
+                </div>
+            </div>
+            <div class="card_item" tapmode="hover" onclick="fnOpen('home/wishList_win.html')">
+                <img src="../../image/v2/ic_wishlist_my.png"/>
+                <div class="margin_top10">
+                    Wishlist
+                </div>
+            </div>
+            <div class="card_item" tapmode="hover" onclick="fnOpen('my/helpFeedback_win.html')">
+                <img src="../../image/v2/ic_help_my.png"/>
+                <div class="margin_top10">
+                    Help & Support
+                </div>
+            </div>
+
+        </div>
+        <div class="loyalty">
+            <img src="../../image/v2/img_wallet.png" alt="">
+            <div class="loyalty_right">
+                <div class="size12">Loyalty points - 11421.00</div>
+                <div class="bold">£50.00</div>
+            </div>
+        </div>
+        <div class="loyalty1" tapmode="hover" onclick="fnOpenShare()">
+            <div class="loyalty1_left flex flex_center">
+                <img src="../../image/v2/img_gift_my.png" alt="">
+            </div>
+            <div class="loyalty_right">
+                <div class="size16 bold">Refer friend to earn more</div>
+                <div class="color_grey size12">For each friend that you refer</div>
+            </div>
+        </div>
+        <ul class="navigate_group prosemi">
+            <li tapmode="hover" onclick="fnOpen('my/addresses_win.html')">Saved Addresses</li>
+            <li tapmode="hover" onclick="fnOpen('my/saveCards_win.html')">Saved Cards</li>
+            <li tapmode="hover" onclick="fnOpen('my/preferences_win.html')">My Preferences</li>
+            <li tapmode="hover" onclick="fnOpen('my/changepassword_win.html')">Change Password</li>
+            <!--<li tapmode="hover" onclick="fnOpen('my/feedback_win.html')">Feedback</li>-->
+            <li tapmode="hover" onclick="fnOpenRichText_public({value:'agreementuser',title:'用户协议' })">Terms & Conditions</li>
+            <li tapmode="hover" onclick="fnOpenRichText_public({value:'privacyuser',title:'隐私协议' })"> Privacy policy</li>
+            <li tapmode="hover" onclick="fnOpen('my/aboutus_win.html')">About us</li>
+            <li tapmode="hover" onclick="fnCall()">Contact us</li>
+<!--            <li tapmode="hover" onclick="fnOpen('my/accountManagement_win.html')">Edit information</li>-->
+        </ul>
+        <div class="footer flex flex_between item_center">
+            <span class="padding20" style="padding-left: 0" tapmode="hover" onclick="fnLogout_public()">Log out</span>
+            <span id="version">V1.3</span>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function (_page) {
+        $('#version').text('V'+APP.appVersion());
+        api.addEventListener({
+            name: APP.EV_NAME.USER_UPDATE
+        }, function (ret, err) {
+            fnInit();
+        });
+        fnInit();
+    });
+
+    function fnLogout_public() {
+        fnAlert_public({
+            title: '提示', //‘’ | 选填 |不传则不显示弹窗顶部文案
+            msg: '确认退出登录？', //’’ | 选填 |不传则不显示内容
+            buttons: [{ //’’ | 至少传入一个按钮 |数组有多少就显示多少按钮
+                text: '取消', //’确认’ | 至少传入一个按钮 |按钮文案
+                callback: function () { //function | 必传 |点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: '确认',
+                active: true, //false | 选填 | 是否高亮
+                callback: function () {
+                    fnClearUser_public(function () {
+                        fnBackLogin_public();
+                    });
+                }
+            }]
+        }, function () { //如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数
+
+        });
+    }
+
+    function fnInit() {
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function (_user) {
+            if (_user) {
+                // 当前登陆了用户
+                const {user} = _user;
+                $('#name').text(user.user_nickname|| user.user_email);
+                $('#avatar').src=user.avatar
+            } else {
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+    function fnCall() {
+        // fnGetPublicConfig_base(APP.GET_OPTION.contactuser, function(ret){
+        //     // ret.content                       配置信息
+        //     fnCall_public(ret.content);
+        // })
+        api.openWin({name: 'contact us', url: './contactus_win.html'})
+
+    }
+
+    function fnOpenRichText_public(_obj, _cb) {
+        if (fnHasEmpty_public(_obj)) {
+            _obj = {};
+        } else if (typeof _obj === 'function') {
+            _cb = _obj;
+            _obj = {};
+        }
+        _obj.type = 'Close'
+        fnOpen('public/aPublicRichText_win.html', {
+            param: _obj
+        });
+    }
+
+    function fnOpenBarCode() {
+        fnOpenBarCode_public(function (ret) {
+            debugAlert('扫码完成啊')
+            setTimeout(function () {
+                debugAlert('扫码完成开始啊')
+                // alert(1)
+                try {
+                    var _data = JSON.parse(ret.content);
+                } catch (err) {
+                    var _data = ret.content;
+                }
+                debugAlert(2222, _data)
+
+                if (_data.CURRENT_APP_ID == APP.CURRENT_APP_ID) {
+                    if (_data.store_id && _data.type == 2) {
+                        _start();
+                    } else {
+                        fnToast(fnLanguage_public('二维码有误，识别无效'))
+                    }
+                } else {
+                    fnToast([fnLanguage_public('请认准'), fnLanguage_public(api.appName), fnLanguage_public('二维码')].join(''))
+                }
+
+                function _start() {
+                    fnOpen('business/writeOff_win.html', {
+                        param: _data
+                    })
+                }
+            }, 500)
+        })
+    }
+    function fnOpenShare() {
+
+        // 以下写法适用于iOS，Android 上分享url和分享文本是一样的。
+        APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+        APP._shareUrl = [APP._shareUrl, 'share/joindelegation'].join('');
+        // APP._shareUrl = [APP._shareUrl, fnConvertParam_public({id: APP._param.id})].join('');
+        var sharedModule = api.require('shareAction');
+        sharedModule.share({
+            text:'Wololo',
+            path: APP._shareUrl,
+            thumbnail:'widget://image/icon-logo.png',
+            type: 'url',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 400,                  //宽度，数字类型
+                    h: 400,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 400,                  //宽度，数字类型
+                    h: 400                   //高度，数字类型
+                },
+                fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+        });
+
+    };
+</script>
+</html>

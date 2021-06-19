@@ -1,0 +1,1018 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+@mixin padding($top: 0, $left: 0, $right: 0, $bottom: 0) {
+  padding: $top $left $bottom $right;
+}
+
+@mixin fontWCT($size, $color, $weight: normal) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+body {
+  background-color: #F7F6F6;
+
+  .head-bar{
+    .top{
+      .backP{
+        position: relative;
+        .icon-back{
+          position: absolute;
+          left: pxToRem(-44);
+          bottom: pxToRem(16);
+        }
+      }
+    }
+  }
+  .header1 {
+    background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+    border-radius: 0 0 pxToRem(20) pxToRem(20);
+    @include border-bottom-m;
+
+    .top{
+      .home-title{
+        font-size: pxToRem1(20);
+        color: #fff;
+        line-height: pxToRem1(24);
+        margin-top: pxToRem1(10);
+        text-align: center;
+        font-family:PingFangSC-Medium ;
+      }
+      .group-blank{
+        height: pxToRem1(26); ;
+      }
+    }
+   
+
+    &::after {
+      border: none;
+    }
+  ;
+
+    &.header-line {
+      @include border-bottom-m;
+
+      &::after {
+        border-color: #EAEAEA;
+      }
+    ;
+    }
+
+    .back {
+
+      &.set {
+        padding: pxToRem(22) pxToRem(20);
+        width: pxToRem(44);
+        height: pxToRem(44);
+        z-index: 1;
+        @include set-bg-img($name: 'icon-set.png', $size: pxToRem(44) auto, $position: center center);
+        @include prefixCss3($property: align-self, $value: center);
+      }
+
+      &.bell {
+        padding: pxToRem(22) pxToRem(20);
+        width: pxToRem(44);
+        height: pxToRem(44);
+        z-index: 1;
+        @include set-bg-img($name: 'icon-bell.png', $size: pxToRem(44) auto, $position: center center);
+        @include prefixCss3($property: align-self, $value: center);
+
+        .badge {
+          display: inline-block;
+          position: absolute;
+          right: pxToRem(12);
+          top: pxToRem(12);
+          width: pxToRem(10);
+          height: pxToRem(10);
+          background-color: #FE8F31;
+          border-radius: 50%;
+        }
+      }
+
+      &.scan {
+        padding: pxToRem(22) pxToRem(20);
+        width: pxToRem(44);
+        height: pxToRem(44);
+        z-index: 1;
+        @include set-bg-img($name: 'icon-scan2.png', $size: pxToRem(44) auto, $position: center center);
+        @include prefixCss3($property: align-self, $value: center);
+      }
+    }
+
+    .top {
+      width: 100%;
+      padding-bottom: pxToRem(8);
+      border-bottom-left-radius: pxToRem(16);
+      border-bottom-right-radius: pxToRem(16);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.06);
+
+
+      &.header-circular {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .location {
+        padding: pxToRem(10) pxToRem(30) pxToRem(4);
+        position: relative;
+        @include flex-box($justify:space-between);
+        .flex-item{
+          text-align: right;
+        }
+        .screen {
+          display: inline-block;
+          font-size: pxToRem(34);
+          font-weight: 600;
+          color: #ffffff;
+          //float: right;
+          line-height: pxToRem(80);
+          margin-right: pxToRem(18);
+          &::after {
+            content: '';
+            display: inline-block;
+            width: pxToRem(28);
+            height: pxToRem(80);
+            margin-left: pxToRem(8);
+            vertical-align: top;
+            @include set-bg-img( $name: "icon-down1.png", $size: pxToRem(18) auto, $position: center center);
+          };
+          &.color{
+            color: #999;
+            &::after {
+              @include set-bg-img( $name: "icon-down2.png", $size: pxToRem(28) auto, $position: center center);
+            };
+          }
+          &.ptsx{
+            color: #fff;
+            &::after {
+              @include set-bg-img( $name: "shuaixuan2.png", $size: pxToRem(14) auto, $position: center center);
+            };
+          }
+        }
+        .dingwei{
+          vertical-align: middle;
+          display: inline-block;
+          width: pxToRem(32);
+          height: pxToRem(32);
+          @include set-bg-img( $name: "dingwei2.png", $size: pxToRem(32) auto, $position: center center);
+        }
+
+        .loca {
+          display: inline-block;
+          font-size: pxToRem(36);
+          color: #FF7C4A;
+          line-height: pxToRem(50);
+          @extend .font-s;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            width: pxToRem(36);
+            height: pxToRem(50);
+            margin-right: pxToRem(16);
+            vertical-align: middle;
+            @include set-bg-img($name: "icon-location1.png", $size: pxToRem(36) auto, $position: center center);
+          }
+        ;
+
+          &::after {
+            content: '';
+            display: inline-block;
+            width: pxToRem(28);
+            height: pxToRem(50);
+            margin-left: pxToRem(16);
+            vertical-align: middle;
+            @include set-bg-img($name: "icon-down.png", $size: pxToRem(28) auto, $position: center center);
+          }
+        ;
+        }
+
+        .pattern {
+          vertical-align: middle;
+          display: inline-block;
+          width: pxToRem(30);
+          height: pxToRem(34);
+          // padding-top: pxToRem(18);
+          @include prefixCss3($property: align-self, $value: center);
+          @include set-bg-img($name: "homeDW2.png", $size: pxToRem(30) auto, $position: center center);
+
+          &.active {
+            @include set-bg-img($name: "icon-menu.png", $size: pxToRem(35) auto, $position: center center);
+          }
+        }
+
+        .patP{
+          vertical-align: middle;
+          font-weight: bold;
+          font-size: pxToRem(32);
+          margin-left: pxToRem(6);
+          display: inline-block;
+          padding-left: pxToRem(16);
+          color: #fff;
+        }
+      }
+
+
+
+
+    }
+
+  }
+  .wid100{
+    width: 100%;
+    padding:0 0 0 pxToRem(50);
+  }
+  /*.mt10{
+    background: red;
+    top: pxToRem(60);
+  }*/
+  .search-stores {
+    @include flex-box();
+    padding: pxToRem(20) 0;
+    @include flex-box($justify:center,$align:center);
+    width: 100%;
+    .search {
+      background: #ffffff;
+      width: 85%;
+      @include flex-box($justify:center,$align:center);
+      border: pxToRem(2) solid #EAEAEA;
+      padding: pxToRem(20);
+      box-shadow: 0 4px 12px -4px rgba(0,0,0,0.08);
+      border-radius: pxToRem(64);
+      line-height: pxToRem(36);
+      .search-img {
+        display: inline-block;
+        width: pxToRem(32);
+        height: pxToRem(36);
+        margin-right: pxToRem(16);
+        vertical-align: middle;
+        @include set-bg-img( $name: "icon-search.png", $size: pxToRem(32) auto, $position: center center);
+      }
+
+      .inpit {
+        @include flex-item();
+        font-size: pxToRem(26);
+        color: #333;
+        vertical-align: middle;
+        //line-height: pxToRem(36);
+      }
+
+      .del {
+        display: inline-block;
+        width: pxToRem(30);
+        height: pxToRem(36);
+        margin-left: pxToRem(16);
+        vertical-align: middle;
+        @include set-bg-img( $name: "icon-close1.png", $size: pxToRem(30) auto, $position: center center);
+      }
+    }
+
+    .screen {
+      display: inline-block;
+      font-size: pxToRem(34);
+      font-weight: 600;
+      color: #FF7C4A;
+      line-height: pxToRem(80);
+      margin-left: pxToRem(18);
+      &::after {
+        content: '';
+        display: inline-block;
+        width: pxToRem(28);
+        height: pxToRem(80);
+        margin-left: pxToRem(8);
+        vertical-align: top;
+        @include set-bg-img( $name: "icon-down1.png", $size: pxToRem(28) auto, $position: center center);
+      };
+      &.color{
+        color: #ffffff;
+        &::after {
+          @include set-bg-img( $name: "icon-down2.png", $size: pxToRem(28) auto, $position: center center);
+        };
+      }
+    }
+  }
+  .box.groups{
+    width: 100%;
+    // height:pxToRem1(57);
+    @include flex-box($justify:space-around);
+    // border-bottom: 1px solid #000;
+    padding-top:pxToRem1(12);
+    box-sizing: border-box;
+    .item{
+      text-align: center;
+      width:pxToRem1(120);
+      height: pxToRem1(45);
+      font-size: pxToRem(32);
+      color: #757575;
+      border-radius: pxToRem(26) pxToRem(26) 0 0;
+      box-sizing: border-box;
+      padding-top: pxToRem(22);
+      // transition: all 0.5s;
+    }
+    .active{
+      color: #fff;
+      padding-top: pxToRem(27);
+    }
+    .firstItem.active {
+      background: linear-gradient(135deg, rgba(255, 129, 78, 1) 0%, rgba(255, 139, 119, 1) 100%);
+    }
+    .secondItem.active{
+      background: #aaa;
+    }
+    
+  }
+  .box{
+    // @include flex-box();
+    // text-align: center;
+    // .item{
+    //   position: relative;
+    //   @include flex-item();
+    //   padding: pxToRem(26) 0 pxToRem(34);
+    //   font-size: pxToRem(30);
+    //   color: #666;
+      //line-height: pxToRem(42);
+      //&.active{
+      //    color: #333;
+      //    &::after{
+      //        content: '';
+      //        display: block;
+      //        position: absolute;
+      //        left: 50%;
+      //        bottom: pxToRem(14);
+      //        @include prefixCss3($property: transform, $value: translateX(-50%));
+      //        width: pxToRem(56);
+      //        height: pxToRem(16);
+      //        @include set-bg-img( $name: "icon-sel.png", $size: pxToRem(56) auto, $position: center center);
+      //    };
+      //}
+
+    // }
+    // .active {
+    //   //background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+    //   background: #DCDCDC;
+    //   -webkit-background-clip: text;
+    //   -webkit-text-fill-color: transparent;
+
+    // }
+    // .active:before {
+    //   content: "";
+    //   width: 50%;
+    //   height: pxToRem(10);
+    //   background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+    //   border-radius: pxToRem(100) pxToRem(100) 0px 0px;
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 25%;
+    // }
+  }
+  .top-header{
+
+    .box{
+      margin: pxToRem(26) pxToRem(20) 0 pxToRem(20);
+      @include flex-box();
+      text-align: center;
+      @extend %scroll;
+
+      .item{
+        position: relative;
+        @include flex-item();
+        height: pxToRem(82);
+        font-size: pxToRem(30);
+        color: #666;
+        line-height: pxToRem(82);
+        // min-width: pxToRem(160);
+        padding: 0 pxToRem(16);
+        white-space: nowrap;
+      }
+      .active {
+        //background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+        /*background: #DCDCDC;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;*/
+      }
+      .itemPTZ.active{
+        background:linear-gradient(135deg, #FF8B76, #FC5030);
+        border-radius: pxToRem(20) pxToRem(20) 0 0;
+        color: #fff;
+      }
+      .itemDFZ.active{
+        background:linear-gradient(135deg, #FFAE55, #FF7B22);
+        border-radius: pxToRem(20) pxToRem(20) 0 0;
+        color: #fff;
+      }
+      .itemWXF.active{
+        background:linear-gradient(135deg, #34B42F, #50F897);
+        border-radius: pxToRem(20) pxToRem(20) 0 0;
+        color: #fff;
+      }
+      .itemYXF.active{
+        background:#939393;
+        border-radius: pxToRem(20) pxToRem(20) 0 0;
+        color: #fff;
+      }
+      /*.active:before {
+        content: "";
+        width: 35%;
+        height: pxToRem(8);
+        background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+        border-radius: pxToRem(100) pxToRem(100) 0px 0px;
+        position: absolute;
+        bottom: 0;
+        left: 33%;
+      }*/
+    }
+    .sel-box{
+      @include flex-box();
+      text-align: center;
+      background-color: #F9F9F9;
+      .sel-item{
+        @include flex-item();
+        height: pxToRem(80);
+        font-size: pxToRem(26);
+        color: #333;
+        line-height: pxToRem(80);
+        &::after{
+          content: '';
+          display: inline-block;
+          width: pxToRem(28);
+          height: pxToRem(28);
+          margin-left: pxToRem(12);
+          vertical-align: middle;
+          @include set-bg-img( $name: "icon-down2.png", $size: pxToRem(28) auto, $position: center center);
+        };
+      }
+    }
+  }
+
+  .main {
+    .swiper {
+      background-color: #fff;
+      padding: pxToRem(20) pxToRem(30) pxToRem(26);
+
+      .wrap {
+        position: relative;
+
+        .swiper-container {
+          border-radius: pxToRem(16);
+
+          .swiper-wrapper {
+            .swiper-slide {
+              img {
+                width: 100%;
+              }
+
+              .swiper-img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 100%;
+                @include set-bg-img( $name: "icon-background3.png");
+
+                .name {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  height: pxToRem(70);
+                  font-size: pxToRem(28);
+                  line-height: pxToRem(70);
+                  color: #fff;
+                  padding: 0 pxToRem(24);
+                  @include text-overflow(1);
+                  background: linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 100%);
+                }
+              }
+            }
+          }
+        }
+
+        .swiper-pagination {
+          position: absolute;
+          left: 50%;
+          bottom: pxToRem(-38);
+          @include prefixCss3($property: transform, $value: translateX(-50%));
+          width: 100%;
+          height: pxToRem(40);
+
+          .swiper-pagination-bullet {
+            width: pxToRem(10);
+            height: pxToRem(10);
+            background: #D4D4D4;
+            border-radius: pxToRem(10);
+            margin: 0 pxToRem(5);
+
+            &.swiper-pagination-bullet-active {
+              background-color: $bg-color;
+            }
+          }
+        }
+      }
+    }
+    .title{
+      font-size: pxToRem(44);
+      color: #333333;
+      // font-weight: bolder;
+      font-family: PingFangSC-Medium;
+      padding:pxToRem(30) 0 0 pxToRem(30);
+    }
+    .bkf0{
+      background: #F7F7F7!important;
+    }
+    .classification {
+      overflow: auto;
+      background-color: #fff;
+      padding: pxToRem(12) pxToRem(14) pxToRem(24);
+      @include flex-box();
+
+      .gap {
+        width: pxToRem(250);
+        flex-shrink: 0;
+        .one-third {
+          position: relative;
+          margin: pxToRem(18) pxToRem(26);
+          img {
+            width: 100%;
+            border-radius: pxToRem(8);
+          }
+
+          .img-name {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top:0;
+            height: 100%;
+            border-radius: pxToRem(14);
+            @include set-bg-img($name: "icon-background4.png");
+          }
+          .w560{
+            width: pxToRem(560);
+            height: pxToRem(320);
+          }
+          .names {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: pxToRem(-40);
+            height: pxToRem(46);
+            font-size: pxToRem(24);
+            line-height: pxToRem(46);
+            color: #999;
+            // padding: 0 pxToRem(24);
+            text-align: center;
+            @include text-overflow(1);
+            //border-bottom-left-radius: pxToRem(8);
+            //border-bottom-right-radius: pxToRem(8);
+          }
+          .names_left{
+            font-size: pxToRem(44);
+            font-family: PingFangSC-Medium;
+            // font-weight: bolder;
+            color:#424242;
+            bottom: pxToRem(0);
+            text-align: left;
+          }
+        }
+      }
+
+      .w565{
+        margin-right: pxToRem(20);
+        width: pxToRem(565);
+        height: pxToRem(378);
+      }
+    }
+    .collection {
+      padding-top: pxToRem(20);
+
+      .con {
+        margin: 0 pxToRem(30) pxToRem(40);
+        position: relative;
+        .flag{
+          padding:pxToRem1(10) 0 ;
+          width: pxToRem1(130);
+          height:pxToRem1(70);
+          position: absolute;
+          right: pxToRem1(-10);
+          top: pxToRem1(16);
+          @include set-bg-img( $name: "home-flag.png");
+          color:#fff;
+          font-family: PingFangSC-Semibold;
+          box-sizing: border-box;
+          >div{
+            text-align: center;
+            font-size :pxToRem1(11);
+          }
+          >div:first-child{
+            font-size:pxToRem1(16);
+            line-height:pxToRem1(22);
+          }
+        }
+        .img {
+          /*width: 100%;*/
+          height: pxToRem(282);
+          border-top-left-radius: pxToRem(16);
+          border-top-right-radius: pxToRem(16);
+          @include set-bg-img( $name: "icon-background2.png");
+        }
+      }
+    }
+  }
+
+  .shop-info {
+    padding: pxToRem(20) pxToRem(30);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 11;
+  }
+  .location-map,.location-refresh{
+    width: pxToRem(92);
+    height: pxToRem(92);
+    @include set-bg-img( $name: 'icon-location-map.png');
+    position: fixed;
+    right: pxToRem(24);
+    z-index: 10;
+    bottom: pxToRem(185 * 2);
+  }
+  .location-refresh{
+    @include set-bg-img( $name: 'icon-location-refresh.png');
+    bottom: pxToRem(135 * 2);
+  }
+
+  .icon-location{
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: pxToRem(50);
+    height: pxToRem(100);
+    @include set-bg-img( $name: "icon-location2.png", $size: 100% 100%, $position: center center);
+    @include prefixCss3( $property: transform, $value: translate(-50%, -100%));
+  }
+
+  .map{
+    width: 100%;
+    height: 100vh;
+    // background-color: red;\
+  }
+
+  .bot {
+    background-color: #fff;
+    box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08);
+    border-bottom-left-radius: pxToRem(8);
+    border-bottom-right-radius: pxToRem(8);
+    &.botA{
+      border-radius: pxToRem(20);
+      margin-top: pxToRem(-20);
+      position: relative;
+      .hot {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: pxToRem(80);
+        height: pxToRem(36);
+        display: inline-block;
+        font-size: pxToRem(26);
+        text-align: center;
+        color: #fff;
+        height: pxToRem(36);
+        line-height: pxToRem(36);
+
+        border-radius:  pxToRem(20) 0 pxToRem(10) 0;
+
+        vertical-align: text-top;
+        background: rgba(235,83,62,1);
+      }
+
+    }
+    &.bot-border {
+      border-top-left-radius: pxToRem(8);
+      border-top-right-radius: pxToRem(8);
+    }
+
+    .message {
+      padding: pxToRem(24) 0 pxToRem(14);
+      margin: 0 pxToRem(34);
+      &.messageA{
+        padding: 0 pxToRem(20) pxToRem(20) pxToRem(20);
+        margin: 0;
+        @include flex-box($justify:space-between);
+        .til{
+          //width: pxToRem(500);
+          p{
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+            font-size: pxToRem(44);
+            line-height: pxToRem(54);
+            padding: pxToRem(50) pxToRem(10) 0 0;
+            font-family: PingFangSC-Medium;
+          }
+        }
+        .messRight{
+          width: pxToRem(140);
+          height: pxToRem(140);
+          margin: pxToRem(40) 0;
+          border-radius: pxToRem(10);
+          img{
+            width: pxToRem(140);
+            height: pxToRem(140);
+          }
+        }
+
+      }
+      &.message-line {
+        padding: pxToRem(24) 0;
+        @include border-bottom-m;
+
+        &::after {
+          border-color: #EAEAEA;
+        };
+      }
+
+      .til {
+        @include flex-box();
+        font-size: pxToRem(32);
+        color: #333;
+        line-height: pxToRem(44);
+        @extend .font-m;
+
+        .til-img {
+          display: block;
+          min-width: pxToRem(76);
+          height: pxToRem(76);
+          margin-right: pxToRem(32);
+          border-radius: 50%;
+          @include set-bg-img( $name: "icon-photo.png");
+        }
+
+        .hot {
+          display: inline-block;
+          font-size: pxToRem(26);
+          color: #fff;
+          @extend .font-r;
+          height: pxToRem(36);
+          line-height: pxToRem(36);
+          padding: 0 pxToRem(10);
+          border-radius: pxToRem(36);
+          margin-right: pxToRem(8);
+          vertical-align: text-top;
+          background: linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+        }
+
+
+      }
+
+      .box {
+        @include flex-box();
+        padding-top: pxToRem(14);
+        /*&.boxA{
+          width: pxToRem(500);
+        }*/
+
+        .item {
+          @include flex-box();
+          @include flex-item();
+          &.itemA{
+            padding: 0;
+          }
+          .score {
+            font-size: pxToRem(26);
+            color: rgba(66,66,66,1);
+            line-height: pxToRem(42);
+            margin-right: pxToRem(10);
+
+            &.score-right {
+              margin-right: pxToRem(30);
+            }
+
+            .num {
+              font-size: pxToRem(36);
+              @extend .font-b;
+              @extend .font-din;
+            }
+          }
+
+          .branch {
+            font-size: pxToRem(22);
+            color: #FF953B;
+            height: pxToRem(40);
+            line-height: pxToRem(40);
+            padding: 0 pxToRem(16);
+            border: pxToRem(2) solid #FF933A;
+            border-radius: pxToRem(10);
+            margin-right: pxToRem(10);
+            @include prefixCss3($property: align-self, $value: center);
+          }
+
+          .stars {
+            display: inline-block;
+            font-size: 0;
+            vertical-align: middle;
+            margin-right: pxToRem(10);
+            @include prefixCss3($property: align-self, $value: center);
+
+            .star {
+              display: inline-block;
+              width: pxToRem(28);
+              height: pxToRem(28);
+              margin: 0 pxToRem(3);
+              @include set-bg-img( $name: "icon-star1.png", $size: pxToRem(28) auto, $position: center center);
+              &.active {
+                @include set-bg-img( $name: "icon-star.png", $size: pxToRem(28) auto, $position: center center);
+              }
+              &.active:before{
+                background: none;
+                width: 0;
+                height: 0;
+              }
+              &.half-star {
+                @include set-bg-img( $name: "icon-half.png", $size: pxToRem(28) auto, $position: center center);
+              }
+            }
+          }
+
+          .shop {
+            font-size: pxToRem(24);
+            color: #666;
+            line-height: pxToRem(34);
+            @include prefixCss3($property: align-self, $value: center);
+
+            .shop-right {
+              &::after {
+                content: '';
+                display: inline-block;
+                width: pxToRem(2);
+                height: pxToRem(20);
+                background-color: #ccc;
+                margin-left: pxToRem(20);
+                margin-right: pxToRem(20);
+              };
+            }
+          }
+        }
+      }
+    }
+
+    .address {
+      @include flex-box();
+      padding: 0 pxToRem(30) pxToRem(26);
+
+      &.address-line {
+        padding: pxToRem(26) pxToRem(30) pxToRem(10);
+      }
+
+      .addr {
+        @include flex-item();
+        font-size: pxToRem(24);
+        color: #D8D8D8;
+        line-height: pxToRem(38);
+        @include text-overflow(1);
+
+        // &::before {
+        //   content: '';
+        //   display: inline-block;
+        //   min-width: pxToRem(32);
+        //   height: pxToRem(32);
+        //   margin-right: pxToRem(8);
+        //   vertical-align: text-top;
+        //   @include set-bg-img( $name: "icon-location.png", $size: pxToRem(32) auto, $position: center center);
+        // };
+      }
+
+      .kilometer {
+        display: inline-block;
+        font-size: pxToRem(24);
+        color: #999;
+        line-height: pxToRem(38);
+        margin-left: pxToRem(10);
+        @include prefixCss3($property: align-self, $value: center);
+      }
+
+      .go {
+        display: inline-block;
+        min-width: pxToRem(124);
+        height: pxToRem(124);
+        @include set-bg-img( $name: "icon-go.png", $size: pxToRem(124) auto, $position: center center);
+      }
+    }
+  }
+
+  .footer {
+    @include flex-box();
+    @include prefixCss3($property: box-shadow, $value: 0px -2px 8px 0px rgba(215,215,215,0.5));
+
+    .footer-item {
+      @include flex-item();
+      @include flex-box($direction: column, $align: center);
+      color: #D0D3DD;
+      font-size: pxToRem(22);
+      line-height: pxToRem(42);
+      padding: pxToRem(13) 0 pxToRem(4);
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: pxToRem(42);
+        height: pxToRem(44);
+        @include set-bg-img( $name: "shouye.png", $size: 100% auto);
+      }
+
+      &.active {
+        color: #000;
+
+        &::before {
+          width: pxToRem(42);
+          height: pxToRem(44);
+          @include set-bg-img( $name: "shouyexz.png", $size: 100% auto);
+        }
+      }
+
+      &.icon-my {
+
+        &::before {
+          width: pxToRem(36);
+          height: pxToRem(44);
+          @include set-bg-img( $name: "wodewx.png", $size: 100% auto);
+        }
+
+        &.active {
+          &::before {
+            width: pxToRem(36);
+            height: pxToRem(44);
+            @include set-bg-img( $name: "wode.png", $size: 100% auto);
+          }
+        }
+      }
+
+      &.icon-assemble {
+
+        &::before {
+          width: pxToRem(42);
+          height: pxToRem(44);
+          @include set-bg-img( $name: "pintuanxz.png", $size: 100% auto);
+        }
+
+        &.active {
+          &::before {
+            width: pxToRem(42);
+            height: pxToRem(44);
+            @include set-bg-img( $name: "pintuanwx.png", $size: 100% auto);
+          }
+        }
+      }
+
+      &.icon-order {
+
+        &::before {
+          width: pxToRem(38);
+          height: pxToRem(44);
+          @include set-bg-img( $name: "dingdanwx.png", $size: 100% auto);
+        }
+
+        &.active {
+          &::before {
+            width: pxToRem(38);
+            height: pxToRem(44);
+            @include set-bg-img( $name: "dingdanxz.png", $size: 100% auto);
+          }
+        }
+      }
+    }
+  }
+}
+
+.content:before {
+  content: "";
+  width: pxToRem(26);
+  height: pxToRem(26);
+  background-color: rgba(238, 238, 238, 1);
+  border-radius: 100%;
+  position: absolute;
+  top: 62%;
+  left: -2%;
+}
+.content::after {
+  content: "";
+  width: pxToRem(26);
+  height: pxToRem(26);
+  background-color: rgba(238, 238, 238, 1);
+  border-radius: 100%;
+  position: absolute;
+  top: 62%;
+  right: -2%;
+}
+
+#no-data{
+  &.search{
+    &::before{
+      @include set-bg-img( $name: "icon-nodata5.png", $size: pxToRem(320) auto, $position: center bottom);
+    };
+  }
+}

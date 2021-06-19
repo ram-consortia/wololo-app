@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/feedback.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+         <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">意见反馈</div>
+            <div class="back word right" tapmode="hover" onclick="fnOpen('my/historicalFeedback_win.html')">历史反馈</div>
+        </header>
+        <div class="content flex-item-vertical">
+            <div class="li" tapmode="hover" onclick="fnEmpty()">
+                <div class="feedback">*反馈类型</div>
+                <div class="input">
+                    <input type="text" readonly placeholder="请选择">
+                </div>
+                <div class="right"></div>
+            </div>
+            <div class="con">
+                <!--<div class="til">描述您的建议</div>-->
+                <div class="textarea">
+                    <textarea type="text" placeholder="请描述您的建议"></textarea>
+                    <div class="shuzi">（0/500）</div>
+                </div>
+            </div>
+            <div class="con">
+                <div class="til tiler">
+                    上传图片
+                    <div class="tilsz">
+                        （<span class="already-images">0</span>/3）
+                    </div>
+
+                </div>
+
+                <div class="imgs">
+                    <div class="imgsDiv">
+                        <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"></span>
+                        <span class="del"><span>+</span></span>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnEmpty()">提交</div>
+        </div>
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'意见反馈' | fnLanguage_public}}</div>
+            <div class="back word right xixi" tapmode="hover" onclick="fnOpen('my/historicalFeedback_win.html')">{{'历史反馈' | fnLanguage_public}}</div>
+        </header>
+        <div class="content flex-item-vertical">
+            <div class="li" tapmode="hover" onclick="fnRedioSelector()">
+                <div class="feedback">{{'反馈类型' | fnLanguage_public}}</div>
+                <div class="input">
+                    <input id="type" type="text" readonly placeholder="{{'请选择反馈类型' | fnLanguage_public}}">
+                </div>
+                <div class="right"></div>
+            </div>
+            <div class="con">
+                <!--<div class="til">
+                    {{'描述您的建议' | fnLanguage_public}}
+                </div>-->
+                <div class="textarea">
+                    <textarea id="introduce" placeholder="{{'请描述您的建议' | fnLanguage_public}}" maxlength="{{_introduce_maxlength}}"></textarea>
+                    <div class="shuzi"><span class="already-introduce">0</span>/{{_introduce_maxlength}}</div>
+                </div>
+            </div>
+            <div class="con sctp">
+                <div class="til tiler">
+                    {{'上传图片' | fnLanguage_public}}
+                    <div class="tilsz">
+                        <span class="already-images">0</span>/{{_images_maxlength}}
+                    </div>
+
+                </div>
+                <div class="imgs" id="images">
+                     <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnGetPicture(this)" data-is-add></span>
+
+                    <div class="imgsDiv" onclick="fnGetPicture(this)">
+                        <span class="img" tapmode="hover"  data-is-add></span>
+                        <!--<span class="del"><span>+</span></span>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnSubmit()">{{'提交' | fnLanguage_public}}</div>
+        </div>
+    </script>
+
+    <script type="text/html" id="images-template">
+        <span data-img-url="{{_img.url}}" data-img-type="!avatar" data-id="{{_img.filepath}}" class="img pic" tapmode="hover" onclick="fnGetPicture(this)">
+            <span tapmode="hover" onClick="fnRemove(this)" class="del"></span>
+        </span>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP._introduce_maxlength = 500;
+        APP._images_maxlength = 3;
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+
+        fnInputListener_public(["#introduce"], function(ret){
+            fnCountNum();
+        })
+    });
+
+
+
+    function fnSubmit(){
+        if( ! fnValue('#type') ){
+            fnToast($('#type').attr('placeholder'));
+        }else if( ! fnValue('#introduce') ){
+            fnToast($('#introduce').attr('placeholder'));
+        }else{
+            var _param = {
+                url: 'base/feedback/feedbackPost',
+                method: 'POST',
+                data: {
+                    type: $('#type').data('id'),
+                    introduce: fnValue('#introduce'),
+                    images: []
+                }
+            }
+            $('#images .pic').each(function(_index, _el){
+                _param.data.images.push($(_el).data('id'));
+            })
+            _param.data.images = _param.data.images.join();
+
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    fnToast(ret.msg, function(){
+                        fnClose();
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+    function fnRemove(_el){
+        fnKeyboardBlur_public();
+        event && event.stopPropagation();
+        $(_el).closest('.pic').remove();
+        fnHasShowAddImgBtn();
+    }
+
+    function fnGetPicture(_el){
+        var _isAdd = $(_el).attr('data-is-add') === '';
+        fnGetPicture_public({
+            el: _el,                             //可选 |           | Element |  如果该元素有图片地址，弹出菜单会有一个查看大图的选项
+            isClip: false,                       //可选 | false     | Boolean |  是否需要裁剪（如果max参数大于2，该字段无效）
+            max: _isAdd ? APP._images_maxlength - $('#images .pic').length : 1,                              //可选 | 1         | Number  |  选择照片时，可以最大选择几张图片
+            // compressQuality: 'medium',           //可选 | 'medium'  | String  |  图片压缩质量（high：超清、medium：高清、low：普通）
+            // isCameraOption: true,                //可选 | true      | Boolean |  是否需要拍照选项
+            // isAlbumOption: false,                //可选 | true      | Boolean |  是否需要选择图片选项
+            // isUploadServer: false,               //可选 | true      | Boolean |  是否需要使用服务器返回的图片地址数据，否则返回本地的图片地址信息
+            // finishText: '发送'                    //可选 | '确定'     | String  |  选择照片点击确定按钮的文字
+        }, function(ret) {
+            // alert(debugAlert(arguments))
+            // ret.url                       //必返     |           |  String           |  网络图片地址或者本地图片地址
+            // ret.filepath                  //非必返   |           |  String           |  网络图片名称（isUploadServer为false时该字段不返回）
+            APP._img = ret;
+            if( _isAdd ){
+                $(APP.dom('#images [data-is-add]')).before(template('images-template', APP));
+            }else{
+                $(_el).attr('data-img-url', ret.url);
+                $(_el).attr('data-id', ret.filepath);
+            }
+            fnHasShowAddImgBtn();
+        })
+    }
+
+    function fnHasShowAddImgBtn(){
+        fnValue('.already-images', $('#images .pic').length);
+        if( $('#images .pic').length >= APP._images_maxlength ){
+            $(APP.dom('#images [data-is-add]')).addClass('hide');
+        }else{
+            $(APP.dom('#images [data-is-add]')).removeClass('hide');
+        }
+        APP.initFn();
+    }
+
+    //计算已输入字数
+    function fnCountNum(){
+        var _content = fnValue("#introduce");
+        fnValue(".already-introduce", _content.length);
+    }
+
+    function fnRedioSelector() {
+        fnMultistageSelector_public({
+            active: [$('#type').attr('data-id')], //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+            data: [APP.FEEDBACK.type], //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+            title: ''
+        }, function(ret) {
+            // ret                             // Array |  如果点击确定按钮该回调则会触发，并返回数组数据，数组索引与传入数据源 data 一一对应
+            ret = ret[0];
+            // alert(debugAlert(arguments))
+            fnValue('#type', ret.value);
+            $('#type').attr('data-id', ret.id);
+        })
+    }
+</script>
+</html>

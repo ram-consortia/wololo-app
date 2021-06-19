@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body class="background">
+    <div class="write-off" id="wrap">
+        <!-- <div class="ul">
+            <div class="li-first">核销记录一</div>
+            <div class="li"><span class="width">核销数量</span>x1</div>
+            <div class="li"><span class="width">下单时间</span>2019.10.30 13:44</div>
+        </div>
+        <div class="ul">
+            <div class="li-first">核销记录二</div>
+            <div class="li"><span class="width">核销数量</span>x1</div>
+            <div class="li"><span class="width">下单时间</span>2019.10.30 13:44</div>
+            <div class="li"><span class="width">接单时间</span>2019.10.30 13:44</div>
+        </div> -->
+    </div>
+
+
+
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无数据' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}}
+            <div class="ul">
+                <div class="li-first">{{'核销记录' | fnLanguage_public}}{{$index | fnNumberToUpperCase_base}}</div>
+                <div class="li"><span class="width">{{'核销数量' | fnLanguage_public}}</span>x{{$value.count}}</div>
+                {{if $value.order_time}}
+                    <div class="li"><span class="width">{{'下单时间' | fnLanguage_public}}</span>{{$value.order_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                {{/if}}
+                {{if $value.refuse_time}}
+                    <div class="li"><span class="width">{{'拒绝时间' | fnLanguage_public}}</span>{{$value.refuse_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                {{/if}}
+                {{if $value.receipt_time}}
+                    <div class="li"><span class="width">{{'接单时间' | fnLanguage_public}}</span>{{$value.receipt_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                {{/if}}
+                {{if $value.delivery_time}}
+                    <div class="li"><span class="width">{{'配送时间' | fnLanguage_public}}</span>{{$value.delivery_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                {{/if}}
+                {{if $value.completed_time}}
+                    <div class="li"><span class="width">{{'完成时间' | fnLanguage_public}}</span>{{$value.completed_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+    });
+
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        fnGetList_base({
+            url: 'order/order_store_write_off_log/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE,
+                order_id: APP._param.id
+            }
+        }, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,67 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .main{
+        position: relative;
+        height: 100%;
+        .location{
+            padding: pxToRem(30) pxToRem(32) 0;
+            font-size: pxToRem(28);
+            color: #999;
+            line-height: pxToRem(40);
+        }
+        .place{
+            padding: pxToRem(24) pxToRem(32) pxToRem(33);
+            font-size: pxToRem(34);
+            color: #333;
+            line-height: pxToRem(48);
+            @extend .font-m;
+            &::before{
+                content: '';
+                display: inline-block;
+                width: pxToRem(36);
+                height: pxToRem(48);
+                margin-right: pxToRem(6);
+                vertical-align: middle;
+                @include set-bg-img( $name: "icon-location1.png", $size: pxToRem(36) auto, $position: center center);
+            };
+        }
+        .ul{
+            padding: 0 pxToRem(32);
+            .letter{
+                padding-top: pxToRem(28);
+                font-size: pxToRem(26);
+                color: #999;
+                line-height: pxToRem(36);
+            }
+            .li{
+                padding: pxToRem(28) 0;
+                font-size: pxToRem(28);
+                color: #333;
+                line-height: pxToRem(40);
+                @include border-bottom-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };
+            }
+        }
+        .word{
+            position: fixed;
+            right: 0;
+            top: 50%;
+            bottom: pxToRem(30);
+            // width: pxToRem(48);
+            text-align: center;
+            @include prefixCss3($property: transform, $value: translate(0, -50%));
+            .character{
+                display: block;
+                font-size: pxToRem(20);
+                color: #FF4F00;
+                padding: 0 pxToRem(12) 0 pxToRem(100);
+                line-height: pxToRem(36);
+            }
+        }
+    }
+}

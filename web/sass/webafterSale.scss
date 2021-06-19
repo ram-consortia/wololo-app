@@ -1,0 +1,210 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .tables{
+                        padding: pxToRem(40);
+                        .table{
+                            width: 100%;
+                            border: pxToRem(2) solid #EAEAEA;  
+                            margin-bottom: pxToRem(40);
+                            .service-number{
+                                @include flex-box();
+                                padding: pxToRem(19) pxToRem(28);
+                                font-size: pxToRem(24);
+                                color: #999;
+                                line-height: pxToRem(34);
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                .service{
+                                    @include flex-item();
+                                }
+                                .del{
+
+                                }
+                            }
+                            .tr{
+                                @include flex-box();
+                                overflow: hidden;
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                &:last-of-type{
+                                    content: '';
+                                    border-bottom: none;
+                                };
+                                .th{
+                                    float: left;
+                                    text-align: center;
+                                    padding: pxToRem(33) 0;
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(34);
+                                    font-weight: bold;
+                                    &.forty-percent{
+                                        width: 40%;
+                                    }
+                                    &.twenty-percent{
+                                        width: 20%;
+                                    }
+                                }
+                                .td{
+                                    position: relative;
+                                    float: left;
+                                    padding: pxToRem(28) 0;
+                                    &.forty-percent{
+                                        width: 40%;
+                                    }
+                                    &.twenty-percent{
+                                        width: 20%;
+                                        text-align: center;
+                                    }
+                                    &.fifteen-percent{
+                                        width: 15%;
+                                        text-align: center;
+                                    }
+                                    .message-item{
+                                        @include flex-box();
+                                        .img{
+                                            width: pxToRem(160);
+                                            height: pxToRem(160);
+                                            margin-right: pxToRem(40);
+                                            margin-left: pxToRem(28);
+                                            @include set-bg-img( $name: "icon-background1.png");
+                                        }
+                                        .base{
+                                            @include flex-item();
+                                            .shop-name{
+                                                font-size: pxToRem(28);
+                                                color: #333;
+                                                line-height: pxToRem(40);
+                                                /*@include text-overflow(1);*/
+                                            }
+                                            .subtitle{
+                                                padding-top: pxToRem(24);
+                                                padding-bottom: pxToRem(24); 
+                                                font-size: pxToRem(24);
+                                                color: #666;
+                                                line-height: pxToRem(34);
+                                                /*@include text-overflow(1);*/
+                                            }
+                                            .time{
+                                                font-size: pxToRem(24);
+                                                color: #666;
+                                                line-height: pxToRem(34);
+                                                /*@include text-overflow(1);*/
+                                            }
+                                        }
+                                    }
+                                    .cash-coupon{
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%)); 
+                                        margin: 0 auto;
+                                        width: pxToRem(160);
+                                        padding: pxToRem(18) 0 pxToRem(14);
+                                        background-color: rgba(255,124,74,0.05);
+                                        border-radius: pxToRem(6);
+                                        text-align: center;
+                                        color: #FF7C4A;
+                                        font-size: pxToRem(24);
+                                        line-height: pxToRem(34);
+                                        .size{
+                                            font-size: pxToRem(32);
+                                            line-height: pxToRem(44);
+                                            padding-bottom: pxToRem(12);
+                                            /*font-weight: bold;*/
+                                        }
+                                    }
+                                    .number{
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%)); 
+                                        color: #666;
+                                        font-size: pxToRem(24);
+                                        line-height: pxToRem(34);
+                                        min-width: pxToRem(100);
+                                    }
+                                    .td-box{
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%)); 
+                                        .td-item{
+                                            font-size: pxToRem(24);
+                                            color: #FF7C4A;
+                                            width: pxToRem(164);
+                                            height: pxToRem(52);
+                                            text-align: center;
+                                            line-height: pxToRem(52);
+                                            border: pxToRem(2) solid #FF7C4A;
+                                            border-radius: pxToRem(8);
+                                            margin: pxToRem(20) auto;
+                                            &.details{
+                                                border: pxToRem(2) solid #979797;
+                                                color: #333;
+                                            }
+                                        }
+                                        .receipt{
+                                            font-size: pxToRem(24);
+                                            color: #FF7C4A;
+                                            line-height: pxToRem(34);
+                                            &.close{
+                                                color: #666;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

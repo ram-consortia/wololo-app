@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/home.css" />
+</head>
+<body style="height: 100%; background: initial;">
+    <div class="flex-vertical main" id="wrap1">
+    </div>
+
+    <script type="text/html" id="wrap-template">
+
+        <div class="flex-item-vertical">
+        </div>
+
+        <div class="footer" id="wrap" style="z-index: 100">
+            <div class="footer-item icon-home">{{'首页' | fnLanguage_public}}</div>
+            <div class="footer-item icon-assemble" srv="true">Explore</div>
+            <div class="footer-item icon-order">{{'我的订单' | fnLanguage_public}}</div>
+            <div data-path="my/my_frm.html" class="footer-item icon-my">{{'我的' | fnLanguage_public}}</div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+
+    APP.init(function(){
+        fnValue('#wrap1', template('wrap-template', APP));
+        // fnJoinHomeLogic_base();
+        APP.fixTabBar('.footer');
+        APP._htmlPath = 'home/homeHeader_frm.html';
+        fnOpen(APP._htmlPath,{
+            param:{
+                footerHeight:$('.footer').height()
+            }
+        });
+        APP.exitApp();
+        api.addEventListener({
+            name: APP.EV_NAME.JPUSH_JUMP
+        }, function(ret, err){
+            fnMessageJump_base(ret.value);
+        });
+        setTimeout(function(){
+            fnCookie(APP.LC_NAME.JPUSH_JUMP, function(ret){
+                debugAlert(111, arguments)
+                if( ret ){
+                    fnMessageJump_base(ret);
+                }
+            });
+        }, 600)
+    });
+    function fnInitTableBar(navIndex=0){
+        APP.exitApp();
+        $('.footer-item')[navIndex].click();
+        // return;
+        let params={
+            navIndex,
+            footerSelector: '.footer-item',               //必填  |    ''    |    String    |  底部导航组 css3 选择器
+            footerHeight: $('.footer').height()           //选填  |    0   |    Number    |  底部导航栏高度，用作 frame 设置 marginBottom 距离
+        }
+        fnOpenLinkageWindow_public(params, function(ret){
+            // ret.navIndex                                  //必反  |    Number    |  底部导航 item 索引
+            // ret.htmlPath                                  //必反  |    String    |  底部导航 item html地址
+            // ret.navHeight                                 //必反  |    Number    |  底部导航高度
+            debugAlert('底部结果', arguments)
+        })
+    }
+
+    function fnExecFrame(){
+        api.execScript({
+            frameName: fnGetPathName_public(APP._htmlPath),
+            script: 'fnGet();'
+        });
+    }
+
+    function fnCurrentWin(ret){
+        APP._win = ret;
+    }
+
+    function fnOpenScreen(_key) {
+        if( _key ){
+            var _data = APP._orderScreen || {
+                coupon_type: {
+                    title: '券类型',
+                    data: APP.COUPON.type
+                },
+                price_type: {
+                    title: '优惠券金额',
+                    data: APP.COUPON.price_type
+                }
+            }
+            fnOpenScreen_base({
+                data: JSON.stringify(_data),
+                isOrder: APP.YES
+            }, function(ret){
+                APP._orderScreen = ret.data;
+                var _data = {
+                    coupon_type: 0,
+                    price_type: 0
+                }
+                for( var x in APP._orderScreen.coupon_type.data ){
+                    if( APP._orderScreen.coupon_type.data[x].active ){
+                        APP._coupon_type = APP._orderScreen.coupon_type.data[x].id;
+                    }
+                }
+                for( var x in APP._orderScreen.price_type.data ){
+                    if( APP._orderScreen.price_type.data[x].active ){
+                        APP._price_type = APP._orderScreen.price_type.data[x].id;
+                    }
+                }
+                fnOrderStart();
+            })
+        }else{
+            var _data = APP._homeScreen || {
+                business: {
+                    title: '营业状态',
+                    data: APP.STORE.business
+                },
+                popularity: {
+                    title: '人气',
+                    data: APP.STORE.popularity
+                },
+                ev_score: {
+                    title: '评分',
+                    data: APP.STORE.ev_score
+                },
+                grade: {
+                    title: '等级',
+                    data: APP.STORE.grade
+                }
+            }
+            fnOpenScreen_base({
+                data: JSON.stringify(_data)
+            }, function(ret){
+                if( ret.isJumpCollection ){
+                    fnOpen('my/collection_win.html');
+                }else{
+                    APP._homeScreen = ret.data;
+                    fnSendScreen(APP._homeScreen)
+                }
+            })
+        }
+    }
+
+    function fnOpenScreenCategory(_key) {
+        fnOpenScreenCategory_base({
+            category_ids: APP[_key+'_category_ids'] || []
+        }, function(ret){
+            APP[_key+'_category_ids'] = ret.category_ids;
+            if( _key == 'group' ){
+                fnSendScreen({
+                    group_category_ids: APP[_key+'_category_ids'].join()
+                })
+            }else{
+                fnOrderStart();
+            }
+        })
+    }
+
+    function fnTimeSelector() {
+        fnTimeSelector_public({
+            title: '',
+            date: new Date(APP._date || fnDateNow_public()).Format('yyyy/MM'),
+            closeText: '重置',
+            closeCallback: function(){
+                delete APP._date;
+                delete APP._dateFormat;
+                fnOrderStart();
+            }
+        }, function(ret) {
+            APP._date = ret.date;
+            APP._dateFormat = new Date(APP._date).Format('yyyy-MM');
+            fnOrderStart();
+        })
+    }
+
+
+    function fnOrderStart(_frameName, _groupName){
+        fnSendScreen({
+            category_ids: APP['order_category_ids'] && APP['order_category_ids'].join(),
+            coupon_type: APP._coupon_type,
+            price_type: APP._price_type,
+            date: APP._dateFormat,
+            frameName: _frameName
+        }, _groupName)
+    }
+
+    function fnSendScreen(_obj, _groupName){
+        debugAlert(3333424234242423, arguments, APP._win)
+        api.sendEvent({
+            name: [api.winName, 'homeScreen', _groupName || APP._win.groupName].join(),
+            extra: _obj
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    .ios-select-widget-box{
+        #iosSelectTitle{
+            color: #000;
+            font-size: pxToRem(34);
+        }
+        header.iosselect-header{
+            background-color: white;
+             @include border-bottom-m(solid, #ddd);
+            height: pxToRem(100);
+            line-height: pxToRem(100);
+            a{
+                color: #EF5B23;
+                &.close{
+                    color: #999999;
+               }
+            }
+        }
+        .iosselect-box{
+            @include flex-box();
+            &>div{
+                @include flex-item();
+            }
+        }
+    }
+}

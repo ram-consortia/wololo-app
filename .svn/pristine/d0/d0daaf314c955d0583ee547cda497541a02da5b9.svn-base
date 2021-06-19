@@ -1,0 +1,46 @@
+
+
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+  height: 100%;
+  #wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container{
+    height: pxToRem(434);
+    opacity: 1!important;
+    background: linear-gradient(135deg, #FFAE55 0%, #FF7B22 100%);
+    width: pxToRem(540);
+    color: #ffffff;
+    text-align: center;
+    border-radius: pxToRem(20);
+  }
+  header{
+    margin-top: pxToRem(100);
+    font-size: pxToRem(36);
+    font-weight: 500;
+  }
+  .content{
+    margin-top: pxToRem(18);
+    font-size: pxToRem(24);
+    font-weight: 400;
+  }
+  footer{
+    margin-top: pxToRem(100);
+    display: flex;
+    justify-content: center;
+    button{
+      width: pxToRem(380);
+      height: pxToRem(70);
+      border-radius: pxToRem(40);
+      background: #ffffff;
+      color: #f48c5b;
+
+    }
+  }
+}

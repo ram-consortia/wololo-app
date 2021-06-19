@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/merchant_pop.css">
+</head>
+
+<body class="hide">
+    <div class="flex-vertical" id="wrap">
+         <!--<div class="fixed" tapmode="hover" onclick="fnClose()"></div>
+        <div class="screen flex-item-vertical" id="wrap">
+            <div class="left">
+
+                <div class="classification" tapmode="hover" onclick="fnSwitchTable(this)" id="nav-{{$value.id}}">
+
+                    <p class="name">分类</p>
+
+
+                </div>
+                <div class="classification">
+                    <span class="img"></span>
+                    <p class="name">分类1</p>
+                </div>
+                <div class="classification">
+                    <span class="img"></span>
+                    <p class="name">分类1</p>
+                </div>
+                <div class="classification">
+                    <span class="img"></span>
+                    <p class="name">分类1</p>
+                </div>
+                <div class="classification">
+                    <span class="img"></span>
+                    <p class="name">分类1</p>
+                </div>
+                <div class="classification">
+                    <span class="img"></span>
+                    <p class="name">分类1</p>
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="con">
+                    <p class="state">休闲娱乐</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">分类</span>
+                        <span class="status">分类</span>
+                        <span class="status">套餐券</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">休闲娱乐</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">分类</span>
+                        <span class="status">分类</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">酒店/住宿</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">10元以下</span>
+                        <span class="status">11～50元</span>
+                        <span class="status">51～100元</span>
+                        <span class="status">101～150元</span>
+                        <span class="status">150元以上</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">休闲娱乐</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">分类</span>
+                        <span class="status">分类</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">酒店/住宿</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">10元以下</span>
+                        <span class="status">11～50元</span>
+                        <span class="status">51～100元</span>
+                        <span class="status">101～150元</span>
+                        <span class="status">150元以上</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">休闲娱乐</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">分类</span>
+                        <span class="status">分类</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">酒店/住宿</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">10元以下</span>
+                        <span class="status">11～50元</span>
+                        <span class="status">51～100元</span>
+                        <span class="status">101～150元</span>
+                        <span class="status">150元以上</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bot-box">
+                <div class="bot-item" tapmode="hover" onclick="fnClose()">重置</div>
+                <div class="bot-item bot-sure" tapmode="hover" onclick="fnClose()">确定</div>
+            </div>
+        </div>-->
+    </div>
+
+
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="fixed" tapmode onclick="fnCloseModel()"></div>
+        <div class="screen flex-item-vertical" id="wrap">
+
+            <div class="content" onscroll="fnScroll(this)">
+                {{each _category}}
+                    <div class="con" id="hrefnav-{{$value.id}}">
+                        <p class="state">{{$value.name | fnLanguageSwitch_base}}</p>
+                        <div class="sort">
+                            {{each $value.child $item}}
+                                <span tapmode="hover" onclick="fnSwitchTable_base(this)" data-id="{{$item.id}}" class="status
+                                    {{$item.isAll && 'all active'}}
+                                ">{{$item.name | fnLanguageSwitch_base}}</span>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bot-box">
+                <div class="bot-item" tapmode="hover" onclick="fnRest()">{{'重置' | fnLanguage_public}}</div>
+                <div class="bot-item bot-sure" tapmode="hover" onclick="fnSubmit()">{{'确定' | fnLanguage_public}}</div>
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnInit();
+    });
+
+    function fnInit() {
+        fnGetCategoryAjax_base({
+            page: APP.YES,
+            limit: 1000
+        }, function(ret){
+            if( ret._formatList && ret._formatList.length ){
+                APP._category = ret._formatList;
+                fnValue('#wrap', template('wrap-template', APP));
+                $('body').removeClass('hide');
+                APP.fixTabBar('.bottom');
+
+                fnSwitchTable_base(APP.dom('.classification'));
+                fnRest();
+            }else{
+                fnToast('暂无数据');
+            }
+        })
+    }
+
+    function fnScroll(){
+        $('.con').each(function(_index, _el){
+            var _offset = $(_el).offset();
+            var _top = _offset.top - $('.fixed').height();
+            if( parseInt(_top) <= 0 && parseInt(_top + _offset.height) > 0 ){
+                fnSwitchTable_base(APP.dom('#' + _el.id.split('href')[1]))
+            }
+        })
+    }
+
+    function fnSwitchTable(_el){
+        location.href = '#href' + _el.id;
+        setTimeout(function(){
+            fnSwitchTable_base(_el);
+        }, 100)
+    }
+
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.OPEN_SCREEN_CATEGORY_POP,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnRest(){
+        if( APP._param.category_ids && APP._param.category_ids.length ){
+            for( var x in APP._param.category_ids ){
+                var _el = APP.dom('.sort .status[data-id="'+JSON.stringify(APP._param.category_ids[x])+'"]');
+                if( $(_el).length ){
+                    fnSwitchTable_base(_el);
+                }
+            }
+        }else{
+            $('.sort .status.all').each(function(_index, _el){
+                fnSwitchTable_base(_el);
+            })
+        }
+    }
+
+    function fnSubmit(_obj) {
+        var _category_ids = [];
+        $('.sort .status.active').each(function(_index, _el){
+            try{
+                var _id = JSON.parse($(_el).data('id'));
+            }catch (err){
+                var _id = $(_el).data('id');
+            }
+            _category_ids.push(_id);
+        })
+
+        fnClosePop({
+            category_ids: _category_ids
+        });
+    }
+</script>
+</html>

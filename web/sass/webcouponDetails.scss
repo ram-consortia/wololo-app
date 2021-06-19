@@ -1,0 +1,305 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            background-color: #F7F6F6;
+            .pagination{
+                padding-top: pxToRem(30);
+                padding-bottom: 0;
+            }
+            .storedetails{
+                @include flex-box();
+                background-color: #F7F6F6;
+                padding: pxToRem(40) 0 pxToRem(212);
+                margin: 0 auto;
+                width: pxToRem(2400);
+                .left{
+                    width: pxToRem(750);
+                    height: 100%;
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    margin-right: pxToRem(40);
+                }
+                .store-app{
+                    .coupon-img{
+                        margin-bottom: pxToRem(20);
+                        .shopping{
+                            padding: pxToRem(20);
+                            font-size: pxToRem(28);
+                            color: #333;
+                            line-height: pxToRem(45);
+                            @include flex-box();
+                            .img{
+                                width: pxToRem(46);
+                                height: pxToRem(46);
+                                margin-right: pxToRem(12);
+                                border-radius: 50%;
+                                vertical-align: bottom;
+                                @include set-bg-img( $name: "web-photo.png");
+                            };
+                        }
+                        .img{
+                            width: 100%;
+                            height: pxToRem(452);
+                            @include set-bg-img( $name: "icon-background5.png");
+                        }
+                        .coupon{
+                            margin-top: pxToRem(-58);
+                        }
+                    }
+                }
+                .coupon-bottom{
+                    border-top: pxToRem(2) solid #EAEAEA;
+                    .available{
+                        margin: pxToRem(24) pxToRem(32) pxToRem(32);
+                        height: pxToRem(84);
+                        @include set-bg-img( $name: "web-sign.png");
+                        font-size: pxToRem(24);
+                        color: #fff;
+                        line-height: pxToRem(84);
+                        text-align: center;
+                        &.invalid{
+                            background: no-repeat;
+                            background-color: #ccc;
+                        }
+                    }
+                }
+                .right{
+                    position: relative;
+                    @include flex-item();
+                    width: 100%;
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    padding-bottom: pxToRem(224);   
+                    .page-number{
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                    } 
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .preferential-rules{
+                        padding: 0 pxToRem(80);
+                        .rule{
+                            padding: pxToRem(44) 0 pxToRem(36);
+                            font-size: pxToRem(28);
+                            color: #333;
+                            line-height: pxToRem(40);
+                            font-weight: bold;
+                        }
+                        .rule-text{
+                            padding-bottom: pxToRem(52);
+                            font-size: pxToRem(30);
+                            color: #666;
+                            line-height: pxToRem(56);
+                        }
+                        .person{
+                            @include flex-box();
+                            padding: pxToRem(20) pxToRem(26) pxToRem(28);
+                            font-size: pxToRem(26);
+                            color: #333;
+                            line-height: pxToRem(36);
+                            border-top: pxToRem(2) solid #EAEAEA;
+                            &::before{
+                                content: '';
+                                display: block;
+                                min-width: pxToRem(56);
+                                height: pxToRem(56);
+                                margin-right: pxToRem(22);
+                                @include prefixCss3($property: align-self, $value: center);
+                                @include set-bg-img( $name: "icon-people1.png", $size: pxToRem(56) auto, $position: center center);
+                            };
+                        }
+                    }
+                    .opening-regiment{
+                        padding: pxToRem(36) pxToRem(40) 0;
+                        .con{
+                            border: pxToRem(2) solid #EAEAEA;
+                            margin-bottom: pxToRem(28);
+                            padding: pxToRem(40) pxToRem(32) pxToRem(52);
+                            .people{
+                                padding-bottom: pxToRem(30);
+                                font-size: pxToRem(24);
+                                color: #333;
+                                line-height: pxToRem(34);
+                                .color{
+                                    color: #FF7C4A;
+                                    margin: 0 pxToRem(8);
+                                }
+                            }
+                            .unite{
+                                @include flex-box();
+                                .unite-item{
+                                    @include flex-item();
+                                    .five{
+                                        display: inline;
+                                        font-size: 0;
+                                        /*text-align: center;*/
+                                        .ellipsis{
+                                            position: relative;
+                                            display: inline-block;
+                                            font-size: pxToRem(28);
+                                            color: #333;
+                                            width: pxToRem(66);
+                                            line-height: pxToRem(66);
+                                            margin: 0 pxToRem(12);
+                                            vertical-align: bottom;
+                                            &.five-img{
+                                                display: inline-block;
+                                                font-size: pxToRem(28);
+                                                color: #333;
+                                                margin: 0 pxToRem(12);
+                                                width: pxToRem(66);
+                                                height: pxToRem(66);
+                                                border-radius: 50%;
+                                                @include set-bg-img( $name: "web-photo.png");
+                                            }
+                                            .commander{
+                                                position: absolute;
+                                                right: pxToRem(-38);
+                                                top: pxToRem(-14);
+                                                display: inline-block;
+                                                background-color: $bg-color;
+                                                font-size: pxToRem(22);
+                                                color: #fff;
+                                                line-height: pxToRem(30);
+                                                height: pxToRem(30);
+                                                padding: 0 pxToRem(10);
+                                                border-radius:15px 15px 15px 0px;
+                                            }
+                                        }
+                                    }
+                                    .hour-center{
+                                        display: inline-block;
+                                        text-align: center;
+                                        margin-left: pxToRem(200);
+                                        .hour{
+                                            display: inline-block;
+                                            /*padding-top: pxToRem(38);*/
+                                            font-size: pxToRem(24);
+                                            color: #333;
+                                            line-height: pxToRem(36);
+                                            .time{
+                                                font-size: 0;
+                                                padding-top: pxToRem(16);
+                                                text-align: center;
+                                                margin: 0 pxToRem(16) 0 pxToRem(8);
+                                                .number{
+                                                    position: relative;
+                                                    display: inline-block;
+                                                    font-size: pxToRem(24);
+                                                    color: #fff;
+                                                    line-height: pxToRem(36);
+                                                    height: pxToRem(36);
+                                                    width: pxToRem(40);
+                                                    text-align: center;
+                                                    background-color: $bg-color;
+                                                    border-radius: pxToRem(4);
+                                                    margin-right: pxToRem(18);
+                                                    &:last-of-type{
+                                                        content: '';
+                                                        margin-right: 0;
+                                                    };
+                                                    .gap{
+                                                        width: pxToRem(20);
+                                                        &::before{
+                                                            content: '';
+                                                            display: inline-block;
+                                                            position: absolute;
+                                                            top: pxToRem(12);
+                                                            right: pxToRem(-11);
+                                                            width: pxToRem(4);
+                                                            height: pxToRem(4);
+                                                            background-color: #666;
+                                                            border-radius: 50%;
+                                                        };
+                                                        &::after{
+                                                            content: '';
+                                                            display: inline-block;
+                                                            position: absolute;
+                                                            bottom: pxToRem(12);
+                                                            right: pxToRem(-11);
+                                                            width: pxToRem(4);
+                                                            height: pxToRem(4);
+                                                            background-color: #666;
+                                                            border-radius: 50%;
+                                                        };
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }   
+                                }
+                                .group{
+                                    display: inline-block;
+                                    width: pxToRem(164);
+                                    height: pxToRem(52);
+                                    font-size: pxToRem(24);
+                                    line-height: pxToRem(52);
+                                    text-align: center;
+                                    margin-left: pxToRem(10);
+                                    border-radius: pxToRem(8);
+                                    color: #FF7C4A;
+                                    @extend .font-m;
+                                    border: pxToRem(2) solid #FF7C4A;
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    /*@include set-bg-img( $name: "web-submint.png");*/
+                                    &.join{
+                                        background-image: none;
+                                        border: pxToRem(2) solid #979797;
+                                        color: #333;
+                                    }
+                                    &.clustering{
+                                        background-color: #DEDEDE;
+                                        border: pxToRem(2) solid #DEDEDE;
+                                        color: #666;
+                                    }
+                                }
+                            }
+                        }
+                            
+                    }    
+
+                    
+
+                }
+            }   
+        }
+    }
+    
+    
+        
+}

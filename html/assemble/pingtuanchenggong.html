@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/pay.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/set.css" />
+</head>
+<body>
+<div class="main flex-vertical" id="wrap">
+    <header class="header">
+        <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+        <div class="title"></div>
+    </header>
+    <div class="success">
+
+        <img src="../../image/gongxi.png" alt="">
+        <div class="text">Congratulations!</div>
+        <p>Share your group on all your platforms to increase the chances of receiving the full discount.</p>
+        <div class="bottom">
+
+            <div tapmode="hover" onclick="fnTo()" class="quit"  id="btn"></div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+  APP.init(function() {
+    fnCount_baseA(3)
+  });
+  var time
+
+  function fnTo() {
+    //fnOpen('assemble/joinDelegation_win.html',{param: {idrq:APP._param.idr}})
+    //fnJump_base('assemble/joinDelegation_win.html',APP._param.idr);
+    fnJump_base('assemble/joinDelegation_win.html',{id:APP._param.idr,idr:'haha'});
+    //fnJump_base('order/myOrder_frm.html',{id:APP._param.id,idr:'haha'});
+    clearTimeout(time)
+  }
+  function fnCount_baseA(_num) {
+    if (_num <= 0) {
+      fnValue(fnLanguage_public('查看详情'));
+      fnJump_base('assemble/joinDelegation_win.html',APP._param.idr);
+    } else {
+      fnValue('查看详情'+ _num + 's');
+      $("#btn").text(fnLanguage_public('查看详情')+' '+ _num + 's');
+      time = setTimeout(function () {
+        fnCount_baseA(--_num);
+      }, 1000);
+    }
+  }
+
+
+</script>
+</body>
+</html>

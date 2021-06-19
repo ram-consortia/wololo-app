@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/city.css" />
+</head>
+<body>
+    <div class="main">
+        <p class="location">当前定位城市</p>  
+        <p class="place">北京电影学院</p>
+        <div class="ul">
+            <p class="letter">A</p>
+            <div class="li">鞍山</div>
+            <div class="li">安阳</div>
+        </div>
+        <div class="ul">
+            <p class="letter">B</p>
+            <div class="li">北京</div>
+            <div class="li">北海</div>
+            <div class="li">白山</div>
+        </div>
+        <div class="word">
+            <span class="character">A</span>
+            <span class="character">B</span>
+            <span class="character">C</span>
+        </div>
+    </div>
+         
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        
+    });
+
+
+    
+    
+</script>
+</html>

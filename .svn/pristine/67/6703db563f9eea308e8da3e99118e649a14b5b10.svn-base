@@ -1,0 +1,88 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    height: 100%;
+    .fixed{
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background:rgba(0,0,0,0.4);
+    }
+    .screen{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .share{
+            margin: 0 pxToRem(30);
+            background-color: #fff;
+            border-radius: pxToRem(18);
+            .til{
+                padding: pxToRem(32) pxToRem(30);
+                font-size: pxToRem(36);
+                color: #333;
+                line-height: pxToRem(50);
+                text-align: center;
+                @include border-bottom-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };
+            }
+            .box{
+                @include flex-box();
+                padding: pxToRem(86) 0 pxToRem(74);
+                .item{
+                    @include flex-item();
+                    text-align: center;
+                    font-size: pxToRem(24);
+                    color: #666;
+                    line-height: pxToRem(34);
+                    &::before{
+                        content: '';
+                        display: block;
+                        width: pxToRem(48);
+                        height: pxToRem(48);
+                        margin: 0 auto pxToRem(24);
+                        @include set-bg-img( $name: "icon-facebook1.png", $size: pxToRem(48) auto, $position: center center);
+                    };
+                    &.facebook{
+                        &::before{
+                            @include set-bg-img( $name: "icon-facebook1.png", $size: pxToRem(48) auto, $position: center center);
+                        };
+                    }
+                    &.twitter{
+                        &::before{
+                            @include set-bg-img( $name: "icon-twitter1.png", $size: pxToRem(48) auto, $position: center center);
+                        };
+                    }
+                    &.wechat{
+                        &::before{
+                            @include set-bg-img( $name: "icon-weichat1.png", $size: pxToRem(48) auto, $position: center center);
+                        };
+                    }
+                }
+            }
+        }
+        .quit{
+            margin: pxToRem(16) pxToRem(30) pxToRem(26);
+            background-color: #fff;
+            border-radius: pxToRem(18);
+            height: pxToRem(100);
+            line-height: pxToRem(100);
+            font-size: pxToRem(30);
+            color: #666;
+            line-height: pxToRem(100);
+            text-align: center;
+        }
+            
+    }
+    
+}
+
+
+
+
+
+

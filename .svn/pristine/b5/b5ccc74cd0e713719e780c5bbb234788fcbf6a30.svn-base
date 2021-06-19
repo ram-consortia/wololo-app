@@ -1,0 +1,21 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+html{
+    height: pxToRem(90);
+    overflow-y: hidden;
+}
+body{
+    position: relative;
+    height: pxToRem(90);
+    min-height: pxToRem(90);
+    .back{
+        position: absolute;
+        left: 0;
+        top: pxToRem(20);
+        width: pxToRem(90);
+        height: pxToRem(90);
+        z-index: 1;
+        @include set-bg-img( $name: "icon-back.png", $size: pxToRem(30) auto, $position: center center);
+    }
+}

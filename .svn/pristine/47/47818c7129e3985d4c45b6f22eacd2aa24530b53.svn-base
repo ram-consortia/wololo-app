@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/addressInformation.css" />
+</head>
+<body>
+    <div class="li" tapmode="hover" onclick="fnOpen('home/city_win.html')">
+        <div class="item">所在城市</div>
+        <div class="input">
+            <input type="text" value="伦敦">
+        </div>
+        <div class="right"></div>
+    </div>
+    <div class="address">
+        <span class="site">详情地址</span>
+        北京市海淀区北三环中路文教产业园 44号院F座4层Apicloud
+    </div>
+    <p class="location">若定位不准，请手动拖动地图位置</p>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+
+    });
+
+
+
+
+</script>
+</html>

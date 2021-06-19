@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/aPublicInput.css" />
+</head>
+<body class="gray" style="height: 100%;">
+    <div class="flex-vertical main" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnCloseModel();" class="back icon-back"></div>
+            <div class="title">备注</div>
+            <div class="back right word" tapmode="hover" onclick="fnSubmit()">保存</div>
+        </header>
+        <div class="main flex-item-vertical">
+            <div class="con">
+                <textarea id="content" rows="8" cols="80" maxlength="200"></textarea>
+                <p class="limit hide">
+                    <span class="already">0</span>/<span class="capacity">1000</span>
+                </p>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnCloseModel();" class="back icon-back"></div>
+            <div class="title">{{(_param.title || '') | fnLanguage_public}}</div>
+            <div class="back right word" tapmode="hover" onclick="fnSubmit()">{{(_param.submitText || '保存') | fnLanguage_public}}</div>
+        </header>
+        <div class="flex-item-vertical">
+
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+
+        APP._htmlPath = 'public/aPublicInputText_frm.html';
+        fnOpen(APP._htmlPath, {
+            rect: {
+                marginTop: $('.header').height()
+            }
+        });
+
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err){
+            fnCloseModel();
+        });
+
+        api.setWinAttr({
+            slidBackEnabled: false
+        });
+    });
+
+
+    function fnCloseModel(){
+        api.execScript({
+            frameName: fnGetPathName_public(APP._htmlPath),
+            script: 'fnCloseModel();'
+        });
+    }
+
+
+    function fnSubmit(){
+        api.execScript({
+            frameName: fnGetPathName_public(APP._htmlPath),
+            script: 'fnSubmit();'
+        });
+    }
+</script>
+</html>

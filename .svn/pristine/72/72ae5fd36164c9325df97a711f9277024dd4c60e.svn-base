@@ -1,0 +1,85 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+	height: 100%;
+	background-color: #fff;
+	.top-header{
+		.box{
+			@include flex-box();
+			text-align: center;
+			.item{
+				position: relative;
+				@include flex-item();
+				height: pxToRem(82);
+				font-size: pxToRem(30);
+				color: #666;
+				line-height: pxToRem(82);
+				&.active{
+					color: #333;
+					&::after{
+						content: '';
+						display: block;
+						position: absolute;
+						bottom: pxToRem(2);
+						left: 50%;
+						@include prefixCss3($property: transform, $value: translateX(-50%));
+						width: pxToRem(56);
+						height: pxToRem(16);
+						@include set-bg-img( $name: "icon-sel.png", $size: pxToRem(56) auto, $position: center center);
+					};
+				}
+			}
+		}
+		.sel-box{
+			@include flex-box();
+			text-align: center;
+			background-color: #F9F9F9;
+			.sel-item{
+				@include flex-item();
+				height: pxToRem(80);
+				font-size: pxToRem(26);
+				color: #333;
+				line-height: pxToRem(80);
+				&::after{
+					content: '';
+					display: inline-block;
+					width: pxToRem(28);
+					height: pxToRem(28);
+					margin-left: pxToRem(12);
+					vertical-align: middle;
+					@include set-bg-img( $name: "icon-down2.png", $size: pxToRem(28) auto, $position: center center);
+				};
+			}
+		}
+	}
+    .main{
+        padding: pxToRem(20) pxToRem(30) 0;
+        .con{
+            margin-bottom: pxToRem(20);
+            .receipt{
+            	font-size: pxToRem(28);
+            	color: $bg-color;
+            	line-height: pxToRem(40);
+            	text-align: right;
+            	margin-left: pxToRem(20);
+				max-width: pxToRem(120);
+            	&.close{
+            		color: #666;
+            	}
+            }
+            .use{
+            	margin-top: pxToRem(20);
+            }
+        }
+    }
+    #no-data{
+        &::before{
+            @include set-bg-img( $name: "icon-nodata3.png", $size: pxToRem(320) auto, $position: center bottom);
+        };
+		&.order{
+	        &::before{
+	            @include set-bg-img( $name: "icon-nodata1.png", $size: pxToRem(320) auto, $position: center bottom);
+	        };
+		}
+    }
+}

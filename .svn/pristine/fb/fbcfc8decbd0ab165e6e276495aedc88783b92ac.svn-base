@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <style>
+        .list{
+            height: 250px;
+            width: 100%;
+            overflow-y: auto;
+        }
+        .item{
+            height: 33px;
+            margin: 40px 0;
+        }
+        img{
+            width: 33px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="pop" onclick="fnClose1()" tapmode="hover">
+        <div class="card" tapmode="hover" onclick="event.cancelBubble=true" >
+            <div class="header">
+                <img style="margin-right: 16px" class="btn_icon" src="../../image/v2/ic_share_link.png" />
+                <div class="flex item_center" style="height: 100%"
+                    onclick="createGroup()"
+                     tapmode="hover"
+                >
+                    Create a new group
+                </div>
+                <div class="flex1 flex justify_end">
+                    <img style="width: 24px;height: 24px" src="../../image/v2/ic_sent.png">
+                </div>
+            </div>
+            <div class="hr">
+
+            </div>
+            <div class="body">
+                <div class="size12 bold tx_center">
+                    Or join the following available groups
+                </div>
+                <div class="list" id="list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="list-template">
+        {{each _list _value}}
+        <div class="item flex item_center" tapmode="hover" onclick="joinGroup({{_value.id}})">
+            <img src="{{_value.order[0].user.avatar}}" />
+            <div class="flex1 margin_left10 size14">
+                <div>
+                    <span>{{_value.order[0].user.user_nickname}}</span>
+                    <span class="color_grey">
+                                    waiting for +1
+                                </span>
+                </div>
+                <div class="color_grey">
+                    to avail the deal
+                </div>
+            </div>
+            <div class="color_primary bold time">00:00:00</div>
+        </div>
+        {{/each}}
+    </script>
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script type="text/javascript" src="../../script/base.js"></script>
+    <script type="text/javascript" src="../../framework/template-web.js"></script>
+    <script>
+        let timer = [];
+        APP.init(function(){
+            fnGet();
+            fnRefresh(function () {
+                fnGet();
+            });
+        });
+        function createGroup(){
+            // api.sendEvent
+            fnAjax({
+                url:"order/group/create2",
+                method: 'POST',
+                data:{
+                    deal_id:APP._param.deal_id,
+                    expire_time:24*60*60,
+                }
+            },function (res){
+                if(res.code){
+                    fnClose1();
+                }
+                fnToast(res.msg)
+            })
+        }
+        function joinGroup(id){
+            // api.sendEvent
+            fnAjax({
+                url:"order/group/join2",
+                method: 'POST',
+                data:{
+                    id
+                }
+            },function (res){
+                if(res.code){
+                    //加入团成功
+                    fnClose()
+                }else{
+                    fnToast(res.msg)
+                }
+            })
+        }
+        function fnGet() {
+            var _param = {
+                url: 'order/group/lists',
+                data: {
+                    page: APP.PAGE.START_PAGE,
+                    limit: 10,
+                    deal_id:APP._param.deal_id
+                }
+            };
+            fnGetList_base(_param, function (ret) {
+                timer.push(...APP._list);
+                setInterval(()=>{
+                    for(let i =0;i<timer.length;i++){
+                        const date=new Date().valueOf();
+                        try{
+                            $(".time").eq(i).text(formatduring(timer[i].expire_time*1000-parseInt(date/1000)*1000))
+                        }catch (err){
+
+                        };
+                    }
+                },1000);
+                if (ret.evType == 'scrolltobottom') {
+                    fnGet();
+                }
+            })
+        };
+        function fnClose1(){
+            api.execScript({
+                name: 'couponDetail_win',
+                script: "getDetail()"
+            });
+            fnClose();
+        }
+    </script>
+</body>
+</html>

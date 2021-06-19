@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/contact_win.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+</head>
+
+<body>
+    <div class="main flex column" id="wrap">
+        <header class="flex item_center margin_top20 padding20 padding_bottom0">
+            <div class="back2"></div>
+            <div class="back_title">
+                Contact Us
+            </div>
+        </header>
+        <div class="wrap flex1" style="overflow-y: auto">
+            <div class="content">
+                <div class="radio_wrap" data_num='1'>
+                    <div class="radio_right" onclick="switchCheck(this)"></div>
+
+                    <div class="radio_left">
+                        <div class="title">Application Issue</div>
+                        <div class="tips">Are you experiencing issues with the app?</div>
+                    </div>
+                </div>
+                <div class="radio_wrap" data_num='2'>
+                    <div class="radio_right" tapmode="hover" onclick="switchCheck(this)"></div>
+
+                    <div class="radio_left">
+                        <div class="title">Payment Issue</div>
+                        <div class="tips">Are you experiencing issues with payment?</div>
+                    </div>
+                </div>
+                <div class="radio_wrap" data_num='3'>
+                    <div class="radio_right" tapmode="hover" onclick="switchCheck(this)"></div>
+
+                    <div class="radio_left">
+                        <div class="title">Merchant Issue</div>
+                        <div class="tips">Are you experiencing an issue with a particular store?</div>
+                    </div>
+                </div>
+                <div class="radio_wrap" data_num='4'>
+                    <div class="radio_right" tapmode="hover" onclick="switchCheck(this)"></div>
+
+                    <div class="radio_left">
+                        <div class="title">Group Issue</div>
+                        <div class="tips">Is there an issue regarding groups?</div>
+                    </div>
+                </div>
+                <div class="radio_wrap" data_num='5'>
+                    <div class="radio_right" tapmode="hover" onclick="switchCheck(this)"></div>
+
+                    <div class="radio_left">
+                        <div class="title">Partner with us</div>
+                        <div class="tips">I wish for my business to join Wololo</div>
+                    </div>
+                </div>
+                <textarea class="textarea_cont" name="emailcont" id="emailcont" placeholder="contact us"></textarea>
+            </div>
+        </div>
+        <div class="footer padding20">
+            <div class="btn_default btn tx_upper" tapmode="hover" onclick="sendEmail()">Submit</div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function (_page) {
+        APP._data={
+            type:''
+        }
+        APP.fixStatusBar($('.header')[0]);
+        $('#emailcont').on('input', function (e) {
+            let content = $('#emailcont').val() || "";
+            if (content.trim() == "") {
+
+            } else {
+
+            }
+        })
+    })
+
+    function switchCheck(dom) {
+        var parentDom= $(dom).parent();
+        parentDom .siblings().removeClass('checked');
+        if(parentDom.hasClass('checked')){
+            parentDom.removeClass('checked');
+            APP._data.type='';
+        }else{
+            parentDom.addClass('checked');
+            var type=parentDom.attr('data_num');
+            APP._data.type=type;
+        }
+    }
+
+    function sendEmail() {
+        if(!APP._data.type){
+            fnToast('Please select the issue reason');
+            return;
+        }
+        let content = $('#emailcont').val();
+        if (content.trim() == "") {
+            fnToast('Please input');
+            return;
+        }
+        let params = {
+            url: "base/contact/sendEmail",
+            method: "POST",
+            data: {
+                content,
+                type:Number(APP._data.type) 
+            }
+        };
+        fnAjax(params, function (ret) {
+            if (ret.code == 1) {
+                fnClose();
+            }
+            fnToast(ret.msg)
+        })
+
+    }
+
+</script>
+
+</html>

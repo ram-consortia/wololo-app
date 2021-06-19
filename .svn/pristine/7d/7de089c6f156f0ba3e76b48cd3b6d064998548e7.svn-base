@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <link rel="stylesheet" href="../../css/coupon2.css">
+</head>
+<body style="box-sizing: border-box;background: #fff" >
+<div class="back" tapmode="hover" onclick="fnClose()"></div>
+<div class="padding20 flex1 flex column padding_top0">
+    <div class="header">
+        <span style="margin-left: -20px" class="tag_default bold bg_red">SUPERDEAL</span>
+        <div class="question_mark flex flex_center" tapmode="hover" onclick="fnOpen('pop/howItWork_pop.html')">
+            <span>?</span>
+        </div>
+    </div>
+    <div>
+        <img class="at_shop" src="../../image/v2/at_shop.png">
+    </div>
+    <div class="flex flex_center column">
+        <div class="img_nike">
+            <img id="productImg" src="../../image/icon-photo.png" alt="">
+        </div>
+        <div class="grey tx_center">Tap to view</div>
+    </div>
+    <div class="margin_top20">
+        <div class="name margin_top20" id="product_detail">
+
+        </div>
+        <div class="specs" style="padding: 20px 0">
+            <div>
+                <span class="color_grey size16" id="size"></span>
+            </div>
+            <div>
+                <span class="color_grey size16" id="colors"></span>
+            </div>
+
+        </div>
+        <div class="price flex flex_center">
+            <div class="bold" id="now_price">£0.00</div>
+            <div class="size24 color_grey through margin_left10" id="price">£0.00</div>
+        </div>
+    </div>
+
+    <div class="flex flex_center column margin_bottom20 margin_top20">
+        <div class="color_primary bold1 size14 margin_top10"
+            tapmode="hover"
+             onclick="fnOpen('order/receipt_win.html')"
+        >View Receipt</div>
+    </div>
+    <div class="flex flex_between iconBtn">
+        <div class="btn btn_default wid45"style="font-size: 12px" onclick="fnOpen('order/discountCode_win.html')" tapmode="hover">
+            <img src="../../image/v2/ic_qr.png" alt="">
+            VIEW QR
+        </div>
+        <div class="btn btn_default wid45 btn_white"style="font-size: 12px" onclick="joinDeal()" tapmode="hover">
+            <img src="../../image/v2/ic_map.png" alt="">
+            LOCATE STORE
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    let detail={};
+    APP.init(()=>{
+        getDetail();
+    })
+    function getDetail(){
+        fnAjax({
+            url:"order/order/detail2",
+            data:{
+                id:APP._param.id
+            }
+        },function (res){
+            detail=res.data;
+            $('#productImg').attr('src',detail.deal.product.images[0]);
+            $('#now_price').text('£'+detail.group.total_price);
+            $('#price').text('£'+detail.deal.product.price);
+            $('#product_detail').text(detail.deal.product.name)
+        })
+    }
+    function joinDeal(){
+        fnOpen('pop/dealJoined_pop.html')
+    }
+    function share(){
+        var sharedModule = api.require('shareAction');
+        sharedModule.share({
+            text:'Wololo',
+            path: APP._shareUrl,
+            thumbnail:'widget://image/icon-logo.png',
+            type: 'url',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 400,                  //宽度，数字类型
+                    h: 400,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 400,                  //宽度，数字类型
+                    h: 400                   //高度，数字类型
+                },
+                fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+        });
+    }
+</script>
+</body>
+</html>

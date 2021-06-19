@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css"/>
+    <link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="main flex-vertical" id="wrap">
+</div>
+
+<script type="text/html" id="wrap-template">
+    <header class="header">
+        <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+        <div class="title">{{'订单详情' | fnLanguage_public}}</div>
+    </header>
+    <div class="content flex-item-vertical">
+        {{set _isGroup = [ORDER.status.in.id, ORDER.status.wait.id].indexOf(+_data.status) != -1 }}
+        <div class="top"
+             {{if _isGroup}}
+             tapmode="hover" onclick="fnJump_base('assemble/joinDelegation_win.html', {{_data.group.id}})"
+             {{/if}}>
+        <div class="obligationsTitle">
+            <div class="title_left">
+
+                <div class="title">
+                     {{if _data.after_sale && _data.after_sale.id }}
+                        {{ {'target': _data.after_sale.status, 'key': 'id', 'resKey': 'name', 'data': AFTER_SALE.status} | fnGetRelation_public }}
+                    {{else}}
+                        {{if _data.status == ORDER.status.not.id && _data.store_order && _data.store_order.id}}
+                            {{ {'target': _data.store_order.status, 'key': 'id', 'resKey': 'name', 'data': ORDER.store_status} | fnGetRelation_public }}
+                        {{else}}
+                            {{ {'target': _data.status, 'key': 'id', 'resKey': 'name', 'data': ORDER.status} | fnGetRelation_public }}
+                        {{/if}}
+                    {{/if}}
+                </div>
+                <div class="countdown">
+                    {{if _data.status == ORDER.status.wait.id}}
+                    <p data-count-down="{{_data.pay_expire_time_temp}}" class="time js-count-down">
+                        {{'还剩' | fnLanguage_public}}<span class="js-hour">0</span>:<span class="js-minute">0</span>:<span class="js-second">0</span>
+                        {{'自动关闭' | fnLanguage_public}}
+                    </p>
+                    {{else if _data.status == ORDER.status.not.id}}
+                    {{if _data.store_order.status == ORDER.store_status.road.id}}
+                    {{if _data.store_order.delivery_completed_expire_time_temp > 0}}
+                    <p data-count-down="{{_data.store_order.delivery_completed_expire_time_temp}}"
+                       class="time js-count-down">{{'还剩' | fnLanguage_public}}<span class="js-hour">0</span>:<span
+                            class="js-minute">0</span>:<span class="js-second">0</span>{{'分自动完成' | fnLanguage_public}}</p>
+                    {{/if}}
+                    {{/if}}
+                    {{/if}}
+                </div>
+
+        </div>
+            {{if _isGroup}}
+            <div class="listen_pt">{{'查看拼团详情' | fnLanguage_public}}</div>
+            {{/if}}
+            <p class="iconfont mar_ri iconiconfontzhizuobiaozhun19"></p>
+
+
+        </div>
+    </div>
+    {{if _data.status == ORDER.status.not.id}}
+    {{if _data.store_order && _data.store_order.id}}
+
+    {{if _data.order_address && _data.order_address.id}}
+    <div class="location">
+        <div class="location-box">
+            <div class="information">
+                <div class="info-name">{{_data.order_address.full_name}}</div>
+                <span class="phone">{{_data.order_address.mobile}}</span>
+            </div>
+            <div class="loca pre-text">{{_data.order_address.address}}</div>
+        </div>
+    </div>
+    {{/if}}
+
+    {{/if}}
+    {{/if}}
+    <div class="obligationsCoupon couponContent" tapmode="hover" onclick="fnJumpCoupon({{_data.coupon.id}}, {{_data.id}})">
+        <div class="top">
+            <p>
+                <span class="name">{{_data.store | fnShowUserNickname_base}}<br /><span class="subtitle">{{_data.coupon.name}}</span></span>
+                <span class="delete_line">{{'门市价' | fnLanguage_public}}￡{{_data.coupon.price}}</span>
+            </p>
+            <p>
+                <span><span>￡</span class="Coupon">{{_data.coupon.price_group | fnGetMaxPrice_base}}</span>
+                <span class="CouponName">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data':
+                            COUPON.type} | fnGetRelation_public }}
+                            {{if +_data.surplus_count > YES}}
+                            x{{_data.surplus_count}}
+                            {{/if}}</span>
+            </p>
+
+        </div>
+        <div class="bottom">
+            <p>
+                            <span class="Time">
+                                {{_data.coupon | fnGetCouponDateMsg_base}}
+                            </span>
+
+            </p>
+        </div>
+    </div>
+    <div class="discount">
+        <div class="order-ul">
+            <div class="order-li">
+                <div class="order-name ">{{'单价' | fnLanguage_public}}</div>
+                <div class="order-price origins">
+                    ￡<span id="price">{{_data.unit_price}}</span>
+                </div>
+            </div>
+
+
+            {{if _data.pay_time}}
+            <div class="order-li">
+                <div class="order-name">{{'已付' | fnLanguage_public}}</div>
+                <div class="order-price origins">￡{{_data.pay_total_price}}</div>
+            </div>
+            {{/if}}
+
+            {{if _data.status == ORDER.status.wait.id}}
+            <div class="order-li">
+                <div class="order-name">{{'优惠券数量' | fnLanguage_public}}</div>
+                <div class="number">
+                    <span tapmode="hover" onclick="fnEditNum()" class="reduce no-onclick"></span>
+                    <span class="num">
+                                    <input id="num" type="text" readonly>
+                                </span>
+                    <span tapmode="hover" onclick="fnEditNum(true)" class="add"></span>
+                </div>
+            </div>
+            {{/if}}
+
+            {{if _data.status == ORDER.status.wait.id}}
+            <div class="order-li">
+                <div class="order-name">{{'需支付' | fnLanguage_public}}</div>
+                <div class="order-price origins">
+                    ￡<span class="pay_total_price"><span class="size">0</span>.00</span>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+
+        {{if _data.last_write_off}}
+        <div tapmode="hover" onclick="fnJump_base('order/writeOff_win.html', {{_data.id}})" class="order-ul">
+            <div class="order-li">
+                <div class="order-name">{{'已核销数量' | fnLanguage_public}}</div>
+                <div class="order-price">x{{_data.write_off_count}}</div>
+                <span class="right"></span>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="order-ul">
+            <div class="order-li">
+                <div class="order-name">{{'订单编号' | fnLanguage_public}}</div>
+                <div class="order-price">{{_data.sn}}</div>
+            </div>
+
+            {{if _data.status == ORDER.status.close.id}}
+            <div class="order-li">
+                <div class="order-name">{{'关闭时间' | fnLanguage_public}}</div>
+                <div class="order-price">{{_data.close_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+            </div>
+            {{/if}}
+
+            {{if _data.pay_time}}
+            {{if _data.pay_method}}
+            <div class="order-li">
+                <div class="order-name">{{'支付方式' | fnLanguage_public}}</div>
+                <div class="order-price">{{ {'target': _data.pay_method, 'key': 'id', 'resKey': 'name', 'data':
+                    ORDER.pay_method} | fnGetRelation_public }}
+                </div>
+            </div>
+            {{/if}}
+
+            <div class="order-li">
+                <div class="order-name">{{'支付时间' | fnLanguage_public}}</div>
+                <div class="order-price">{{_data.pay_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    </div>
+
+    {{if [ORDER.status.wait.id, ORDER.status.not.id, ORDER.status.already.id].indexOf(+_data.status) != -1 }}
+    <div class="bottom">
+        <div class="bot bot-bottom">
+            <!-- 默认已评价、在线客服、申请退款、取消订单，加not-evaluated立即付款、打开二维码、立即使用、配送完成、去评价 -->
+            <!-- 打开二维码order/discountCode_win.html
+            立即使用order/orderInformation_win.html
+            去评价home/evaluate_win.html
+            申请退款 my/refund_win.html
+            立即付款assemble/pay_win.html -->
+
+            {{if _data.status == ORDER.status.not.id}}
+            {{if _data.store_order && _data.store_order.id}}
+            {{if _data.store_order.status == ORDER.store_status.road.id}}
+            <span class="del-order not-evaluated" tapmode="hover"
+                  onclick="fnDeliveryCompletedOrder({{_data.store_order.id}})">{{'配送完成' | fnLanguage_public}}</span>
+            {{/if}}
+            {{else}}
+            <span tapmode="hover" onclick="fnOpenMeiQia_base()" class="del-order">{{'在线客服' | fnLanguage_public}}</span>
+            {{if +_data.surplus_count > 0}}
+            <span class="del-order" tapmode="hover" onclick="fnJump_base('my/refund_win.html', {{_data.id}})">{{'申请退款' | fnLanguage_public}}</span>
+
+            {{if _data.store.info.is_delivery}}
+            <span class="del-order not-evaluated" tapmode="hover"
+                  onclick="fnJump_base('order/orderInformation_win.html', {{_data.id}})">{{'立即使用' | fnLanguage_public}}</span>
+            {{else}}
+            <span class="del-order not-evaluated" tapmode="hover"
+                  onclick="fnJump_base('order/myCode.html', {{_data}})">{{'打开二维码' | fnLanguage_public}}</span>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{else if _data.status == ORDER.status.already.id}}
+            {{if _data.comment && _data.comment.id}}
+            <span class="del-order" tapmode="hover"
+                  onclick="fnJump_base('home/evaluateDetail_win.html', {{_data.comment.id}})">{{'已评价' | fnLanguage_public}}</span>
+            {{else}}
+            <span class="del-order not-evaluated" tapmode="hover"
+                  onclick="fnJump_base('home/evaluate_win.html', {{_data.id}}, 'order_id')">Review</span>
+            {{/if}}
+            {{else if _data.status == ORDER.status.wait.id}}
+            <span tapmode="hover" onclick="fnOpenMeiQia_base()" class="del-order">{{'在线客服' | fnLanguage_public}}</span>
+            <span class="del-order" tapmode="hover" onclick="fnCancel()">{{'取消订单' | fnLanguage_public}}</span>
+            <span class="del-order not-evaluated" tapmode="hover"
+                  onclick="fnSubmit()">{{'立即付款' | fnLanguage_public}}</span>
+            {{/if}}
+
+        </div>
+    </div>
+    {{/if}}
+</script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function () {
+        fnGet();
+
+        api.addEventListener({
+            name: APP.EV_NAME.ORDER_UPDATE
+        }, function (ret, err) {
+            fnGet();
+        });
+    });
+
+
+    function fnGet() {
+        fnGetOrderDetail_base({
+            id: APP._param.id
+        }, function (ret) {
+            APP._data = ret;
+            fnValue('#wrap', template('wrap-template', APP));
+            APP.fixStatusBar($('.header')[0]);
+
+            if ($('.bottom .del-order').length) {
+                APP.fixTabBar('.bottom');
+                $('.bottom').removeClass('hide');
+            } else {
+                $('.bottom').addClass('hide');
+            }
+
+            if (APP._data.status == APP.ORDER.status.wait.id) {
+                fnEditNum(APP.YES);
+            }
+        })
+    }
+
+
+    function fnCancel() {
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '确定取消订单吗？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function () { //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // alert('点击测试环境')
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function () {
+                    // alert('点击正式环境')
+                    _start();
+                }
+            }]
+        }, function () { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start() {
+            var _param = {
+                url: 'order/order/cancel',
+                method: 'POST',
+                data: {
+                    id: APP._param.id
+                }
+            }
+            fnAjax(_param, function (ret) {
+                if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                    api.sendEvent({
+                        name: APP.EV_NAME.ORDER_UPDATE,
+                        extra: {}
+                    });
+
+                    fnToast(ret.msg);
+                } else {
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+    function fnEditNum(_isAdd) {
+        var _count = fnValue('#num') || 0;
+        var _coupon = APP._data.coupon;
+        var _maxCount = +_coupon.can_pay_num;
+
+        if (_isAdd) {
+            if (_maxCount < 0 || _count < _maxCount) {
+                fnValue('#num', ++_count);
+            }
+        } else {
+            if (_count > 1) {
+                fnValue('#num', --_count);
+            }
+        }
+
+        if (_maxCount < 0 || _count < _maxCount) {
+            $('.add').removeClass('no-onclick');
+        } else {
+            $('.add').addClass('no-onclick');
+        }
+
+        if (_count <= 1) {
+            $('.reduce').addClass('no-onclick');
+        } else {
+            $('.reduce').removeClass('no-onclick');
+        }
+
+        fnSumTotal();
+    }
+    var total=0;
+    function fnSumTotal() {
+        var _num = fnValue('#num') || 0;
+        var _total = (_num * fnValue('#price')).toFixed(2);
+        total=_total;
+        $('#total').attr('data-price', _total);
+        $('.pay_total_price').each(function (_index, _el) {
+            fnValue(_el, _total.replace(/\d+/, function (_value) {
+                return '<span class="size">' + _value + '</span>';
+            }))
+        })
+    }
+
+    function fnSubmit() {
+        fnOpen('assemble/pay_win.html', {
+            param: {
+                id: APP._data.id,
+                pay_coupon_count: fnValue('#num'),
+                price: $('#total').attr('data-price')||total,
+                __startWinName: api.winName
+            }
+        })
+    }
+
+    function fnJumpCoupon(_couponId, _orderId) {
+        fnOpen('home/couponsDetails_win.html', {
+            param: {
+                id: _couponId,
+                orderId: _orderId
+            }
+        })
+    }
+
+    function fnDeliveryCompletedOrder(_id) {
+        fnDeliveryCompletedOrder_base({
+            id: _id
+        }, function (ret) {
+            fnToast(ret.msg);
+        })
+    }
+</script>
+</html>

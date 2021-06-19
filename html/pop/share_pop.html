@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/share_pop.css">
+</head>
+
+<body>
+    <div class="fixed" tapmode="hover" onclick="fnClose()"></div>
+    <div class="screen" id="wrap">
+        <!-- <div class="share">
+            <p class="til">分享至</p>
+            <div class="box">
+                <div class="item facebook" tapmode="hover" onclick="fnEmpty()">Facebook</div>
+                <div class="item twitter" tapmode="hover" onclick="fnEmpty()">Twitter</div>
+                <div class="item wechat" tapmode="hover" onclick="fnEmpty()">微信</div>
+            </div>
+        </div>
+        <div class="quit" tapmode="hover" onclick="fnClose()">取消</div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="share">
+            <p class="til">{{'分享至' | fnLanguage_public}}</p>
+            <div class="box">
+                <div class="item facebook" tapmode="hover" onclick="fnFacebookShareLinked()">Facebook</div>
+                <div class="item twitter" tapmode="hover" onclick="fnTwitterShare()">Twitter</div>
+                <div class="item wechat" data-type="session" onclick="fnShareWx(this)">{{'微信' | fnLanguage_public}}</div>
+            </div>
+        </div>
+        <div class="quit" tapmode="hover" onclick="fnClose()">{{'取消' | fnLanguage_public}}</div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function () {
+        // 分享类型.1:商铺分享,2:拼团详情分享
+        APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+        if (APP._param.type == 2) {
+            APP._shareUrl = [APP._shareUrl, 'share/joindelegation'].join('');
+        } else if (APP._param.type == 3) {
+            APP._shareUrl = [APP._shareUrl, 'share/couponsdetails'].join('');
+        } else {
+            APP._shareUrl = [APP._shareUrl, 'share/storedetails'].join('');
+        }
+        APP._shareUrl = [APP._shareUrl, fnConvertParam_public(APP._param.shareParam)].join('');
+
+        APP._logoPath = 'widget://image/icon-logo.png';
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixTabBar('.screen');
+    });
+
+
+    function fnFacebookShareLinked() {
+        fnClosePop(APP._shareUrl);
+    }
+
+    function fnTwitterShare() {
+        fnClosePop(APP._shareUrl);
+        // TWITTER.share({
+        //     title: APP._param.title,
+        //     // image: APP._logoPath,
+        //     url: APP._shareUrl
+        // }, function(){
+        //     // alert(arguments)
+        // })
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(url) {
+        // api.sendEvent({
+        //     name: APP.EV_NAME.SHARE_COPY,
+        //     extra: _data
+        // });
+
+        function close(){
+            fnClose('pop/share_pop.html');
+        }
+        fnOpen('pop/shareCopy_pop.html', {
+            param: { url: url }
+        });
+        // }
+
+        // // fnClose();
+        // fnOpen('pop/shareCopy_pop.html',{},close);
+
+
+    }
+
+
+
+    function fnShareWx(_el) {
+        var _type = $(_el).attr("data-type");
+        var obj={
+            scene: _type,
+            title: APP._param.title,
+            msg: APP._param.msg,
+            image: APP._logoPath,
+            contentUrl: APP._shareUrl
+        }
+        WX.shareWebPage(obj, function () {
+            fnClose();
+        })
+    }
+</script>
+
+</html>

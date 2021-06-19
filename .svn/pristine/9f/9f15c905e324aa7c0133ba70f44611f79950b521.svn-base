@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/privacyProtocol_pop.css">
+</head>
+<body class="hide">
+    <div tapmode onclick="fnCloseModel()" class="model-fixd"></div>
+    <div class="wrap" id="wrap" >
+
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="text">
+            <div class="title">
+    			<div class="sel">
+    				<!-- 选中加active -->
+    				<span tapmode="hover" onclick="fnSwitchTable_base(this)" data-class="sw-agreementuser" class="phone active">{{'用户协议' | fnLanguage_public}}</span>
+    				<span tapmode="hover" onclick="fnSwitchTable_base(this)" data-class="sw-privacyuser" class="phone">{{'隐私协议' | fnLanguage_public}}</span>
+    			</div>
+            </div>
+            <div class="msg rich-text pre-text sw sw-agreementuser">{{#_agreementuser}}</div>
+            <div class="msg rich-text pre-text sw sw-privacyuser hide">{{#_privacyuser}}</div>
+        </div>
+        <div class="footer">
+            {{each _param.buttons _value}}
+                <div tapmode="hover" onclick="fnSubmit(this)" class="item {{_value.active && 'active'}}">{{(_value.text || '确定') | fnLanguage_public}}</div>
+            {{/each}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnInit();
+    });
+    let bool=false;
+    function fnInit() {
+        fnGetPublicConfig_base(APP.GET_OPTION.agreementuser, function(ret){
+            // ret.content                       配置信息
+            APP._agreementuser = ret.content;
+            fnGetPublicConfig_base(APP.GET_OPTION.privacyuser, function(ret){
+                // ret.content                       配置信息
+                APP._privacyuser = ret.content;
+                fnValue('#wrap', template('wrap-template', APP));
+                $('body').removeClass('hide');
+                let accept=$('.footer div').last().text();
+                if(accept=='Accept' || accept=='接受'){
+                    $('.footer div').last().css({
+                        color:'#ccc'
+                    })
+                }
+                $('.sw-agreementuser').scroll(function(){
+                    var scrollTop = $(this).scrollTop();
+                    var scrollHeight = $('.sw-agreementuser')[0].scrollHeight;
+                    var windowHeight = $(this).height();
+                    if(scrollTop + windowHeight >= scrollHeight){
+                        if(accept=='Accept' || accept=='接受'){
+                            $('.footer div').last().css({
+                                color:'#FF9450'
+                            })
+                            bool=true;
+                        }
+                    }
+                });
+            })
+        })
+
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel(){
+        return;
+        if( APP._param.model ){
+            fnClosePop({
+                hasModel: true
+            });
+        }
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data){
+        if(_data.buttonIndex==1){
+            if(!bool){
+                return;
+            }
+        }
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.PRIVACY_PROTOCOL_POP,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_el){
+        fnClosePop({
+            buttonIndex: $(_el).index()
+        });
+    }
+</script>
+</html>

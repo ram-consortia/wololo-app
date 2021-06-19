@@ -1,0 +1,147 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .main{
+        padding: 0 pxToRem(80) pxToRem(60);
+        @include flex-box($justify: space-between,$direction: column);
+        @include flex-item();
+    }
+    .submit-wrap{
+        padding:0 pxToRem1(28);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .ul{
+        .li{
+            position: relative;
+            @include flex-box();
+            padding: pxToRem1(25) 0 0;
+            font-size: pxToRem1(16);
+            color: #333;
+            line-height: pxToRem1(27);
+            // @include border-bottom-m;
+            border-bottom: 1px solid #eee;
+            &::after{
+                border-color: #eee;
+            };
+            .country_code{
+                // margin-left: pxToRem1(100);
+                color: #FF4F00;
+                font-size: pxToRem1(16);
+                position: absolute;
+                left:pxToRem1(0);
+                +input{
+                    margin-left: pxToRem1(40);
+                }
+            }
+            .name{
+                min-width: pxToRem1(62);
+                padding-right: pxToRem1(20);
+                .star{
+                    font-size: pxToRem1(16);
+                    color: #FF4F00;
+                }
+                &.down{
+                    &::after{
+                        content: '';
+                        display: inline-block;
+                        width: pxToRem1(12);
+                        height: pxToRem1(12);
+                        margin-left: pxToRem1(5);
+                        @include set-bg-img( $name: "icon-down.png", $size: pxToRem1(12) auto, $position: center center);
+                    };
+                }
+            }
+            .input{
+                @include flex-item();
+                input{
+                    width: 100%;
+                    color: #939393;
+                }
+
+            }
+            .eliminate{
+                z-index:100;
+                width: pxToRem1(22);
+                height: pxToRem1(22);
+                margin-left: pxToRem1(10);
+                @include set-bg-img( $name: "icon-close1.png", $size: pxToRem1(18) auto, $position: center center);
+                @include prefixCss3($property: align-self, $value: center);
+            }
+            .eye{
+                width: pxToRem1(22);
+                height: pxToRem1(22);
+                margin-left: pxToRem1(10);
+                @include set-bg-img( $name: "icon-eye.png", $size: pxToRem1(22) auto, $position: center center);
+                @include prefixCss3($property: align-self, $value: center);
+                &.active{
+                    @include set-bg-img( $name: "icon-eye1.png", $size: pxToRem1(22) auto, $position: center center);
+                }
+            }
+            .code{
+                padding: pxToRem(7) pxToRem(10);
+                font-size: pxToRem1(12);
+                color: #FF753C;
+                line-height: pxToRem1(25);
+                text-align: center;
+                margin-left: pxToRem1(10);
+                &.no-onclick{
+                    border: pxToRem1(1) solid #ccc;
+                    color: #ccc;
+                }
+            }
+        }
+    }
+    .password{
+        text-align: right;
+        padding-top: pxToRem1(10.5);
+        font-size: pxToRem1(13);
+        color: #666;
+        line-height: pxToRem1(18);
+        .color{
+            color: $bg-color;
+        }
+    }
+    /*.submint{
+        margin: pxToRem1(26) 0 pxToRem1(17);
+        width: 100%;
+        height: pxToRem1(44);
+        border-radius: pxToRem1(4);
+        @include set-bg-img( $name: "icon-submint.png");
+        font-size: pxToRem1(15);
+        color: #fff;
+        line-height: pxToRem1(44);
+        text-align: center;
+        &.no-onclick{
+            opacity: 0.5;
+        }
+    }*/
+
+
+    .quit{
+        @include flex-box($justify: center, $align: center);
+        margin: pxToRem(20) auto;
+        height: pxToRem(92);
+        background: $bg-color;
+        color:#fff;
+        border-radius: pxToRem(46);
+
+        // background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+        // border-radius:40px;
+        // margin: pxToRem(16) pxToRem(50);
+        // height: pxToRem(80);
+        // font-size: pxToRem(30);
+        // color: #fff;
+        // @extend .font-m;
+        // line-height: pxToRem(80);
+        // text-align: center;
+        //border-radius: pxToRem(8);
+        //@include set-bg-img( $name: "icon-submint.png");
+        &.no-onclick{
+            opacity: 0.5;
+        }
+        
+    }
+}

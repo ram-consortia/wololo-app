@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+    <link rel="stylesheet" href="../../css/ic_img.css">
+    <link rel="stylesheet" href="../../css/explore.css">
+    <style>
+        .timer {
+            background: #F2F7FB;
+            border-radius: 3px;
+            color: #000001;
+            font-size: 12px;
+            padding: 3px;
+        }
+
+        .actionSheel {
+            background: #ff852b;
+            border-radius: 120px;
+            overflow: hidden;
+            width: 120px;
+            height: 45px;
+            font-size: 25px;
+        }
+
+        .actionSheel > div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body style="height: 100%; background: initial;" class="column flex relative">
+<div style="position: fixed;bottom:100px;z-index: 100" class="wid100 flex justify_center">
+    <div class="actionSheel color_white flex flex_between">
+        <div tapmode="hover" onclick="fnOpen('home/productSearch_win.html')">
+            <svg viewBox="64 64 896 896" focusable="false" data-icon="search" width="1em" height="1em"
+                 fill="currentColor" aria-hidden="true">
+                <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+            </svg>
+        </div>
+        <div tapmode="hover" onclick="fnOpen('home/merchantsFilter_win.html')">
+            <img style="width: 58px" src="../../image/v2/ic_action.png">
+        </div>
+    </div>
+</div>
+
+<div style="background: #F2F7FB">
+    <div class="flex_between flex item_center margin_top20 padding_top20">
+        <div class="back margin_top0" tapmode="hover" onclick="fnClose()"></div>
+        <div class="share margin_right20" onclick="share()" tapmode="hover"></div>
+    </div>
+    <div class="padding20">
+        <div class="flex item_center flex_between">
+            <div>
+                <div class="size18 bold" id="storeName"></div>
+                <div class="flex margin_top10" onclick="toReviews()" tapmode="hover">
+                    <div class="star"></div>
+                    <div class="margin_left10">
+                        <div class="size13">
+                            <span class="bold1" id="ev_score">0</span>
+                            <span id="ev_num">(0)</span>
+                        </div>
+                        <div class="size12 color_grey">Reviews & rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile">
+                <img src="" id="storeImg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex1 padding20">
+    <div class="flex flex_between item_center">
+        <div class="bold size12">Store Location</div>
+        <div class="timer">30 - 40 min</div>
+    </div>
+    <div class="flex flex_between item_center margin_top10">
+        <div class="color_grey size14 flex item_center">
+            <img src="../../image/v2/ic_pin.png" alt="" style="margin-right:7px;width: 16px;height: 16px">
+            <span id="address"></span>
+        </div>
+        <div class="primary size12 underline" onclick="toMap()">View on the map</div>
+    </div>
+    <div class="margin_top20 padding_top20 size16 bold tx_upper">
+        Deals
+    </div>
+    <div class="color_grey size12 tx_upper margin_top20">
+        BestSeller/Popular
+    </div>
+    <div class="flex box" id="list">
+
+    </div>
+
+</div>
+</body>
+<script type="text/html" id="list-template">
+    {{each _list _value}}
+    <div class="wish_item" onclick="toProductDetail({{_value}})" tapmode="hover">
+        <div class="tag {{group_type==1?bg_red:bg_blue}} wish_tag">{{group_type==1?'SUPERDEAL':'+1 DEAL'}}</div>
+        <div class="wish_img">
+            <img src="{{_value.product.images[0]}}" alt="" style="width: 100%;height: 100%">
+        </div>
+        <div class="commodity">
+            <div class="commodity_type">Oversized Jacket akjdnakjfnaksjnfkjasnfkjsn</div>
+            <div class="commodity_price">
+                £{{_value.product.price}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    let id = null,local={},storeName="";
+    APP.init(() => {
+        id=APP._param.id;
+        fnGet();
+        getStoreDetail();
+    })
+    function toMap(){
+        fnOpen('home/storeMapNew_win.html',{
+            param:local
+        })
+    }
+    function share(){
+        APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+        APP._shareUrl = [APP._shareUrl, 'share/storedetails'].join('');
+        APP._shareUrl = [APP._shareUrl, fnConvertParam_public({id: APP._param.id})].join('');
+        var sharedModule = api.require('shareAction');
+        console.log(APP._shareUrl);
+        sharedModule.share({
+            text:'Check out this deal on Wololo - '+storeName+'\n '+ APP._shareUrl,
+            path: APP._shareUrl,
+            thumbnail:'widget://image/icon-logo.png',
+            type: 'text',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 400,                  //宽度，数字类型
+                    h: 400,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 400,                  //宽度，数字类型
+                    h: 400                   //高度，数字类型
+                },
+                fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+        });
+    }
+    function getStoreDetail() {
+        const params = {
+            url: "user/user/detail",
+            method: "GET",
+            data: {
+                id
+            }
+        }
+        fnAjax(params, res => {
+            const {user_nickname,auth} = res.data;
+            const {ev_num,ev_score,address,images,lon,lat} = auth;
+            local={
+                lon,lat
+            }
+            storeName=user_nickname;
+            $("#storeName").text(user_nickname);
+            $("#ev_score").text(ev_score);
+            $("#ev_num").text(`(${ev_num})`);
+            $("#address").text(address);
+            $('#storeImg').attr('src',images[0].url)
+        })
+    }
+    function toProductDetail(data){
+        fnOpen('home/dealDetail_win.html',{
+            param: {
+                id:data.id
+            }
+        })
+    }
+    function fnGet(params) {
+        if(params){
+            $('#list').html('');
+        }
+        var _param = {
+            url: 'base/deal/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 10,
+                store_id:id,
+                ...params
+            }
+        };
+        if (APP._param.key) {
+            _param.data.category_id = APP._param.key
+        };
+        fnGetList_base(_param, function (ret) {
+            if (ret.evType == 'scrolltobottom') {
+                fnGet();
+            }
+        })
+    }
+    function toReviews(){
+        fnOpen('my/userReviews_win.html',{
+            param:id
+        })
+    }
+</script>
+</html>

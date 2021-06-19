@@ -1,0 +1,43 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body {
+    .ios-select-widget-box {
+        #iosSelectTitle {
+            color: #000;
+            font-size: pxToRem(34);
+        }
+        &.olay > div{
+            background-color: transparent;
+        }
+        .cover-area1,.cover-area2{
+            width: 40%;
+            border-top-color: #eee;
+            left: 50%;
+            @include prefixCss3($property: transform, $value: translateX(-50%));
+        }
+
+        header.iosselect-header {
+            background-color: white;
+            @include border-bottom-m(solid, #eee);
+            height: pxToRem(100);
+            line-height: pxToRem(100);
+            border-radius: 16px 16px 0px 0px;
+            a {
+                color: #FF7C4A;
+
+                &.close {
+                    color: #999999;
+                }
+            }
+        }
+
+        .iosselect-box {
+            @include flex-box();
+
+            & > div {
+                @include flex-item();
+            }
+        }
+    }
+}

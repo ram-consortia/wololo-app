@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+    <link rel="stylesheet" href="../../css/newLogin.css">
+    <link rel="stylesheet" href="../../css/ic_img.css">
+</head>
+<style>
+    .input_item {
+        background: #fefefe !important;
+    }
+
+    .input_group .input_item:last-child {
+        border: 1px solid #d0d3dd;
+    }
+</style>
+<body style="display: flex;flex-direction: column;height: 100%;background: #FBFCFF">
+<div class="margin_top20"></div>
+<div class="flex item_center margin_left20 margin_top20 margin_bottom20">
+    <div class="back margin0" onclick="fnClose()"></div>
+    <div class="bold size24">Add New Address</div>
+</div>
+<div class="content flex1 padding20" style="overflow-y: auto;display: block">
+    <div class="input_group">
+        <div class="input_item">
+            <div class="icon ic_address"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="text" id="address1" placeholder="Address Line1">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon ic_address"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="text" id="address2" placeholder="Address Line2">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon ic_city"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="text" id="city" placeholder="City/town">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon ic_country"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="text" id="country" placeholder="Country">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon ic_post_code"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="number" id="postcode" placeholder="Postcode">
+                </div>
+            </div>
+        </div>
+        <div class="flex item_center margin_top20">
+            Default: <input id="cks" type="checkbox">
+        </div>
+    </div>
+
+</div>
+<div class="padding20">
+    <div class="btn btn_default" onclick="saveAddress()">
+        SAVE
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    let isEdit=false;
+    function saveAddress() {
+        const params = {
+            address1: $('#address1').val(),
+            address2: $('#address2').val(),
+            city: $('#city').val(),
+            country: $('#country').val(),
+            postcode: $('#postcode').val(),
+            is_default: $('#cks')[0].checked ? 1 : 0
+        }
+        const _params={
+            url: "user/addresses",
+            method: "POST",
+            data: params
+        };
+        if(isEdit){
+            _params.url+='/'+isEdit;
+            _params.method='PUT';
+        }
+        fnAjax(_params, res => {
+            fnToast(res.msg)
+            if (res.code) {
+                api.execScript({
+                    name: "addresses_win",
+                    script: "getList()"
+                })
+                fnClose();
+            }
+        })
+    }
+
+    APP.init(() => {
+        const data = APP._param;
+        if (data.id) {
+            isEdit=data.id;
+            const {address1, address2, city, country, postcode, is_default} = data;
+            $('#address1').val(address1);
+            $('#address2').val(address2);
+            $('#city').val(city);
+            $('#country').val(country);
+            $('#postcode').val(postcode);
+            $('#cks')[0].checked = is_default == 1 ? true : false;
+        }
+    })
+</script>
+
+</html>

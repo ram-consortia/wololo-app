@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+    <link rel="stylesheet" href="../../css/webpublic.css">
+    <link rel="stylesheet" href="../../css/webcouponDetails.css">
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="top">
+            <div class="top-box">
+                <div class="top-item">
+                    <div class="photo"></div>
+                    <div class="place">北京市西城区西单大悦城6F美食街喜茶店</div>
+                </div>
+                <div class="home-box">
+                    <span class="home-item active" tapmode="hover" onclick="fnOpen('home.html')">首页</span>
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('allAssemble.html')">全部拼团</span>
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单</span>
+                </div>
+                <div class="picture">
+                    <div class="all-picture">
+                        <div class="picture-box">
+                            <div class="picture-item active" tapmode="hover" onclick="fnOpen('personal.html')">个人资料</div>
+                            <div class="picture-item" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                            <div class="picture-item">中文/English</div>
+                            <div class="picture-item">下载APP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content flex-item-vertical">
+            <p class="pagination">
+                <span class="page">首页</span>
+                <span class="page">商铺详情</span>
+                <span class="page">优惠券详情</span>
+            </p>
+            <div class="storedetails">
+                <div class="left flex-vertical">
+                    <div class="store-app flex-item-vertical">
+                        <div class="coupon-img">
+                            <p class="shopping">西单大悦成新月美食街喜茶店</p>
+                            <div class="img"></div>
+                            <div class="coupon">
+                                <div class="coupon-item">
+                                    <div class="price">
+                                        <p class="num">￡<span class="size">20</span></p>
+                                        <p class="voucher">代金券 x2</p>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="message">
+                                        <div class="message-item">
+                                            <p class="shop-name">西单大悦城美食城</p>
+                                            <div class="base">
+                                                <p class="market-price">
+                                                    <span class="market">门市价￡120</span>
+                                                </p>
+                                                <p class="time">2019.01.04 - 2019.01.03</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coupon-bottom">
+                        <!-- 默认已消费、消费中，加invalid已失效 -->
+                        <div class="available">已消费</div>
+                        <div class="available invalid">已失效</div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="box">
+                        <!-- 选中加active -->
+                        <div class="box-wrap">
+                            <div class="item active">优惠规则</div>
+                            <div class="item">已开团(3）</div>
+                        </div>
+                    </div>
+                    <!-- 优惠规则 -->
+                    <div class="preferential-rules hide">
+                        <p class="rule">优惠规则</p>
+                        <div class="rule-text">1、先排查数据本身是否出现问题。比如统计数据逻辑问题、数据接口出现bug未统计到、被环比/同比下降30%的数据是否出现特殊数据（比如环比数据中有现象级的爆款应用ZEO导致环比数据下降30%）、同比/环比数据差异是在哪些方面、有差异的数据之前的表现如何等。确认数据无异常之后再考虑下面。 2、再排查产品本身是否出现问题。比如服务器压力大出现响应时间多了0.3s、对热门应用的排序逻辑不符合用户认知、竞对出现爆款而我方未跟进、有bug等等。排除掉自身原因之后再考虑下面。</div>
+                        <p class="person">1人享￡50、502人享￡50、3人享￡566、4人享受￡100</p>
+                    </div>
+                    <!-- 已开团   -->
+                    <div class="opening-regiment">
+                        <div class="con">
+                            <p class="people">还差<span class="color">2</span>人拼团完成，快邀请朋友参团吧！</p>
+                            <div class="unite">
+                                <div class="unite-item">
+                                    <div class="five">
+                                        <!-- 加five-img显示头像,ellipsis省略号样式 -->
+                                        <span class="ellipsis five-img"><span class="commander">团长</span></span>
+                                        <span class="ellipsis five-img"></span>
+                                        <span class="ellipsis">……</span>
+                                        <span class="ellipsis five-img"></span>
+                                        <span class="ellipsis five-img"></span>
+                                    </div>
+                                    <div class="hour-center">
+                                        <div class="hour">
+                                            <span>剩余</span>
+                                            <span class="time">
+                                                <span class="number">78<span class="gap"></span></span>
+                                                <span class="number">58<span class="gap"></span></span>
+                                                <span class="number">03</span>
+                                            </span>
+                                            <span>结束</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 默认去参团,已参团加join,已结束加clustering -->
+                                <span class="group">去参团</span>
+                                <span class="group">我要成团</span> 
+                            </div>
+                        </div>
+                        <div class="con">
+                            <p class="people">还差<span class="color">2</span>人拼团完成，快邀请朋友参团吧！</p>
+                            <div class="unite">
+                                <div class="unite-item">
+                                    <div class="five">
+                                        <!-- 加five-img显示头像,ellipsis省略号样式 -->
+                                        <span class="ellipsis five-img"><span class="commander">团长</span></span>
+                                        <span class="ellipsis five-img"></span>
+                                        <span class="ellipsis">……</span>
+                                        <span class="ellipsis five-img"></span>
+                                        <span class="ellipsis five-img"></span>
+                                    </div>
+                                    <div class="hour-center">
+                                        <div class="hour">
+                                            <span>剩余</span>
+                                            <span class="time">
+                                                <span class="number">78<span class="gap"></span></span>
+                                                <span class="number">58<span class="gap"></span></span>
+                                                <span class="number">03</span>
+                                            </span>
+                                            <span>结束</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 默认去参团,已参团加join,已结束加clustering -->
+                                <span class="group join">已参团</span>
+                            </div>
+                        </div>
+                        <div class="con">
+                            <p class="people">还差<span class="color">2</span>人拼团完成，快邀请朋友参团吧！</p>
+                            <div class="unite">
+                                <div class="unite-item">
+                                    <div class="five">
+                                        <!-- 加five-img显示头像,ellipsis省略号样式 -->
+                                        <span class="ellipsis five-img"><span class="commander">团长</span></span>
+                                        <span class="ellipsis five-img"></span>
+                                        <span class="ellipsis">……</span>
+                                        <span class="ellipsis five-img"></span>
+                                        <span class="ellipsis five-img"></span>
+                                    </div>
+
+                                </div>
+                                <!-- 默认去参团,已参团加join,已结束加clustering -->
+                                <span class="group clustering">已结束</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-number">
+                        <span class="start"></span>
+                        <span class="num active">1</span>
+                        <span class="num">2</span>
+                        <span class="num">3</span>
+                        <span class="num">4</span>
+                        <span class="num">5</span>
+                        <span class="num">...</span>
+                        <span class="num">7</span>
+                        <span class="num">8</span>
+                        <span class="num">9</span>
+                        <span class="end"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-width">
+                <div class="bottom">
+                    <div class="bot-box">
+                        <div class="bot-item">
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">合作伙伴</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">关于我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">联系我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="record">
+                    <div class="agreement">
+                        <span class="treaty">用户协议</span>
+                        <span class="treaty">隐私协议</span>
+                        <span class="treaty">下载APP</span>
+                        <span class="treaty">意见反馈</span>
+                    </div>
+                    <div class="serve">©2014-2016 APICloud 京ICP备14027692号 京ICP证151131号 京公网安备 11010802020063号  |  </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 评价 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">给商铺点评</div>
+                <span class="close"></span>
+            </div>
+            <div class="business-center flex-item-vertical">
+                <div class="center no-left">
+                    <div class="entering">
+                        <div class="entering-name">给商铺评分</div>
+                        <div class="stars">
+                            <!-- 默认空心，加full满心，加half半心 -->
+                            <span class="star full"></span>
+                            <span class="star half"></span>
+                            <span class="star"></span>
+                            <span class="star"></span>
+                            <span class="star"></span>
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name">你的点评</div>
+                        <div class="input-width">
+                            <div class="textarea">
+                                <textarea type="text" placeholder="请输入商家信息介绍，方便平台进一步审核"></textarea>
+                                <p class="number">0/500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-button">
+                    <span class="quit submint">提交</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 提交成功   -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">评价成功</div>
+                <span class="close"></span>
+            </div>
+            <div class="success">
+                <div class="success-img"></div>
+                <p class="cessful">评价成功，期待再次为您服务！</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(_page) {
+
+    });
+
+
+    var mySwiper = new Swiper('.swiper .swiper-container', {
+        autoplay:true,//等同于以下设置
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: '.swiper .swiper-pagination',
+        },
+    });
+
+</script>
+</html>

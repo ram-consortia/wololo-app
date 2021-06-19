@@ -1,0 +1,468 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/couponsDetails.css" />
+</head>
+<!--<body class="hide">-->
+<body>
+    <div class="content flex-vertical content-img" id="wrap">
+         <!--<div class="fixed-top">
+            <div class="logo"></div>
+            <div class="text">
+                <div class="title">WOLOLO</div>
+                <div class="tip">life is a fabulous surprise！</div>
+            </div>
+            <p class="btn-app">下载</p>
+        </div>
+
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">拼团详情</div>
+        </header>
+
+        <div class="main flex-item-vertical">
+            <div class="coupon-img" tapmode="hover" onclick="fnOpen('home/couponsDetails_win.html')">
+                &lt;!&ndash;<div class="img"></div>&ndash;&gt;
+                &lt;!&ndash;<div class="coupon">
+                    <i class="itemT"></i>
+                    <i class="itemY"></i>
+                    <div class="coupon-item">
+
+                        <div class="itemLeft">
+                            <div class="leftHer">
+
+                                <span class="size">20.00</span>
+
+                                <span class="voucher">代金券 x2</span>
+                            </div>
+                            <p class="shop-name">西单大悦城美食城</p>
+                            <p class="market-price">门市价￡120</p>
+
+                            <p class="time">2019.01.04 - 2019.01.03</p>
+                        </div>
+                        <div class="itemRight">
+                            <div class="img"></div>
+                        </div>
+
+                    </div>
+                </div>&ndash;&gt;
+                <div class="coupon">
+                    <i class="itemT"></i>
+                    <i class="itemY"></i>
+                    <div class="coupon-item">
+                        <div class="itemTop">
+                            <div class="itemLeft">
+                                <div class="leftHer">
+
+                                    <span class="size">20.00</span>
+
+                                    <span class="voucher">代金券 x2</span>
+                                </div>
+                            </div>
+                            <div class="itemRight">
+                                <div class="img"></div>
+                            </div>
+                        </div>
+                        <div class="itemButtom">
+                            <p class="shop-name">西单大悦城美食城</p>
+                            <p class="market-price">门市价￡120</p>
+
+                            <p class="time">2019.01.04 - 2019.01.03</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule no-line">
+
+                <div class="person">
+                    <p class="personD">fdjshfdjkhjdshkj</p>
+                    <div class="personP">
+
+                        <div class="personPLift">1人享￡50</div>
+                        <div class="personPRight">2人享￡50</div>
+
+
+                    </div>
+                    <div class="personP">
+
+                        <div class="personPLift">1人享￡50</div>
+                        <div class="personPRight">2人享￡50</div>
+
+
+                    </div>
+                </div>
+                <div class="five">
+                    &lt;!&ndash; 加five-img显示头像,ellipsis省略号样式 &ndash;&gt;
+                    <div class="fiveCt">
+
+                        <span data-img-url="{{$value.user && $value.user.avatar}}" data-img-type="!avatar" class="ellipsis five-img a{{$index}}">
+
+                                            <span class="commander">团长</span>
+
+                                    </span>
+
+
+
+                    </div>
+
+                    <div class="fiveWct">
+
+
+                        <span class="ellipsis">……</span>
+
+
+
+                    </div>
+                    <div class="fiveTx">
+
+                        <span data-img-url="{{$value.user && $value.user.avatar}}" data-img-type="!avatar" class="ellipsis five-img">
+
+                                                <span class="commander">&lt;!&ndash;{{'团长' | fnLanguage_public}}{{$index}}&ndash;&gt;</span>
+
+                                    </span>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'拼团详情' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="main flex-item-vertical">
+            <div class="coupon-img" tapmode="hover" onclick="fnJump_base('home/couponsDetails_win.html', {{_data.coupon.id}})">
+                <!--<div data-img-url="{{_data | fnGetCouponImage_base}}" data-img-type="!watermark" class="img"></div>-->
+                <div class="coupon">
+                    <i class="itemT"></i>
+                    <i class="itemY"></i>
+                    <div class="coupon-item">
+                        <div class="itemTop">
+                            <div class="itemLeft">
+                                <div class="leftHer">
+
+                                    <span class="size">￡{{_data.coupon.price_group | fnGetMaxPrice_base}}</span>
+
+                                    <span class="voucher">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</span>
+                                </div>
+                            </div>
+                            <div class="itemRight">
+                                <div class="img"></div>
+                            </div>
+                        </div>
+                        <div class="itemButtom">
+                            <p class="shop-name">{{_data.coupon.name}}</p>
+                            <p class="market-price">{{'门市价' | fnLanguage_public}}￡{{_data.coupon.price}}</p>
+
+                            <p class="time">{{_data.coupon | fnGetCouponDateMsg_base}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="coupon">
+                    <i class="itemT"></i>
+                    <i class="itemY"></i>
+                    <div class="coupon-item">
+
+                        <div class="itemLeft">
+                            <div class="leftHer">
+
+                                <span class="size">{{_data.coupon.price_group | fnGetMaxPrice_base}}</span>
+
+                                <span class="voucher">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</span>
+                            </div>
+                            <p class="shop-name">{{_data.coupon.name}}</p>
+                            <p class="market-price">{{'门市价' | fnLanguage_public}}￡{{_data.coupon.price}}</p>
+
+                            <p class="time">{{_data.coupon | fnGetCouponDateMsg_base}}</p>
+                        </div>
+                        <div class="itemRight">
+                            <div class="img"></div>
+                        </div>
+
+                    </div>
+                </div>-->
+
+            </div>
+
+            <div class="rule no-line">
+                <div class="regiment-rules">
+                    <div class="guize">
+                        <i class="gzleft"></i>
+                        <span class="preferential-rules" tapmode="hover" onclick="fnOpenRule()">{{'优惠规则' | fnLanguage_public}}</span>
+                        <i class="gzright"></i>
+                    </div>
+
+                    <div class="person">
+                        <p class="personD">{{'越多的人参团，价格越优惠' | fnLanguage_public}}</p>
+
+                        {{#_data.coupon.price_group | fnGetCouponPriceRule_base}}
+
+                    </div>
+
+
+                        <div class="five">
+                            <!-- 加five-img显示头像,ellipsis省略号样式 -->
+                            <div class="fiveCt">
+                                {{each _data.order}}
+                                {{set _max = 4}}
+                                {{if _data.order.length > 5 }}
+                                {{set _max = 3}}
+                                {{/if}}
+
+                                {{if $index <= _max }}
+                                <span data-img-url="{{$value.user && $value.user.avatar}}" data-img-type="!avatar" class="ellipsis five-img a{{$index}}">
+                                        {{if $value.is_group}}
+                                            {{if $index = 1}}
+                                            <span class="commander"><!--{{'团长' | fnLanguage_public}}--></span>
+                                        {{/if}}
+                                        {{/if}}
+                                    </span>
+
+
+                                {{/if}}
+
+
+                                {{/each}}
+                            </div>
+
+                            <div class="fiveWct">
+                                {{each _data.order}}
+
+                                {{if _data.order.length > 5 }}
+                                {{if $index == 2 }}
+
+                                <span class="ellipsis">……</span>
+
+
+                                {{/if}}
+                                {{/if}}
+
+                                {{/each}}
+                            </div>
+                            <div class="fiveTx">
+                                {{each _data.order}}
+                                {{set _max = 4}}
+
+
+
+                                {{if $index > _max }}
+                                {{if $index < 8 }}
+                                <span data-img-url="{{$value.user && $value.user.avatar}}" data-img-type="!avatar" class="ellipsis five-img">
+                                        {{if $value.is_group}}
+                                            {{if $index = 3}}
+                                                <span class="commander"><!--{{'团长' | fnLanguage_public}}{{$index}}--></span>
+                                            {{/if}}
+                                        {{/if}}
+                                    </span>
+
+
+                                {{/if}}
+                                {{/if}}
+
+
+
+                                {{/each}}
+                            </div>
+                        </div>
+                        <!-- 正在拼团显示 -->
+                        <div class="assemble">
+                            <p class="people">
+                                {{_lackPerson | fnLackPersonMsg_base}}
+                                <!-- {{'还差' | fnLanguage_public}}<span class="color">{{_lackPerson}}</span>{{'人拼团完成，快邀请朋友参团吧！' | fnLanguage_public}} -->
+                            </p>
+                            <div class="hour-center">
+                                <div class="hour">
+                                    <span>{{'剩余' | fnLanguage_public}}</span>
+                                    <span class="time js-count-down" data-count-down="{{_data.expire_time_temp}}" data-count-down-end-execution-function="fnInit">
+                                        <span class="number"><span class="js-hour">0</span><span class="gap"></span></span>
+                                        <span class="number"><span class="js-minute">0</span><span class="gap"></span></span>
+                                        <span class="number"><span class="js-second">0</span></span>
+                                    </span>
+                                    <!--<span>{{'结束' | fnLanguage_public}}</span>-->
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="address no-line">
+                <p class="address-name" onclick="fnJump_base('home/storeDetails_win.html', {{_data.store.id}})">{{_data.store | fnShowUserNickname_base}}</p>
+
+                {{if _data.store && _data.store.auth && _data.store.auth.lon && _data.store.auth.lat && _data.store.auth.address}}
+                    <div tapmode="hover" onclick="fnOpenStoreMap_base({{_data.store.id}}, '{{_data.store.auth.lat}}', '{{_data.store.auth.lon}}')" class="map" id="googleMap" data-lat="{{_data.store.auth.lat}}" data-lon="{{_data.store.auth.lon}}"></div>
+                    <p class="site">{{_data.store.auth.address}}</p>
+                {{/if}}
+            </div>
+        </div>
+
+        <!-- <p class="share-app">前往APP查看</p> -->
+
+        <div class="bottom">
+            {{if _data.status == GROUP.status.in.id}}
+                <!-- 只有发起人可以操作  该功能暂时隐藏-->
+
+
+                <!-- 邀请好友参团pop/share_pop.html -->
+                {{if _data.is_join}}
+                    <div class="quit bt10" tapmode="hover" onclick="fnOpenShare()">{{'邀请好友参团' | fnLanguage_public}}</div>
+                {{else}}
+                    <div class="quit bt10" tapmode="hover" onclick="fnSubmit()">{{'我要参团' | fnLanguage_public}}</div>
+                {{/if}}
+            {{else}}
+                <div class="quit bt10" tapmode="hover" onclick="fnGroupCreate()">{{'我要开团' | fnLanguage_public}}</div>
+            {{/if}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+
+    APP.init(function(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnInit();
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+        api.addEventListener({
+            name: APP.EV_NAME.GROUP_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+
+        exitApp()
+
+    });
+
+    function exitApp() {
+      api.addEventListener({
+        name: 'keyback'
+      }, function (ret, err) {
+        api.closeToWin({
+          name: 'home_win'
+        });
+      });
+    }
+
+    function fnInit(){
+        fnGet();
+    }
+
+    function fnGet(){
+        var _param = {
+            url: 'order/group/detail',
+            method: 'GET',
+            data: {
+                id: APP._param.id
+            }
+        }
+        fnAjax(_param, function(ret){
+
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+
+                APP._data = ret.data;
+
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+                APP.fixTabBar('.bottom');
+
+                var _map = {
+                    el: $('#googleMap')[0],
+                    lat: $('#googleMap').data('lat'),
+                    lon: $('#googleMap').data('lon'),
+                }
+
+                if( _map.el && _map.lat && _map.lon ){
+                    fnOpenGoogleMap_base(_map, function(){
+
+                    })
+                }
+
+                $('body').removeClass('hide');
+            }else{
+                fnToast(fnLanguage_public(ret.msg));
+            }
+        })
+    }
+
+    function fnOpenRule(){
+        fnOpenRule_base(APP._data.coupon)
+    }
+
+    function fnGroupCreate(){
+        fnGroupCreate_base({
+            coupon_id: APP._data.coupon_id
+        }, function(ret){
+            fnClose();
+        })
+    }
+
+    function fnAddVirtualHumanCount(){
+        fnAddVirtualHumanCount_base({
+            id: APP._param.id,
+            lack: APP._data.lack
+        }, function(ret){
+
+        })
+    }
+
+    function fnSubmit(){
+        var _param = {
+            url: 'order/group/join',
+            method: 'POST',
+            data: {
+                id: APP._param.id,
+                share_user_id: APP._param.share_user_id
+            }
+        }
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                api.sendEvent({
+                    name: APP.EV_NAME.GROUP_UPDATE,
+                    extra: {}
+                });
+                fnToast(fnLanguage_public(ret.msg));
+            }else{
+                fnToast(fnLanguage_public(ret.msg));
+            }
+        })
+    }
+
+
+    function fnOpenShare(){
+        fnOpenShare_base({
+            title: APP._data.coupon.name,
+            msg: APP._data.coupon.name,
+            type: 2,
+            shareParam: {
+                id: APP._data.id,
+                share_user_id: APP._user.id
+            }
+        })
+    }
+</script>
+</html>

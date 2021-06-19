@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/newLogin.css">
+</head>
+<body>
+<div class="page" style="background-color: #fff">
+    <div class="banner">
+        <div class="logo"></div>
+        <h2 class="bold">Discover !</h2>
+        <h2 class="bold">Share ! Save !</h2>
+        <p>Connect with great</p>
+        <p>local businesses</p>
+        <div class="bg bg1"></div>
+    </div>
+    <div class="content padding20">
+        <ul>
+            <li tapmode="hover" onclick="toResiter()">
+                <div>
+                    Continue with Email
+                </div>
+                <div class="ic_email">
+                </div>
+            </li>
+            <li tapmode="hover" onclick="fnGoogleLogin()">
+                <div>
+                    Continue with Google
+                </div>
+                <div class="ic_google">
+
+                </div>
+            </li>
+            <li tapmode="hover" onclick="fnFacebookLogin()">
+                <div>
+                    Continue with Facebook
+                </div>
+                <div class="ic_facebook">
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="footer padding20 bold">
+        Existing Member? <span tapmode="hover" onclick="toLogin()">Log In now</span>
+    </div>
+</div>
+<script src="../../script/public.js"></script>
+<script>
+    function fnGoogleLogin() {
+        var _type = 3;
+        var google = api.require('google');
+        google.signIn(function (ret, err) {
+            // alert(debugAlert('google登录开始', arguments))
+            if (ret && ret.userInfo && ret.userInfo.userID) {
+                fnThirdLogin({
+                    type: _type,
+                    openid: ret.userInfo.userID,
+                    nickname: ret.userInfo.profile ? ret.userInfo.profile.name : '',
+                    more: ret.userInfo.profile
+                });
+            } else {
+
+            }
+        });
+    }
+    function fnFacebookLogin() {
+        var _type = 2;
+        FACEBOOK.login(function (ret) {
+            // alert(debugAlert(2222, arguments))
+            if (ret.status && ret.userId) {
+                fnThirdLogin({
+                    type: _type,
+                    openid: ret.userId,
+                    more: ret
+                });
+            }
+        })
+    }
+    function toResiter(){
+
+        api.openWin({
+            name:'emailResiter',
+            url:`./emailResiter.html`
+        })
+    }
+    function toLogin(){
+        api.openWin({
+            name:'signIn',
+            url:`./signIn.html`
+        })
+        api.addEventListener({
+            name:'viewdisappear'
+        },function(){
+            api.closeWin();
+        })
+    }
+</script>
+</body>
+</html>

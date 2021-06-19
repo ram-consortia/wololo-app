@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <!--<link rel="stylesheet" type="text/css" href="../../css/message.css" />-->
+    <link rel="stylesheet" type="text/css" href="../../css/messageA.css" />
+</head>
+<body>
+    <!-- <div class="ul">
+        <div class="li" tapmode="hover" onclick="fnOpen('business/messageDetails_win.html')">
+            <div class="til">
+                <p class="til-item">您有一个新核销订单，快去查看吧</p>
+                <span class="badge"></span>
+            </div>
+            <div class="mess">您好，您的停车账单流水，已发送至您的手机，请注意查收</div>
+        </div>
+        <div class="li" tapmode="hover" onclick="fnOpen('business/messageDetails_win.html')">
+            <div class="til">
+                <p class="til-item">您有一个新核销订单，快去查看吧</p>
+                <span class="badge"></span>
+            </div>
+            <div class="mess">您好，您的停车账单流水，已发送至您的手机，请注意查收您好，您的停车账单流水，已发送至您的手机，请注意查收</div>
+        </div>
+    </div> -->
+
+    <div id="wrap">
+
+        <!-- <div class="ul">
+            <div class="li" tapmode="hover" onclick="fnOpen('business/messageDetails_win.html')">
+                <div class="til">
+                    <p class="til-item">您有一个新核销订单，快去查看吧</p>
+                    <span class="badge"></span>
+                </div>
+                <div class="mess">您好，您的停车账单流水，已发送至您的手机，请注意查收</div>
+            </div>
+            <div class="li" tapmode="hover" onclick="fnOpen('business/messageDetails_win.html')">
+                <div class="til">
+                    <p class="til-item">您有一个新核销订单，快去查看吧</p>
+                    <span class="badge"></span>
+                </div>
+                <div class="mess">您好，您的停车账单流水，已发送至您的手机，请注意查收您好，您的停车账单流水，已发送至您的手机，请注意查收</div>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="ul hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无相关内容' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list _value}}
+
+            <div class="messageContent">
+                <div class="content">
+                    <div class="contentSub">
+                        <div class="subTop">
+                            <i>
+                                <img width="100%" height="100%" src="../../image/tongzhi.png" />
+                                <!--<span></span>-->
+                                {{if !+_value.is_read}}
+                                <span class="badge"></span>
+                                {{/if}}
+                            </i>
+                            <div class="subTopWenzi">
+                                <p class="wenziP">System message</p>
+                                <p class="wenziS">{{_value.create_time | dateFormat 'yyyy-MM-dd hh:mm:ss'}}</p>
+                            </div>
+                        </div>
+                        <p class="subFooter">
+                            {{_value.title}}
+                            {{_value.brief}}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <!--<div class="data">
+                <span class="time">{{_value.create_time | dateFormat 'yyyy-MM-dd hh:mm:ss'}}</span>
+            </div>
+            <div class="li" tapmode="hover" onclick="fnOpenNewsDetail(this, {{_value.id}})">
+                <div class="til">
+                    <p class="til-item pre-text">{{_value.title}}</p>
+                    {{if !+_value.is_read}}
+                        <span class="badge"></span>
+                    {{/if}}
+                </div>
+                <div class="mess pre-text {{_value.type == NEWS.type.notification.type && 'overflow'}}">{{_value.brief}}</div>
+            </div>-->
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: api.winName
+        }, function(ret, err){
+            fnInit();
+        });
+    });
+
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        fnGetList_base({
+            url: 'user/news/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE,
+                type: APP._param._groupParam
+            }
+        }, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+
+    function fnOpenNewsDetail(_el, _id){
+        $(_el).find('.badge').remove();
+        fnMessageJump_base({
+            id: _id
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,121 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #F7F6F6;
+    .header{
+        @include border-bottom-m;
+        &::after{
+            border: none;
+        };
+        .text{
+            line-height: pxToRem(88);
+            padding: 0 pxToRem(30);
+            font-size: pxToRem(26);
+			color: $bg-color;
+        }
+        .flex{
+            @include flex-box();
+            .icon{
+                width: pxToRem(88);
+                @include set-bg-img( $name: 'icon-clear.png', $size: pxToRem(36) auto, $position: center center);
+            }
+        }
+    }
+    .top-header{
+        background-color: #fff;
+        .box{
+            @include flex-box();
+            text-align: center;
+            .item{
+                position: relative;
+                @include flex-item();
+                height: pxToRem(100);
+                line-height: pxToRem(100);
+                font-size: pxToRem(30);
+                color: #666;
+                line-height: pxToRem(100);
+                &.active{
+                    color: #333;
+                    &::after{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 50%;
+                        bottom: pxToRem(12);
+                        width: pxToRem(56);
+                        height: pxToRem(16);
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                        @include set-bg-img( $name: "icon-sel.png", $size: pxToRem(56) auto, $position: center center);
+                    };
+                }
+                .number{
+                    position: absolute;
+                    top: pxToRem(22);
+                    display: inline-block;
+                    min-width: pxToRem(30);
+                    font-size: pxToRem(22);
+                    color: #fff;
+                    line-height: pxToRem(36);
+                    padding: 0 pxToRem(3);
+                    border-radius: pxToRem(36);
+                    background-color: #FE8F31;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .ul{
+        padding: pxToRem(24);
+        .data{
+            text-align: center;
+            padding: pxToRem(24) 0;
+            text-align: center;
+           .time{
+                display: inline-block;
+                height: pxToRem(40);
+                font-size: pxToRem(24);
+                color: #5C6066;
+                line-height: pxToRem(40);
+                padding: 0 pxToRem(28);
+                background-color: #EFEDE8;
+                border-radius: pxToRem(24);
+            }
+        }
+        .li{
+            padding: pxToRem(36) pxToRem(40) pxToRem(40);
+            background-color: #fff;
+            border-radius: pxToRem(16);
+            margin-bottom: pxToRem(24);
+            .til{
+                @include flex-box();
+                .til-item{
+                    @include flex-item();
+                    font-size: pxToRem(34);
+                    color: #333;
+                    line-height: pxToRem(48);
+                    font-weight: bold;
+                    @include text-overflow(1);
+                }
+                .badge{
+                    display: inline-block;
+                    width: pxToRem(16);
+                    height: pxToRem(16);
+                    background-color: #FE8F31;
+                    border-radius: 50%;
+                    margin-left: pxToRem(10);
+                    @include prefixCss3($property: align-self, $value: center);
+                }
+            }
+            .mess{
+                margin-top: pxToRem(26);
+                font-size: pxToRem(28);
+                color: #5C6066;
+                line-height: pxToRem(40);
+                &.overflow{
+                    @include text-overflow(2);
+                }
+            }
+        }
+    }
+}

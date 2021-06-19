@@ -1,0 +1,120 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    .fixed{
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background:rgba(0,0,0,0.4);
+    }
+    .screen{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        height: 80%;
+        border-top-right-radius: pxToRem(24);
+        border-top-left-radius: pxToRem(24);
+        .main{
+            .preparation{
+                @include flex-box();
+                position: relative;
+                padding: pxToRem(34) pxToRem(30);
+                    text-align: center;
+                .close{
+                    width: pxToRem(44);
+                    height: pxToRem(44);
+                    @include set-bg-img( $name: "icon-close.png", $size: pxToRem(44) auto, $position: center center);
+                }
+                .prepar{
+                    width: 100%;
+                    font-size: pxToRem(32);
+                    color: #333;
+                    line-height: pxToRem(44);
+                }
+                .collection{
+                    display: inline-block;
+                    position: absolute;
+                    right: pxToRem(30);
+                    font-size: pxToRem(28);
+                    color: $bg-color;
+                    line-height: pxToRem(44);
+                }
+            }
+            .content{
+                padding: pxToRem(2) 0;
+                .con{
+                    padding: pxToRem(20) pxToRem(30) 0;
+                    .state{
+                        padding: pxToRem(20) 0;
+                        font-size: pxToRem(32);
+                        color: #333;
+                        line-height: pxToRem(44);
+                        @extend .font-m;
+                    }
+                    .sort{
+                        overflow: hidden;
+                        margin: 0 pxToRem(-12);
+                        .status{
+                            float: left;
+                            padding: 0 pxToRem(40);
+                            font-size: pxToRem(28);
+                            color: #333;
+                            line-height: pxToRem(68);
+                            border: pxToRem(2) solid #999;
+                            border-radius: pxToRem(4);
+                            margin: pxToRem(10) pxToRem(12);
+                            &.active{
+                                color: $bg-color;
+                                border: pxToRem(2) solid $bg-color;
+                            }
+                        }
+                    }
+                }
+            }
+            .bottom{
+                overflow: hidden;
+                @include border-top-m;
+                &::before{
+                    border-color: #eee;
+                };
+                .sure{
+                    margin: pxToRem(10) pxToRem(30);
+                    height: pxToRem(92);
+                    font-size: pxToRem(30);
+                    color: #fff;
+                    line-height: pxToRem(92);
+                    @extend .font-m;
+                    border-radius: pxToRem(8);
+                    text-align: center;
+                    @include set-bg-img( $name: "icon-submint.png");
+                }
+                .bot-box{
+                    @include flex-box();
+                    margin: pxToRem(10) pxToRem(17);
+                    text-align: center;
+                    .bot-item{
+                        @include flex-item();
+                        height: pxToRem(88);
+                        line-height: pxToRem(88);
+                        border: pxToRem(2) solid #979797;
+                        border-radius: pxToRem(8);
+                        margin: 0 pxToRem(13);
+                        font-size: pxToRem(30);
+                        color: #333;
+                        &.bot-sure{
+                            height: pxToRem(92);
+                            border: none;
+                            color: #fff;
+                            @include set-bg-img( $name: "icon-submint2.png");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

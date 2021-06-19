@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/refundSubmission.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnCloseWin();" class="back icon-back"></div>
+            <div class="title">{{['Comment successful', 'Submitted successfully', 'Payment successful', 'Payment unsuccessful', '', 'Redeemed successfully'][_param.type-1]}}</div>
+        </header>
+
+        <div class="flex-item-vertical">
+          
+            <div class="success">
+                <!-- 支付失败加fail -->
+                <div class="img {{_param.type == 4 && 'fail'}}"></div>
+            </div>
+
+            {{if _param.type == 1 }}
+                <p class="examine">review successful.<br/> We hope to serve you again!</p>
+            {{else if _param.type == 2 }}
+                <p class="examine">{{'售后申请提交成功，等待审核' | fnLanguage_public}}</p>
+                <p class="time">{{'申请时间' | fnLanguage_public}}：{{_param.create_time | dateFormat 'yyyy/MM/dd hh:mm'}}</p>
+                <p class="number">{{'服务单号' | fnLanguage_public}}：{{_param.sn}}</p>
+                <div class="look" tapmode="hover" onclick="fnJump_base('my/service_win.html', {{_param.id}})">{{'查看售后详情' | fnLanguage_public}}</div>
+            {{else if _param.type == 3 }}
+                <p class="examine">{{'支付成功' | fnLanguage_public}}</p>
+                {{if _param.pay_method!=6}}
+                <div class="look" tapmode="hover" onclick="fnCloseWin()">{{'查看订单详情' | fnLanguage_public}}</div>
+                {{/if}}
+            {{else if _param.type == 4 }}
+                <p class="examine">{{'支付失败' | fnLanguage_public}}</p>
+                {{if _param.pay_method!=6}}
+                <div class="look" tapmode="hover" onclick="fnCloseWin()">{{'查看订单详情' | fnLanguage_public}}</div>
+                {{/if}}
+            {{else if _param.type == 6 }}
+                <p class="examine">{{'核销成功' | fnLanguage_public}}</p>
+                <p class="time">{{_param.msg}}</p>
+                <!-- <div class="look" tapmode="hover" onclick="fnCloseWin()">查看订单详情</div> -->
+            {{else}}
+                <div class="look" tapmode="hover" onclick="fnOpen('my/service_win.html')">{{'查看售后详情' | fnLanguage_public}}</div>
+                <div class="look" tapmode="hover" onclick="fnOpen('business/orderDetails_win.html')">{{'查看订单详情' | fnLanguage_public}}</div>
+            {{/if}}
+
+            {{if [1, 2,4, 6].indexOf(+_param.type) == -1 }}
+                <div class="look quit" tapmode="hover" onclick="fnCloseWin()">{{'返回' | fnLanguage_public}}</div>
+            {{/if}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    // var api={getPrefs :function(){}}
+    // fnValue('#wrap', template('wrap-template', {_param:{type:4}}));
+
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+
+        api.setWinAttr({
+            slidBackEnabled: false
+        });
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+            fnCloseWin();
+        });
+
+        api.addEventListener({
+            name: 'viewdisappear'
+        }, function(ret, err){
+            setTimeout(function(){
+                fnClose();
+            }, 600)
+        });
+    });
+
+    function stripePayClose(){
+        api.execScript({
+            name:"home_win",
+            frameName:"homeHeader_frm",
+            script: `setOrderIndex(1);`
+        });
+        api.execScript({
+            name:"home_win",
+            script: 'fnInitTableBar(2);'
+        });
+        fnOpen("home/home_win.html")
+    }
+
+    function fnCloseWin(){
+        console.log(JSON.stringify(APP));
+        if(APP._param.pay_method==APP.ORDER.pay_method.bankCard.id){
+            stripePayClose();
+        }else{
+            fnClose({
+                name: APP._param.__startWinName || ''
+            })
+        }
+       
+    }
+</script>
+</html>

@@ -1,0 +1,50 @@
+.ic_email{
+    background: url("../image/v2/ic_email.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_email1{
+    background: url("../image/v2/ic_email1.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_pass{
+    background: url("../image/v2/ic_pass.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_google{
+    background: url("../image/v2/ic_google.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_user{
+    background: url("../image/v2/ic_user.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_male{
+    background: url("../image/v2/ic_male.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_phone{
+    background: url("../image/v2/ic_phone.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_dob{
+    background: url("../image/v2/ic_dob.png") no-repeat center;
+    background-size: 30px;
+}
+.ic_facebook{
+    background: url("../image/v2/ic_facebook.png") no-repeat center;
+    background-size: 30px;
+}
+.bg1{
+    background: url(../image/v2/ic_pizza.png) no-repeat center;
+}
+.bg2{
+    background: url(../image/v2/ic_italian.png) no-repeat center;
+}
+.img_illustration{
+    background: url(../image/v2/img_illustration.png) no-repeat center;
+    background-size: 100%;
+}
+.img_verify{
+    background: url(../image/v2/img_verify.png) no-repeat center;
+    background-size: 100%;
+}

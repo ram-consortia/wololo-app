@@ -1,0 +1,634 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .home{
+                padding-top: pxToRem(40);
+            }
+            .swiper {
+                padding-bottom: pxToRem(88);
+                width: pxToRem(2400);
+                margin: 0 auto;
+                .wrap {
+                    position: relative;
+                    .swiper-container {
+                        /*border-radius: pxToRem(16);*/
+                        .swiper-wrapper {
+                            .swiper-slide {
+                                img {
+                                    width: 100%;
+                                }
+                                .swiper-img {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0;
+                                    height: 100%;
+                                    @include set-bg-img( $name: "icon-background3.png");
+
+                                    .name {
+                                        position: absolute;
+                                        left: 0;
+                                        right: 0;
+                                        bottom: 0;
+                                        height: pxToRem(102);
+                                        font-size: pxToRem(36);
+                                        line-height: pxToRem(102);
+                                        color: #fff;
+                                        padding: 0 pxToRem(40);
+                                        @include text-overflow(1);
+                                        background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 100%);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .swiper-pagination {
+                        position: absolute;
+                        left: 50%;
+                        bottom: pxToRem(-38);
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                        width: 100%;
+                        height: pxToRem(40);
+
+                        .swiper-pagination-bullet {
+                            width: pxToRem(10);
+                            height: pxToRem(10);
+                            background: #D4D4D4;
+                            border-radius: pxToRem(10);
+                            margin: 0 pxToRem(5);
+
+                            &.swiper-pagination-bullet-active {
+                                background-color: $bg-color;
+                            }
+                        }
+                    }
+                }
+            }
+            .classification-center{
+                width: pxToRem(2400);
+                margin: 0 auto;
+                @include flex-box();
+                overflow-y:auto;
+            }
+            .classification {
+                overflow: hidden;
+                margin-right: pxToRem(-40);
+                .gap {
+                    /*width: pxToRem(366);
+                    height: pxToRem(228);*/
+                    float: left;
+                    .one-third {
+                        /*position: relative;*/
+                        margin: 0 pxToRem(40) pxToRem(34) 0;
+                        /*img {
+                            width: 100%;
+                            border-radius: pxToRem(8);
+                        }*/
+                        .img-name {
+                            position: relative;
+                            width: pxToRem(366);
+                            height: pxToRem(228);
+                            border-radius: pxToRem(8);
+                            @include set-bg-img( $name: "icon-background5.png");
+
+                            .names {
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                height: pxToRem(66);
+                                font-size: pxToRem(24);
+                                line-height: pxToRem(66);
+                                color: #fff;
+                                padding: 0 pxToRem(24);
+                                text-align: center;
+                                @include text-overflow(1);
+                                border-bottom-left-radius: pxToRem(8);
+                                border-bottom-right-radius: pxToRem(8);
+                                background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+                            }
+                        }
+                    }
+                }
+            }
+            .type{
+                width: pxToRem(2260);
+                overflow: hidden;
+                overflow-x:auto;
+                @include flex-box();
+                padding: pxToRem(34) pxToRem(70) pxToRem(54);
+                background-color: #fff;
+                margin: 0 auto pxToRem(40);
+                box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+                .one-category{
+                    display: inline-block;
+                    float: left;
+                    min-width: pxToRem(144);
+                    height: pxToRem(132);
+                    margin: 0 pxToRem(20);
+                    .type-img{
+                        width: pxToRem(84);
+                        height: pxToRem(84);
+                        margin: 0 auto pxToRem(14);
+                        @include set-bg-img( $name: "icon-background1.png");
+                    }
+                    .type-name{
+                        font-size: pxToRem(24);
+                        width: pxToRem(144);
+                        color: #333;
+                        line-height: pxToRem(34);
+                        text-align: center;
+                        @include text-overflow(1);
+                    }
+                }
+            }
+            .collection-center{
+                background-color: #fff;
+                width: pxToRem(2400);
+                box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+                margin: 0 auto pxToRem(24);
+            }
+            .collection {
+                overflow: hidden;
+                padding: pxToRem(20) pxToRem(22);
+                .con {
+                    float: left;
+                    margin: pxToRem(20);
+                    width: pxToRem(744);
+                    height: pxToRem(584);
+                    border-radius: pxToRem(8);
+                    box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+                    .img {
+                        /*width: 100%;*/
+                        min-height: pxToRem(392);
+                        border-top-left-radius: pxToRem(8);
+                        border-top-right-radius: pxToRem(8);
+                        @include set-bg-img( $name: "icon-background2.png");
+                    }
+                    .bot {
+                        background-color: #fff;
+                        border-bottom-left-radius: pxToRem(8);
+                        border-bottom-right-radius: pxToRem(8);
+
+                        &.bot-border {
+                            border-top-left-radius: pxToRem(8);
+                            border-top-right-radius: pxToRem(8);
+                        }
+
+                        .message {
+                            padding-top: pxToRem(22);
+                            margin: 0 pxToRem(32);
+                            &.message-line {
+                                padding: pxToRem(24) 0;
+                                @include border-bottom-m;
+
+                                &::after {
+                                    border-color: #EAEAEA;
+                                };
+                            }
+
+                            .til {
+                                @include flex-box();
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(40);
+                                p{
+                                    @include text-overflow(1);
+                                }
+                                .til-img {
+                                    display: block;
+                                    min-width: pxToRem(76);
+                                    height: pxToRem(76);
+                                    margin-right: pxToRem(32);
+                                    border-radius: 50%;
+                                    @include set-bg-img( $name: "icon-photo.png");
+                                }
+
+                                .hot {
+                                    display: inline-block;
+                                    font-size: pxToRem(26);
+                                    color: #fff;
+                                    height: pxToRem(36);
+                                    line-height: pxToRem(36);
+                                    padding: 0 pxToRem(10);
+                                    border-radius: pxToRem(36);
+                                    margin-right: pxToRem(8);
+                                    vertical-align: text-top;
+                                    background: linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+                                }
+                            }
+
+                            .box {
+                                @include flex-box();
+                                padding-top: pxToRem(16);
+                                .item {
+                                    @include flex-box();
+                                    @include flex-item();
+                                    .score {
+                                        font-size: pxToRem(24);
+                                        color: $bg-color;
+                                        line-height: pxToRem(40);
+                                        margin-right: pxToRem(17);
+
+                                        &.score-right {
+                                            margin-right: pxToRem(30);
+                                        }
+
+                                        .num {
+                                            font-size: pxToRem(34);
+                                            font-weight: bold;
+                                            @extend .font-din;
+                                        }
+                                    }
+
+                                    .branch {
+                                        font-size: pxToRem(22);
+                                        color: $bg-color;
+                                        height: pxToRem(28);
+                                        line-height: pxToRem(28);
+                                        padding: 0 pxToRem(8);
+                                        border: pxToRem(2) solid $bg-color;
+                                        border-radius: pxToRem(2);
+                                        margin-right: pxToRem(20);
+                                        @include prefixCss3($property: align-self, $value: center);
+                                    }
+
+                                    .stars {
+                                        display: inline-block;
+                                        font-size: 0;
+                                        vertical-align: middle;
+                                        margin-right: pxToRem(19);
+                                        @include prefixCss3($property: align-self, $value: center);
+
+                                        .star {
+                                            display: inline-block;
+                                            width: pxToRem(28);
+                                            height: pxToRem(28);
+                                            margin: 0 pxToRem(3);
+                                            @include set-bg-img( $name: "icon-star.png", $size: pxToRem(28) auto, $position: center center);
+
+                                            &.active {
+                                                @include set-bg-img( $name: "icon-star.png", $size: pxToRem(28) auto, $position: center center);
+                                            }
+
+                                            &.half-star {
+                                                @include set-bg-img( $name: "icon-half.png", $size: pxToRem(28) auto, $position: center center);
+                                            }
+                                        }
+                                    }
+
+                                    .shop {
+                                        font-size: pxToRem(24);
+                                        color: #666;
+                                        line-height: pxToRem(34);
+                                        @include prefixCss3($property: align-self, $value: center);
+
+                                        .shop-right {
+                                            &::after {
+                                                content: '';
+                                                display: inline-block;
+                                                width: pxToRem(2);
+                                                height: pxToRem(20);
+                                                background-color: #ccc;
+                                                margin-left: pxToRem(20);
+                                                margin-right: pxToRem(20);
+                                            };
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .address {
+                            @include flex-box();
+                            padding: pxToRem(14) pxToRem(32) 0;
+
+                            &.address-line {
+                                padding: pxToRem(26) pxToRem(30) pxToRem(10);
+                            }
+
+                            .addr {
+                                @include flex-item();
+                                font-size: pxToRem(24);
+                                color: #999;
+                                line-height: pxToRem(34);
+                                @include text-overflow(1);
+
+                                &::before {
+                                    content: '';
+                                    display: inline-block;
+                                    min-width: pxToRem(32);
+                                    height: pxToRem(32);
+                                    margin-right: pxToRem(8);
+                                    vertical-align: text-top;
+                                    @include set-bg-img( $name: "web-location.png", $size: pxToRem(28) auto, $position: center center);
+                                };
+                            }
+
+                            .kilometer {
+                                display: inline-block;
+                                font-size: pxToRem(24);
+                                color: #999;
+                                line-height: pxToRem(34);
+                                margin-left: pxToRem(10);
+                                @include prefixCss3($property: align-self, $value: center);
+                            }
+
+                            .go {
+                                display: inline-block;
+                                min-width: pxToRem(124);
+                                height: pxToRem(124);
+                                @include set-bg-img( $name: "icon-go.png", $size: pxToRem(124) auto, $position: center center);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        .all-teams{
+            width: pxToRem(2400);
+            margin: 0 auto pxToRem(178);
+            background-color: #fff;
+            .box{
+                border-bottom: pxToRem(2) solid #EAEAEA;
+                .box-wrap{
+                    overflow: hidden;
+                }
+                .item{
+                    float: left;
+                    position: relative;
+                    padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                    text-align: center;
+                    font-size: pxToRem(28);
+                    color: #666;
+                    line-height: pxToRem(40);
+                    &.active{
+                        color: #333;
+                        &::after{
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            left: 50%;
+                            bottom: pxToRem(8);
+                            @include prefixCss3($property: transform, $value: translateX(-50%));
+                            width: pxToRem(56);
+                            height: pxToRem(16);
+                            @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                        };
+                    }
+                }
+            }
+            .teams{
+                overflow: hidden;
+                padding: pxToRem(26) pxToRem(24);
+                .coupon-img{
+                    float: left;
+                    width: pxToRem(744);
+                    margin: pxToRem(24) pxToRem(20);
+                    box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+                    .img{
+                        width: 100%;
+                        height: pxToRem(282);
+                        border-top-left-radius: pxToRem(16);
+                        border-top-right-radius: pxToRem(16);
+                        @include set-bg-img( $name: "icon-background5.png");
+                    }
+                    .con{
+                        background-color: #fff;
+                        padding: 0 pxToRem(32);
+                        border-bottom-left-radius: pxToRem(16);
+                        border-bottom-right-radius: pxToRem(16);
+                        &.join{
+                            .offered{
+                                .offered-box{
+                                    .group{
+                                        background-image: none;
+                                        width: pxToRem(156);
+                                        height: pxToRem(64);
+                                        border: pxToRem(2) solid #979797;
+                                        color: #333;
+                                    }
+                                }
+                            }
+                        }
+                        &.clustering{
+                            .offered{
+                                .offered-box{
+                                    .group{
+                                        background-color: #ccc;
+                                        background-image: none;
+                                    }
+                                }
+                            }
+                            .coupon{
+                                .coupon-item{
+                                    .price{
+                                        .time{
+                                            .number{
+                                                color: #EAEAEA;
+                                                border: pxToRem(2) solid #EAEAEA;
+                                                .gap{
+                                                    &::before{
+                                                        background-color: #EAEAEA;
+                                                    };
+                                                    &::after{
+                                                        background-color: #EAEAEA;
+                                                    };
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .shop{
+                            padding: pxToRem(16) 0 pxToRem(8);
+                            font-size: pxToRem(28);
+                            color: #333;
+                            line-height: pxToRem(45);
+                            @include text-overflow(1);
+                            .photo{
+                                display: inline-block;
+                                vertical-align: bottom;
+                                width: pxToRem(45);
+                                height: pxToRem(45);
+                                border-radius: 50%;
+                                margin-right: pxToRem(18);
+                                @include set-bg-img( $name: "web-photo.png");
+                            }
+                        }
+                        .coupon{
+                            padding: pxToRem(18) 0;
+                            @include border-bottom-m;
+                            &::after{
+                                border-color: #EAEAEA;
+                            };
+                            @include border-top-m;
+                            &::before{
+                                border-color: #EAEAEA;
+                            };
+                            .coupon-item{
+                                .price{
+                                    border-top-left-radius: 0;
+                                    border-bottom-left-radius: 0;
+                                    width: pxToRem(176);
+                                    padding: 0;
+                                    box-shadow: none;
+                                    border: none;
+                                    margin-right: pxToRem(24);
+                                    border: pxToRem(2) solid $bg-color;
+                                    .time{
+                                        font-size: 0;
+                                        padding-top: pxToRem(16);
+                                        text-align: center;
+                                        .number{
+                                            position: relative;
+                                            display: inline-block;
+                                            font-size: pxToRem(22);
+                                            color: #666;
+                                            line-height: pxToRem(32);
+                                            height: pxToRem(32);
+                                            width: pxToRem(40);
+                                            text-align: center;
+                                            border: pxToRem(2) solid #EAEAEA;
+                                            border-radius: pxToRem(4);
+                                            margin-right: pxToRem(14);
+                                            &:last-of-type{
+                                                content: '';
+                                                margin-right: 0;
+                                            };
+                                            .gap{
+                                                width: pxToRem(20);
+                                                &::before{
+                                                    content: '';
+                                                    display: inline-block;
+                                                    position: absolute;
+                                                    top: pxToRem(9);
+                                                    right: pxToRem(-11);
+                                                    width: pxToRem(4);
+                                                    height: pxToRem(4);
+                                                    background-color: #666;
+                                                    border-radius: 50%;
+                                                };
+                                                &::after{
+                                                    content: '';
+                                                    display: inline-block;
+                                                    position: absolute;
+                                                    bottom: pxToRem(9);
+                                                    right: pxToRem(-11);
+                                                    width: pxToRem(4);
+                                                    height: pxToRem(4);
+                                                    background-color: #666;
+                                                    border-radius: 50%;
+                                                };
+                                            }
+                                        }
+
+                                    }
+                                }
+                                .message{
+                                    padding: 0;
+                                    box-shadow: none;
+                                    border: none;
+                                    .message-item{
+                                        .shop-name{
+                                            @include text-overflow(1);
+                                        }
+                                        .base{
+                                            .market-price{
+                                                margin-top: pxToRem(8);
+                                                margin-bottom: pxToRem(10);
+                                                .market{
+                                                    display: inline-block;
+                                                    padding: 0 pxToRem(8);
+                                                    font-size: pxToRem(22);
+                                                    color: $bg-color;
+                                                    line-height: pxToRem(24);
+                                                    border: pxToRem(2) solid $bg-color;
+                                                    /*border-radius: pxToRem(5);*/
+                                                    background-color: #fff;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .offered{
+                            padding: pxToRem(22) 0;
+                            .offered-box{
+                                @include flex-box();
+                                .offered-item{
+                                    @include flex-item();
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    .people{
+                                        font-size: pxToRem(22);
+                                        color: #333;
+                                        line-height: pxToRem(32);
+                                        padding-bottom: pxToRem(14);
+                                    }
+                                    .progress{
+                                        position: relative;
+                                        width: pxToRem(352);
+                                        height: pxToRem(12);
+                                        border-radius: pxToRem(12);
+                                        background-color: rgba(251,167,94,0.24);
+                                        .prog{
+                                            display: inline-block;
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                            bottom: 0;
+                                            width: 20%;
+                                            border-radius: pxToRem(12);
+                                            background:linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+                                        }
+                                    }
+                                }
+                                .group{
+                                    display: inline-block;
+                                    width: pxToRem(156);
+                                    height: pxToRem(64);
+                                    font-size: pxToRem(30);
+                                    line-height: pxToRem(64);
+                                    text-align: center;
+                                    margin-left: pxToRem(10);
+                                    border-radius: pxToRem(8);
+                                    color: #FF7C4A;
+                                    @extend .font-m;
+                                    border: pxToRem(2) solid #FF7C4A;
+                                    /*@include set-bg-img( $name: "web-submint.png");*/
+                                    &.join{
+                                        background-image: none;
+                                        width: pxToRem(156);
+                                        height: pxToRem(64);
+                                        border: pxToRem(2) solid #979797;
+                                        color: #333;
+                                    }
+                                    &.clustering{
+                                        background-color: #DEDEDE;
+                                        border: pxToRem(2) solid #DEDEDE;
+                                        color: #666;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        }
+    }
+        
+}

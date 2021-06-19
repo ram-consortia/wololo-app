@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+</head>
+<body>
+    <div class="evaluate" id="wrap">
+        <!-- <div class="evaluate-con">
+            <div class="evaluate-box">
+                <div class="pho"></div>
+                <div class="evaluate-message">
+                    <p class="evaluate-name">Karl Kalagin</p>
+                    <span class="stars">
+                        半星加half-star
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star half-star"></span>
+                    </span>
+                </div>
+                <div class="time">2018/06/14</div>
+            </div>
+            <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+            <div class="reply"><span class="color">商家回复：</span>如果你无法简介的表达你的想法，那说明你还不够了解他。</div>
+        </div>
+        <div class="evaluate-con">
+            <div class="evaluate-box">
+                <div class="pho"></div>
+                <div class="evaluate-message">
+                    <p class="evaluate-name">Karl Kalagin</p>
+                    <span class="stars">
+                        半星加half-star
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star half-star"></span>
+                    </span>
+                </div>
+                <div class="time">2018/06/14</div>
+            </div>
+            <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+            <div class="reply-input">
+                <textarea placeholder="回复一下吧～" rows="5"></textarea>
+            </div>
+        </div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无数据' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}}
+            <div class="evaluate-con">
+                <div class="evaluate-box">
+                    <div data-img-url="{{$value.user.avatar}}" data-img-type="!avatar" class="pho"></div>
+                    <div class="evaluate-message">
+                        <p class="evaluate-name">{{$value.user | fnShowUserNickname_base}}</p>
+                        <span class="stars">
+                            <!-- 半星加half-star -->
+                            <% for(var i = 0; i < +$value.score; i++){ %>
+                                <span class="star"></span>
+                            <% } %>
+                        </span>
+                    </div>
+                    <div class="time">{{$value.create_time | dateFormat 'yyyy/MM/dd'}}</div>
+                </div>
+                <div class="text pre-text">{{$value.content}}</div>
+                <div class="reply-input">
+                    {{if $value.reply}}
+                        <div class="pre-text"><span class="color">{{'商家回复' | fnLanguage_public}}：</span>{{$value.reply}}</div>
+                    {{else}}
+                        <!-- <textarea onblur="fnSubmit(this, {{$value.id}})" placeholder="回复一下吧～" rows="4" maxlength="{{_reply_maxlength}}"></textarea> -->
+                        <textarea readonly tapmode="hover" onclick="fnInputText(this, {{$value.id}})" placeholder="{{'回复一下吧' | fnLanguage_public}}～" rows="2"></textarea>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP._reply_maxlength = 500;
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.EV_EVALUATE_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+    });
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGetComment();
+
+        api.execScript({
+            script: 'fnGetCommentAll();'
+        });
+    }
+
+    function fnSubmit(_reply, _id){
+        if( _reply && _reply.length ){
+            var _param = {
+                url: 'base/comment/reply',
+                method: 'POST',
+                data: {
+                    id: _id,
+                    reply: _reply
+                }
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    api.sendEvent({
+                        name: APP.EV_NAME.EV_EVALUATE_UPDATE,
+                        extra: {}
+                    });
+
+                    fnToast(ret.msg, function(){
+
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+    function fnInputText(_el, _id){
+        fnInputText_public({
+            title: '回复评论',                 //选填 |    ''        |  String    |  页面标题
+            msg: '',                //选填 |    ''        |  String    |  默认输入的内容
+            placeholder: $(_el).attr('placeholder'),        //选填 |    ''        |  String    |  提示文案
+            maxlength: APP._reply_maxlength,                //选填 |              |  Number    |  最大输入长度（不设置就没有长度限制）
+            submitText: '提交',             //选填 |    '保存'    |  Number    |  提交按钮的文案
+            isForcedInput: true            //选填 | false        |  Boolean   |  是否强制输入
+        }, function(ret){
+            // ret.msg                     //必返 |              |  String    |  输入的内容
+            // alert(debugAlert(arguments))
+            fnSubmit(ret.msg, _id);
+        })
+    }
+
+    function fnGetComment(){
+        fnGetCommentList_base({
+            page: APP.PAGE.START_PAGE,
+            limit: 8,
+            // limit: APP.PAGE.SKIP_PAGE,
+            type: APP._param.index ? 1 : 2
+        }, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGetComment();
+            }
+        })
+    }
+</script>
+</html>

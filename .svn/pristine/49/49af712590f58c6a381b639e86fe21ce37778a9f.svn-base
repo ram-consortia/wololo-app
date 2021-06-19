@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/my.css" />
+    <link rel="stylesheet" href="../../font/iconfont.css" />
+    <link rel="stylesheet" href="../../css/user.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/home.css" />
+</head>
+<body >
+<div class="main" id="wrap">
+    <!--<div class="user">
+    <div class="userTopA userTopAB">
+        <div class="userTopW">
+            <span class="userTopWSpan userTopWSpanA" tapmode="hover" onclick="fnClose();"></span>
+            <p class="topRight"  tapmode="hover" onclick="fnToOrder();">
+                Voucher Redeemed
+            </p>
+        </div>
+        <div class="contentFloat contentFloatA" >
+            <div class="contentFloatTop">
+                <div class="userLeft">
+                    <div data-img-url="{{_user.avatar}}" data-img-type="!avatar" class="contentFloatTopUser" tapmode="hover" onclick="fnOpen('my/personalData_win.html')"></div>
+
+                    <div class="contentFloatTopName">
+                        <p class="contentFloatTopNameTop">我的</p>
+
+                        <p class="contentFloatTopNameFooter">
+                            <i></i>
+                            <span>lv 2</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="contentFloatBottom contentFloatBottomA">
+
+                <div class="succes" >
+
+                    <img src="../../image/fail_new.png" id="" >
+                    <p>Successful</p>
+
+                </div>
+                <div class="Reason">
+                    <span>[Reason]</span>
+                    <span>*Allready redeemed/ time limited </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="butt">Close</div>
+    </div>
+    </div>-->
+</div>
+
+
+
+
+<script type="text/html" id="wrap-template">
+    <div class="user">
+
+
+        {{if codeY === 1}}
+
+
+        <div class="userTopA userTopAB">
+            <div class="userTopW">
+                <span class="userTopWSpan userTopWSpanA" tapmode="hover" onclick="fnClose();"></span>
+                <p class="topRight"  tapmode="hover" onclick="fnToOrder();">
+                    Voucher Redeemed
+                </p>
+            </div>
+            <div class="contentFloat contentFloatA" >
+                <div class="contentFloatTop">
+                    <div class="userLeft">
+                        <div data-img-url="{{_user.avatar}}" data-img-type="!avatar" class="contentFloatTopUser" tapmode="hover" onclick="fnOpen('my/personalData_win.html')"></div>
+
+                        <div class="contentFloatTopName">
+                            <p class="contentFloatTopNameTop">{{_user | fnShowUserNickname_base}}</p>
+
+                            <p class="contentFloatTopNameFooter">
+                                <i></i>
+                                <span>{{ {'target': _user.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="contentFloatBottom contentFloatBottomA">
+
+                    <div class="succes" >
+
+                        <img src="../../image/fail_new.png.png">
+                        <p>Successful</p>
+                    </div>
+                    <div class="Reason">
+                        <span>[Reason]</span>
+                        <span>*Allready redeemed/ time limited </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="butt">Close</div>
+        </div>
+    {{else}}
+
+    <div class="userTopA userTopAB">
+        <div class="userTopW">
+            <span class="userTopWSpan userTopWSpanA" tapmode="hover" onclick="fnClose();"></span>
+            <p class="topRight"  tapmode="hover" onclick="fnToOrder();">
+                Voucher Redeemed
+            </p>
+        </div>
+        <div class="contentFloat contentFloatA" >
+            <div class="contentFloatTop">
+                <div class="userLeft">
+                    <div data-img-url="{{_user.avatar}}" data-img-type="!avatar" class="contentFloatTopUser" tapmode="hover" onclick="fnOpen('my/personalData_win.html')"></div>
+
+                    <div class="contentFloatTopName">
+                        <p class="contentFloatTopNameTop">{{_user | fnShowUserNickname_base}}</p>
+
+                        <p class="contentFloatTopNameFooter">
+                            <i></i>
+                            <span>{{ {'target': _user.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="contentFloatBottom contentFloatBottomA">
+
+                <div class="succes" >
+
+                    <img src="../../image/success_new.png">
+                    <p>Successful</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="butt">Close</div>
+    </div>
+
+    {{/if}}
+</script>
+</body>
+<script type="text/javascript" src="../../framework/jquery.min.js"></script>
+<script type="text/javascript" src="../../framework/jquery-qrcode-0.17.0.min.js"></script>
+<script type="text/javascript" src="../../framework/html2canvas.min.js"></script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+  // 页面初始化
+  APP.init(function(){
+    fnInit();
+    //callback();
+    if(APP._param.idr === 'xixi'){
+      APP.codeY = 0;
+      api.addEventListener({
+        name: 'keyback'
+      }, function (ret, err) {
+        api.closeToWin({name:'home/home_win.html'})
+      });
+
+    }
+    if(APP._param.idr === 'hehe'){
+      APP.codeY = 1;
+      api.addEventListener({
+        name: 'keyback'
+      }, function (ret, err) {
+        api.closeToWin({name:'home/home_win.html'})
+      });
+    }
+  });
+
+  function fnToOrder() {
+    fnOpen("home/home_win.html",{
+      name: 'home_win',
+      reload:true,
+      param:{
+        pages:'Complete'
+      }
+    },()=>{
+      api.execScript({
+        frameName: 'homeHeader_frm',
+        script: 'orderChangeIndex();'
+      });
+
+    });
+  }
+  function fnInit(){
+
+    fnUser_public({
+      isLastData: true,        //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）
+      hasProgress: APP.NO
+    }, function(_user){
+
+      if( _user ){
+        // 当前登陆了用户
+        APP._user = _user.user;
+
+        fnValue('#wrap', template('wrap-template', APP));
+        //console.log(JSON.stringify(APP))
+        APP.fixStatusBar( $('.header')[0] );
+
+        // 二维码类型（type）。0：用户二维码 code_id，1：优惠券订单单号二维码,2：商户二维码
+        var _content = {
+          type: 0,
+          id: APP._user.id,
+          CURRENT_APP_ID: APP.CURRENT_APP_ID,
+          user_id: APP._user.id
+        }
+        if( APP._param.sn ){
+          // 订单二维码
+          _content = {
+            type: 1,
+            id: APP._param.id,
+            CURRENT_APP_ID: APP.CURRENT_APP_ID,
+            user_id: APP._param.user_id,
+            store_id: APP._param.store_id
+          }
+        }else if( APP._param.store_user_id ){
+          // 商户二维码
+          _content = {
+            type: 2,
+            CURRENT_APP_ID: APP.CURRENT_APP_ID,
+            store_id: APP._user.id
+          }
+        }
+        var _param = {
+          render: "canvas",
+          ecLevel: "H",
+          minVersion: 1,
+          fill: "#333333",
+          background: "#ffffff",
+          // content
+          text: JSON.stringify(_content),
+
+          // size in pixel
+          size: $('#canvas').width()*2,
+          radius: 0,
+          quiet: 1,
+          mode: 4,
+          mSize: 0.25,
+          mPosX: 0.5,
+          mPosY: 0.45,
+          label: "jQuery.qrcode",
+          fontname: "Ubuntu",
+          fontcolor: "#ff9818",
+          image: $('#img')[0]
+        }
+
+
+
+        setTimeout(function(){
+          $('#canvas').qrcode(_param);
+        }, 100)
+
+
+
+        //console.log(APP.codeY)
+        setTimeout(function () {
+          if (APP.codeY === 0 || APP.codeY === undefined || APP.codeY === 1) {
+
+            var _paramA = {
+              render: "canvas",
+              ecLevel: "H",
+              minVersion: 1,
+              fill: "#333333",
+              background: "#ffffff",
+              // content
+              text: JSON.stringify(_content),
+
+              // size in pixel
+              size: $('#canvasA').width() * 2,
+              radius: 0,
+              quiet: 1,
+              mode: 4,
+              mSize: 0.25,
+              mPosX: 0.5,
+              mPosY: 0.45,
+              label: "jQuery.qrcode",
+              fontname: "Ubuntu",
+              fontcolor: "#ff9818",
+              image: $('#imgA')[0]
+            }
+
+            setTimeout(function () {
+              $('#canvasA').qrcode(_paramA);
+            }, 100)
+          }
+
+        },100)
+
+
+
+        // fnEncodeImg_public({
+        //     content: JSON.stringify(_content)            //必填     |   ''   |     string  |  生成二维码的字符串
+        // }, function(ret){
+        //     // ret.path                                             //必返   string  |  二维码本地地址
+        //     APP._codeImg = ret.path;
+        //     $('.code').css({
+        //         'background-image': 'url('+ret.path+')'
+        //     })
+        //     $('.save').removeClass('hide')
+        // })
+
+
+
+
+      }else{
+        // 当前没有登陆用户
+      }
+    })
+  }
+
+  function callback() {
+    var _parama = {
+      url: 'order/order/isWriteOff',
+      method: 'GET',
+      data: {
+        order_id: APP._param.id,
+        he:api.winName
+      }
+    }
+    fnAjax(_parama, function (ret) {
+      //console.log(JSON.stringify(ret))
+      if (ret.code === 1) {
+        APP.codeY = ret.code;
+        fnInit();
+
+      }else{
+        setTimeout(()=>{
+          callback();
+        },2000)
+      }
+
+
+    })
+  }
+
+
+
+
+
+
+
+
+</script>
+</html>

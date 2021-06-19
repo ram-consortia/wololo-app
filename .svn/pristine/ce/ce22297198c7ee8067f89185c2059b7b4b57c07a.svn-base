@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/feedback.css" />
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="content flex-item-vertical">
+            <div class="li" tapmode="hover" onclick="fnEmpty()">
+                <div class="feedback">*反馈类型</div>
+                <div class="input">
+                    <input type="text" readonly placeholder="请选择">
+                </div>
+                <div class="right"></div>
+            </div>
+            <div class="con">
+                <div class="til">描述您的建议（0/500）</div>
+                <div class="textarea">
+                    <textarea type="text" placeholder="请描述您的建议"></textarea>
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">上传图片（1/3）</div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnEmpty()">提交</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixTabBar('.bottom');
+    });
+
+
+
+
+</script>
+</html>

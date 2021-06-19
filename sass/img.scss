@@ -1,0 +1,85 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .main{
+        .content{
+            .imgs{
+                padding: pxToRem(4);
+                overflow: hidden;
+                .img{
+                    float: left;
+                    width: 25%;
+                    .pho-img{
+                        margin: pxToRem(4);
+                        position: relative;
+                        img{
+                            width: 100%;
+                        }
+                        .pho{
+                            display: inline-block;
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            top: 0;
+                            @include set-bg-img( $name: "icon-background1.png");
+                            .sel{
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                width: pxToRem(62);
+                                height: pxToRem(62);
+                                @include set-bg-img( $name: "icon-sel5.png", $size: pxToRem(46) auto, $position: center center);
+                                &.active{
+                                    @include set-bg-img( $name: "icon-sel6.png", $size: pxToRem(46) auto, $position: center center);
+                                }
+                            }
+                            .homepage{
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                height: pxToRem(40);
+                                background-color: rgba(0,0,0,0.6);
+                                font-size: pxToRem(22);
+                                color: #fff;
+                                line-height: pxToRem(40);
+                                text-align: center;
+                                @include text-overflow(1);
+                                &.active{
+                                    background-color: #9E9E9E;
+                                }
+                            }   
+                        }
+                    }
+                        
+                }
+            }
+        }
+    }
+    .bottom{
+        overflow: hidden;
+        @include border-top-m;
+        &::before{
+            border-color: #EAEAEA;
+        };
+        .save{
+            margin: pxToRem(16) pxToRem(30);
+            border-radius: pxToRem(8);
+            height: pxToRem(80);
+            text-align: center;
+            line-height: pxToRem(80);
+            font-size: pxToRem(30);
+            color: #fff;
+            text-align: center;
+            @include set-bg-img( $name: "icon-submint.png");
+        }
+    }
+    #no-data{
+        &::before{
+            @include set-bg-img( $name: "icon-nodata6.png", $size: pxToRem(320) auto, $position: center bottom);
+        };
+    }
+}

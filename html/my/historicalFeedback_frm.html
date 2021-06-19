@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/historicalFeedback.css" />
+</head>
+<body>
+    <div id="wrap">
+        <!-- <div id="list">
+            <div class="con">
+                <div class="box">
+                    <div class="item">反馈类型：投诉</div>
+                    <div class="time">2018/06/14</div>
+                </div>
+                <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"></span>
+                </div>
+                <div class="reply"><span class="size">官方回复：</span>如果你无法简介的表达你的想法，那说明你还不够了解他。</div>
+            </div>
+            <div class="con">
+                <div class="box">
+                    <div class="item">反馈类型：投诉</div>
+                    <div class="time">2018/06/14</div>
+                </div>
+                <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                </div>
+                <div class="reply"><span class="size">官方回复：</span>如果你无法简介的表达你的想法，那说明你还不够了解他。</div>
+            </div>
+        </div>
+        <div id="no-data" class="hide">{{'暂无数据' | fnLanguage_public}}</div>-->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无相关内容' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}}
+            <div class="con">
+                <div class="box">
+                    <div class="item">{{'反馈类型' | fnLanguage_public}}：{{ {'target': $value.type, 'key': 'id', 'resKey': 'value', 'data': FEEDBACK.type} | fnGetRelation_public }}</div>
+                    <div class="time">{{$value.create_time | dateFormat 'yyyy-MM-dd'}}</div>
+                </div>
+                <div class="text pre-text">{{$value.introduce}}</div>
+                {{if $value.images}}
+                    <div class="imgs">
+                        {{each $value.images $item}}
+                            <span class="img" data-img-url="{{$item}}" data-img-type="!avatar" tapmode="hover" onclick="fnPhotoBrowser(this)"></span>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+                {{if $value.remarks}}
+                    <div class="reply">
+                        <span class="size pre-text">{{'官方回复' | fnLanguage_public}}：</span>{{$value.remarks}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+    });
+
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        fnGetList_base({
+            url: 'base/feedback/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE
+            }
+        }, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+
+    function fnPhotoBrowser(_el){
+        var _pic = [];
+        $(_el).closest('.imgs').find('.img').each(function(_index, _el){
+            _pic.push($(_el).attr('data-img-url'));
+        })
+        fnPhotoBrowser_public({
+            pics: _pic,    // [] | Array | 必传 | 图片数组
+            default: $(_el).index() || 0  // 0 | number | 首次显示图片索引
+        });
+    }
+</script>
+</html>

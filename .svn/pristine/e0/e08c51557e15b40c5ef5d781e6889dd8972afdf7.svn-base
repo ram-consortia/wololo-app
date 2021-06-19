@@ -1,0 +1,376 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/set.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">Account management</div>
+        </header>
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'帐号管理' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="content flex-item-vertical">
+            <div class="ul">
+                <div class="li li-top" tapmode="hover" onclick="fnOpenEditUsername({{YES}})">
+                    <p class="account">{{'手机号' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly
+                            {{if _user.mobile}}
+                                value="{{_user.mobile | fnHideMobile_public}}"
+                            {{/if}}
+                        >
+                    </div>
+                    <div class="right"></div>
+                </div>
+                <div class="li li-top" tapmode="hover" onclick="fnOpenEditUsername()">
+                    <p class="account">{{'邮箱号' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly
+                            {{if _user.user_email}}
+                                value="{{_user.user_email | fnHideMobile_public}}"
+                            {{/if}}
+                        >
+                    </div>
+                    <div class="right"></div>
+                </div>
+                <div class="li li-top" tapmode="hover" onclick="fnOpenSetPassword({{YES}})">
+                    <p class="account">{{'修改密码' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div>
+                    <div class="right"></div>
+                </div>
+                <div class="li li-top" tapmode="hover" onclick="fnOpen('my/myAddress_win.html')">
+                    <p class="account">My Address</p>
+                    <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div>
+                    <div class="right"></div>
+                </div>
+
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+    });
+
+    function fnInit(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnLayout();
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+    function fnLayout(){
+        var _param = {
+            url: 'user/index/third_info',
+            method: 'GET',
+            data: {
+
+            }
+        }
+        fnAjax(_param, function(ret, err) {
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+
+                if( APP._systemVersion >= '13' && APP.hasIos() ){
+                    APP._isAppleLogin = APP.YES;
+                }
+
+                APP._thirdInfo = ret.data;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+            }else{
+                fnToast(ret.msg);
+            }
+        });
+    }
+
+    function fnBindApple(){
+        var _type = APP.THREE.type.apple.id;
+        if( APP._thirdInfo && APP._thirdInfo.apple ){
+            fnUnBind(_type);
+        }else{
+            var Apple = api.require('Apple');
+            var _param = {
+                requestedScopes: ['fullName', 'email']
+            }
+
+            debugAlert('Apple-login-开始', _param)
+            Apple.login(_param, function(ret, err) {
+                debugAlert('Apple-login-结束', arguments)
+                // ret = {"status":true,"authInfo":{"identityToken":"eyJraWQiOiJlWGF1bm1MIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoiY29tLldvbG9sb2x0ZC5Xb2xvbG8iLCJleHAiOjE1ODM4NDI0ODAsImlhdCI6MTU4Mzg0MTg4MCwic3ViIjoiMDAwNzc2LmZiN2E4NzBiYWIxNjRiNTc4YTY4OGMyOGE1NTMyODFjLjExNTUiLCJjX2hhc2giOiJNUHRneUF1OU01S1dxTi01VXVDZnVnIiwiYXV0aF90aW1lIjoxNTgzODQxODgwLCJub25jZV9zdXBwb3J0ZWQiOnRydWV9.ljI7Be_AP5r_5Olhge8a5MVXApTAtvEbYGRUBbHlZNS4CKp5n6ep9tZn6UpzTdBfgd6agRMtk0F8260x7O0tVQjJOAUIhqJdno9ESvTUnp8FBaNk3qOTxLOiC6m8D0IPRVqkpeg__Vb1VnQ0eetzRRMs0cqD9GaK6uGVuF66yI_migEogaRrumFrxkCnmbgk1LjXNdx3Rr67Htw2N-wjAJXOpJjNhCKk4mbKRcllUd7ECoejR6gFBHN6TAKaSaH9acwISj16XLseX_pRSZyhLbHiBZ-Kg6YrCr_6Pm40svKa2FSFZUhVDKW6TXI5N-HrzCEx5F_sBBwNPOSddAhcmw","authorizedScopes":[],"authorizationCode":"c0d12090fbf5f40f7815e79b3e6df7c5f.0.nxxw.usSeBrOfDA-USQc5p6Vi_A","realUserStatus":"unknown","fullName":{"namePrefix":"","givenName":"","nameSuffix":"","middleName":"","familyName":"","nickname":""},"email":"","state":"","user":"000776.fb7a870bab164b578a688c28a553281c.1155"}}
+
+                if( ret && ret.status && ret.authInfo && ret.authInfo.user ){
+                    fnBind({
+                        type: _type,
+                        openid: ret.authInfo.user,
+                        nickname: ret.authInfo.fullName.nickname ? ret.authInfo.fullName.nickname : '',
+                        more: ret.authInfo
+                    });
+                }else{
+
+                }
+            });
+        }
+    }
+
+    function fnBindGoogle(){
+        var _type = APP.THREE.type.google.id;
+        if( APP._thirdInfo && APP._thirdInfo.google ){
+            fnUnBind(_type);
+        }else{
+            var google = api.require('google');
+            debugAlert('google登录开始')
+            google.signIn(function(ret, err) {
+                // alert(debugAlert('google登录开始', arguments))
+                if( ret && ret.userInfo && ret.userInfo.userID ){
+                    fnBind({
+                        type: _type,
+                        openid: ret.userInfo.userID,
+                        nickname: ret.userInfo.profile ? ret.userInfo.profile.name : '',
+                        more: ret.userInfo.profile
+                    });
+                }else{
+
+                }
+            });
+        }
+    }
+
+    function fnBindFacebook(){
+        var _type = APP.THREE.type.facebook.id;
+        if( APP._thirdInfo && APP._thirdInfo.facebook ){
+            fnUnBind(_type);
+        }else{
+            FACEBOOK.login(function(ret){
+                // alert(debugAlert(2222, arguments))
+                if( ret.status && ret.userId ){
+                    fnBind({
+                        type: _type,
+                        openid: ret.userId,
+                        more: ret
+                    });
+                }
+            })
+        }
+    }
+
+
+    function fnBindWx(){
+        var _type = APP.THREE.type.wx.id;
+        if( APP._thirdInfo && APP._thirdInfo.wx ){
+            fnUnBind(_type);
+        }else{
+            WX.login(function(ret){
+                // alert(1111, debugAlert(arguments))
+                if( ret.status ){
+                    fnBind({
+                        type: _type,
+                        openid: ret.openid,
+                        nickname: ret.nickname,
+                        avatar: ret.headimgurl,
+                        union_id: ret.unionid,
+                        more: {
+                            country: ret.country,
+                            sex: ret.sex,
+                            province: ret.province
+                        }
+                    });
+                }
+            })
+        }
+    }
+
+    function fnBindTwitter(){
+        var _type = APP.THREE.type.twitter.id;
+        if( APP._thirdInfo && APP._thirdInfo.twitter ){
+            fnUnBind(_type);
+        }else{
+            TWITTER.login(function(ret, err){
+                // alert(debugAlert(2222, arguments))
+                if( ret.status ){
+                    fnBind({
+                        type: _type,
+                        openid: ret.userID,
+                        nickname: ret.userName,
+                        more: {
+                            authToken: ret.authToken,
+                            authTokenSecret: ret.authTokenSecret
+                        }
+                    });
+                }else{
+                    fnToast(err.msg);
+                }
+            })
+        }
+    }
+
+
+    function fnBind(_data){
+        var _param = {
+            url: 'user/index/third_bind',
+            method: 'POST',
+            data: _data
+        }
+        fnAjax(_param, function(ret, err) {
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                fnInit();
+                fnToast(ret.msg);
+            }else{
+                fnToast(ret.msg);
+            }
+        });
+    }
+
+
+    function fnUnBind(_type){
+        fnAlert_public({
+            title: '提示', //‘’ | 选填 |不传则不显示弹窗顶部文案
+            msg: '是否解除绑定？', //’’ | 选填 |不传则不显示内容
+            buttons: [{ //’’ | 至少传入一个按钮 |数组有多少就显示多少按钮
+                text: '取消', //’确认’ | 至少传入一个按钮 |按钮文案
+                callback: function() { //function | 必传 |点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: '确认',
+                active: true, //false | 选填 | 是否高亮
+                callback: function() {
+                    _start();
+                }
+            }]
+        }, function() { //如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数
+
+        });
+
+        function _start(){
+            var _param = {
+                url: 'user/index/third_un_bind',
+                method: 'POST',
+                data: {
+                    type: _type
+                }
+            }
+            fnAjax(_param, function(ret, err) {
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    fnInit();
+                    fnToast(ret.msg);
+                }else{
+                    fnToast(ret.msg);
+                }
+            });
+        }
+    }
+    function fnOpenMyAddress() {
+
+    }
+    function fnOpenEditUsername(_isEditMobile){
+        if( _isEditMobile ){
+            if( APP._user.mobile ){
+                _startPop({
+                    title: 'Change phone number',
+                    placeholder: 'Please authenticate the registered mobile number first',
+                    checkValue: APP._user.mobile,
+                    errMsg: "Please enter the user's current registered mobile number",
+                    maxlength: 11
+                });
+            }else{
+                _start(APP.YES);
+            }
+        }else {
+            if( APP._user.user_email ){
+                _startPop({
+                    title: 'Change email',
+                    placeholder: 'Please authenticate the registered email first',
+                    checkValue: APP._user.user_email,
+                    errMsg: 'Error in verification mailbox',
+                    maxlength: 30
+                });
+            }else{
+                _start(APP.YES);
+            }
+        }
+
+        function _startPop(_obj){
+            fnOpenInputPop_public({
+                title: _obj.title,                //选填 |           |  String    |  选项 id
+                placeholder: _obj.placeholder,
+                isForcedInput: true,         //选填 | false     |  Boolean   |  是否强制输入
+                maxlength: _obj.maxlength,                //选填 |            |  Number   |  最大输入长度（不设置就没有长度限制）
+                buttons: [{                   //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                    text: '取消',          //必选 |    ''      | string     |  按钮文案
+                    callback: function(ret) {    //必选 |            | Function   | 点击按钮时触发该回调函数
+                        // ret.text             输入的内容
+                        debugAlert(arguments)
+                    }
+                }, {
+                    text: '确定',
+                    active: true,             //可选 |    false   | Boolean    |  是否高亮
+                    callback: function(ret) {
+                        debugAlert(arguments)
+                        // alert('正式环境')
+                        if( _obj.checkValue == ret.text ){
+                            _start(APP.NO);
+                        }else{
+                            fnToast(_obj.errMsg);
+                        }
+                    }
+                }]
+            }, function(){                  //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+                // alert(1)
+            });
+        }
+
+        function _start(_isBind){
+            fnOpen('my/modify_win.html', {
+                param: {
+                    isBind: _isBind,
+                    isEditMobile: _isEditMobile
+                }
+            })
+        }
+    }
+
+    // 打开设置密码/忘记密码页面
+function fnOpenSetPassword(_isSetPassword) {
+    fnOpen('sign/setPassword_win.html', {
+        param: {
+            isSetPassword: _isSetPassword,
+            isEdit:true
+        },
+        repeat: APP.YES
+    })
+}
+
+
+</script>
+</html>

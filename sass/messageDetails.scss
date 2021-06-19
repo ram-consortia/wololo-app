@@ -1,0 +1,12 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .content{
+        padding: pxToRem(20) pxToRem(30);
+        font-size: pxToRem(32);
+        color: #333;
+        line-height: pxToRem(58);
+    }
+}

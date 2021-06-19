@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/aPublicChoiceCity_win.css" />
+</head>
+<body class="flex-vertical">
+    <header class="header">
+        <div tapmode="hover" onclick="fnCloseModel();" class="back icon-back"></div>
+        <div class="title">城市选择</div>
+    </header>
+    <div class="block">
+        <div class="search-city">
+            <input id="keyword" type="text" placeholder="城市名/拼音">
+        </div>
+    </div>
+
+    <div class="main flex-item-vertical">
+        <div class="block">
+            <div class="location">
+                <div class="title">当前城市</div>
+                <div tapmode="hover" onclick="fnLocation()" class="local" id="local">定位中…</div>
+            </div>
+        </div>
+        <div class="city-list" id="city-list">
+            <!-- <div class="city-item">
+                <div class="initials">A</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+            </div>
+            <div class="city-item">
+                <div class="initials">A</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+            </div>
+            <div class="city-item">
+                <div class="initials">A</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+            </div>
+            <div class="city-item">
+                <div class="initials">A</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+                <div class="city">安庆</div>
+            </div> -->
+        </div>
+
+
+        <script type="text/html" id="city-template">
+            {{each _citys}}
+                <div class="city-item">
+                    <div id="{{$index}}" class="initials">{{$index}}</div>
+                    {{each $value $item}}
+                        <div tapmode="hover" onclick="fnSubmit(this)" id="{{$item.pinyin}}" class="city">
+                            <i class="hide">{{$item}}</i>
+                            {{$item.value}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+        </script>
+
+        <div id="initial" class="initial">
+            <!-- <div class="letters">A</div> -->
+        </div>
+    </div>
+
+
+
+    <script type="text/html" id="initial-template">
+        {{each _initial}}
+            <div tapmode onclick="fnHref('{{$value}}')" class="letters">{{$value}}</div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/areaData_v2.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+
+    // 页面初始化
+    APP.init(function(){
+        APP.fixStatusBar( $('.header')[0] );
+        fnInputListener_public('#keyword', function(){
+            var _keyword = fnValue('#keyword');
+            if( _keyword ){
+                _keyword = _keyword.toUpperCase();
+                for( var x in APP._citys ){
+                    for( var j in APP._citys[x] ){
+                        if( APP._citys[x][j].pinyin.toUpperCase().indexOf(_keyword) != -1 || APP._citys[x][j].value.indexOf(fnValue('#keyword')) != -1 ){
+                            debugAlert(APP._citys[x][j])
+                            fnHref(APP._citys[x][j].pinyin);
+                            return;
+                        }
+                    }
+                }
+            }
+        })
+
+        fnInitial();
+        // 监听android返回键
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err){
+            fnCloseModel();
+        });
+
+        // 禁止 ios 侧滑返回
+        api.setWinAttr({
+            slidBackEnabled: false
+        });
+    });
+
+    function fnInitial(){
+
+        APP._citys = fnFormatCityOrder(iosCitys);
+
+        fnValue("#city-list", template("city-template", APP));
+
+        APP._initial = Object.keys(APP._citys).sort();
+
+        // APP._initial = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+        fnValue("#initial", template("initial-template", APP));
+
+        fnLocation();
+    }
+
+    function fnLocation(){
+        if( $('#local i.hide').length ){
+            fnSubmit($('#local')[0]);
+        }else{
+            $('#local').addClass('no-onclick');
+            fnValue('#local', '定位中…');
+
+            fnLatLonGetCity(function(ret){
+                $('#local').removeClass('no-onclick');
+                if( ret ){
+                    fnValue('#local', '<i class="hide">'+JSON.stringify(ret)+'</i>'+ret.value);
+                }else{
+                    fnValue('#local', '定位失败，重新获取位置');
+                }
+            })
+        }
+
+    }
+
+    function fnHref(_href){
+        if( $('#'+_href).length ){
+            $('.main').scrollTop($('#'+_href).offset().top - $('#'+_href).height() - $('.block').offset().height + $('.main').scrollTop() - 15);
+        }else{
+            // fnToast(_href+'下无信息');
+        }
+    }
+
+    function fnFormatCityOrder(_iosCitys){
+        var _arr = {};
+        for( var x in _iosCitys ){
+            var _key = _iosCitys[x].pinyin.substr(0,1).toUpperCase();
+            if( _key in _arr ){
+                _arr[_key].push(_iosCitys[x]);
+            }else{
+                _arr[_key] = [_iosCitys[x]];
+            }
+        }
+        var _arr2 = {};
+        var _keys = Object.keys(_arr).sort();
+        for( var x in _keys ){
+            _arr2[_keys[x]] = _arr[_keys[x]];
+        }
+
+        return _arr2;
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data.time = api.pageParam.time;
+        api.sendEvent({
+            name: APP.EV_NAME.CHOICE_CITY,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_el) {
+        fnClosePop(JSON.parse(fnValue($(_el).find('i.hide')[0])));
+    }
+</script>
+</html>

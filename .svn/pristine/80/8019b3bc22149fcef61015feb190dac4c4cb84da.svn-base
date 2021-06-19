@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicInput.css">
+</head>
+<body class="hide flex-vertical">
+    <div tapmode onclick="fnCloseModel()" class="model-fixd"></div>
+    <div class="wrap" id="wrap">
+        <!-- <div class="text">
+            <div class="title hide">--</div>
+            <div class="input">
+                <input id="name" type="text">
+            </div>
+        </div>
+        <div class="footer">
+            <div class="item" tapmode onclick="fnClose()">取消</div>
+            <div class="item active">确定</div>
+            <div class="item">按钮三</div>
+        </div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="text">
+            <div class="title hide">--</div>
+            <div class="input">
+                <input id="name" type="text">
+            </div>
+        </div>
+        <div class="footer">
+            <!-- <div class="item" tapmode onclick="fnClose()">取消</div>
+            <div class="item active">确定</div>
+            <div class="item">按钮三</div> -->
+            {{each _param.buttons}}
+                <div tapmode="hover" onclick="fnSubmit(this)" class="item {{$value.active && 'active'}}">{{($value.text || '确定') | fnLanguage_public}}</div>
+            {{/each}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+        // 页面初始化
+    APP.init(function() {
+        fnInit();
+    });
+
+    function fnInit(){
+        fnValue('#wrap', template('wrap-template', APP));
+        // 设置地步按钮
+        if( APP._param.buttons && APP._param.buttons.length ){
+            // for( var x in _param.buttons ){
+            //     $('.footer').append('<div tapmode="hover" onclick="fnSubmit(this)" class="item '+(_param.buttons[x].active && 'active' )+'">'+(_param.buttons[x].text || '确定')+'</div>');
+            // }
+        }else{
+            fnClosePop();
+        }
+
+        // 设置标题
+        if( APP._param.title ){
+            fnValue('.title', fnLanguage_public(APP._param.title));
+            $('.title').removeClass('hide');
+        }
+
+        // 设置提示内容
+        if( APP._param.msg ){
+            fnValue('#name', fnLanguage_public(APP._param.msg));
+            $('.msg').removeClass('hide');
+        }
+
+        // 设置输入框最长输入长度
+        if( APP._param.maxlength ){
+            $('#name').attr('maxlength', APP._param.maxlength);
+        }
+
+        // 设置输入框输入限制规则
+        if( APP._param.inputLimit ){
+            $("#name").attr({
+                'data-limit-type': APP._param.inputLimit
+            })
+        }
+
+        // 设置提示内容
+        $("#name").attr({
+            placeholder: fnLanguage_public(APP._param.placeholder || '请输入内容')
+        })
+
+        $('body').removeClass('hide');
+
+
+
+        if( APP.hasIos() ){
+            api.setFrameAttr({
+                name: api.frameName,
+                softInputMode: 'pan'
+            });
+            fnKeyboardListener_public(function(_keyboardHeight){
+                if( _keyboardHeight ){
+                    $('.wrap').addClass('active');
+                }else{
+                    $('.wrap').removeClass('active');
+                }
+            })
+        }
+
+        fnFocus_public("#name");
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel(){
+        if( APP._param.model ){
+            fnClosePop({
+                hasModel: true
+            });
+        }
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data){
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.INPUT_ALERT_POP,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_el){
+        if( APP._param.isForcedInput ){
+            if( $(_el).hasClass('active') ){
+                if( fnValue("#name").length ){
+
+                }else{
+                    fnToast($("#name").attr('placeholder'));
+                    return;
+                }
+            }else{
+
+            }
+        }else{
+
+        }
+        fnClosePop({
+            buttonIndex: $(_el).index(),
+            text: fnValue("#name")
+        });
+    }
+</script>
+</html>

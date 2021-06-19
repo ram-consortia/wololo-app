@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <link rel="stylesheet" href="../../css/coupon2.css">
+</head>
+<body style="box-sizing: border-box;background: #fff" >
+<div class="back" tapmode="hover" onclick="fnClose()"></div>
+<div class="padding20 flex1 flex column padding_top0">
+    <div class="header" style="justify-content: flex-end;">
+        <div class="question_mark flex flex_center justify_end" tapmode="hover" onclick="fnOpen('pop/howItWork_pop.html')">
+            <span>?</span>
+        </div>
+    </div>
+    <div style="color: #666D72">
+        <div class="size12">Western House Hotel</div>
+        <div class="size16 margin_top10 black">2 Night Stay</div>
+        <div class=" flex item_center margin_top20">
+            <div class="bold black">£49.00</div>
+            <div class="size16 color_grey through margin_left10">£70.00</div>
+        </div>
+        <div class="size12 margin_top20">Double Room</div>
+        <div class="size12 margin_top20">Double Room</div>
+        <div class="hr margin_top20" style="transform: scale(1.2)"></div>
+        <div class="flex bold flex_between black size12 padding_top20 margin_top20">
+            <div style="padding: 3px">DELIVERY LOCATION</div>
+            <div style="background-color: #F2F7FB;padding: 3px">Estimate delivery in 4 - 5 Days</div>
+        </div>
+        <div class="size14 flex item_center margin_top20">
+            <img src="../../image/v2/ic_pin.png" alt="" style="margin-right:7px;width: 16px;height: 16px">
+            <div>241 Cheltenham Rd, Bristol, BS6 5QP</div>
+        </div>
+        <div class="black size12 margin_top20 padding_top20 bold">PAYMENT METHOD</div>
+        <div class="flex margin_top10">
+            <img src="../../image/v2/ic_card.png" alt="" style="width: 35px;height: 35px">
+            <div class="flex column flex_between margin_left10">
+                <div class="black size14">VISA CLASSIC</div>
+                <div class="size12">XXXX - XXXX - XXXX - 4692</div>
+            </div>
+        </div>
+        <div class="padding_top20 margin_top20 bold black">Order Summery</div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Subtotal</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Subtotal</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Subtotal</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+        <div class="hr margin_top20" style="transform: scale(1.2)"></div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Total</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+    </div>
+
+
+
+</div>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    function joinDeal(){
+        fnOpen('pop/dealJoined_pop.html')
+    }
+    function share(){
+        var sharedModule = api.require('shareAction');
+        sharedModule.share({
+            text:'Wololo',
+            path: APP._shareUrl,
+            thumbnail:'widget://image/icon-logo.png',
+            type: 'url',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 400,                  //宽度，数字类型
+                    h: 400,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 400,                  //宽度，数字类型
+                    h: 400                   //高度，数字类型
+                },
+                fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+        });
+    }
+</script>
+</body>
+</html>

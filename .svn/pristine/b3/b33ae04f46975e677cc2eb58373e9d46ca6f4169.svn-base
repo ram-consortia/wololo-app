@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/collection.css" />
+</head>
+
+<body>
+    <div class="main" id="wrap">
+
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="hide">
+        </div>
+        <div id="no-data" class="hide">{{'暂无数据' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}} {{set $value = $value.store}}
+        <div class="con" tapmode="hover" onclick="fnJump_base('home/storeDetails_win.html', {{$value.id}})">
+            <div class="img" data-img-url="{{$value | fnGetStoreImage_base}}" data-img-type="!avatar"></div>
+            <div class="bot">
+                <div class="message">
+                    <div class="messageTil">
+                        <div class="til">
+                            <p>
+                                {{if +$value.auth.hot_grade}}
+                                <span class="hot">hot</span> {{/if}}
+                                <span>{{$value | fnShowUserNickname_base}}</span>
+                            <p class="dizhi">{{$value.auth.address}}</p>
+                            {{if $value.auth.store_distance}}
+                            <p class="juli">{{$value.auth.store_distance | fnSwitchDistance_base}}</p>
+                            {{/if}}
+                            </p>
+                        </div>
+                        <div class="messageTilimg" data-img-url="{{$value | fnGetStoreImage_base}}" data-img-type="!avatar"></div>
+                    </div>
+
+                    <div class="box">
+                        <div class="item">
+                            <div class="duanwei">
+                                <span class="branch">{{ {'target': $value.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span>
+                                <span class="branch">{{$value.auth.category.name | fnLanguageSwitch_base}}</span>
+                            </div>
+
+                            <div class="pingfen">
+
+                                <span class="stars">
+                                    <!-- 半星加half-star -->
+                                    {{#$value.auth | fnScoreLayout_base}}
+                                </span>
+                                <span class="score">
+                                    <span class="num">{{$value.auth.ev_score}}</span>{{'分' | fnLanguage_public}}
+                                </span>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnInit();
+        fnRefresh(function() {
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.COLLECTION_UPDATE
+        }, function(ret, err) {
+            fnInit();
+        });
+    });
+
+
+    function fnInit() {
+        fnGetLocation_public({
+            isPopFailed: false //(可选项)布尔值，如果定位失败是否需要弹出定位失败弹窗，默认false
+        }, function(ret) {
+            if (ret) {
+                APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+                fnGet();
+            } else {
+                fnToast('获取经纬度失败')
+            }
+        })
+    }
+
+
+    function fnGet() {
+        fnGetList_base({
+            url: 'user/collect/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE
+            }
+        }, function(ret) {
+            fnValue('#wrap', template('list-template', APP));
+            if (ret.evType == 'scrolltobottom') {
+                fnGet();
+            }
+        })
+    }
+
+    function fnOpenShopDetail(_id) {
+        fnOpen('home/storeDetails_win.html', {
+            param: {
+                id: _id
+            }
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,3245 @@
+<<<<<<< HEAD
+//zh-cn 中文简体
+//zh-tw 中文繁体
+//en-us English
+//ja-jp 日本
+var language_package = {
+    // "实例": {
+    //     "zh-tw": "regis",
+    //     "en-us": "English",
+    //     "ja-jp": "日本"
+    // },
+
+    // 接口操作部分 ----------------------------------------------------------------------------------------------
+    "修改成功": {
+        "en-us": "Change completed"
+    },
+    "密码错误": {
+        "en-us": "Incorrect password"
+    },
+    "已达到获取上限，明天可再次获取": {
+        "en-us": "Reached access limit, please try again tomorrow."
+    },
+    "该用户未注册": {
+        "en-us": "The user is not registered."
+    },
+    "国家码与手机不匹配，请确认信息": {
+        "en-us": "Country code does not match mobile phone, please confirm the information."
+    },
+    "您已被拉黑": {
+        "en-us": "You have been blocked."
+    },
+    "登录失败": {
+        "en-us": "Login failed"
+    },
+    "此账号已存在": {
+        "en-us": "This account has already existed"
+    },
+    "登录密码有误": {
+        "en-us": "Incorrect password"
+    },
+    "修改成功，请重新登录": {
+        "en-us": "Successfully edited, please log in again"
+    },
+    "修改失败": {
+        "en-us": "Failed"
+    },
+    "取消成功": {
+        "en-us": "Cancel successfully"
+    },
+    "信息不存在": {
+        "en-us": "No information"
+    },
+    "提交成功": {
+        "en-us": "Submitted"
+    },
+    "提交失败，请重新提交": {
+        "en-us": "Failed to submit, please resubmit."
+    },
+    "删除成功": {
+        "en-us": "Successfully delete"
+    },
+    "该状态下无法操作此功能": {
+        "en-us": "Your requirement can not be accepted in this situation."
+    },
+    "该用户尚未注册": {
+        "en-us": "The user has not registered."
+    },
+    "短信验证码发送失败": {
+        "en-us": "Failed to send verification code."
+    },
+    "验证码已经发送成功": {
+        "en-us": "Verification code has been sent successfully"
+    },
+    "请输入正确得手机号": {
+        "en-us": "Please enter the correct number."
+    },
+    "验证码错误": {
+        "en-us": "Incorrect verification code."
+    },
+    "验证码不正确!": {
+        "en-us": "Incorrect verification code!"
+    },
+    "请先获取验证码!": {
+        "en-us": "Please get the verification code first!"
+    },
+    "验证码已经过期,请先获取验证码!": {
+        "en-us": "The verification code has expired, please get the verification code first!"
+    },
+
+    // ----------------------------------------------------------------------------------------------
+
+    // 公共部分 ----------------------------------------------------------------------------------------------
+    "确定": {
+        "en-us": "Confirm"
+    },
+    "权限提示": {
+        "en-us": "Permission prompt"
+    },
+    "没有电话权限，是否前去开启？": {
+        "en-us": "No phone permission, turn it on?"
+    },
+    "没有相机权限，是否前去开启？": {
+        "en-us": "No camera permission, turn it on?"
+    },
+    "取消": {
+        "en-us": "Cancel"
+    },
+    "去设置": {
+        "en-us": "Go to setting"
+    },
+    "拍照": {
+        "en-us": "Take a photo"
+    },
+    "图库": {
+        "en-us": "Album"
+    },
+    "查看大图": {
+        "en-us": "View larger image"
+    },
+    "完成": {
+        "en-us": "Completed"
+    },
+    "关闭": {
+        "en-us": "Closed"
+    },
+    "该用户已在其它设备登录": {
+        "en-us": "The user has already logged in on another device."
+    },
+    "知道了": {
+        "en-us": "Okay"
+    },
+    "提示": {
+        "en-us": "Hint"
+    },
+    "已保存系统相册": {
+        "en-us": "Saved to album"
+    },
+    "保存失败": {
+        "en-us": "Save failed"
+    },
+    "确认退出登录？": {
+        "en-us": "Sure to log out"
+    },
+    "暂无缓存": {
+        "en-us": "No cache"
+    },
+    "微信支付": {
+        "en-us": "WeChat pay"
+    },
+    "支付宝": {
+        "en-us": "Alipay"
+    },
+    "获取经纬度失败": {
+        "en-us": "Failed to require latitude and longitude"
+    },
+    "立即清除缓存": {
+        "en-us": "Clear cache now"
+    },
+    "已经很干净了，不需要清除": {
+        "en-us": "No need to clear cache"
+    },
+    "立即更新": {
+        "en-us": "Update now"
+    },
+    "暂不更新": {
+        "en-us": "Do not update now"
+    },
+    "当前为最新版本": {
+        "en-us": "The latest version is in use"
+    },
+    "发现新版本": {
+        "en-us": "New version available"
+    },
+    "保存": {
+        "en-us": "Save"
+    },
+    // ----------------------------------------------------------------------------------------------
+
+
+    "选择手机区号": {
+        "en-us": "Select phone area code"
+    },
+    "中国": {
+        "en-us": "China"
+    },
+    "获取验证码": {
+        "en-us": "Get code"
+    },
+    "请输入手机号": {
+        "en-us": "Please input your mobile number"
+    },
+    "请输入验证码": {
+        "en-us": "Please input your verify code"
+    },
+    "6-18位字母数字组合": {
+        "en-us": "6 to 18 numbers and letters combination"
+    },
+    "用户协议": {
+        "en-us": "User agreement"
+    },
+    "隐私协议": {
+        "en-us": "Privacy agreement"
+    },
+    "请阅读并同意《用户协议》和《隐私协议》": {
+        "en-us": "Please read and agree the User Agreement and Privacy Policy"
+    },
+    "请先获取验证码!": {
+        "en-us": "Please get a verification code first!"
+    },
+    "注册": {
+        "en-us": "Sign Up"
+    },
+    "已有帐号？": {
+        "en-us": "Already had an account"
+    },
+    "立即登录": {
+        "en-us": "Login now "
+    },
+    "手机号": {
+        "en-us": "Mobile number"
+    },
+    "邮箱": {
+        "en-us": "Email"
+    },
+    "验证码": {
+        "en-us": "Verification Code"
+    },
+    "密码": {
+        "en-us": "Password"
+    },
+    "和": {
+        "en-us": "And"
+    },
+    "请阅读并同意": {
+        "en-us": " Please read and agree"
+    },
+    "密码不正确": {
+        "en-us": "Incorrect password"
+    },
+    "第三方登录": {
+        "en-us": "Third party login in"
+    },
+    "密码登录": {
+        "en-us": "Password"
+    },
+    "登录": {
+        "en-us": "Login"
+    },
+    "验证码": {
+        "en-us": "Verification Code"
+    },
+    "忘记密码？": {
+        "en-us": "Forgot Password"
+    },
+    "快捷登录": {
+        "en-us": "Login in"
+    },
+    "立即设置": {
+        "en-us": "Set up now"
+    },
+    "未设置密码？": {
+        "en-us": "No Password"
+    },
+    "还没有帐号？": {
+        "en-us": "No account"
+    },
+    "点击注册": {
+        "en-us": "Sign up"
+    },
+    "设置密码": {
+        "en-us": "Set up password"
+    },
+    "新密码": {
+        "en-us": "New password"
+    },
+    "重置密码": {
+        "en-us": "Reset password"
+    },
+    "用户昵称": {
+        "en-us": "Nickname"
+    },
+    "请输入当前用户注册手机号": {
+        "en-us": "Please enter the current user phone number"
+    },
+    "请先验证注册手机号": {
+        "en-us": "Please verify your phone number first"
+    },
+    "更换手机": {
+        "en-us": "Change mobile phone"
+    },
+    "修改密码": {
+        "en-us": "Change the password"
+    },
+    "人享": {
+        "en-us": "participants - each"
+    },
+    "请输入时间": {
+        "en-us": "Please enter the time"
+    },
+    "该优惠券无法开团": {
+        "en-us": "Cannot group buy the voucher"
+    },
+    "折扣券": {
+        "en-us": "Voucher"
+    },
+    "套餐券": {
+        "en-us": "Package voucher"
+    },
+    "单品优惠券": {
+        "en-us": "Product voucher"
+    },
+    "最多可上传30张": {
+        "en-us": "Upload up to 30 images"
+    },
+    "确定删除图片？": {
+        "en-us": "Are u sure to delete the image"
+    },
+    "是否设为主页？": {
+        "en-us": "Set as homepage"
+    },
+    "设为主页": {
+        "en-us": "Set as homepage"
+    },
+    "主页": {
+        "en-us": "Homepage"
+    },
+    "结束时间不能小于起始时间": {
+        "en-us": "End time cannot be earlier than start time"
+    },
+    "选择结束时间": {
+        "en-us": "Please choose end time"
+    },
+    "选择起始时间": {
+        "en-us": "Please choose start time"
+    },
+    "网址信息": {
+        "en-us": "Web information"
+    },
+    "固定生效时间": {
+        "en-us": "Fixed the valid time"
+    },
+    "领取当天N天内有效": {
+        "en-us": "Valid within N days of receipt"
+    },
+    "领取次日N天内有效": {
+        "en-us": "Valid within next N days of receipt"
+    },
+    "全部": {
+        "en-us": "All"
+    },
+    "10元以下": {
+        "en-us": "Under 10"
+    },
+    "11-50元": {
+        "en-us": "Between 11 and 50"
+    },
+    "51-100元": {
+        "en-us": "Between 51 and 100"
+    },
+    "101-150元": {
+        "en-us": "Between 101 and 150"
+    },
+    "151元以上": {
+        "en-us": "Over 151"
+    },
+    "券类型": {
+        "en-us": "Voucher categories"
+    },
+    "优惠券金额": {
+        "en-us": "Price of vouchers"
+    },
+    "营业状态": {
+        "en-us": "Operation status"
+    },
+    "人气": {
+        "en-us": "Popularity"
+    },
+    "评分": {
+        "en-us": "Rating"
+    },
+    "等级": {
+        "en-us": "Rank"
+    },
+    "确定取消订单吗？": {
+        "en-us": "Are you sure to cancel the order"
+    },
+    "取消订单": {
+        "en-us": "Cancel"
+    },
+    "购买数量超出限制": {
+        "en-us": "Purchased quantity exceeds limit"
+    },
+    "该状态下不能支付订单": {
+        "en-us": "Order cannot be processed in this state"
+    },
+    "请上传图片凭证": {
+        "en-us": "Please upload a image proof"
+    },
+    "确定删除退款记录吗？": {
+        "en-us": "Are you sure to delete refund record?"
+    },
+    "优惠券": {
+        "en-us": "Voucher"
+    },
+    "该状态下不能核销订单": {
+        "en-us": "Order cannot be written off in this state"
+    },
+    "核销数量不能超出剩余优惠券数量！": {
+        "en-us": "The number of write-offs cannot exceed the number of remaining vouchers"
+    },
+    "共使用": {
+        "en-us": "Used in total"
+    },
+    "张": {
+        "en-us": "Unit"
+    },
+    "月": {
+        "en-us": "Month"
+    },
+    "是否要删除订单？": {
+        "en-us": "Delete the order?"
+    },
+    "请认准": {
+        "en-us": "Please confirm"
+    },
+    "二维码": {
+        "en-us": "QR code"
+    },
+    "未消费": {
+        "en-us": "Unused vouchers"
+    },
+    "有效": {
+        "en-us": "Valid between"
+    },
+    "{start}-{end}有效": {
+        "en-us": "Valid between {start}-{end}"
+    },
+    "天内有效": {
+        "en-us": "Valid for days"
+    },
+    "领取后当日开始": {
+        "en-us": "Start from the day of receipt"
+    },
+    "领取后当日开始{day}天内有效": {
+        "en-us": "Valid within {day} day after receiving"
+    },
+    "领取后次日开始{day}天内有效": {
+        "en-us": "Valid for {day} day from the next day after receiving"
+    },
+    "领取后次日开始": {
+        "en-us": "Start from the next day of receipt"
+    },
+    "该状态不能使用": {
+        "en-us": "Unable to use in this state"
+    },
+    "使用数量超过剩余上限，请重新选择": {
+        "en-us": "The usage exceeds the remaining limit, please select again"
+    },
+    "该状态下不能拒绝接单": {
+        "en-us": "Orders cannot be rejected in this state"
+    },
+    "拒绝接单吗？": {
+        "en-us": "Reject the order?"
+    },
+    "该状态下不能接单": {
+        "en-us": "Orders cannot be accepted in this state"
+    },
+    "接单成功": {
+        "en-us": "Order accepted"
+    },
+    "已制作完成，开始配送？": {
+        "en-us": "Ready for delivery, start now?"
+    },
+    "已经配送完成？": {
+        "en-us": "Already delivered?"
+    },
+    "待接单": {
+        "en-us": "Waiting Order"
+    },
+    "制作中": {
+        "en-us": "Preparing"
+    },
+    "在路上": {
+        "en-us": "On the way"
+    },
+    "已消费": {
+        "en-us": "Purchased"
+    },
+    "已关闭": {
+        "en-us": "Closed"
+    },
+    "确定核销订单？": {
+        "en-us": "Sure to write off?"
+    },
+    "优惠券已下架": {
+        "en-us": "The Voucher has been removed"
+    },
+    "暂无上传图片": {
+        "en-us": "No image uploaded"
+    },
+    "暂无相关订单": {
+        "en-us": "No related order"
+    },
+    "暂无搜索结果": {
+        "en-us": "No research result"
+    },
+    "暂无优惠券": {
+        "en-us": "No voucher"
+    },
+    "暂无评价": {
+        "en-us": "No comment"
+    },
+    "暂无可用优惠券": {
+        "en-us": "No available voucher"
+    },
+    "暂无相关内容": {
+        "en-us": "No related content"
+    },
+    "只能在支付14天以内发起申请": {
+        "en-us": "Application can only be initiated within 14 days of payment"
+    },
+    "只能在优惠券失效前36小时内才能发起申请": {
+        "en-us": "Application can only be initiated within 36 hours before the coupon expires"
+    },
+    "请输入新手机号": {
+        "en-us": "Please enter new phone number"
+    },
+    "暂无搜索历史": {
+        "en-us": "No research history"
+    },
+    "是否清空搜索历史？": {
+        "en-us": "Clear research history"
+    },
+    "评价失败，平台已关闭评价权限": {
+        "en-us": "Failed to comment, review permissions close."
+    },
+    "当前城市": {
+        "en-us": "Current City"
+    },
+    "是否切换？": {
+        "en-us": "Do you want to change?"
+    },
+    "优惠券二维码": {
+        "en-us": "Voucher QR code"
+    },
+    "下载APP": {
+        "en-us": "Download APP"
+    },
+    "扫描二维码下载APP体验更便捷的服务": {
+        "en-us": "Scan QR code and download App for more convenient service"
+    },
+    "请先注册账号在登录": {
+        "en-us": "Please register before login"
+    },
+    "回复评论": {
+        "en-us": "Reply"
+    },
+    "售后审核中": {
+        "en-us": "After sale under review"
+    },
+    "售后完成": {
+        "en-us": "After sale done"
+    },
+    "售后关闭": {
+        "en-us": "After sale close"
+    },
+    "拼团中": {
+        "en-us": "on live"
+    },
+    "已结束": {
+        "en-us": "Ended"
+    },
+    "待付款": {
+        "en-us": "Unpaid"
+    },
+    "未消费": {
+        "en-us": "Unredeemed "
+    },
+    "订单详情": {
+        "en-us": "Order details"
+    },
+    "核销订单": {
+        "en-us": "Redeemed order"
+    },
+    "二维码有误，识别无效": {
+        "en-us": "Invalid QR code"
+    },
+    "该位置没有地址信息": {
+        "en-us": "No address information for this location"
+    },
+    "帐号": {
+        "en-us": "Account"
+    },
+    "退出登录": {
+        "en-us": "Log out"
+    },
+    "商家上传规则说明": {
+        "en-us": "Description of Merchant upload rule"
+    },
+    "门店类型不存在": {
+        "en-us": "The type of Merchant does not exist"
+    },
+    "请误重复提交": {
+        "en-us": "Please do not re-submit"
+    },
+    "请选择门店类型": {
+        "en-us": "Please choose merchant type"
+    },
+    "请输入商家信息介绍，方便平台进一步审核": {
+        "en-us": "Please enter business information for further review"
+    },
+    "所在城市": {
+        "en-us": "City"
+    },
+    "请选择所在城市": {
+        "en-us": "Please choose city"
+    },
+    "门店类型": {
+        "en-us": "Merchant type"
+    },
+    "请选择门店类型": {
+        "en-us": "Please choose the type of Merchant"
+    },
+    "商家信息介绍": {
+        "en-us": "Merchant information"
+    },
+    "字": {
+        "en-us": "Word"
+    },
+    "上传图片": {
+        "en-us": "Upload image"
+    },
+    "提交": {
+        "en-us": "Submit"
+    },
+    "重新提交": {
+        "en-us": "Resubmit"
+    },
+    "立即体验": {
+        "en-us": "Explore it now"
+    },
+    "备注信息": {
+        "en-us": "Remarks"
+    },
+    "未通过理由": {
+        "en-us": "Reason for failure"
+    },
+    "审核信息": {
+        "en-us": "Review information"
+    },
+    "审核状态": {
+        "en-us": "Review status"
+    },
+    "前往App解绑": {
+        "en-us": "Go to the app to unbind"
+    },
+    "前往App绑定": {
+        "en-us": "Go to App to bind account"
+    },
+    "已绑定": {
+        "en-us": "Bind"
+    },
+    "未绑定": {
+        "en-us": "Unbind"
+    },
+    "服务单号": {
+        "en-us": "Order number"
+    },
+    "数量": {
+        "en-us": "Amount"
+    },
+    "退款原因": {
+        "en-us": "Reason of refund"
+    },
+    "服务编号": {
+        "en-us": "Service number"
+    },
+    "退款金额": {
+        "en-us": "Refund account"
+    },
+    "申请件数": {
+        "en-us": "Number of applications"
+    },
+    "申请时间": {
+        "en-us": "Application time"
+    },
+    "重置": {
+        "en-us": "Reset"
+    },
+    "选择时间": {
+        "en-us": "Choose a time"
+    },
+    "搜索优惠券": {
+        "en-us": "Search for voucher"
+    },
+    "请输入优惠券ID或用户ID": {
+        "en-us": "Please enter voucher ID or user ID"
+    },
+    "没有相关的优惠券ID或用户ID": {
+        "en-us": "No related voucher ID or user ID"
+    },
+    "门市价": {
+        "en-us": "Market price"
+    },
+    "筛选": {
+        "en-us": "Filter"
+    },
+    "已参团": {
+        "en-us": "Participated"
+    },
+    "人": {
+        "en-us": "People"
+    },
+    "还差": {
+        "en-us": "Left"
+    },
+    "去参团": {
+        "en-us": "Join the group"
+    },
+    "已成团": {
+        "en-us": "Group done"
+    },
+    "拼团详情": {
+        "en-us": "Group details"
+    },
+    "优惠规则": {
+        "en-us": "Discount rules"
+    },
+    "团长": {
+        "en-us": "Organizer"
+    },
+    "人拼团完成，快邀请朋友参团吧！": {
+        "en-us": "Group done, invite your friends to join in"
+    },
+    "还差{_lackPerson}人拼团完成，快邀请朋友参团吧！": {
+        "en-us": "{_lackPerson} person more to complete the group....."
+    },
+    "剩余": {
+        "en-us": "Left"
+    },
+    "结束": {
+        "en-us": "Ended"
+    },
+    "该团已按时凑齐人数，拼团成功": {
+        "en-us": "Enough members, group buy successfully"
+    },
+    "邀请好友参团": {
+        "en-us": "Invite friends"
+    },
+    "我要参团": {
+        "en-us": "I want to participate"
+    },
+    "我要开团": {
+        "en-us": "I want to build up a group"
+    },
+    "选择支付方式": {
+        "en-us": "Choose payment method"
+    },
+    "需支付": {
+        "en-us": "Please confirm the payment"
+    },
+    "确定支付": {
+        "en-us": "Confirm payment"
+    },
+    "地址信息": {
+        "en-us": "Address information"
+    },
+    "详情地址": {
+        "en-us": "Detailed address"
+    },
+    "请输入详细地址": {
+        "en-us": "Please enter detailed address"
+    },
+    "若定位不准，请手动拖动地图位置": {
+        "en-us": "If positioning is not accurate, please manually drag the map position"
+    },
+    "个": {
+        "en-us": "Unit"
+    },
+    "用户ID": {
+        "en-us": "User ID"
+    },
+    "拒绝": {
+        "en-us": "Reject"
+    },
+    "接单": {
+        "en-us": "Accept order"
+    },
+    "已配送": {
+        "en-us": "Delivered"
+    },
+    "已消费订单": {
+        "en-us": "Redeemed order"
+    },
+    "未消费订单": {
+        "en-us": "Unredeemed order"
+    },
+    "全部订单": {
+        "en-us": "All orders"
+    },
+    "扫一扫": {
+        "en-us": "Scan QR code"
+    },
+    "商铺二维码": {
+        "en-us": "Merchant QR code"
+    },
+    "搜索核销": {
+        "en-us": "Search for write-offs"
+    },
+    "营业时间": {
+        "en-us": "Business hours"
+    },
+    "请选择营业时间": {
+        "en-us": "Please choose business hours"
+    },
+    "商铺评分": {
+        "en-us": "Merchant rate"
+    },
+    "全部评价": {
+        "en-us": "All of the comments"
+    },
+    "分": {
+        "en-us": "Score"
+    },
+    "经营地区": {
+        "en-us": "Operating area"
+    },
+    "请设置经营地区": {
+        "en-us": "Please set operating area"
+    },
+    "联系电话": {
+        "en-us": "Contact number"
+    },
+    "商铺详情": {
+        "en-us": "Merchant details"
+    },
+    "修改": {
+        "en-us": "Edit"
+    },
+    "请输入网址信息": {
+        "en-us": "Please enter website address"
+    },
+    "帐号管理": {
+        "en-us": "Account information"
+    },
+    "基础设置": {
+        "en-us": "Settings"
+    },
+    "在线客服": {
+        "en-us": "Chat"
+    },
+    "张图": {
+        "en-us": "Images"
+    },
+    "优惠券详情": {
+        "en-us": "Voucher details"
+    },
+    "图片管理": {
+        "en-us": "Images"
+    },
+    "编辑": {
+        "en-us": "Edit"
+    },
+    "删除": {
+        "en-us": "Delete"
+    },
+    "还剩": {
+        "en-us": "Remains"
+    },
+    "时": {
+        "en-us": "Hours"
+    },
+    "分自动完成": {
+        "en-us": "minutes left to complete order"
+    },
+    "核销记录": {
+        "en-us": "Write-off order"
+    },
+    "核销数量": {
+        "en-us": "Write-off number"
+    },
+    "下单时间": {
+        "en-us": "Order time"
+    },
+    "拒绝时间": {
+        "en-us": "Reject time"
+    },
+    "接单时间": {
+        "en-us": "Accept time"
+    },
+    "配送时间": {
+        "en-us": "Deliver time"
+    },
+    "完成时间": {
+        "en-us": "Completion time"
+    },
+    "删除订单": {
+        "en-us": "Delete order"
+    },
+    "已回复": {
+        "en-us": "Replied"
+    },
+    "去回复": {
+        "en-us": "Reply"
+    },
+    "未评价": {
+        "en-us": "Unmarked"
+    },
+    "可用": {
+        "en-us": "Usable"
+    },
+    "确认核销": {
+        "en-us": "Confirm write-off"
+    },
+    "商家回复": {
+        "en-us": "Merchant reply"
+    },
+    "回复一下吧": {
+        "en-us": "Reply"
+    },
+    "待回复": {
+        "en-us": "Wait for reply"
+    },
+    "编辑商铺详情": {
+        "en-us": "Edit merchant details"
+    },
+    "商铺描述": {
+        "en-us": "Merchant description"
+    },
+    "请输入商铺详情介绍": {
+        "en-us": "Please enter merchant details"
+    },
+    "商铺图片": {
+        "en-us": "Merchant image"
+    },
+    "核销时间": {
+        "en-us": "Redeem time"
+    },
+    "配送完成": {
+        "en-us": "Delivered"
+    },
+    "立即使用": {
+        "en-us": "Use now"
+    },
+    "打开二维码": {
+        "en-us": "Open QR code"
+    },
+    "已评价": {
+        "en-us": "Reviewed"
+    },
+    "去评价": {
+        "en-us": "Review"
+    },
+    "可用优惠券": {
+        "en-us": "My voucher"
+    },
+    "选择城市": {
+        "en-us": "Choose city"
+    },
+    "当前定位城市": {
+        "en-us": "Current city"
+    },
+    "定位中": {
+        "en-us": "Locating"
+    },
+    "已失效": {
+        "en-us": "Invalid"
+    },
+    "消费中": {
+        "en-us": "Purchasing"
+    },
+    "个开团": {
+        "en-us": "groups are in progress"
+    },
+    "评价": {
+        "en-us": "Comments"
+    },
+    "给商铺评分": {
+        "en-us": "Review the merchant"
+    },
+    "说说您的心得分享给其他想购买的朋友吧": {
+        "en-us": "Share your review with others"
+    },
+    "回复评价": {
+        "en-us": "Reply comment"
+    },
+    "评价成功": {
+        "en-us": "Successfully review"
+    },
+    "首页": {
+        "en-us": "Homepage"
+    },
+    "全部拼团": {
+        "en-us": "All groups"
+    },
+    "我的订单": {
+        "en-us": "My order"
+    },
+    "我的": {
+        "en-us": "My"
+    },
+    "搜索门店": {
+        "en-us": "Search stores"
+    },
+    "进行中": {
+        "en-us": "Processing"
+    },
+    "时间筛选": {
+        "en-us": "Choose time"
+    },
+    "商家分类": {
+        "en-us": "Merchant type"
+    },
+    "已开团": {
+        "en-us": "Already grouped"
+    },
+    "网址": {
+        "en-us": "Website"
+    },
+    "商户未设置": {
+        "en-us": "Not set by merchant"
+    },
+    "收藏": {
+        "en-us": "Favourite"
+    },
+    "优惠": {
+        "en-us": "Discount"
+    },
+    "详情": {
+        "en-us": "Details"
+    },
+    "邮箱号": {
+        "en-us": "Email address"
+    },
+    "解绑": {
+        "en-us": "Unbind"
+    },
+    "微信": {
+        "en-us": "WeChat"
+    },
+    "查看详情": {
+        "en-us": "See details"
+    },
+    "退款/售后": {
+        "en-us": "Refund/After sale"
+    },
+    "收藏的店铺": {
+        "en-us": "Favorite store"
+    },
+    "意见反馈": {
+        "en-us": "Feedback"
+    },
+    "历史反馈": {
+        "en-us": "Feedback history"
+    },
+    "反馈类型": {
+        "en-us": "Feedback type"
+    },
+    "请选择反馈类型": {
+        "en-us": "Please select feedback type"
+    },
+    "请描述您的建议": {
+        "en-us": "Please describe your advice"
+    },
+    "官方回复": {
+        "en-us": "Official reply"
+    },
+    "绑定": {
+        "en-us": "Bind"
+    },
+    "我的二维码": {
+        "en-us": "My QR code"
+    },
+    "联系我们": {
+        "en-us": "Contact us"
+    },
+    "设置": {
+        "en-us": "Setting"
+    },
+    "用户头像": {
+        "en-us": "User image"
+    },
+    "请输入昵称": {
+        "en-us": "Please enter nickname"
+    },
+    "性别": {
+        "en-us": "Gender"
+    },
+    "请选择": {
+        "en-us": "Please choose"
+    },
+    "个人资料": {
+        "en-us": "Personal profile"
+    },
+    "申请售后": {
+        "en-us": "Apply for after sale"
+    },
+    "很遗憾，当前订单已经不能申请退款": {
+        "en-us": "Sorry, the current order is no longer eligible for a refund"
+    },
+    "问题描述": {
+        "en-us": "Problem description"
+    },
+    "请输入售后问题描述": {
+        "en-us": "Please describe the after sale problem"
+    },
+    "优惠券数量": {
+        "en-us": "Voucher amount"
+    },
+    "售后说明": {
+        "en-us": "After sale description"
+    },
+    "支付成功": {
+        "en-us": "Payment successful"
+    },
+    "支付失败": {
+        "en-us": "Payment failed"
+    },
+    "核销成功": {
+        "en-us": "Redeemed successfully"
+    },
+    "评价成功，期待再次为您服务！": {
+        "en-us": "Review successfully, looking forward to serving you again!"
+    },
+    "售后申请提交成功，等待审核": {
+        "en-us": "After-sale application submitted successfully, waiting for review"
+    },
+    "查看售后详情": {
+        "en-us": "See after-sale detail"
+    },
+    "查看订单详情": {
+        "en-us": "See order detail"
+    },
+    "返回": {
+        "en-us": "Return"
+    },
+    "售后详情": {
+        "en-us": "After-sale detail"
+    },
+    "未通过原因": {
+        "en-us": "Reason for failure"
+    },
+    "退款总金额": {
+        "en-us": "Refund amount"
+    },
+    "退款信息": {
+        "en-us": "Refund information"
+    },
+    "语种切换": {
+        "en-us": "Switch language"
+    },
+    "检查更新": {
+        "en-us": "Check for update"
+    },
+    "清除缓存": {
+        "en-us": "Clear cache"
+    },
+    "消息推送": {
+        "en-us": "Notification"
+    },
+    "保存至相册": {
+        "en-us": "Save to album"
+    },
+    "查看拼团详情": {
+        "en-us": "See group detail"
+    },
+    "自动关闭": {
+        "en-us": "Automatically close"
+    },
+    "单价": {
+        "en-us": "Unit price"
+    },
+    "已付": {
+        "en-us": "Price"
+    },
+    "已核销数量": {
+        "en-us": "Redeemed amount"
+    },
+    "订单编号": {
+        "en-us": "Order series number"
+    },
+    "成团时间": {
+        "en-us": "Group-building time"
+    },
+    "关闭时间": {
+        "en-us": "Close time"
+    },
+    "支付方式": {
+        "en-us": "Payment method"
+    },
+    "支付时间": {
+        "en-us": "Payment time"
+    },
+    "立即付款": {
+        "en-us": "Pay now"
+    },
+    "申请退款": {
+        "en-us": "Apply for refund"
+    },
+    "填写下单信息": {
+        "en-us": "Please enter order information"
+    },
+    "姓名": {
+        "en-us": "Name"
+    },
+    "请输入姓名": {
+        "en-us": "Please enter your name"
+    },
+    "收货地址": {
+        "en-us": "Shipping address"
+    },
+    "请输入收货地址": {
+        "en-us": "Please enter shipping address"
+    },
+    "已核销详情": {
+        "en-us": "Redeemed detail"
+    },
+    "您的浏览器不支持 video 标签": {
+        "en-us": "Your browser does not support video label"
+    },
+    "描述您的建议": {
+        "en-us": "Describe your advices"
+    },
+
+    // 2月21号新增 ----------------------------------------------------------------------------------------------
+
+
+    "换绑": {
+        "en-us": "Binding exchange"
+    },
+    "安全服务提示": {
+        "en-us": "Safety service notification"
+    },
+    "确认您登录的是Wololo网址，注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗": {
+        "en-us": "Please make sure the validity of WOLOLO website rather than fake website, do not easily click the payment link for fraud prevention"
+    },
+    "建议您安装杀毒软件，并定期更新操作系统等软件补丁，确保帐号及交易安全": {
+        "en-us": "Please download the anti-virus software and update your system regularly for safety reason"
+    },
+    "联系方式": {
+        "en-us": "Contact method"
+    },
+    "商家图片": {
+        "en-us": "Merchant image"
+    },
+    "经营地址": {
+        "en-us": "Operating area"
+    },
+    "详细地址": {
+        "en-us": "Location"
+    },
+    "商铺详情介绍": {
+        "en-us": "Merchant details"
+    },
+    "请输商铺详情介绍": {
+        "en-us": "Please enter merchant details"
+    },
+    "个人信息": {
+        "en-us": "Personal information"
+    },
+    "我的收藏": {
+        "en-us": "My collection"
+    },
+    "我收藏的店铺": {
+        "en-us": "Store collection"
+    },
+    "其他": {
+        "en-us": "Other"
+    },
+    "搜索": {
+        "en-us": "Search"
+    },
+    "消息中心": {
+        "en-us": "Message centre"
+    },
+    "商品信息": {
+        "en-us": "Product information"
+    },
+    "类型": {
+        "en-us": "Type"
+    },
+    "操作": {
+        "en-us": "Operation"
+    },
+    "收货信息": {
+        "en-us": "Delivery information"
+    },
+    "周一至周日": {
+        "en-us": "Monday to Sunday"
+    },
+    "官方邮箱": {
+        "en-us": "Official email"
+    },
+    "App下载": {
+        "en-us": "Download APP"
+    },
+    "意见/投诉描述": {
+        "en-us": "Complaint description"
+    },
+    "拼团列表": {
+        "en-us": "Group-building list"
+    },
+    "发起拼团": {
+        "en-us": "Group-building"
+    },
+    "选择拼团时长": {
+        "en-us": "Select group time"
+    },
+    "天": {
+        "en-us": "Day"
+    },
+    "小时": {
+        "en-us": "Hour"
+    },
+    "昵称": {
+        "en-us": "Nickname"
+    },
+    "男": {
+        "en-us": "Male"
+    },
+    "女": {
+        "en-us": "Female"
+    },
+    "剪裁图片": {
+        "en-us": "Image cut"
+    },
+    "修改网址信息": {
+        "en-us": "Change website information"
+    },
+    "售后列表": {
+        "en-us": "After sale list"
+    },
+    "售后信息": {
+        "en-us": "After sale information"
+    },
+    "月份": {
+        "en-us": "Month"
+    },
+    "查看拼团订单": {
+        "en-us": "Check the group list"
+    },
+    "未购买": {
+        "en-us": "Unpurchased"
+    },
+    "订单信息": {
+        "en-us": "Order information"
+    },
+    "给商铺点评": {
+        "en-us": "Comment for the Merchant"
+    },
+    "你的点评": {
+        "en-us": "Your reviews"
+    },
+    "支付金额": {
+        "en-us": "Payment amount"
+    },
+    "选择一下支付方式付款": {
+        "en-us": "Please choose your payment method"
+    },
+    "立即支付": {
+        "en-us": "Pay now"
+    },
+    "保存到本地": {
+        "en-us": "Save it to system"
+    },
+    "账户管理": {
+        "en-us": "Account management"
+    },
+    "请选择你的角色": {
+        "en-us": "Please choose your role"
+    },
+    "我是用户": {
+        "en-us": "I am user"
+    },
+    "我是商家": {
+        "en-us": "I am Merchant"
+    },
+
+    // 2月22号新增 ----------------------------------------------------------------------------------------------
+
+    "Instagram账号": {
+        "en-us": "Instagram account"
+    },
+    "请输入Instagram账号": {
+        "en-us": "Please enter Instagram account"
+    },
+    "尚未绑定手机号": {
+        "en-us": "Unbind mobile number"
+    },
+    "尚未绑定邮箱": {
+        "en-us": "Unbind email address"
+    },
+    "消息详情": {
+        "en-us": "Message notification"
+    },
+    "全部已读": {
+        "en-us": "All read"
+    },
+    "优惠券-已核销成功": {
+        "en-us": "Voucher - redeemed successfully"
+    },
+    "拼团订单-已接单": {
+        "en-us": "Group order - order accepted"
+    },
+    "拼团订单-已拒单": {
+        "en-us": "Group order - order rejected"
+    },
+    "拼团订单-已配送": {
+        "en-us": "Group order - delivered"
+    },
+    "拼团订单-配送完成": {
+        "en-us": "Group order - completed"
+    },
+    "拼团订单-待接单": {
+        "en-us": "Group order - order unaccepted"
+    },
+    "申请售后-审核通过": {
+        "en-us": "After sale - review completed"
+    },
+    "申请售后-退款成功": {
+        "en-us": "After sale - successfully refund"
+    },
+    "商家认证-审核失败": {
+        "en-us": "Merchant identification - failed"
+    },
+    "商家认证-审核成功": {
+        "en-us": "Merchant identification - successful"
+    },
+    "已完成": {
+        "en-us": "Completed"
+    },
+    "点击图片可放大": {
+        "en-us": "Click for larger image"
+    },
+    "商铺二维码": {
+        "en-us": "Merchant QR code"
+    },
+    "解绑成功": {
+        "en-us": "Successfully Unbind"
+    },
+    "当前用户没有绑定该三方账户，无需解绑": {
+        "en-us": "No third party binding account, no need for unbind."
+    },
+    "绑定账号": {
+        "en-us": "Bind account"
+    },
+    "该账号已绑定其他三方账户，请使用其他账号": {
+        "en-us": "Current account has already bounded with other third-party account, please use another account"
+    },
+    "该账号不是商户或用户无法绑定，请使用其它账号": {
+        "en-us": "Unable to bind, please use another account."
+    },
+    "国家码与该账号国家码不匹配，请重新选择": {
+        "en-us": "Country code can't be matched, please re-select."
+    },
+    "分享至": {
+        "en-us": "Share to"
+    },
+    "前往APP参团": {
+        "en-us": "Go to APP for group"
+    },
+    "前往APP查看更多": {
+        "en-us": "Go to APP for more information"
+    },
+    "按参团时间筛选": {
+        "en-us": "Filtered by group-build"
+    },
+    "系统消息": {
+        "en-us": "System notification"
+    },
+    "平台消息": {
+        "en-us": "Notification"
+    },
+    "规则协议": {
+        "en-us": "Contract roles"
+    },
+    "退款售后": {
+        "en-us": "After-sale refund"
+    },
+    "确认使用": {
+        "en-us": "Confirm to use"
+    },
+    "抱歉！您的账号已被冻结": {
+        "en-us": "Sorry, your account has been blocked."
+    },
+    "抱歉！您的账号尚未验证成功": {
+        "en-us": "Sorry! Your account haven't been verified."
+    },
+    "确定开团": {
+        "en-us": "Confirm"
+    },
+
+
+
+    // 3月2号新增
+    "该账户已被删除！": {
+        "en-us": "Your account has been deleted!"
+    },
+    "优惠券规则": {
+        "en-us": "Voucher roles"
+    },
+    "优惠券列表": {
+        "en-us": "Voucher list"
+    },
+    "下载": {
+        "en-us": "Download"
+    },
+    "交易关闭": {
+        "en-us": "Closed transaction"
+    },
+    "商家信息": {
+        "en-us": "Merchant information"
+    },
+    "商家主页": {
+        "en-us": "Merchant page"
+    },
+    "确定接单？": {
+        "en-us": "Are you sure?"
+    },
+    "营业中": {
+        "en-us": "Opening"
+    },
+    "由高到低": {
+        "en-us": "High to low"
+    },
+    "由低到高": {
+        "en-us": "Low to high"
+    },
+
+
+
+
+    // 3月12号新增
+    "是否解除绑定？": {
+        "en-us": "Unbound?"
+    },
+    "查看": {
+        "en-us": "Check"
+    },
+    "微信二维码": {
+        "en-us": "WeChat QR code"
+    },
+    "支付宝二维码": {
+        "en-us": "Alipay QR code"
+    },
+    "请使用微信APP客户端扫码支付": {
+        "en-us": "Please use WeChat pay for scanning"
+    },
+    "请使用支付宝APP客户端扫码支付": {
+        "en-us": "Please use Alipay pay for scanning"
+    },
+    "确认": {
+        "en-us": "Confirm"
+    },
+    "请输入邮箱": {
+        "en-us": "Please enter your email "
+    },
+    "请输入登录密码进行验证": {
+        "en-us": "Please enter password for vertification"
+    },
+    "请输入内容": {
+        "en-us": "Please enter content"
+    },
+
+
+
+    // 4月14号
+    "暂无数据": {
+        "en-us": "No data"
+    },
+    "确定清空全部消息？": {
+        "en-us": "Confirm to clear all messages？"
+    },
+    "确定标记所有消息为已读？": {
+        "en-us": "Confirm to mark all read messages？"
+    },
+    "一键清空": {
+        "en-us": "Delete all messages"
+    },
+    "折扣规则": {
+        "en-us": "Discount breakdown"
+    },
+    "参团人越多，折扣越低": {
+        "en-us": "The discount you receive depends on how many participants join this group."
+    },
+    "我要成团": {
+        "en-us": "I want to form a group"
+    },
+    "我要凑人数": {
+        "en-us": "I'm going to figure it out"
+    },
+    "请输入人数": {
+        "en-us": "Please enter the number of people"
+    },
+    "当前操作必须是发起人": {
+        "en-us": "Current operation must be initiator"
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    }
+}
+=======
+//zh-cn 中文简体
+//zh-tw 中文繁体
+//en-us English
+//ja-jp 日本
+var language_package = {
+    // "实例": {
+    //     "zh-tw": "regis",
+    //     "en-us": "English",
+    //     "ja-jp": "日本"
+    // },
+
+    // 接口操作部分 ----------------------------------------------------------------------------------------------
+    "修改成功": {
+        "en-us": "Change completed"
+    },
+    "密码错误": {
+        "en-us": "Incorrect password"
+    },
+    "已达到获取上限，明天可再次获取": {
+        "en-us": "Reached access limit, please try again tomorrow."
+    },
+    "该用户未注册": {
+        "en-us": "The user is not registered."
+    },
+    "国家码与手机不匹配，请确认信息": {
+        "en-us": "Country code does not match mobile phone, please confirm the information."
+    },
+    "您已被拉黑": {
+        "en-us": "You have been blocked."
+    },
+    "登录失败": {
+        "en-us": "Login failed"
+    },
+    "此账号已存在": {
+        "en-us": "This account has already existed"
+    },
+    "登录密码有误": {
+        "en-us": "Incorrect password"
+    },
+    "修改成功，请重新登录": {
+        "en-us": "Successfully edited, please log in again"
+    },
+    "修改失败": {
+        "en-us": "Failed"
+    },
+    "取消成功": {
+        "en-us": "Cancel successfully"
+    },
+    "信息不存在": {
+        "en-us": "No information"
+    },
+    "提交成功": {
+        "en-us": "Submitted"
+    },
+    "提交失败，请重新提交": {
+        "en-us": "Failed to submit, please resubmit."
+    },
+    "删除成功": {
+        "en-us": "Successfully delete"
+    },
+    "该状态下无法操作此功能": {
+        "en-us": "Your requirement can not be accepted in this situation."
+    },
+    "该用户尚未注册": {
+        "en-us": "The user has not registered."
+    },
+    "短信验证码发送失败": {
+        "en-us": "Failed to send verification code."
+    },
+    "验证码已经发送成功": {
+        "en-us": "Verification code has been sent successfully"
+    },
+    "请输入正确得手机号": {
+        "en-us": "Please enter the correct number."
+    },
+    "验证码错误": {
+        "en-us": "Incorrect verification code."
+    },
+    "验证码不正确!": {
+        "en-us": "Incorrect verification code!"
+    },
+    "请先获取验证码!": {
+        "en-us": "Please get the verification code first!"
+    },
+    "验证码已经过期,请先获取验证码!": {
+        "en-us": "The verification code has expired, please get the verification code first!"
+    },
+
+    // ----------------------------------------------------------------------------------------------
+
+    // 公共部分 ----------------------------------------------------------------------------------------------
+    "确定": {
+        "en-us": "Confirm"
+    },
+    "权限提示": {
+        "en-us": "Permission prompt"
+    },
+    "没有电话权限，是否前去开启？": {
+        "en-us": "No phone permission, turn it on?"
+    },
+    "没有相机权限，是否前去开启？": {
+        "en-us": "No camera permission, turn it on?"
+    },
+    "取消": {
+        "en-us": "Cancel"
+    },
+    "去设置": {
+        "en-us": "Go to setting"
+    },
+    "拍照": {
+        "en-us": "Take a photo"
+    },
+    "图库": {
+        "en-us": "Album"
+    },
+    "查看大图": {
+        "en-us": "View larger image"
+    },
+    "完成": {
+        "en-us": "Completed"
+    },
+    "关闭": {
+        "en-us": "Closed"
+    },
+    "该用户已在其它设备登录": {
+        "en-us": "The user has already logged in on another device."
+    },
+    "知道了": {
+        "en-us": "Okay"
+    },
+    "提示": {
+        "en-us": "Hint"
+    },
+    "已保存系统相册": {
+        "en-us": "Saved to album"
+    },
+    "保存失败": {
+        "en-us": "Save failed"
+    },
+    "确认退出登录？": {
+        "en-us": "Sure to log out"
+    },
+    "暂无缓存": {
+        "en-us": "No cache"
+    },
+    "微信支付": {
+        "en-us": "WeChat pay"
+    },
+    "支付宝": {
+        "en-us": "Alipay"
+    },
+    "获取经纬度失败": {
+        "en-us": "Failed to require latitude and longitude"
+    },
+    "立即清除缓存": {
+        "en-us": "Clear cache now"
+    },
+    "已经很干净了，不需要清除": {
+        "en-us": "No need to clear cache"
+    },
+    "立即更新": {
+        "en-us": "Update now"
+    },
+    "暂不更新": {
+        "en-us": "Do not update now"
+    },
+    "当前为最新版本": {
+        "en-us": "The latest version is in use"
+    },
+    "发现新版本": {
+        "en-us": "New version available"
+    },
+    "保存": {
+        "en-us": "Save"
+    },
+    // ----------------------------------------------------------------------------------------------
+
+
+    "选择手机区号": {
+        "en-us": "Select phone area code"
+    },
+    "中国": {
+        "en-us": "China"
+    },
+    "获取验证码": {
+        "en-us": "Get code"
+    },
+    "请输入手机号": {
+        "en-us": "Please input your mobile number"
+    },
+    "请输入验证码": {
+        "en-us": "Please input your verify code"
+    },
+    "6-18位字母数字组合": {
+        "en-us": "6 to 18 numbers and letters combination"
+    },
+    "用户协议": {
+        "en-us": "User agreement"
+    },
+    "隐私协议": {
+        "en-us": "Privacy agreement"
+    },
+    "请阅读并同意《用户协议》和《隐私协议》": {
+        "en-us": "Please read and agree the User Agreement and Privacy Policy"
+    },
+    "请先获取验证码!": {
+        "en-us": "Please get a verification code first!"
+    },
+    "注册": {
+        "en-us": "Sign Up"
+    },
+    "已有帐号？": {
+        "en-us": "Already had an account"
+    },
+    "立即登录": {
+        "en-us": "Login now "
+    },
+    "手机号": {
+        "en-us": "Mobile number"
+    },
+    "邮箱": {
+        "en-us": "Email"
+    },
+    "验证码": {
+        "en-us": "Verification Code"
+    },
+    "密码": {
+        "en-us": "Password"
+    },
+    "和": {
+        "en-us": "And"
+    },
+    "请阅读并同意": {
+        "en-us": " Please read and agree"
+    },
+    "密码不正确": {
+        "en-us": "Incorrect password"
+    },
+    "第三方登录": {
+        "en-us": "Third party login in"
+    },
+    "密码登录": {
+        "en-us": "Password"
+    },
+    "登录": {
+        "en-us": "Login"
+    },
+    "验证码": {
+        "en-us": "Verification Code"
+    },
+    "忘记密码？": {
+        "en-us": "Forgot Password"
+    },
+    "快捷登录": {
+        "en-us": "Login in"
+    },
+    "立即设置": {
+        "en-us": "Set up now"
+    },
+    "未设置密码？": {
+        "en-us": "No Password"
+    },
+    "还没有帐号？": {
+        "en-us": "No account"
+    },
+    "点击注册": {
+        "en-us": "Sign up"
+    },
+    "设置密码": {
+        "en-us": "Set up password"
+    },
+    "新密码": {
+        "en-us": "New password"
+    },
+    "重置密码": {
+        "en-us": "Reset password"
+    },
+    "用户昵称": {
+        "en-us": "Nickname"
+    },
+    "请输入当前用户注册手机号": {
+        "en-us": "Please enter the current user phone number"
+    },
+    "请先验证注册手机号": {
+        "en-us": "Please verify your phone number first"
+    },
+    "更换手机": {
+        "en-us": "Change mobile phone"
+    },
+    "修改密码": {
+        "en-us": "Change the password"
+    },
+    "人享": {
+        "en-us": "participants - each"
+    },
+    "请输入时间": {
+        "en-us": "Please enter the time"
+    },
+    "该优惠券无法开团": {
+        "en-us": "Cannot group buy the voucher"
+    },
+    "折扣券": {
+        "en-us": "Voucher"
+    },
+    "套餐券": {
+        "en-us": "Package voucher"
+    },
+    "单品优惠券": {
+        "en-us": "Product voucher"
+    },
+    "最多可上传30张": {
+        "en-us": "Upload up to 30 images"
+    },
+    "确定删除图片？": {
+        "en-us": "Are u sure to delete the image"
+    },
+    "是否设为主页？": {
+        "en-us": "Set as homepage"
+    },
+    "设为主页": {
+        "en-us": "Set as homepage"
+    },
+    "主页": {
+        "en-us": "Homepage"
+    },
+    "结束时间不能小于起始时间": {
+        "en-us": "End time cannot be earlier than start time"
+    },
+    "选择结束时间": {
+        "en-us": "Please choose end time"
+    },
+    "选择起始时间": {
+        "en-us": "Please choose start time"
+    },
+    "网址信息": {
+        "en-us": "Web information"
+    },
+    "固定生效时间": {
+        "en-us": "Fixed the valid time"
+    },
+    "领取当天N天内有效": {
+        "en-us": "Valid within N days of receipt"
+    },
+    "领取次日N天内有效": {
+        "en-us": "Valid within next N days of receipt"
+    },
+    "全部": {
+        "en-us": "All"
+    },
+    "10元以下": {
+        "en-us": "Under 10"
+    },
+    "11-50元": {
+        "en-us": "Between 11 and 50"
+    },
+    "51-100元": {
+        "en-us": "Between 51 and 100"
+    },
+    "101-150元": {
+        "en-us": "Between 101 and 150"
+    },
+    "151元以上": {
+        "en-us": "Over 151"
+    },
+    "券类型": {
+        "en-us": "Voucher categories"
+    },
+    "优惠券金额": {
+        "en-us": "Price of vouchers"
+    },
+    "营业状态": {
+        "en-us": "Operation status"
+    },
+    "人气": {
+        "en-us": "Popularity"
+    },
+    "评分": {
+        "en-us": "Rating"
+    },
+    "等级": {
+        "en-us": "Rank"
+    },
+    "确定取消订单吗？": {
+        "en-us": "Are you sure to cancel the order"
+    },
+    "取消订单": {
+        "en-us": "Cancel"
+    },
+    "购买数量超出限制": {
+        "en-us": "Purchased quantity exceeds limit"
+    },
+    "该状态下不能支付订单": {
+        "en-us": "Order cannot be processed in this state"
+    },
+    "请上传图片凭证": {
+        "en-us": "Please upload a image proof"
+    },
+    "确定删除退款记录吗？": {
+        "en-us": "Are you sure to delete refund record?"
+    },
+    "优惠券": {
+        "en-us": "Voucher"
+    },
+    "该状态下不能核销订单": {
+        "en-us": "Order cannot be written off in this state"
+    },
+    "核销数量不能超出剩余优惠券数量！": {
+        "en-us": "The number of write-offs cannot exceed the number of remaining vouchers"
+    },
+    "共使用": {
+        "en-us": "Used in total"
+    },
+    "张": {
+        "en-us": "Unit"
+    },
+    "月": {
+        "en-us": "Month"
+    },
+    "是否要删除订单？": {
+        "en-us": "Delete the order?"
+    },
+    "请认准": {
+        "en-us": "Please confirm"
+    },
+    "二维码": {
+        "en-us": "QR code"
+    },
+    "未消费": {
+        "en-us": "Unused vouchers"
+    },
+    "有效": {
+        "en-us": "Valid between"
+    },
+    "{start}-{end}有效": {
+        "en-us": "Valid between {start}-{end}"
+    },
+    "天内有效": {
+        "en-us": "Valid for days"
+    },
+    "领取后当日开始": {
+        "en-us": "Start from the day of receipt"
+    },
+    "领取后当日开始{day}天内有效": {
+        "en-us": "Valid within {day} day after receiving"
+    },
+    "领取后次日开始{day}天内有效": {
+        "en-us": "Valid for {day} day from the next day after receiving"
+    },
+    "领取后次日开始": {
+        "en-us": "Start from the next day of receipt"
+    },
+    "该状态不能使用": {
+        "en-us": "Unable to use in this state"
+    },
+    "使用数量超过剩余上限，请重新选择": {
+        "en-us": "The usage exceeds the remaining limit, please select again"
+    },
+    "该状态下不能拒绝接单": {
+        "en-us": "Orders cannot be rejected in this state"
+    },
+    "拒绝接单吗？": {
+        "en-us": "Reject the order?"
+    },
+    "该状态下不能接单": {
+        "en-us": "Orders cannot be accepted in this state"
+    },
+    "接单成功": {
+        "en-us": "Order accepted"
+    },
+    "已制作完成，开始配送？": {
+        "en-us": "Ready for delivery, start now?"
+    },
+    "已经配送完成？": {
+        "en-us": "Already delivered?"
+    },
+    "待接单": {
+        "en-us": "Waiting Order"
+    },
+    "制作中": {
+        "en-us": "Preparing"
+    },
+    "在路上": {
+        "en-us": "On the way"
+    },
+    "已消费": {
+        "en-us": "Purchased"
+    },
+    "已关闭": {
+        "en-us": "Closed"
+    },
+    "确定核销订单？": {
+        "en-us": "Sure to write off?"
+    },
+    "优惠券已下架": {
+        "en-us": "The Voucher has been removed"
+    },
+    "暂无上传图片": {
+        "en-us": "No image uploaded"
+    },
+    "暂无相关订单": {
+        "en-us": "No related order"
+    },
+    "暂无搜索结果": {
+        "en-us": "No research result"
+    },
+    "暂无优惠券": {
+        "en-us": "No voucher"
+    },
+    "暂无评价": {
+        "en-us": "No comment"
+    },
+    "暂无可用优惠券": {
+        "en-us": "No available voucher"
+    },
+    "暂无相关内容": {
+        "en-us": "No related content"
+    },
+    "只能在支付14天以内发起申请": {
+        "en-us": "Application can only be initiated within 14 days of payment"
+    },
+    "只能在优惠券失效前36小时内才能发起申请": {
+        "en-us": "Application can only be initiated within 36 hours before the coupon expires"
+    },
+    "请输入新手机号": {
+        "en-us": "Please enter new phone number"
+    },
+    "暂无搜索历史": {
+        "en-us": "No research history"
+    },
+    "是否清空搜索历史？": {
+        "en-us": "Clear research history"
+    },
+    "评价失败，平台已关闭评价权限": {
+        "en-us": "Failed to comment, review permissions close."
+    },
+    "当前城市": {
+        "en-us": "Current City"
+    },
+    "是否切换？": {
+        "en-us": "Do you want to change?"
+    },
+    "优惠券二维码": {
+        "en-us": "Voucher QR code"
+    },
+    "下载APP": {
+        "en-us": "Download APP"
+    },
+    "扫描二维码下载APP体验更便捷的服务": {
+        "en-us": "Scan QR code and download App for more convenient service"
+    },
+    "请先注册账号在登录": {
+        "en-us": "Please register before login"
+    },
+    "回复评论": {
+        "en-us": "Reply"
+    },
+    "售后审核中": {
+        "en-us": "After sale under review"
+    },
+    "售后完成": {
+        "en-us": "After sale done"
+    },
+    "售后关闭": {
+        "en-us": "After sale close"
+    },
+    "拼团中": {
+        "en-us": "on live"
+    },
+    "已结束": {
+        "en-us": "Ended"
+    },
+    "待付款": {
+        "en-us": "Unpaid"
+    },
+    "未消费": {
+        "en-us": "Unredeemed "
+    },
+    "订单详情": {
+        "en-us": "Order details"
+    },
+    "核销订单": {
+        "en-us": "Redeemed order"
+    },
+    "二维码有误，识别无效": {
+        "en-us": "Invalid QR code"
+    },
+    "该位置没有地址信息": {
+        "en-us": "No address information for this location"
+    },
+    "帐号": {
+        "en-us": "Account"
+    },
+    "退出登录": {
+        "en-us": "Log out"
+    },
+    "商家上传规则说明": {
+        "en-us": "Description of Merchant upload rule"
+    },
+    "门店类型不存在": {
+        "en-us": "The type of Merchant does not exist"
+    },
+    "请误重复提交": {
+        "en-us": "Please do not re-submit"
+    },
+    "请选择门店类型": {
+        "en-us": "Please choose merchant type"
+    },
+    "请输入商家信息介绍，方便平台进一步审核": {
+        "en-us": "Please enter business information for further review"
+    },
+    "所在城市": {
+        "en-us": "City"
+    },
+    "请选择所在城市": {
+        "en-us": "Please choose city"
+    },
+    "门店类型": {
+        "en-us": "Merchant type"
+    },
+    "请选择门店类型": {
+        "en-us": "Please choose the type of Merchant"
+    },
+    "商家信息介绍": {
+        "en-us": "Merchant information"
+    },
+    "字": {
+        "en-us": "Word"
+    },
+    "上传图片": {
+        "en-us": "Upload image"
+    },
+    "提交": {
+        "en-us": "Submit"
+    },
+    "重新提交": {
+        "en-us": "Resubmit"
+    },
+    "立即体验": {
+        "en-us": "Explore it now"
+    },
+    "备注信息": {
+        "en-us": "Remarks"
+    },
+    "未通过理由": {
+        "en-us": "Reason for failure"
+    },
+    "审核信息": {
+        "en-us": "Review information"
+    },
+    "审核状态": {
+        "en-us": "Review status"
+    },
+    "前往App解绑": {
+        "en-us": "Go to the app to unbind"
+    },
+    "前往App绑定": {
+        "en-us": "Go to App to bind account"
+    },
+    "已绑定": {
+        "en-us": "Bind"
+    },
+    "未绑定": {
+        "en-us": "Unbind"
+    },
+    "服务单号": {
+        "en-us": "Order number"
+    },
+    "数量": {
+        "en-us": "Amount"
+    },
+    "退款原因": {
+        "en-us": "Reason of refund"
+    },
+    "服务编号": {
+        "en-us": "Service number"
+    },
+    "退款金额": {
+        "en-us": "Refund account"
+    },
+    "申请件数": {
+        "en-us": "Number of applications"
+    },
+    "申请时间": {
+        "en-us": "Application time"
+    },
+    "重置": {
+        "en-us": "Reset"
+    },
+    "选择时间": {
+        "en-us": "Choose a time"
+    },
+    "搜索优惠券": {
+        "en-us": "Search for voucher"
+    },
+    "请输入优惠券ID或用户ID": {
+        "en-us": "Please enter voucher ID or user ID"
+    },
+    "没有相关的优惠券ID或用户ID": {
+        "en-us": "No related voucher ID or user ID"
+    },
+    "门市价": {
+        "en-us": "Market price"
+    },
+    "筛选": {
+        "en-us": "Filter"
+    },
+    "已参团": {
+        "en-us": "Participated"
+    },
+    "人": {
+        "en-us": "People"
+    },
+    "还差": {
+        "en-us": "Left"
+    },
+    "去参团": {
+        "en-us": "Join the group"
+    },
+    "已成团": {
+        "en-us": "Group done"
+    },
+    "拼团详情": {
+        "en-us": "Group details"
+    },
+    "优惠规则": {
+        "en-us": "Discount rules"
+    },
+    "团长": {
+        "en-us": "Organizer"
+    },
+    "人拼团完成，快邀请朋友参团吧！": {
+        "en-us": "Group done, invite your friends to join in"
+    },
+    "还差{_lackPerson}人拼团完成，快邀请朋友参团吧！": {
+        "en-us": "{_lackPerson} person more to complete the group....."
+    },
+    "剩余": {
+        "en-us": "Left"
+    },
+    "结束": {
+        "en-us": "Ended"
+    },
+    "该团已按时凑齐人数，拼团成功": {
+        "en-us": "Enough members, group buy successfully"
+    },
+    "邀请好友参团": {
+        "en-us": "Invite friends"
+    },
+    "我要参团": {
+        "en-us": "I want to participate"
+    },
+    "我要开团": {
+        "en-us": "I want to build up a group"
+    },
+    "选择支付方式": {
+        "en-us": "Choose payment method"
+    },
+    "需支付": {
+        "en-us": "Please confirm the payment"
+    },
+    "确定支付": {
+        "en-us": "Confirm payment"
+    },
+    "地址信息": {
+        "en-us": "Address information"
+    },
+    "详情地址": {
+        "en-us": "Detailed address"
+    },
+    "请输入详细地址": {
+        "en-us": "Please enter detailed address"
+    },
+    "若定位不准，请手动拖动地图位置": {
+        "en-us": "If positioning is not accurate, please manually drag the map position"
+    },
+    "个": {
+        "en-us": "Unit"
+    },
+    "用户ID": {
+        "en-us": "User ID"
+    },
+    "拒绝": {
+        "en-us": "Reject"
+    },
+    "接单": {
+        "en-us": "Accept order"
+    },
+    "已配送": {
+        "en-us": "Delivered"
+    },
+    "已消费订单": {
+        "en-us": "Redeemed order"
+    },
+    "未消费订单": {
+        "en-us": "Unredeemed order"
+    },
+    "全部订单": {
+        "en-us": "All orders"
+    },
+    "扫一扫": {
+        "en-us": "Scan QR code"
+    },
+    "商铺二维码": {
+        "en-us": "Merchant QR code"
+    },
+    "搜索核销": {
+        "en-us": "Search for write-offs"
+    },
+    "营业时间": {
+        "en-us": "Business hours"
+    },
+    "请选择营业时间": {
+        "en-us": "Please choose business hours"
+    },
+    "商铺评分": {
+        "en-us": "Merchant rate"
+    },
+    "全部评价": {
+        "en-us": "All of the comments"
+    },
+    "分": {
+        "en-us": "Score"
+    },
+    "经营地区": {
+        "en-us": "Operating area"
+    },
+    "请设置经营地区": {
+        "en-us": "Please set operating area"
+    },
+    "联系电话": {
+        "en-us": "Contact number"
+    },
+    "商铺详情": {
+        "en-us": "Merchant details"
+    },
+    "修改": {
+        "en-us": "Edit"
+    },
+    "请输入网址信息": {
+        "en-us": "Please enter website address"
+    },
+    "帐号管理": {
+        "en-us": "Account information"
+    },
+    "基础设置": {
+        "en-us": "Settings"
+    },
+    "在线客服": {
+        "en-us": "Chat"
+    },
+    "张图": {
+        "en-us": "Images"
+    },
+    "优惠券详情": {
+        "en-us": "Voucher details"
+    },
+    "图片管理": {
+        "en-us": "Images"
+    },
+    "编辑": {
+        "en-us": "Edit"
+    },
+    "删除": {
+        "en-us": "Delete"
+    },
+    "还剩": {
+        "en-us": "Remains"
+    },
+    "时": {
+        "en-us": "Hours"
+    },
+    "分自动完成": {
+        "en-us": "minutes left to complete order"
+    },
+    "核销记录": {
+        "en-us": "Write-off order"
+    },
+    "核销数量": {
+        "en-us": "Write-off number"
+    },
+    "下单时间": {
+        "en-us": "Order time"
+    },
+    "拒绝时间": {
+        "en-us": "Reject time"
+    },
+    "接单时间": {
+        "en-us": "Accept time"
+    },
+    "配送时间": {
+        "en-us": "Deliver time"
+    },
+    "完成时间": {
+        "en-us": "Completion time"
+    },
+    "删除订单": {
+        "en-us": "Delete order"
+    },
+    "已回复": {
+        "en-us": "Replied"
+    },
+    "去回复": {
+        "en-us": "Reply"
+    },
+    "未评价": {
+        "en-us": "Unmarked"
+    },
+    "可用": {
+        "en-us": "Usable"
+    },
+    "确认核销": {
+        "en-us": "Confirm write-off"
+    },
+    "商家回复": {
+        "en-us": "Merchant reply"
+    },
+    "回复一下吧": {
+        "en-us": "Reply"
+    },
+    "待回复": {
+        "en-us": "Wait for reply"
+    },
+    "编辑商铺详情": {
+        "en-us": "Edit merchant details"
+    },
+    "商铺描述": {
+        "en-us": "Merchant description"
+    },
+    "请输入商铺详情介绍": {
+        "en-us": "Please enter merchant details"
+    },
+    "商铺图片": {
+        "en-us": "Merchant image"
+    },
+    "核销时间": {
+        "en-us": "Redeem time"
+    },
+    "配送完成": {
+        "en-us": "Delivered"
+    },
+    "立即使用": {
+        "en-us": "Use now"
+    },
+    "打开二维码": {
+        "en-us": "Open QR code"
+    },
+    "已评价": {
+        "en-us": "Reviewed"
+    },
+    "去评价": {
+        "en-us": "Review"
+    },
+    "可用优惠券": {
+        "en-us": "My voucher"
+    },
+    "选择城市": {
+        "en-us": "Choose city"
+    },
+    "当前定位城市": {
+        "en-us": "Current city"
+    },
+    "定位中": {
+        "en-us": "Locating"
+    },
+    "已失效": {
+        "en-us": "Invalid"
+    },
+    "消费中": {
+        "en-us": "Purchasing"
+    },
+    "个开团": {
+        "en-us": "groups are in progress"
+    },
+    "评价": {
+        "en-us": "Comments"
+    },
+    "给商铺评分": {
+        "en-us": "Review the merchant"
+    },
+    "说说您的心得分享给其他想购买的朋友吧": {
+        "en-us": "Share your review with others"
+    },
+    "回复评价": {
+        "en-us": "Reply comment"
+    },
+    "评价成功": {
+        "en-us": "Successfully review"
+    },
+    "首页": {
+        "en-us": "Homepage"
+    },
+    "全部拼团": {
+        "en-us": "All groups"
+    },
+    "我的订单": {
+        "en-us": "My order"
+    },
+    "我的": {
+        "en-us": "My"
+    },
+    "搜索门店": {
+        "en-us": "Search stores"
+    },
+    "进行中": {
+        "en-us": "Processing"
+    },
+    "时间筛选": {
+        "en-us": "Choose time"
+    },
+    "商家分类": {
+        "en-us": "Merchant type"
+    },
+    "已开团": {
+        "en-us": "Already grouped"
+    },
+    "网址": {
+        "en-us": "Website"
+    },
+    "商户未设置": {
+        "en-us": "Not set by merchant"
+    },
+    "收藏": {
+        "en-us": "Favourite"
+    },
+    "优惠": {
+        "en-us": "Discount"
+    },
+    "详情": {
+        "en-us": "Details"
+    },
+    "邮箱号": {
+        "en-us": "Email address"
+    },
+    "解绑": {
+        "en-us": "Unbind"
+    },
+    "微信": {
+        "en-us": "WeChat"
+    },
+    "查看详情": {
+        "en-us": "See details"
+    },
+    "退款/售后": {
+        "en-us": "Refund/After sale"
+    },
+    "收藏的店铺": {
+        "en-us": "Favorite store"
+    },
+    "意见反馈": {
+        "en-us": "Feedback"
+    },
+    "历史反馈": {
+        "en-us": "Feedback history"
+    },
+    "反馈类型": {
+        "en-us": "Feedback type"
+    },
+    "请选择反馈类型": {
+        "en-us": "Please select feedback type"
+    },
+    "请描述您的建议": {
+        "en-us": "Please describe your advice"
+    },
+    "官方回复": {
+        "en-us": "Official reply"
+    },
+    "绑定": {
+        "en-us": "Bind"
+    },
+    "我的二维码": {
+        "en-us": "My QR code"
+    },
+    "联系我们": {
+        "en-us": "Contact us"
+    },
+    "设置": {
+        "en-us": "Setting"
+    },
+    "用户头像": {
+        "en-us": "User image"
+    },
+    "请输入昵称": {
+        "en-us": "Please enter nickname"
+    },
+    "性别": {
+        "en-us": "Gender"
+    },
+    "请选择": {
+        "en-us": "Please choose"
+    },
+    "个人资料": {
+        "en-us": "Personal profile"
+    },
+    "申请售后": {
+        "en-us": "Apply for after sale"
+    },
+    "很遗憾，当前订单已经不能申请退款": {
+        "en-us": "Sorry, the current order is no longer eligible for a refund"
+    },
+    "问题描述": {
+        "en-us": "Problem description"
+    },
+    "请输入售后问题描述": {
+        "en-us": "Please describe the after sale problem"
+    },
+    "优惠券数量": {
+        "en-us": "Voucher amount"
+    },
+    "售后说明": {
+        "en-us": "After sale description"
+    },
+    "支付成功": {
+        "en-us": "Payment successful"
+    },
+    "支付失败": {
+        "en-us": "Payment failed"
+    },
+    "核销成功": {
+        "en-us": "Redeemed successfully"
+    },
+    "评价成功，期待再次为您服务！": {
+        "en-us": "Review successfully, looking forward to serving you again!"
+    },
+    "售后申请提交成功，等待审核": {
+        "en-us": "After-sale application submitted successfully, waiting for review"
+    },
+    "查看售后详情": {
+        "en-us": "See after-sale detail"
+    },
+    "查看订单详情": {
+        "en-us": "See order detail"
+    },
+    "返回": {
+        "en-us": "Return"
+    },
+    "售后详情": {
+        "en-us": "After-sale detail"
+    },
+    "未通过原因": {
+        "en-us": "Reason for failure"
+    },
+    "退款总金额": {
+        "en-us": "Refund amount"
+    },
+    "退款信息": {
+        "en-us": "Refund information"
+    },
+    "语种切换": {
+        "en-us": "Switch language"
+    },
+    "检查更新": {
+        "en-us": "Check for update"
+    },
+    "清除缓存": {
+        "en-us": "Clear cache"
+    },
+    "消息推送": {
+        "en-us": "Notification"
+    },
+    "保存至相册": {
+        "en-us": "Save to album"
+    },
+    "查看拼团详情": {
+        "en-us": "See group detail"
+    },
+    "自动关闭": {
+        "en-us": "Automatically close"
+    },
+    "单价": {
+        "en-us": "Unit price"
+    },
+    "已付": {
+        "en-us": "Price"
+    },
+    "已核销数量": {
+        "en-us": "Redeemed amount"
+    },
+    "订单编号": {
+        "en-us": "Order series number"
+    },
+    "成团时间": {
+        "en-us": "Group-building time"
+    },
+    "关闭时间": {
+        "en-us": "Close time"
+    },
+    "支付方式": {
+        "en-us": "Payment method"
+    },
+    "支付时间": {
+        "en-us": "Payment time"
+    },
+    "立即付款": {
+        "en-us": "Pay now"
+    },
+    "申请退款": {
+        "en-us": "Apply for refund"
+    },
+    "填写下单信息": {
+        "en-us": "Please enter order information"
+    },
+    "姓名": {
+        "en-us": "Name"
+    },
+    "请输入姓名": {
+        "en-us": "Please enter your name"
+    },
+    "收货地址": {
+        "en-us": "Shipping address"
+    },
+    "请输入收货地址": {
+        "en-us": "Please enter shipping address"
+    },
+    "已核销详情": {
+        "en-us": "Redeemed detail"
+    },
+    "您的浏览器不支持 video 标签": {
+        "en-us": "Your browser does not support video label"
+    },
+    "描述您的建议": {
+        "en-us": "Describe your advices"
+    },
+
+    // 2月21号新增 ----------------------------------------------------------------------------------------------
+
+
+    "换绑": {
+        "en-us": "Binding exchange"
+    },
+    "安全服务提示": {
+        "en-us": "Safety service notification"
+    },
+    "确认您登录的是Wololo网址，注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗": {
+        "en-us": "Please make sure the validity of WOLOLO website rather than fake website, do not easily click the payment link for fraud prevention"
+    },
+    "建议您安装杀毒软件，并定期更新操作系统等软件补丁，确保帐号及交易安全": {
+        "en-us": "Please download the anti-virus software and update your system regularly for safety reason"
+    },
+    "联系方式": {
+        "en-us": "Contact method"
+    },
+    "商家图片": {
+        "en-us": "Merchant image"
+    },
+    "经营地址": {
+        "en-us": "Operating area"
+    },
+    "详细地址": {
+        "en-us": "Location"
+    },
+    "商铺详情介绍": {
+        "en-us": "Merchant details"
+    },
+    "请输商铺详情介绍": {
+        "en-us": "Please enter merchant details"
+    },
+    "个人信息": {
+        "en-us": "Personal information"
+    },
+    "我的收藏": {
+        "en-us": "My collection"
+    },
+    "我收藏的店铺": {
+        "en-us": "Store collection"
+    },
+    "其他": {
+        "en-us": "Other"
+    },
+    "搜索": {
+        "en-us": "Search"
+    },
+    "消息中心": {
+        "en-us": "Message centre"
+    },
+    "商品信息": {
+        "en-us": "Product information"
+    },
+    "类型": {
+        "en-us": "Type"
+    },
+    "操作": {
+        "en-us": "Operation"
+    },
+    "收货信息": {
+        "en-us": "Delivery information"
+    },
+    "周一至周日": {
+        "en-us": "Monday to Sunday"
+    },
+    "官方邮箱": {
+        "en-us": "Official email"
+    },
+    "App下载": {
+        "en-us": "Download APP"
+    },
+    "意见/投诉描述": {
+        "en-us": "Complaint description"
+    },
+    "拼团列表": {
+        "en-us": "Group-building list"
+    },
+    "发起拼团": {
+        "en-us": "Group-building"
+    },
+    "选择拼团时长": {
+        "en-us": "Select group time"
+    },
+    "天": {
+        "en-us": "Day"
+    },
+    "小时": {
+        "en-us": "Hour"
+    },
+    "昵称": {
+        "en-us": "Nickname"
+    },
+    "男": {
+        "en-us": "Male"
+    },
+    "女": {
+        "en-us": "Female"
+    },
+    "剪裁图片": {
+        "en-us": "Image cut"
+    },
+    "修改网址信息": {
+        "en-us": "Change website information"
+    },
+    "售后列表": {
+        "en-us": "After sale list"
+    },
+    "售后信息": {
+        "en-us": "After sale information"
+    },
+    "月份": {
+        "en-us": "Month"
+    },
+    "查看拼团订单": {
+        "en-us": "Check the group list"
+    },
+    "未购买": {
+        "en-us": "Unpurchased"
+    },
+    "订单信息": {
+        "en-us": "Order information"
+    },
+    "给商铺点评": {
+        "en-us": "Comment for the Merchant"
+    },
+    "你的点评": {
+        "en-us": "Your reviews"
+    },
+    "支付金额": {
+        "en-us": "Payment amount"
+    },
+    "选择一下支付方式付款": {
+        "en-us": "Please choose your payment method"
+    },
+    "立即支付": {
+        "en-us": "Pay now"
+    },
+    "保存到本地": {
+        "en-us": "Save it to system"
+    },
+    "账户管理": {
+        "en-us": "Account management"
+    },
+    "请选择你的角色": {
+        "en-us": "Please choose your role"
+    },
+    "我是用户": {
+        "en-us": "I am user"
+    },
+    "我是商家": {
+        "en-us": "I am Merchant"
+    },
+
+    // 2月22号新增 ----------------------------------------------------------------------------------------------
+
+    "Instagram账号": {
+        "en-us": "Instagram account"
+    },
+    "请输入Instagram账号": {
+        "en-us": "Please enter Instagram account"
+    },
+    "尚未绑定手机号": {
+        "en-us": "Unbind mobile number"
+    },
+    "尚未绑定邮箱": {
+        "en-us": "Unbind email address"
+    },
+    "消息详情": {
+        "en-us": "Message notification"
+    },
+    "全部已读": {
+        "en-us": "All read"
+    },
+    "优惠券-已核销成功": {
+        "en-us": "Voucher - redeemed successfully"
+    },
+    "拼团订单-已接单": {
+        "en-us": "Group order - order accepted"
+    },
+    "拼团订单-已拒单": {
+        "en-us": "Group order - order rejected"
+    },
+    "拼团订单-已配送": {
+        "en-us": "Group order - delivered"
+    },
+    "拼团订单-配送完成": {
+        "en-us": "Group order - completed"
+    },
+    "拼团订单-待接单": {
+        "en-us": "Group order - order unaccepted"
+    },
+    "申请售后-审核通过": {
+        "en-us": "After sale - review completed"
+    },
+    "申请售后-退款成功": {
+        "en-us": "After sale - successfully refund"
+    },
+    "商家认证-审核失败": {
+        "en-us": "Merchant identification - failed"
+    },
+    "商家认证-审核成功": {
+        "en-us": "Merchant identification - successful"
+    },
+    "已完成": {
+        "en-us": "Completed"
+    },
+    "点击图片可放大": {
+        "en-us": "Click for larger image"
+    },
+    "商铺二维码": {
+        "en-us": "Merchant QR code"
+    },
+    "解绑成功": {
+        "en-us": "Successfully Unbind"
+    },
+    "当前用户没有绑定该三方账户，无需解绑": {
+        "en-us": "No third party binding account, no need for unbind."
+    },
+    "绑定账号": {
+        "en-us": "Bind account"
+    },
+    "该账号已绑定其他三方账户，请使用其他账号": {
+        "en-us": "Current account has already bounded with other third-party account, please use another account"
+    },
+    "该账号不是商户或用户无法绑定，请使用其它账号": {
+        "en-us": "Unable to bind, please use another account."
+    },
+    "国家码与该账号国家码不匹配，请重新选择": {
+        "en-us": "Country code can't be matched, please re-select."
+    },
+    "分享至": {
+        "en-us": "Share to"
+    },
+    "前往APP参团": {
+        "en-us": "Go to APP for group"
+    },
+    "前往APP查看更多": {
+        "en-us": "Go to APP for more information"
+    },
+    "按参团时间筛选": {
+        "en-us": "Filtered by group-build"
+    },
+    "系统消息": {
+        "en-us": "System notification"
+    },
+    "平台消息": {
+        "en-us": "Notification"
+    },
+    "规则协议": {
+        "en-us": "Contract roles"
+    },
+    "退款售后": {
+        "en-us": "After-sale refund"
+    },
+    "确认使用": {
+        "en-us": "Confirm to use"
+    },
+    "抱歉！您的账号已被冻结": {
+        "en-us": "Sorry, your account has been blocked."
+    },
+    "抱歉！您的账号尚未验证成功": {
+        "en-us": "Sorry! Your account haven't been verified."
+    },
+    "确定开团": {
+        "en-us": "Confirm"
+    },
+
+
+
+    // 3月2号新增
+    "该账户已被删除！": {
+        "en-us": "Your account has been deleted!"
+    },
+    "优惠券规则": {
+        "en-us": "Voucher roles"
+    },
+    "优惠券列表": {
+        "en-us": "Voucher list"
+    },
+    "下载": {
+        "en-us": "Download"
+    },
+    "交易关闭": {
+        "en-us": "Closed transaction"
+    },
+    "商家信息": {
+        "en-us": "Merchant information"
+    },
+    "商家主页": {
+        "en-us": "Merchant page"
+    },
+    "确定接单？": {
+        "en-us": "Are you sure?"
+    },
+    "营业中": {
+        "en-us": "Opening"
+    },
+    "由高到低": {
+        "en-us": "High to low"
+    },
+    "由低到高": {
+        "en-us": "Low to high"
+    },
+
+
+
+
+    // 3月12号新增
+    "是否解除绑定？": {
+        "en-us": "Unbound?"
+    },
+    "查看": {
+        "en-us": "Check"
+    },
+    "微信二维码": {
+        "en-us": "WeChat QR code"
+    },
+    "支付宝二维码": {
+        "en-us": "Alipay QR code"
+    },
+    "请使用微信APP客户端扫码支付": {
+        "en-us": "Please use WeChat pay for scanning"
+    },
+    "请使用支付宝APP客户端扫码支付": {
+        "en-us": "Please use Alipay pay for scanning"
+    },
+    "确认": {
+        "en-us": "Confirm"
+    },
+    "请输入邮箱": {
+        "en-us": "Please enter your email "
+    },
+    "请输入登录密码进行验证": {
+        "en-us": "Please enter password for vertification"
+    },
+    "请输入内容": {
+        "en-us": "Please enter content"
+    },
+
+
+
+    // 4月14号
+    "暂无数据": {
+        "en-us": "No data"
+    },
+    "确定清空全部消息？": {
+        "en-us": "Confirm to clear all messages？"
+    },
+    "确定标记所有消息为已读？": {
+        "en-us": "Confirm to mark all read messages？"
+    },
+    "一键清空": {
+        "en-us": "Delete all messages"
+    },
+    "折扣规则": {
+        "en-us": "Discount breakdown"
+    },
+    "参团人越多，折扣越低": {
+        "en-us": "The discount you receive depends on how many participants join this group."
+    },
+    "我要成团": {
+        "en-us": "I want to form a group"
+    },
+    "我要凑人数": {
+        "en-us": "I'm going to figure it out"
+    },
+    "请输入人数": {
+        "en-us": "Please enter the number of people"
+    },
+    "当前操作必须是发起人": {
+        "en-us": "Current operation must be initiator"
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    },
+    "___": {
+        "en-us": ""
+    }
+}
+>>>>>>> 0de30b68006a48e81fab8bb39a4809f5be0e1d32

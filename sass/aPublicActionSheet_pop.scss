@@ -1,0 +1,28 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    .close{
+        background-color: rgba(0,0,0,0.3);
+    }
+    .footer{
+        background-color: white;
+        ul{
+            &:not(:first-of-type){
+                border-top: pxToRem(20) solid #f8f8f8;
+            }
+            li{
+                &:not(:first-child){
+                    @include border-top-m(solid, #eee);
+                }
+                // font-weight: bold;
+                text-align: center;
+                line-height: pxToRem(100);
+                color: #000;
+                font-size: pxToRem(32);
+                &.cancel{
+                    color: #666;
+                }
+            }
+        }
+    }
+}

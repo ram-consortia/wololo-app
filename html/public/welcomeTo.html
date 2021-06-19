@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicWelcome_win.css">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+
+</head>
+<body>
+    <div class="wrap1 wrap">
+        <div class=" swiper-slide1"></div>
+    </div>
+    <div class="welcomeDiv">
+        <div class="bot" tapmode="hover" onclick="Pub()">Create Account</div>
+        <div class="botItem">Already registered? <span tapmode="hover" onclick="uSumb()">  Log in</span></div>
+    </div>
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+
+<script>
+    function uSumb() {
+      fnOpen('sign/signIn_win.html',{param: {idr:'ed3'}})
+      fnCookie(APP.LC_NAME.HAS_NOT_WELCOME, true);
+    }
+
+
+    function Pub() {
+      fnOpen('public/aPublicWelcome_win.html')
+    }
+</script>
+</body>
+</html>

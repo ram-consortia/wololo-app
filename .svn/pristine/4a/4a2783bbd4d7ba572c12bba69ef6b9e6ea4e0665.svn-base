@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <link rel="stylesheet" href="../../css/coupon2.css">
+    <style>
+        .logo{
+            width: 105px;
+            height: 105px;
+        }
+        .footer{
+            min-height: 100px;
+            box-sizing: border-box;
+            width: 100%;
+            background: #ffffff;
+            padding: 20px;
+        }
+        .body{
+            box-sizing: border-box;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="body" >
+<div class="back padding_top20" tapmode="hover" onclick="fnClose()"></div>
+<div class="padding20 flex1 flex column padding_top0" style="overflow-x: hidden">
+    <div class="header">
+        <div class="size24 bold">Checkout</div>
+    </div>
+    <div style="color: #666D72">
+        <div class="flex">
+            <img class="logo" src="../../image/v2/icon-logo.png" >
+            <div class="flex1 margin_left10">
+                <div class="size12" id="storeName"></div>
+                <div id="productName" class="margin_top10"></div>
+                <div class="margin_top10">
+                    <span id="price1" class="size20 bold black"></span>
+                    <span id="price2" class="through color_grey size16"></span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="hr margin_top20" style="transform: scale(1.2)"></div>
+        <div class="flex bold flex_between black size12 padding_top20 margin_top20">
+            <div style="padding: 3px">DELIVERY LOCATION</div>
+            <div style="background-color: #F2F7FB;padding: 3px">Estimate delivery in 4 - 5 Days</div>
+        </div>
+        <div class="size14 flex item_center margin_top20">
+            <img src="../../image/v2/ic_pin.png" alt="" style="margin-right:7px;width: 16px;height: 16px">
+            <div id="address"></div>
+        </div>
+        <div class="black size12 margin_top20 padding_top20 bold">PAYMENT METHOD</div>
+        <div class="flex margin_top10 hidden">
+            <img src="../../image/v2/ic_card.png" alt="" style="width: 35px;height: 35px">
+            <div class="flex column flex_between margin_left10">
+                <div class="black size14">VISA CLASSIC</div>
+                <div class="size12">XXXX - XXXX - XXXX - 4692</div>
+            </div>
+        </div>
+        <div class="nocard margin_top10">
+            <div class="btn btn_default tx_upper color_grey" style="background: #f0f0f0!important;" onclick="toAddCard()" tapmode="hover">Add Card</div>
+        </div>
+        <div class="padding_top20 margin_top20 bold black">Order Summery</div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Subtotal</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Subtotal</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Subtotal</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+        <div class="hr margin_top20" style="transform: scale(1.2)"></div>
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="size12">Total</div>
+            <div class="size14 black">£49.00</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="btn btn_default tx_upper" onclick="toRedeem()" tapmode="hover">CheckOut</div>
+</div>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    let detail={};
+    APP.init(()=>{
+        log(APP._param)
+        detail=APP._param.data;
+        $('.logo').attr('src',detail.deal.product.images[0]);
+        $('#storeName').text(detail.store.user_nickname);
+        $('#productName').text(detail.deal.name);
+        $('#price1').text(detail.group.total_price);
+        $('#price2').text(detail.deal.product.price);
+        $('#address').text(detail.store.info.address);
+    });
+    function toAddCard(){
+        fnOpen('my/addCard_win.html',{
+            param:{
+                fromWin:'checkout'
+            }
+        });
+    }
+    function queryCard(){
+
+    }
+    function share(){
+        var sharedModule = api.require('shareAction');
+        sharedModule.share({
+            text:'Wololo',
+            path: APP._shareUrl,
+            thumbnail:'widget://image/icon-logo.png',
+            type: 'url',
+            iPad: {
+                arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                    x: 0,                  //左上角x坐标，数字类型
+                    y: 0,                  //左上角y坐标，数字类型
+                    w: 400,                  //宽度，数字类型
+                    h: 400,                  //高度，数字类型
+                },
+                contentSize: {           //JSON 对象，对话框大小
+                    w: 400,                  //宽度，数字类型
+                    h: 400                   //高度，数字类型
+                },
+                fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                arrowDirection: 'any',
+            }
+        });
+    }
+</script>
+</body>
+</html>

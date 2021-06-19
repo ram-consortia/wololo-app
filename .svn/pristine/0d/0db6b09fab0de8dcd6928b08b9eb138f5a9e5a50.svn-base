@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/img.css" />
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="content flex-item-vertical">
+            <div class="imgs">
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel active"></span>
+                            <span class="homepage active">主页</span>
+                        </span>
+                    </div>  
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel active"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>  
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>  
+                </div>
+                <div class="img">
+                    <div class="pho-img">
+                        <img src="../../image/icon-background1.png">
+                        <span class="pho">
+                            <span class="sel"></span>
+                            <span class="homepage">设为主页</span>
+                        </span>
+                    </div>  
+                </div>
+                
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="save">删除(3)</div>
+        </div>
+    </div>
+    <div id="no-data">暂无上传图片</div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+       APP.fixTabBar('.bottom');
+    });
+
+
+    
+    
+</script>
+</html>

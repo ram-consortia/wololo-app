@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <style>
+        .header{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 20px 20px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0 3px 8px;
+            box-sizing: border-box;
+            align-items: center;
+        }
+        .close2{
+            padding: 0 0 0 30px;
+        }
+        #wrap{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .map{
+            flex: 1;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="flex-vertical" id="wrap">
+    <div class="bg_fff header">
+        <div id="title">Hennes & Mauritz</div>
+        <div class="size24 close2" onclick="fnClose()" tapmode="hover">x</div>
+    </div>
+    <div id="googleMap" class="map"></div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnLoadScript_public({
+            src: APP.THREE.GOOGLE.map.value
+        }, function() {
+            fnOpenMapInit(APP._param);
+        })
+    });
+
+    // fnOpenMapInit({
+    //     lat:110,
+    //     lng:105
+    // })
+    function fnOpenMapInit(ret){
+        var myLatlng = {
+            lat: +ret.lat,
+            lng: +ret.lon
+        };
+
+        APP._map = new google.maps.Map($('#googleMap')[0], {
+            zoom: 18,
+            center: myLatlng,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
+            zoomControl: false
+        });
+
+        fnDeleteMarkersLocation();
+        APP._markersLocation.push(new google.maps.Marker({
+            position: myLatlng,
+            map: APP._map,
+            icon: {
+                url: '../../image/icon-map-location.png',
+                size: new google.maps.Size(30, 30),
+                scaledSize: new google.maps.Size(30, 30)
+            }
+        }));
+
+        APP._map.addListener('center_changed', function() {
+            var _data = fnCloneObject_public(APP._map.getCenter());
+            clearTimeout(APP.timer);
+            APP.timer = setTimeout(function() {
+                // debugAlert(3333, _data)
+                fnRefreshStore(_data);
+            }, 100);
+        });
+
+
+        if( APP._param.lat && APP._param.lon ){
+            fnSetCenter(APP._param);
+        }else{
+            fnCityInit();
+        }
+    }
+
+</script>
+</html>

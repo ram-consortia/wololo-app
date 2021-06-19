@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" href="../../framework/swiper.min.css">
+    <link rel="stylesheet" href="../../css/explore.css">
+
+</head>
+
+<body style="height: 100%;padding-top: 10px; background: initial;">
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination" style="bottom: 0px"></div>
+
+
+</div>
+<div class="flex_center">
+</div>
+
+<div class="control">
+    <div class="exp_title bold">
+        Popular products
+    </div>
+    <div class="right">
+        <div style="margin-right: 22px">
+            <img src="../../image/v2/deals_search.png">
+        </div>
+        <div>
+            <img src="../../image/v2/deals_set.png">
+        </div>
+    </div>
+</div>
+    <div class="flex box padding20 padding_top0">
+        <div class="wish_item">
+            <div class="tag bg_red wish_tag">SUPERDEAL</div>
+            <div class="wish_img">
+            </div>
+            <div class="commodity">
+                <div class="commodity_name">harrods</div>
+                <div class="commodity_type">Oversized Jacket akjdnakjfnaksjnfkjasnfkjsn</div>
+                <div class="commodity_price">
+                    £49.00
+                </div>
+            </div>
+        </div>
+        <div class="wish_item">
+            <div class="tag bg_blue wish_tag">+1 DEAL</div>
+            <div class="wish_img">
+            </div>
+            <div class="commodity">
+                <div class="commodity_name">harrods</div>
+                <div class="commodity_type">Oversized Jacket akjdnakjfnaksjnfkjasnfkjsn</div>
+                <div class="commodity_price">
+                    £49.00
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: true, // 循环模式选项
+        autoplay:true,
+        effect : 'coverflow',
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+</script>
+<style type="text/css">
+    .swiper-container{
+        --swiper-theme-color: #ff6600;
+        --swiper-pagination-color: #00ff33;/* 两种都可以 */
+    }
+</style>
+</body>
+</html>

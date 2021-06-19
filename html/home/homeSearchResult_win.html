@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/home.css" />
+</head>
+<body style="height: 100%; background: initial;">
+    <div class="flex-vertical main" id="wrap">
+
+        <!--<div class="head-item">
+            <header class="header head-bar">
+                <div class="top wid100">
+                    <div class="backP">
+
+                        <div class="location flex-wrap ">
+                            <div class="flex-item">
+                                <div tapmode="hover" onclick="fnClose()" class="back icon-back mt10"></div>
+                            </div>
+                            <span id="viewMode" class="pattern {{_param.__isMap && 'active'}}" tapmode="hover" onclick="fnSwitchViewMode()"></span>
+                        </div>
+
+                        <div class="search-stores ">
+                            <div tapmode="hover"
+                                 class="search"
+                                 {{if _param.keyword}}
+                                 onclick="fnClose();"
+                                 {{else}}
+                                 onclick="fnSearch();"
+                                 {{/if}}
+                            >
+                            <span class="search-img"></span>
+                            <div class="inpit">
+                                <input value="搜索门店" type="text" readonly placeholder="搜索门店">
+                            </div>
+
+
+                            <span class="del"></span>
+
+                        </div>
+                        &lt;!&ndash;                        <span class="screen" tapmode="hover" onclick="fnOpenScreen()">{{'筛选' | fnLanguage_public}}</span>&ndash;&gt;
+                    </div>
+
+                    <div class="box hide">
+                        &lt;!&ndash; 选中加active &ndash;&gt;
+                        <div data-path="home/home_frm.html" class="item"></div>
+                        <div data-path="home/home_frm.html" class="item"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>-->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <!-- 首页头部 -->
+        <div class="head-item">
+            <header class="header head-bar">
+                <div class="top wid100">
+                    <div class="backP">
+                        <div class="location flex-wrap ">
+                            <div class="flex-item">
+                                <div tapmode="hover" onclick="fnClose()" class="back icon-back mt10"></div>
+                            </div>
+                            <span id="viewMode" class="pattern {{_param.__isMap && 'active'}}" tapmode="hover" onclick="fnSwitchViewMode()"></span>
+                        </div>
+
+                        <div class="search-stores ">
+                            <div tapmode="hover"
+                                 {{if _param.keyword}}
+                                 onclick="fnClose();"
+                                 {{else}}
+                                 onclick="fnSearch();"
+                                 {{/if}}
+                            class="search">
+                            <span class="search-img"></span>
+                            <div class="inpit">
+                                <input value="{{_param.keyword}}" type="text" readonly placeholder="{{'搜索门店' | fnLanguage_public}}">
+                            </div>
+
+                            {{if _param.keyword}}
+                            <span class="del"></span>
+                            {{/if}}
+                        </div>
+                        <!--                        <span class="screen" tapmode="hover" onclick="fnOpenScreen()">{{'筛选' | fnLanguage_public}}</span>-->
+                    </div>
+
+                    <div class="box hide">
+                        <!-- 选中加active -->
+                        <div data-path="home/home_frm.html" class="item"></div>
+                        <div data-path="home/home_frm.html" class="item"></div>
+                    </div>
+                    </div>
+
+
+                </div>
+            </header>
+        </div>
+
+        <div class="flex-item-vertical">
+
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+        fnOpenGroup({
+            navSeletor: '.box .item',                                    //必填  |    ''    |    String    |  导航选择器
+            marginTop: $('.header').height(),                            //选填  |    0     |    Number    |  group 距离顶部距离
+            scrollEnabled: false,                                             //选填  |  false   |    Boolean   |  frame 组是否可以左右滑动
+            index: APP._param.__isMap || 0,                                                        //选填  |    0     |    Number    |  选中的tab项
+            preload: 0,                                                      //选填  |    0     |    Number    |  预加载的 frame 个数
+            param: {                                                         //选填  |    {}    |    Object    |  公共参数
+                // _groupName: api.winName
+            }
+        }, function(ret){
+            // debugAlert(2222, arguments)
+            APP._win = ret;
+        });
+    });
+    //
+    // function fnOpenScreen(_key) {
+    //     if( _key ){
+    //         var _data = APP._orderScreen || {
+    //             coupon_type: {
+    //                 title: '券类型',
+    //                 data: APP.COUPON.type
+    //             },
+    //             price_type: {
+    //                 title: '优惠券金额',
+    //                 data: APP.COUPON.price_type
+    //             }
+    //         }
+    //         fnOpenScreen_base({
+    //             data: _data,
+    //             isOrder: APP.YES
+    //         }, function(ret){
+    //             APP._orderScreen = ret.data;
+    //             var _data = {
+    //                 coupon_type: 0,
+    //                 price_type: 0
+    //             }
+    //             for( var x in APP._orderScreen.coupon_type.data ){
+    //                 if( APP._orderScreen.coupon_type.data[x].active ){
+    //                     APP._coupon_type = APP._orderScreen.coupon_type.data[x].id;
+    //                 }
+    //             }
+    //             for( var x in APP._orderScreen.price_type.data ){
+    //                 if( APP._orderScreen.price_type.data[x].active ){
+    //                     APP._price_type = APP._orderScreen.price_type.data[x].id;
+    //                 }
+    //             }
+    //             fnOrderStart();
+    //         })
+    //     }else{
+    //         var _data = APP._homeScreen || {
+    //             business: {
+    //                 title: '营业状态',
+    //                 data: APP.STORE.business
+    //             },
+    //             popularity: {
+    //                 title: '人气',
+    //                 data: APP.STORE.popularity
+    //             },
+    //             ev_score: {
+    //                 title: '评分',
+    //                 data: APP.STORE.ev_score
+    //             },
+    //             grade: {
+    //                 title: '等级',
+    //                 data: APP.STORE.grade
+    //             }
+    //         }
+    //         fnOpenScreen_base({
+    //             data: _data
+    //         }, function(ret){
+    //             if( ret.isJumpCollection ){
+    //                 fnOpen('my/collection_win.html');
+    //             }else{
+    //                 APP._homeScreen = ret.data;
+    //                 fnSendScreen(APP._homeScreen)
+    //             }
+    //         })
+    //     }
+    // }
+
+    function fnCategoryInit(_data){
+        APP._Category = _data;
+    }
+
+    function fnSearch(_el){
+        var _param = {
+            searchKey: ['category_search']
+        }
+        _param.resultHtmlPath = 'home/homeSearchResult_win.html';
+        _param.__isMap = APP._isMap;
+        _param.__isHomeSearch = APP.YES;
+
+        if( APP._Category ){
+            _param.category_id = [APP._param.category.id];
+            for( var x in APP._Category ){
+                _param.category_id.push(APP._Category[x].id);
+            }
+            _param.__category_id = _param.category_id.join();
+
+            _param.searchKey.push(APP._param.category.id);
+        }
+
+        _param.searchKey = _param.searchKey.join();
+        fnSearch_base(_param, function(ret){
+
+        })
+    }
+
+    function fnSendScreen(_obj, _groupName){
+        debugAlert(3333424234242423, arguments, APP._win)
+        api.sendEvent({
+            name: [api.winName, 'homeScreen', _groupName || APP._win.groupParam.name].join(),
+            extra: _obj
+        });
+    }
+
+    function fnSwitchViewMode(){
+        APP._isMap = +(!$('#viewMode').hasClass('active'));
+        if( APP._isMap ){
+            $('#viewMode').addClass('active');
+        }else{
+            $('#viewMode').removeClass('active');
+        }
+        debugAlert(3333, APP._isMap, APP._win)
+        var _groupName = APP._win.groupParam.name;
+        if( _groupName ){
+            api.setFrameGroupIndex({
+                name: _groupName,
+                index: APP._isMap,
+                scroll: false
+            });
+        }
+    }
+</script>
+</html>

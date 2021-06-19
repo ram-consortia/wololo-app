@@ -1,0 +1,78 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .main{
+        .content{
+            .top{
+                padding: pxToRem(50) pxToRem(30) pxToRem(54);
+                @include flex-box();
+                font-size: pxToRem(36);
+                color: #333;
+                @extend .font-m;
+                .stars{
+                    display: inline-block;
+                    margin-left: pxToRem(30);
+                    font-size: 0;
+                    vertical-align: middle;
+                    @include prefixCss3($property: align-self, $value: center);
+                    .star{
+                        display: inline-block;
+                        width: pxToRem(52);
+                        height: pxToRem(52);
+                        margin: 0 pxToRem(11);
+                        @include set-bg-img( $name: "icon-star.png", $size: pxToRem(52) auto, $position: center center);
+                        &.empty-star{
+                            @include set-bg-img( $name: "icon-star1.png", $size: pxToRem(52) auto, $position: center center);
+                        }
+                    }
+                }
+            }
+            .textarea{
+                margin: 0 pxToRem(30);
+                padding: pxToRem(32) pxToRem(20) pxToRem(30);
+                font-size: pxToRem(30);
+                color: #999;
+                line-height: pxToRem(42);
+                background-color: #F7F7F7;
+                border-radius: pxToRem(4);
+                height: pxToRem(268);
+                textarea{
+                    height: pxToRem(232);
+                }
+                .number{
+                    font-size: pxToRem(26);
+                    color: #999;
+                    line-height: pxToRem(39);
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+
+        .bottom{
+            overflow: hidden;
+            @include border-top-m;
+            &::before{
+                border-color: #EAEAEA;
+            };
+            .quit{
+                margin: pxToRem(10) pxToRem(30);
+                height: pxToRem(92);
+                font-size: pxToRem(30);
+                color: #fff;
+                @extend .font-m;
+                line-height: pxToRem(92);
+                text-align: center;
+                border-radius: pxToRem(8);
+                @include set-bg-img( $name: "icon-submint.png");
+            }
+        }
+    #no-data{
+        &::before{
+            @include set-bg-img( $name: "icon-nodata4.png", $size: pxToRem(320) auto, $position: center bottom);
+        };
+    }
+}

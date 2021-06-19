@@ -1,0 +1,105 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body{
+    .header{
+        // @include border-bottom-m(solid, rgba(221,221,221,0));
+    }
+    .block{
+        // padding: pxToRem(15) pxToRem(29) pxToRem(15) pxToRem(29);
+        padding: pxToRem(29);
+        background-color: #fff;
+        .search-city{
+            height: pxToRem(60);
+            background: rgba(245,245,245,1);
+            border-radius: pxToRem(30);
+            overflow: hidden;
+            padding: pxToRem(15) 0 pxToRem(15) pxToRem(69);
+            position: relative;
+            @include prefixCss3(box-sizing, border-box);
+            &::before{
+                display: inline-block;
+                content: '';
+                position: absolute;
+                left: pxToRem(31);
+                width: pxToRem(29);
+                height: pxToRem(29);
+                @include set-bg-img($name: 'search-icon.png');
+            }
+            input{
+                font-size: pxToRem(25);
+                color: #333;
+            }
+        }
+        .location{
+            // padding-top: pxToRem(30);
+            padding-bottom: pxToRem(9);
+            .title{
+                color: rgba(153,153,153,1);
+                line-height: pxToRem(38);
+                font-size: pxToRem(27);
+                margin-bottom: pxToRem(23);
+            }
+            .local{
+                display: inline-block;
+                padding: pxToRem(15) pxToRem(23) pxToRem(15) pxToRem(21);
+                background: rgba(255,111,97,1);
+                border-radius: pxToRem(8);
+                color: rgba(255,255,255,1);
+                line-height: pxToRem(33);
+                font-size: pxToRem(23);
+                &::before{
+                    display: inline-block;
+                    content: '';
+                    width: pxToRem(23);
+                    height: pxToRem(29);
+                    vertical-align: sub;
+                    margin-right: pxToRem(13);
+                    @include set-bg-img($name: 'location-icon.png');
+                }
+            }
+        }
+    }
+    .main{
+        background: rgba(245,245,245,1);
+        .block{
+            padding: pxToRem(11) pxToRem(29) pxToRem(29);
+            margin-bottom: pxToRem(19);
+        }
+        .city-list{
+            background-color: #fff;
+            padding: 0 pxToRem(29);
+            .city-item{
+                .initials{
+                    padding-top: pxToRem(29);
+                    color: rgba(51,51,51,1);
+                    line-height: pxToRem(40);
+                    font-size: pxToRem(29);
+                }
+                .city{
+                    padding-top: pxToRem(29);
+                    padding-bottom: pxToRem(19);
+                    color: rgba(51,51,51,1);
+                    line-height: pxToRem(38);
+                    font-size: pxToRem(27);
+                    @include border-bottom-m(solid, rgba(221,221,221,1));
+                    // box-shadow:0 pxToRem(2) 0 0 rgba(221,221,221,1);
+                }
+            }
+        }
+    }
+
+    .initial{
+        position: fixed;
+        top: 50%;
+        right: pxToRem(10);
+        @include prefixCss3(transform, translateY(-50%));
+        .letters{
+            text-align: center;
+            color: rgba(51,51,51,1);
+            line-height: pxToRem(33);
+            font-size: pxToRem(23);
+            padding-top: pxToRem(4);
+        }
+    }
+}

@@ -1,0 +1,129 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+    .background-img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        @include set-bg-img( $name: "icon-background.png");
+    }
+    .header{
+        background-color: inherit;
+        @include border-bottom-m;
+        z-index: 1;
+        &::after{
+            border: none;
+        };
+    }
+    .flex-item-vertical{
+        //background-color: orange;
+        @include set-bg-img( $name: "icon-background00.png");
+        .main {
+            /*position: absolute;
+            left: 50%;
+            top: 53%;
+            @include prefixCss3($property: transform, $value: translate(-50%, -50%));*/
+            width: 100%;
+            position: relative;
+            .content {
+                margin: pxToRem(170) pxToRem(50) 0 pxToRem(50);
+                background-color: #fff;
+                border-radius: pxToRem(16);
+                //padding: pxToRem(84) 0 pxToRem(72) 0;
+                box-shadow: 0px 8px 20px -4px rgba(0, 0, 0, 0.08);
+                .img-wrap{
+                    padding-bottom: pxToRem(80);
+                }
+            }
+
+
+            .top {
+                @include flex-box($justify: center);
+
+                margin-bottom: pxToRem(40);
+
+                .photo {
+                    width: pxToRem(130);
+                    height: pxToRem(130);
+                    border: pxToRem(5) solid #fff;
+                    border-radius: pxToRem(8);
+                    position: absolute;
+                    top: pxToRem(-65);
+                    z-index: 100;
+                    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+                    //@include set-bg-img($name: "icon-photo.png");
+                    img{
+                        width:100%;
+                        height: 100%;
+                    }
+                }
+
+                font-size: pxToRem(32);
+                color: #333;
+
+                .message {
+                    @include flex-item();
+                    line-height: pxToRem(44);
+
+                    .name {
+                        padding-bottom: pxToRem(8);
+                        // @include text-overflow(1);
+                        @extend .font-m;
+                    }
+                }
+
+                .id {
+                    margin-top: pxToRem(100);
+                    // @include text-overflow(1);
+                    @extend .font-m;
+
+                    &.active {
+                        @include prefixCss3($property: align-self, $value: center);
+                    }
+                }
+            }
+
+            .id-center {
+                font-size: pxToRem(48);
+                color: #333;
+                line-height: pxToRem(66);
+                text-align: center;
+                margin-bottom: pxToRem(68);
+            }
+
+            .code {
+                width: pxToRem(480);
+                height: pxToRem(480);
+                margin: 0 auto;
+                // @include set-bg-img( $name: "icon-background1.png");
+                canvas {
+                    width: 100%;
+                    height: 100%;
+
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
+
+
+        }
+        .save {
+            font-size: pxToRem(30);
+            color: #fff;
+            line-height: pxToRem(92);
+            text-align: center;
+            width: pxToRem(480);
+            height: pxToRem(92);
+            margin: pxToRem(72) auto 0;
+        }
+    }
+}

@@ -1,0 +1,108 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    background-color: #fff;
+    .header{
+        background-color: #fff;
+        .search-stores{
+            @include flex-box();
+            width: 100%;
+            padding: pxToRem(22) pxToRem(30) pxToRem(8);
+            .search{
+                @include flex-box();
+                @include flex-item();
+                border: pxToRem(2) solid #EAEAEA;
+                padding: pxToRem(12) pxToRem(20);
+                .search-img{
+                    width: pxToRem(32);
+                    height: pxToRem(36);
+                    margin-right: pxToRem(16);
+                    @include set-bg-img( $name: "icon-search.png", $size: pxToRem(32) auto, $position: center center);
+                }
+                .inpit{
+                    @include flex-item();
+                    font-size: pxToRem(26);
+                    color: #333;
+                    line-height: pxToRem(36);
+                }
+                .del{
+                    width: pxToRem(30);
+                    height: pxToRem(36);
+                    margin-left: pxToRem(16);
+                    @include set-bg-img( $name: "icon-close1.png", $size: pxToRem(30) auto, $position: center center);
+                }
+            }
+            .screen{
+                display: inline-block;
+                font-size: pxToRem(26);
+                color: #999;
+                line-height: pxToRem(68);
+                margin-left: pxToRem(14);
+            }
+        }
+    }
+    .main{
+        .select{
+            color: $bg-color;
+        }
+        .history{
+            padding: pxToRem(42) pxToRem(30) pxToRem(22);
+            .history-box{
+                @include flex-box();
+                padding-bottom: pxToRem(22);
+                .his{
+                    @include flex-item();
+                    font-size: pxToRem(32);
+                    color: #333;
+                    line-height: pxToRem(44);
+                    @extend .font-m;
+                }
+                .del{
+                    width: pxToRem(32);
+                    height: pxToRem(44);
+                    margin-left: pxToRem(10);
+                    @include set-bg-img( $name: "icon-del.png", $size: pxToRem(32) auto, $position: center center);
+                }
+            }
+            .search-history{
+                overflow: hidden;
+                margin: 0 pxToRem(-12);
+                .shop{
+                    float: left;
+                    display: inline-block;
+                    border: pxToRem(2) solid #999;
+                    border-radius: pxToRem(4);
+                    padding: pxToRem(12) pxToRem(22);
+                    font-size: pxToRem(28);
+                    color: #333;
+                    line-height: pxToRem(40);
+                    margin: pxToRem(12);
+                }
+            }
+        }
+
+        ul{
+            padding: 0 pxToRem(30);
+            li{
+                @include flex-box();
+                padding: pxToRem(30) 0 pxToRem(26);
+                font-size: pxToRem(30);
+                color: #333;
+                line-height: pxToRem(42);
+                @include border-bottom-m;
+                &::after{
+                    border-color: #eee;
+                };
+                .name{
+                    @include flex-item();
+
+                }
+                .type{
+                    font-size: pxToRem(24);
+                    color: #666;
+                }
+            }
+        }
+    }
+    
+}

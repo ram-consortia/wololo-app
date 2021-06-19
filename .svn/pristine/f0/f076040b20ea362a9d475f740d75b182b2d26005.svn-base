@@ -1,0 +1,178 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .center{
+                        padding: pxToRem(82) pxToRem(370);
+                        &.center-left{
+                            padding: pxToRem(92) 0 pxToRem(92) pxToRem(600);
+                            .li{
+                                margin: pxToRem(48) 0;
+                                .center-name{
+                                    color: #333;
+                                }
+                            }
+                        } 
+                        .li{
+                            @include flex-box();
+                            margin: pxToRem(60) 0;
+                            .center-name{
+                                width: pxToRem(200);
+                                text-align: right;
+                                font-size: pxToRem(28);
+                                color: #666;
+                                line-height: pxToRem(40);
+                                margin-right: pxToRem(32);
+                                .color{
+                                    color: #FF4F00;
+                                }
+                            }
+                            .li-item{
+                                @include flex-item();
+                                font-size: pxToRem(28);
+                                color: #666;
+                                line-height: pxToRem(40);
+                                .select{
+                                    font-size: pxToRem(28);
+                                    color: #666;
+                                    line-height: pxToRem(40);
+                                    margin: 0 pxToRem(40);
+                                    &::before{
+                                        content: '';
+                                        display: inline-block;
+                                        width: pxToRem(28);
+                                        height: pxToRem(40);
+                                        margin-right: pxToRem(16);
+                                        vertical-align: bottom;
+                                        @include set-bg-img( $name: "web-sel5.png", $size: pxToRem(28) auto, $position: center center);
+                                    };
+                                    &.active{
+                                        &::before{
+                                            @include set-bg-img( $name: "web-sel6.png", $size: pxToRem(28) auto, $position: center center);
+                                        };
+                                    }
+                                }
+                                .textarea{
+                                    @include flex-item();
+                                    width: pxToRem(892);
+                                    height: pxToRem(316);
+                                    border: pxToRem(2) solid #ddd;
+                                    padding: pxToRem(20);
+                                    font-size: pxToRem(28);
+                                    color: #666;
+                                    line-height: pxToRem(40);
+                                    border-radius: pxToRem(4);
+                                    textarea{
+                                        height: pxToRem(280);
+                                    }
+                                    .number{
+                                        font-size: pxToRem(24);
+                                        color: #ccc;
+                                        line-height: pxToRem(34);
+                                        text-align: right;
+                                    }
+                                }
+                                .imgs{
+                                    overflow: hidden;
+                                    .img{
+                                        position: relative;
+                                        display: inline-block;
+                                        float: left;
+                                        width: pxToRem(208);
+                                        height: pxToRem(208);
+                                        /*margin: 0 pxToRem(28) pxToRem(28) 0;*/
+                                        margin: pxToRem(14);
+                                        @include set-bg-img( $name: "icon-place1.png");
+                                        .close{
+                                            position: absolute;
+                                            top: pxToRem(-25);
+                                            right: pxToRem(-25);
+                                            width: pxToRem(60);
+                                            height: pxToRem(60);
+                                            @include set-bg-img( $name: "web-close1.png", $size: pxToRem(30) auto, $position: center center);
+                                        }
+                                    }
+                                }
+                            }  
+                        }
+                        .code{
+                            width: pxToRem(202);
+                            height: pxToRem(202);
+                            margin: pxToRem(48) 0 0 pxToRem(190);
+                            @include set-bg-img( $name: "icon-background1.png");
+                        }
+                        .botton{
+                            padding: pxToRem(20) 0;
+                            margin-left: pxToRem(350);
+                            .feedback{
+                                display: inline-block;
+                                width: pxToRem(204);
+                                height: pxToRem(68);
+                                border: pxToRem(2) solid #979797;
+                                border-radius: pxToRem(8);
+                                font-size: pxToRem(24);
+                                color: #333;
+                                line-height: pxToRem(68);
+                                text-align: center;
+                                margin: 0 pxToRem(15);
+                                &.save{
+                                    width: pxToRem(208);
+                                    height: pxToRem(72);
+                                    border: none;
+                                    color: #fff;
+                                    @include set-bg-img( $name: "web-submint.png");
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

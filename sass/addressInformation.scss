@@ -1,0 +1,101 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body {
+    height: 100%;
+    background-color: #fff;
+
+    .li {
+        @include flex-box();
+        margin: 0 pxToRem(30);
+        padding: pxToRem(29) 0;
+        font-size: pxToRem(30);
+        color: #333;
+        line-height: pxToRem(42);
+        @include border-bottom-m;
+
+        &::after {
+            border-color: #EAEAEA;
+        };
+
+        .item {
+            min-width: pxToRem(152);
+        }
+
+        .input {
+            @include flex-item();
+
+            input {
+                text-align: right;
+            }
+        }
+
+        .right {
+            width: pxToRem(28);
+            height: pxToRem(28);
+            margin-left: pxToRem(12);
+            @include prefixCss3($property: align-self, $value: center);
+            @include set-bg-img( $name: "icon-right2.png", $size: pxToRem(28) auto, $position: center center);
+        }
+    }
+
+    .address {
+        @include flex-box();
+        margin: 0 pxToRem(30);
+        padding: pxToRem(29) 0;
+        font-size: pxToRem(28);
+        color: #666;
+        line-height: pxToRem(40);
+        @include border-bottom-m;
+
+        &::after {
+            border-color: #EAEAEA;
+        };
+
+        .site {
+            display: block;
+            min-width: pxToRem(152);
+            color: #333;
+        }
+    }
+
+    .location {
+        margin: 0 pxToRem(30);
+        padding: pxToRem(26) 0;
+        font-size: pxToRem(26);
+        color: #999;
+        line-height: pxToRem(36);
+    }
+
+    .main{
+        position: relative;
+        .map{
+            width: 100%;
+            height: 100%;
+        }
+        .icon-location{
+            z-index: 2;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: pxToRem(50);
+            height: pxToRem(100);
+            @include set-bg-img( $name: "icon-location2.png", $size: 100% 100%, $position: center center);
+            @include prefixCss3( $property: transform, $value: translate(-50%, -100%));
+        }
+    }
+
+    #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+}

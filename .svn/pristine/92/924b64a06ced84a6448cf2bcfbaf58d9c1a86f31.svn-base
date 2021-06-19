@@ -1,0 +1,429 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            background-color: #F7F6F6;
+            .storedetails{
+                @include flex-box();
+                background-color: #F7F6F6;
+                padding: pxToRem(40) 0 pxToRem(212);
+                margin: 0 auto;
+                width: pxToRem(2400);
+                .left{
+                    width: pxToRem(750);
+                    height: 100%;
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    margin-right: pxToRem(40);
+                }
+                .store-app{
+                    .swiper{
+                        position: relative;
+                        .total{
+                            position: absolute;
+                            right: pxToRem(30);
+                            bottom: pxToRem(20);
+                            height: pxToRem(48);
+                            line-height: pxToRem(48);
+                            padding: 0 pxToRem(22);
+                            border-radius: pxToRem(48);
+                            background-color: rgba(0,0,0,0.3);
+                            font-size: pxToRem(24);
+                            color: #fff;
+                            z-index: 1;
+                        }
+                        .photo{
+                            .pho{
+                                width: pxToRem(750);
+                                height: pxToRem(424);
+                                @include set-bg-img( $name: "icon-background5.png");
+                            }
+                        }
+                    }
+                    .top{
+                        padding: pxToRem(30);
+                        position: relative;
+                        background-color: #fff;
+                        .name{
+                            font-size: pxToRem(32);
+                            color: #333;
+                            line-height: pxToRem(44);
+                            font-weight: bold;
+                            .hot{
+                                display: inline-block;
+                                font-size: pxToRem(26);
+                                color: #fff;
+                                font-weight: normal;
+                                height: pxToRem(36);
+                                line-height: pxToRem(36);
+                                padding: 0 pxToRem(10);
+                                border-radius: pxToRem(36);
+                                margin-right: pxToRem(8);
+                                background:linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+                            }
+                        }
+                        .tip-box{
+                            @include flex-box();
+                            margin-top: pxToRem(36);
+                            .tip-item{
+                                @include flex-item();
+                                .branch{
+                                    font-size: pxToRem(22);
+                                    color: $bg-color;
+                                    height: pxToRem(28);
+                                    line-height: pxToRem(28);
+                                    padding: 0 pxToRem(8);
+                                    border: pxToRem(2) solid $bg-color;
+                                    border-radius: pxToRem(2);
+                                    margin-right: pxToRem(18);
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    &.business-branch{
+                                        border: none;
+                                        color: #666;
+                                        font-size: pxToRem(26);
+                                    }
+                                }
+                            }
+                            .ticket{
+                                width: pxToRem(80);
+                                height: pxToRem(40);
+                                @include set-bg-img( $name: "web-coupon.png", $size: pxToRem(80) auto, $position: center center);
+                            }
+                        }
+                    }
+                    .contact{
+                        border-top: pxToRem(2) solid #EAEAEA;
+                        margin: 0 pxToRem(30);
+                        font-size: pxToRem(24);
+                        color: #666;
+                        .p{
+                            padding: pxToRem(26) 0;
+                            border-bottom: pxToRem(2) solid #EAEAEA;
+                            .name-width{
+                                display: inline-block;
+                                min-width: pxToRem(136);
+                                color: #333;
+                                padding-right: pxToRem(20);
+                            }
+                            .address-box{
+                                @include flex-box();
+                                margin-top: pxToRem(20);
+                                .address-item{
+                                    position: relative;
+                                    @include flex-item();
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    padding-right: pxToRem(60);
+                                    font-size: pxToRem(24);
+                                    color: #666;
+                                    line-height: pxToRem(34);
+                                    &::after{
+                                        content: '';
+                                        display: inline-block;
+                                        position: absolute;
+                                        right: 0;
+                                        top: 50%;
+                                        @include prefixCss3($property: transform, $value: translateY(-50%));
+                                        margin-left: pxToRem(30);
+                                        margin-right: pxToRem(30); 
+                                        width: pxToRem(2);
+                                        height: pxToRem(42);
+                                        background-color: #EAEAEA;
+                                    };
+                                }
+                                .address-right{
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    .address-img{
+                                        width: pxToRem(32);
+                                        height: pxToRem(32);
+                                        margin: 0 auto pxToRem(20);
+                                        @include set-bg-img( $name: "web-location.png", $size: pxToRem(32) auto, $position: center center);
+                                    }
+                                    .kilometer{
+                                        font-size: pxToRem(24);
+                                        color: #999;
+                                        line-height: pxToRem(34);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .four{
+                        overflow: hidden;
+                        margin-top: pxToRem(20);
+                        padding: pxToRem(16) pxToRem(25);
+                        .a-half{
+                            float: left;
+                            width: 50%;
+                            .half{
+                                margin: pxToRem(8) pxToRem(5);
+                                border: pxToRem(2) solid #EAEAEA;
+                                border-radius: pxToRem(4);
+                                height: pxToRem(138);
+                                text-align: center;
+                                font-size: pxToRem(26);
+                                color: #333;
+                                line-height: pxToRem(36);
+                                .business{
+                                    padding: pxToRem(26) 0 pxToRem(12);
+                                }
+                                .time{
+                                    font-size: pxToRem(28);
+                                    line-height: pxToRem(40);
+                                }
+                                p{
+                                    .score{
+                                        font-size: pxToRem(28);
+                                        color: $bg-color;
+                                        margin-right: pxToRem(30);
+                                        .size{
+                                            font-weight: bold;
+                                            @extend .font-din;
+                                            font-size: pxToRem(40);
+                                        }
+                                    }
+                                    .people{
+                                        font-size: pxToRem(28);
+                                        color: #999;
+                                        line-height: pxToRem(40);
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            width: pxToRem(32);
+                                            height: pxToRem(40);
+                                            margin-right: pxToRem(8);
+                                            vertical-align: text-bottom;
+                                            @include set-bg-img( $name: "icon-people.png", $size: pxToRem(32) auto, $position: center center);
+                                        };
+                                    }
+                                }
+                                .collection{
+                                    padding-top: pxToRem(26);
+                                    font-size: pxToRem(22);
+                                    color: #333;
+                                    line-height: pxToRem(32);
+                                    &::before{
+                                        content: '';
+                                        display: block;
+                                        width: pxToRem(44);
+                                        height: pxToRem(44);
+                                        margin: 0 auto pxToRem(12);
+                                        @include set-bg-img( $name: "icon-heart.png", $size: pxToRem(44) auto, $position: center center);
+                                    };
+                                    &.assess{
+                                        &::before{
+                                            @include set-bg-img( $name: "icon-assess.png", $size: pxToRem(44) auto, $position: center center);
+                                        };
+                                    }
+                                    &.active{
+                                        &::before{
+                                            @include set-bg-img( $name: "icon-heart1.png", $size: pxToRem(44) auto, $position: center center);
+                                        };
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .address{
+                        padding: 0 pxToRem(30) pxToRem(16);
+                        .map{
+                            height: pxToRem(254);
+                            @include set-bg-img( $name: "icon-background2.png");
+                        }
+                        .site{
+                            @include flex-box();
+                            padding: pxToRem(22) pxToRem(20) pxToRem(20);
+                            box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+                            font-size: pxToRem(26);
+                            color: #333;
+                            line-height: pxToRem(36);
+                            border: pxToRem(2) solid #EAEAEA;
+                            border-bottom-right-radius: pxToRem(4);
+                            border-bottom-left-radius: pxToRem(4);
+                            &::before{
+                                content: '';
+                                display: block;
+                                min-width: pxToRem(32);
+                                height: pxToRem(32);
+                                margin-right: pxToRem(20);
+                                margin-top: pxToRem(6);
+                                @include set-bg-img( $name: "web-location.png", $size: pxToRem(32) auto, $position: center center);
+                            };
+                        }
+                    }
+                }
+                .coupon-bottom{
+                    border-top: pxToRem(2) solid #EAEAEA;
+                    .available{
+                        margin: pxToRem(24) pxToRem(32) pxToRem(32);
+                        height: pxToRem(84);
+                        @include set-bg-img( $name: "web-sign.png");
+                        font-size: pxToRem(24);
+                        color: #fff;
+                        line-height: pxToRem(84);
+                        text-align: center;
+                    }
+                }
+                .right{
+                    position: relative;
+                    @include flex-item();
+                    width: 100%;
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06); 
+                    padding-bottom: pxToRem(224);
+                    .page-number{
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                    }   
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .discount{
+                        overflow: hidden;
+                        padding: pxToRem(22) pxToRem(32) 0;
+                        .coupon-img{
+                            float: left;
+                            width: pxToRem(726);
+                            height: pxToRem(466);
+                            margin: pxToRem(14) pxToRem(19);
+                            .img{
+                                width: pxToRem(726);
+                                height: pxToRem(290);
+                                border-top-left-radius: pxToRem(16);
+                                border-top-right-radius: pxToRem(16);
+                                @include set-bg-img( $name: "icon-background5.png");
+                            }
+                            .coupon{
+                                margin-top: pxToRem(-16);
+                            }
+                        }
+                    }
+                    .evaluate{
+                        padding: 0 pxToRem(78) 0 pxToRem(160);
+                        .evaluate-con{
+                            padding: pxToRem(52) 0 pxToRem(28);
+                            border-bottom: pxToRem(2) solid #EAEAEA;
+                            .evaluate-box{
+                                @include flex-box();
+                                margin-left: pxToRem(-82);
+                                .pho{
+                                    width: pxToRem(60);
+                                    height: pxToRem(60);
+                                    margin-right: pxToRem(22);
+                                    border-radius: 50%;
+                                    @include set-bg-img( $name: "web-photo.png");
+                                    @include prefixCss3($property: align-self, $value: center);
+                                }
+                                .evaluate-message{
+                                    @include flex-item();
+                                    .evaluate-name{
+                                        font-size: pxToRem(24);
+                                        color: #666;
+                                        line-height: pxToRem(34);
+                                    }
+                                    .stars{
+                                        font-size: 0;
+                                        margin-top: pxToRem(4);
+                                        @include prefixCss3($property: align-self, $value: center);
+                                        .star{
+                                            display: inline-block;
+                                            width: pxToRem(28);
+                                            height: pxToRem(28);
+                                            margin: 0 pxToRem(5);
+                                            @include set-bg-img( $name: "icon-star.png", $size: pxToRem(28) auto, $position: center center);
+                                            &.half-star{
+                                                @include set-bg-img( $name: "icon-half.png", $size: pxToRem(28) auto, $position: center center);
+                                            }
+                                        }
+                                    }
+                                }
+                                .time{
+                                    font-size: pxToRem(24);
+                                    color: #999;
+                                    line-height: pxToRem(34);
+                                    margin-left: pxToRem(10);
+                                }
+                            }
+                            .text{
+                                padding-top: pxToRem(14);
+                                /*padding-left: pxToRem(80);*/
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(48);
+                            }
+                            .reply{
+                                margin-top: pxToRem(18);
+                                /*margin-left: pxToRem(80);*/
+                                padding: pxToRem(30) pxToRem(28);
+                                background-color: #F7F7F7;
+                                border-radius: pxToRem(4);
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(40);
+                                .color{
+                                    font-weight: bold;
+                                }
+                            }
+                            .reply-input{
+                                margin-top: pxToRem(10);
+                                margin-left: pxToRem(80);
+                                padding: pxToRem(23);
+                                background-color: #F7F7F7;
+                                border-radius: pxToRem(4);
+                                font-size: pxToRem(30);
+                                color: #333;
+                                line-height: pxToRem(42);
+                                input{
+
+                                }
+                            }
+                        }
+                    }
+                    .details{
+                        padding: pxToRem(28) pxToRem(80);
+                        font-size: pxToRem(28);
+                        color: #333;
+                        line-height: pxToRem(58);
+                    }
+
+                    
+
+                }
+            }   
+        }
+    }
+    
+    
+        
+}

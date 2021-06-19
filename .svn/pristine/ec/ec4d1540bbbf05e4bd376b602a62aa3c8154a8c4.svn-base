@@ -1,0 +1,282 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #F4F4F4;
+    .bkframe{
+        height: 100%;
+    }
+    .coupon-img{
+        //margin:pxToRem(100) pxToRem(20);
+
+        .img{
+            width: 100%;
+            height: pxToRem(290);
+            border-top-left-radius: pxToRem(16);
+            border-top-right-radius: pxToRem(16);
+            @include set-bg-img( $name: "icon-background5.png");
+        }
+
+        .coupon{
+            margin:0 pxToRem(20) pxToRem(40);
+            height: pxToRem(400);
+            //@include set-bg-img( $name: "bolangtu.png");
+            @include set-bg-img( $name: "bolang33.png");
+            //background-color: rgba(150,226,225,1);
+            border-radius: pxToRem(80);
+            //margin-top: pxToRem(-16);
+            position: relative;
+            color: #fff;
+            .itemT{
+                position: absolute;
+                left: pxToRem(-20);
+                bottom: pxToRem(180);
+                display: inline-block;
+                width: pxToRem(40);
+                height: pxToRem(40);
+                background-color: rgba(244,244,244,1);
+                border-radius: 50%;
+            }
+            .itemY{
+                position: absolute;
+                right: pxToRem(-20);
+                bottom: pxToRem(180);
+                display: inline-block;
+                width: pxToRem(40);
+                height: pxToRem(40);
+                background-color: rgba(244,244,244,1);
+                border-radius: 50%;
+            }
+            .coupon-item{
+                @include flex-box($direction: column);
+
+                .itemTop{
+                    @include flex-box($justify:space-between);
+                    height: pxToRem(200);
+                    border-bottom: pxToRem(4) dashed rgba(244,244,244,1);
+                    .itemRight{
+                        height: pxToRem(124);
+                        width: pxToRem(224);
+                        margin-top: pxToRem(40);
+                        margin-right: pxToRem(50);
+                        .img{
+                            width: 100%;
+                            height: 100%;
+                            /*@include set-bg-img( $name: "WololoWhiteTransparent.png");*/
+                            @include set-bg-img( $name: "WololoWhiteTransparent.png", $size: 100% 100%, $position: center center);
+                        }
+
+                    }
+                }
+                .itemButtom{
+                    height: pxToRem(200);
+                    color: #fff;
+                    margin: 0 pxToRem(50);
+                    .shop-name{
+                        font-size: pxToRem(34);
+                        font-weight:600;
+
+                        line-height:pxToRem(48);
+                    }
+                    .market-price{
+                        font-size: pxToRem(22);
+                        font-family:PingFangSC-Regular,PingFang SC;
+                        font-weight:400;
+
+                        line-height: pxToRem(30);
+                        margin-top: pxToRem(10);
+                    }
+                    .time{
+                        font-size: pxToRem(22);
+                        font-family:PingFangSC-Regular,PingFang SC;
+                        font-weight:400;
+
+                        margin-top: pxToRem(10);
+                        margin-top: pxToRem(60);
+                    }
+                }
+
+                .itemLeft{
+                    @include flex-box($direction: column);
+                    margin-left: pxToRem(50);
+                    .leftHer{
+                        margin-top: pxToRem(50);
+                        margin-bottom: pxToRem(12);
+                        .size{
+                            font-size: pxToRem(80);
+                            font-weight:900;
+
+                        }
+                        .voucher{
+                            font-size: pxToRem(24);
+                            font-family:PingFangSC-Regular,PingFang SC;
+                            font-weight:400;
+
+                        }
+                    }
+
+                }
+                .itemRight{
+
+                }
+            }
+        }
+    }
+    .payGroup{
+        background: #fff;
+        margin:0 pxToRem(30) pxToRem(40);
+        border-radius: 20px;
+        padding: pxToRem(12) pxToRem(30);
+    }
+    .pay{
+        margin: 0 pxToRem(30) pxToRem(16);
+        border: pxToRem(2) solid #EAEAEA;
+        box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+        border-radius: pxToRem(4);
+        text-align: center;
+        display: flex;
+        height: 64px;
+        @include flex-box($justify:space-between,$align:center);
+        padding: 0px 15px;
+        border-radius: 20px;
+        background: #ffffff;
+        .must{
+            font-size: pxToRem(32);
+            color: #333;
+            line-height: pxToRem(44);
+        }
+        .price{
+            font-size: pxToRem(36);
+            color: $bg-color;
+            line-height: pxToRem(70);
+            .size{
+                @extend .font-din;
+                font-size: pxToRem(30);
+            }
+        }
+    }
+    .bottom{
+        .quit{
+            margin:0 pxToRem1(60) 0;
+            height: pxToRem(84);
+            text-align: center;
+            line-height: pxToRem(84);
+            font-size: pxToRem(30);
+            color: rgba(255,255,255,1);
+            border-radius: pxToRem(40);
+            background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+            box-shadow: 5px 10px 40px rgba(255,174,85,0.5);
+        }
+        margin-bottom: 20px;
+    }
+    .main{
+
+        padding-top: pxToRem(20);
+
+        .mode{
+            margin-bottom: 10px;
+            font-size: pxToRem(32);
+            color: #333;
+            border-bottom: 1px solid #EEEEEE;
+            line-height: pxToRem(44);
+            padding: pxToRem(12) 0;
+        }
+        iframe{
+            width: 100%;
+            height: 100%;
+        }
+        .ul{
+            .li{
+                @include flex-box();
+                padding: pxToRem(25) 0;
+                @include border-bottom-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };
+                &.active{
+                    .sel{
+                        @include set-bg-img( $name: "icon-sel2.png", $size: pxToRem(40) auto, $position: center center);
+                    }
+                }
+                .name{
+                    @include flex-item();
+                    font-size: pxToRem(30);
+                    color: #101D37;
+                    line-height: pxToRem(60);
+                    &::before{
+                        content: '';
+                        display: inline-block;
+                        width: pxToRem(60);
+                        height: pxToRem(60);
+                        margin-right: pxToRem(38);
+                        vertical-align: bottom;
+                        @include set-bg-img( $name: "icon-alipay.png", $size: pxToRem(60) auto, $position: center center);
+                    };
+                    &.alipay{
+                        &::before{
+                            @include set-bg-img( $name: "icon-alipay.png", $size: pxToRem(60) auto, $position: center center);
+                        };
+                    }
+                    &.weichat{
+                        &::before{
+                            @include set-bg-img( $name: "icon-weichat2.png", $size: pxToRem(60) auto, $position: center center);
+                        };
+                    }
+                    &.paypel{
+                        &::before{
+                            @include set-bg-img( $name: "icon-paypel.png", $size: pxToRem(60) auto, $position: center center);
+                        };
+                    }
+                    &.applePay{
+                        &::before{
+                            @include set-bg-img( $name: "card.png", $size: pxToRem(60) auto, $position: center center);
+                        };
+                    }
+                }
+                .sel{
+                    width: pxToRem(40);
+                    height: pxToRem(60);
+                    margin-left: pxToRem(20);
+                    @include set-bg-img( $name: "icon-sel3.png", $size: pxToRem(40) auto, $position: center center);
+                }
+                &:first-of-type{
+                    content: '';
+                    @include border-top-m;
+                    &::before{
+                        border:none;
+                    };
+                };
+            }
+        }
+    }
+    .success{
+        padding-top: 40%;
+        @include flex-box($direction: column,$align:center,$justify:center);
+        img{
+
+            width: pxToRem(304);
+            height: pxToRem(314);
+        }
+        .text{
+            color: #FF7F26;
+            font-size: pxToRem(40);
+            margin-top: pxToRem(40);
+            margin-bottom: pxToRem(60);
+        }
+        p{
+            text-indent:pxToRem(50);
+            @include flex-box($direction: column,$align:center,$justify:center);
+            padding: 0 pxToRem(120);
+            color: #464646;
+            line-height: pxToRem(44);
+        }
+        .bottom {
+
+
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+    }
+}

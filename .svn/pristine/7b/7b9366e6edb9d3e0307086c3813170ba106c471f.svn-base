@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+  <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+  <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="../../css/couponsDetails.css" />
+</head>
+
+<body>
+  <div class="main flex-vertical flex-item-vertical" id="wrap">
+      <div class="content flex-item-vertical"  onscroll="fnScroll()">
+          <div class="swiper">
+              <div class="wrap">
+                  <div class="swiper-container">
+                      <div class="swiper-wrapper">
+
+                          <div class="swiper-slide">
+                              <div class="photo">
+                                  <img src="../../image/icon-background5.png">
+                                  <div class="pho"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <span class="total">0<!--{{'张图' | fnLanguage_public}}--></span>
+              </div>
+          </div>
+          <div class='top-wrap'>
+              <div class="top">
+                  <div class="name">
+                  </div>
+                  <div class="message messageA">
+                      <div class="messLeft">
+                          <div class="til">
+                              <p ></p>
+                          </div>
+                          <!--<div class="ticket" id="isCoupon"></div>-->
+                          <div class=" itemA">
+                              <div class='branch-wrap'>
+                                  <!-- <span class="branch">{{ {'target': _data.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span> -->
+                                  <span class="branch"></span>
+                                  <span class="stars">
+
+                                </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="box">
+              <!-- 选中加active -->
+              <div class="box-wrap">
+                  <div tapmode="hover" onclick="fnSwitchTable(this)" data-class="sw-coupon" class="item active">Offer</div>
+                  <div tapmode="hover" onclick="fnSwitchTable(this)" data-class="sw-evaluate" class="item">Review</div>
+                  <div tapmode="hover" onclick="fnSwitchTable(this)" data-class="sw-detail" class="item">Details</div>
+              </div>
+          </div>
+
+          <!-- 评价 -->
+          <div class="evaluate sw sw-evaluate sw-detailB hide">
+              <div id="list" class="hide">
+
+              </div>
+              <div id="no-data" class="no-data-evaluate hide height5">No reviews yet</div>
+          </div>
+
+          <!-- 优惠 -->
+          <div class="discount sw sw-coupon sw-detailB" id="coupon">
+
+          </div>
+
+          <!-- 详情 -->
+          <div class="details sw sw-detail sw-detailB hide">
+          </div>
+      </div>
+  </div>
+
+  <script type="text/html" id="wrap-template">
+    <div class="content flex-item-vertical"  onscroll="fnScroll()">
+        <div class="swiper">
+            <div class="wrap">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {{if _data.auth.images && _data.auth.images.length}} {{each _data.auth.images _value}}
+                        <div class="swiper-slide" tapmode onclick="fnPhotoBrowser(this)">
+                            <div class="photo">
+                                <img src="../../image/icon-background5.png">
+                                <div data-img-url="{{_value.url}}" data-img-type="!watermark" class="pho"></div>
+                            </div>
+                        </div>
+                        {{/each}} {{else}}
+                        <div class="swiper-slide">
+                            <div class="photo">
+                                <img src="../../image/icon-background5.png">
+                                <div class="pho"></div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <span class="total">{{_data.auth.images.length}}<!--{{'张图' | fnLanguage_public}}--></span>
+            </div>
+        </div>
+        <div class='top-wrap'>
+          <div class="top">
+            <div class="name">
+                {{if +_data.auth.hot_grade}}
+                <span class="hot">hot</span>
+                {{/if}}
+            </div>
+            <div class="message messageA">
+                <div class="messLeft">
+                    <div class="til">
+                        <p >{{_data | fnShowUserNickname_base}}</p>
+                    </div>
+                    <!--<div class="ticket" id="isCoupon"></div>-->
+                        <div class=" itemA">
+                            <div class='branch-wrap'>
+                                <!-- <span class="branch">{{ {'target': _data.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span> -->
+                                <span class="branch">{{_data.auth.category.name | fnLanguageSwitch_base}}</span>
+                                <span class="stars">
+
+                                  {{#_data.auth | fnScoreLayout_base}}
+                                </span>
+                            </div>
+                            {{if _data.mobile}}
+                            <div tapmode="hover" onClick="fnCall_public('{{_data.mobile}}')" class="p">
+                                <span class="name-width name-widthA"></span><span>{{_data.mobile}}</span>
+                            </div>
+                            {{/if}}
+                            {{if _data.user_url}}
+                            <div tapmode="hover" onClick="fnOpenWebPage_base('{{_data.user_url}}')" class="p">
+                                <span class="name-width name-widthB"></span><span>Website</span>
+                            </div>
+                            {{/if}}
+                            {{if _data.instagram}}
+                            <div tapmode="hover" onClick="fnOpenWebPage_base('{{_data.instagram}}')" class="p">
+                                <span class="name-width name-widthC"></span><span>Instagram</span>
+                            </div>
+                            <!--{{_data.instagram}}-->
+                            {{/if}}
+                        </div>
+                </div>
+                {{if _data.avatar}}
+                <div class="messRight">
+                    <img width="100%" height="100%" src="{{_data.avatar}}" />
+                </div>
+                {{/if}}
+            </div>
+          </div>
+        </div>
+        {{if _data.auth.lon && _data.auth.lat && _data.auth.address}}
+        <div tapmode="hover" onclick="fnOpenStoreMap_base({{_data.id}}, '{{_data.auth.lat}}', '{{_data.auth.lon}}')" class="address">
+            <div class="map" id="googleMap" data-lat="{{_data.auth.lat}}" data-lon="{{_data.auth.lon}}"></div>
+
+            <!--<p class="site">
+                {{_data.auth.address}}
+                fnSelectMap_public
+            </p>-->
+            <div class="a-half sitePer">
+              <p>
+                {{_data.auth.address}}
+              </p>
+                <div class="curlocation3" tapmode="hover" onclick="toMaps();event.cancelBubble=true">
+                    <img src="../../image/curlocation.png" >
+                </div>
+            </div>
+        </div>
+
+        {{/if}}
+        <div class="box">
+            <!-- 选中加active -->
+            <div class="box-wrap">
+                <div tapmode="hover" onclick="fnSwitchTable(this)" data-class="sw-coupon" class="item active">{{'优惠' | fnLanguage_public}}</div>
+                <div tapmode="hover" onclick="fnSwitchTable(this)" data-class="sw-evaluate" class="item">{{'评价' | fnLanguage_public}}</div>
+                <div tapmode="hover" onclick="fnSwitchTable(this)" data-class="sw-detail" class="item">{{'详情' | fnLanguage_public}}</div>
+            </div>
+        </div>
+
+        <!-- 评价 -->
+        <div class="evaluate sw sw-evaluate sw-detailB hide">
+            <div id="list" class="hide evaluate_content">
+
+            </div>
+            <div id="no-data" class="no-data-evaluate hide height5">{{'暂无评价' | fnLanguage_public}}</div>
+        </div>
+
+        <!-- 优惠 -->
+        <div class="discount sw sw-coupon sw-detailB" id="coupon">
+
+        </div>
+
+        <!-- 详情 -->
+        <div class="details sw sw-detail sw-detailB hide">
+            <div class="pre-textB">{{_data.auth.introduce}}</div>
+            {{each _data.auth.introduce_images _value}}
+            <img src="{{_value.url}}"> {{/each}}
+        </div>
+    </div>
+</script>
+
+  <script type="text/html" id="list-template">
+    {{each _list _value}}
+    <div class="evaluate-con">
+        <div class="evaluate-box">
+            <div data-img-url="{{_value.user.avatar}}" data-img-type="!avatar" class="pho"></div>
+            <div class="evaluate-message">
+                <p class="evaluate-name">{{_value.user | fnShowUserNickname_base}}</p>
+<!--                <span class="stars">-->
+<!--                            &lt;!&ndash; 半星加half-star &ndash;&gt;-->
+<!--                            <% for(var i = 0; i < +_value.score; i++){ %>-->
+<!--                                <span class="star"></span>-->
+<!--                            <% } %>-->
+<!--                        </span>-->
+            </div>
+            <div class="time">{{_value.create_time | dateFormat 'yyyy-MM-dd'}}</div>
+        </div>
+        <div class="text pre-text">{{_value.content}}</div>
+
+        {{if _value.reply}}
+        <div class="reply pre-text"><b class="color">{{'商家回复' | fnLanguage_public}}：</b>{{_value.reply}}</div>
+        {{/if}}
+    </div>
+    {{/each}}
+</script>
+
+  <script type="text/html" id="coupon-template">
+    {{if _coupon && _coupon.length}}
+    {{each _coupon _value}}
+    <div class="coupon-img" tapmode="hover" onclick="fnJump('home/couponsDetails_win.html', {{_value.id}})">
+        <div class="coupon">
+            <i class="itemT"></i>
+            <i class="itemY"></i>
+            <div class="coupon-item">
+                <div class="itemTop">
+                    <div class="itemLeft">
+                        <div class="leftHer">
+
+                            <span class="size">￡{{_value.price_group | fnGetMaxPrice_base}}</span>
+
+                            <span class="voucher">{{ {'target': _value.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</span>
+                        </div>
+                    </div>
+                    <!--<div class="itemRight">
+                        <div class="img"></div>
+                    </div>-->
+                </div>
+                <div class="itemButtom">
+                    <p class="shop-name">{{_value.name}}</p>
+                    <p class="market-price">{{'门市价' | fnLanguage_public}}￡{{_value.price}}</p>
+
+                    <p class="time">{{_value | fnGetCouponDateMsg_base}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div id="no-data" class="no-data-coupon height5">{{'暂无优惠券' | fnLanguage_public}}</div>
+    {{/if}}
+</script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript">
+  // 页面初始化
+  APP.init(function () {
+    fnInit();
+
+    api.addEventListener({
+      name: APP.EV_NAME.EV_EVALUATE_UPDATE
+    }, function (ret, err) {
+      fnInit();
+    });
+  });
+  // var api={getPrefs :function(){},parseTapmode :function(){}}
+  //   fnValue('#wrap', template('wrap-template', {_data:{
+  //     auth:{images:[],category:{name:''}}
+  //     }
+  //     }));
+
+  function createGroup() {
+    if (APP._coupon[0]) {
+      fnJump('home/couponsDetails_win.html', APP._coupon[0].id)
+    }
+  }
+  function fnInit() {
+    APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+    fnGet();
+  }
+
+  function fnScroll() {
+    var _data = {
+      scrollTop: $('.content').scrollTop(),
+      bannerHeight: $('.swiper').height()
+    };
+
+    api.sendEvent({
+      name: api.winName,
+      extra: _data
+    });
+
+    if (_data.scrollTop + APP._headerAttr.rect.h < $('.box')[0].offsetTop) {
+      $('.box-wrap').removeAttr('style');
+      $('.box-wrap').removeClass('active');
+    } else {
+      $('.box-wrap').css({
+        top: APP._headerAttr.rect.h - 1
+      })
+      $('.box-wrap').addClass('active');
+    }
+  }
+
+  function fnGet() {
+    fnGetStoreDetails_base({
+      id: APP._param.id
+    }, function (ret) {
+      APP._data = ret;
+      api.sendEvent({
+        name: [api.winName, 'store_info'].join(),
+        extra: ret
+      });
+
+      fnValue('#wrap', template('wrap-template', APP));
+      // APP.fixStatusBar( $('.photo')[0] );
+      // APP.fixTabBar('.bottom');
+
+
+      var mySwiper = new Swiper('.swiper-container', {
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: '.swiper-pagination'
+        }
+      });
+
+      fnGetPublicConfig_base(APP.GET_OPTION.ev_switchuser, function (ret) {
+        // ret.content                       配置信息
+        if (+ret.content) {
+          $('#evaluate-join').removeClass('hide');
+          $('#collection-btn').removeClass('active');
+        } else {
+          $('#evaluate-join').addClass('hide');
+          $('#collection-btn').addClass('active');
+        }
+      })
+
+      fnGetCommentAll();
+      fnGetCoupon();
+      fnGetComment();
+
+      APP.getPageParam({
+        name: 'storeDetailsHeight_frm',
+        key: '_frameAttr'
+      }, function (ret) {
+        APP._headerAttr = ret;
+      })
+      var _map = {
+        el: $('#googleMap')[0],
+        lat: $('#googleMap').data('lat'),
+        lon: $('#googleMap').data('lon'),
+      }
+
+      if (_map.el && _map.lat && _map.lon) {
+        fnOpenGoogleMap_base(_map, function () {
+
+        })
+      }
+    })
+  }
+  function toMaps(e) {
+      fnSelectMap_public({
+          end: {
+              lon: APP._data.auth.lon,
+              lat:  APP._data.auth.lat,
+          }
+      });
+  }
+  function fnGetCommentAll() {
+    fnGetCommentStatistics_base({
+      store_id: APP._param.id
+    }, function (ret) {
+      fnValue('#commentAll', +ret.already + ret.not);
+    })
+  }
+
+  function fnCollect() {
+    var _param = {
+      url: 'user/collect/operation',
+      method: 'GET',
+      data: {
+        id: APP._param.id,
+        is_cancel: +$('#collection').hasClass('active')
+      }
+    }
+    fnAjax(_param, function (ret) {
+      if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+        api.sendEvent({
+          name: APP.EV_NAME.COLLECTION_UPDATE,
+          extra: {}
+        });
+
+        if ($('#collection').hasClass('active')) {
+          $('#collection').removeClass('active');
+        } else {
+          $('#collection').addClass('active');
+        }
+      } else {
+        fnToast(ret.msg);
+      }
+    })
+  }
+
+  function fnGetCoupon() {
+    var _param = {
+      url: 'base/coupon/index',
+      method: 'GET',
+      data: {
+        page: APP.YES,
+        limit: 500,
+        store_id: APP._param.id
+      }
+    }
+    fnAjax(_param, function (ret) {
+      if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+        APP._coupon = ret.data.data;
+        fnValue('#coupon', template('coupon-template', APP));
+        if (ret.data.data && ret.data.data.length) {
+          $('#isCoupon').removeClass('hide');
+        } else {
+          $('#isCoupon').addClass('hide');
+        }
+      } else {
+        fnToast(ret.msg);
+      }
+    })
+  }
+
+  function fnGetComment() {
+    fnGetCommentList_base({
+      page: APP.PAGE.START_PAGE,
+      limit: APP.PAGE.SKIP_PAGE,
+      store_id: APP._param.id
+    }, function (ret) {
+      debugAlert(arguments)
+      if (ret.evType == 'scrolltobottom') {
+        fnGetComment();
+      }
+    })
+  }
+
+  function fnJump(_path, _id) {
+    fnOpen(_path, {
+      param: {
+        id: _id || APP._param.id
+      }
+    })
+  }
+
+  function fnPhotoBrowser(_el) {
+    if (APP._data.auth.images && APP._data.auth.images.length) {
+      var _pic = [];
+      for (var i = 0; i < APP._data.auth.images.length; i++) {
+        _pic.push(APP._data.auth.images[i].url);
+      }
+      fnPhotoBrowser_public({
+        pics: _pic,    // [] | Array | 必传 | 图片数组
+        default: $(_el).index() || 0  // 0 | number | 首次显示图片索引
+      });
+    }
+  }
+
+  function fnSwitchTable(_el) {
+    fnSwitchTable_base({
+      el: _el
+    }, function () {
+      setTimeout(function () {
+        fnGetImage();
+      }, 100)
+    })
+  }
+</script>
+
+</html>

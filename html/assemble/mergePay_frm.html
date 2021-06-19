@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/pay.css" />
+</head>
+<body>
+</body>
+<script type="text/html" id="wrap-template">
+    <header class="header">
+        <div tapmode="hover" onclick="goBack();" class="back icon-back"></div>
+        <div class="title">{{'银行卡' | fnLanguage_public}}</div>
+    </header>
+
+    <div class="main flex-item-vertical bkframe" id="wrap">
+        <iframe id="frames" src="{{_param.mergePayUrl}}" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+
+    APP.init(function(){
+        fnValue('body', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+        // isPaySuccess();
+        // var id=setInterval(()=>{
+        //     let src=document.getElementById('frames').contentWindow.location.href;
+        //     if(src.indexOf('windcave_pay_back')!= -1){
+        //         clearInterval(id);
+        //         goBack();
+        //     }
+        // },3000)
+        var stripePay = api.require('stripePay');
+        stripePay.openCardView(function(ret) {
+            api.alert({msg:JSON.stringify(ret)});
+        });
+    },true);
+    let bool=false;
+    function goBack() {
+        //fnToast('addas')
+        if(bool){
+            fnClose();
+        }
+        bool=true;
+        setTimeout(()=>{
+            bool=false;
+        },2500)
+        var _param = {
+            url: 'order/order/check_is_pay',
+            method: 'POST',
+            hasProgress:{
+              status:0
+            },
+            data: {
+                id:APP._param.id,
+            }
+        }
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                ret.type = ret.data.status ? 3 : 4;
+                fnPaySuccess(ret);
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+    function fnPaySuccess(_param){
+        let newParam=_param||{
+            id:1,
+            type:3
+        }
+        api.sendEvent({
+            name: APP.EV_NAME.ORDER_UPDATE,
+            extra: {}
+        });
+        api.sendEvent({
+            name: APP.EV_NAME.PAY_SUCCESS,
+            extra: {}
+        });
+        fnClose({},function () {
+            fnOpen('my/refundSubmission_win.html', {
+                param: newParam
+            })
+        })
+
+    }
+</script>
+</html>

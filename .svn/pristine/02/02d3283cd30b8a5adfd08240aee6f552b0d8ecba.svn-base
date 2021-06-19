@@ -1,0 +1,400 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: rgba(244,244,244,1);
+
+    .header{
+        background-color: #fff;
+        .back{
+            &.word{
+                color:rgba(153,153,153,1);
+            }
+
+            &.account{
+                line-height: pxToRem(88);
+                padding: 0 pxToRem(30);
+                font-size: pxToRem(32);
+                color: #333;
+                @extend .font-m;
+            }
+        }
+    }
+
+    .top{
+        /*padding: pxToRem(20) pxToRem(30);*/
+        padding-bottom: pxToRem(20);
+        .img{
+            width: 100%;
+            min-height: pxToRem(152);
+            @include set-bg-img( $name: "icon-top.png");
+            border-top-left-radius: pxToRem(8);
+            border-top-right-radius: pxToRem(8);
+            .state{
+                padding: pxToRem(44) pxToRem(42) pxToRem(22);
+                font-size: pxToRem(40);
+                color: #fff;
+                line-height: pxToRem(56);
+                @include text-overflow(1);
+                @extend .font-m;
+            }
+            .time{
+                padding: 0 pxToRem(42) pxToRem(55);
+                font-size: pxToRem(26);
+                color: #fff;
+                line-height: pxToRem(36);
+                // @include text-overflow(1);
+            }
+        }
+    }
+
+    /*.ul{
+        .li{
+            @include flex-box();
+            padding: pxToRem(29) pxToRem(30);
+            font-size: pxToRem(30);
+            color: #333;
+            line-height: pxToRem(42);
+            &:first-of-type{
+                content: '';
+
+            };
+            .city{
+
+            }
+            .input{
+                @include flex-item();
+                input{
+                    text-align: right;
+                }
+            }
+            .right{
+                width: pxToRem(28);
+                height: pxToRem(28);
+                margin-left: pxToRem(12);
+                @include prefixCss3($property: align-self, $value: center);
+                @include set-bg-img( $name: "icon-right2.png", $size: pxToRem(28) auto, $position: center center);
+            }
+        }
+    }*/
+
+    .main{
+        .content{
+            .tip{
+                padding: pxToRem(20) pxToRem(30);
+                font-size: pxToRem(28);
+                color: #FF7C4A;
+                line-height: pxToRem(40);
+                background-color: rgba(254,143,49,0.12);
+            }
+            .li{
+                background-color: #fff;
+                @include flex-box();
+                //margin: 0 pxToRem(30);
+                padding: pxToRem(30);
+                @include border-bottom-m;
+                &::after{
+                    border-color: #eee;
+                };
+                &.top-line{
+                    @include border-top-m;
+                    &::before{
+                        border-color: #eee;
+                    };
+                }
+                .feedback{
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    @include prefixCss3($property: align-self, $value: center);
+                }
+                .number{
+                    @include flex-box();
+                    border: pxToRem(2) solid #E1E1E5;
+                    border-radius: pxToRem(4);
+                    width: pxToRem(206);
+                    .reduce{
+                        display: inline-block;
+                        width: pxToRem(62);
+                        height: pxToRem(62);
+                        border-right: pxToRem(2) solid #E1E1E5;
+                        @include set-bg-img( $name: "icon-reduce.png", $size: pxToRem(24) auto, $position: center center);
+                        &.no-onclick{
+                            @include set-bg-img( $name: "icon-reduce1.png", $size: pxToRem(24) auto, $position: center center);
+                        }
+                    }
+                    .num{
+                        @include flex-item();
+                        padding: pxToRem(11);
+                        font-size: pxToRem(28);
+                        color: #323233;
+                        line-height: pxToRem(40);
+                        text-align: center;
+                        input{
+                            text-align: center;
+                        }
+                    }
+                    .add{
+                        display: inline-block;
+                        width: pxToRem(62);
+                        height: pxToRem(62);
+                        border-left: pxToRem(2) solid #E1E1E5;
+                        @include set-bg-img( $name: "icon-add.png", $size: pxToRem(24) auto, $position: center center);
+                        &.no-onclick{
+                            @include set-bg-img( $name: "icon-add1.png", $size: pxToRem(24) auto, $position: center center);
+                        }
+                    }
+                }
+                .input{
+                    @include flex-item();
+                    font-size: pxToRem(30);
+                    color: #999;
+                    line-height: pxToRem(42);
+                    input{
+                        text-align: right;
+                    }
+                }
+                .right{
+                    width: pxToRem(28);
+                    height: pxToRem(28);
+                    margin-left: pxToRem(12);
+                    @include prefixCss3($property: align-self, $value: center);
+                    @include set-bg-img( $name: "icon-right1.png", $size: pxToRem(28) auto, $position: center center);
+                }
+            }
+            .con{
+                background-color: #fff;
+                padding: pxToRem(20) pxToRem(30) pxToRem(2) pxToRem(30);
+                margin-bottom:  pxToRem(14);
+                &.con-line{
+                    @include border-bottom-m;
+                    &::after{
+                        border-color: #eee;
+                    };
+                }
+
+                &.sctp{
+                    margin-top: pxToRem(14);
+                }
+
+                .textareas{
+                    #introduce{
+                        background-color: #fff;
+                    }
+                    @include border-top-m($color:#eee);
+                    padding: pxToRem(6) 0 pxToRem(32);
+                    min-height: pxToRem(40);
+                    font-size: pxToRem(28);
+                    color: #333;
+                    line-height: pxToRem(40);
+
+                    textarea{
+                        height: pxToRem(400);
+                    }
+                }
+                .shuzi{
+                    margin-top: pxToRem(20);
+                    text-align: right;
+                }
+                .til{
+                    padding: pxToRem(26) 0;
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    &.tiler{
+                        @include flex-box($justify:space-between)
+                    }
+                    .size{
+                        padding-left: pxToRem(20);
+                        font-size: pxToRem(24);
+                    }
+                    .num{
+                        float: right;
+                        font-size: pxToRem(24);
+                    }
+                }
+                .textarea{
+                    //background-color: #F7F7F7;
+                    padding: pxToRem(28) pxToRem(16);
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(80);
+                    //height: pxToRem(148);
+                    border-radius: pxToRem(4);
+                    textarea{
+                        height: 100%;
+                    }
+                }
+                .imgs{
+                    overflow: hidden;
+                    margin: 0 pxToRem(-16);
+                    @include flex-box();
+                    .imgsDiv{
+                        position: relative;
+                        width: pxToRem(172);
+                        height: pxToRem(172);
+                        margin: pxToRem(16);
+                        border: pxToRem(2) dashed red;
+                        .img{
+
+                            //float: left;
+                            //display: inline-block;
+
+
+
+                                width: pxToRem(50);
+                                height: pxToRem(50);
+
+                                &::before{
+                                    content: '';
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    width: pxToRem(50);
+                                    margin-left: pxToRem(-23);
+                                    margin-top: 0;
+                                    border-top: pxToRem(6) solid #FF8800;
+                                }
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    height: pxToRem(50);
+                                    margin-left: 0;
+                                    margin-top: pxToRem(-24);
+                                    border-left: pxToRem(6) solid #FF8800;
+                                }
+
+                            //@include set-bg-img( $name: "icon-place1.png");
+                            border-radius: pxToRem(8);
+
+                        }
+                        .del{
+                            display: inline-block;
+                            position: absolute;
+                            width: pxToRem(30);
+                            height: pxToRem(30);
+                            position: absolute;
+                            top: pxToRem(-15);
+                            right: pxToRem(-15);
+                            /* width: pxToRem(30);
+                             height: pxToRem(30);*/
+                            background-color: rgba(255,136,0,1);
+                            border: pxToRem(4) solid rgba(255,255,255,1);
+                            border-radius: 50%;
+                            //@include set-bg-img( $name: "icon-close1.png", $size: pxToRem(30) auto, $position: center center);
+                            span{
+                                position: absolute;
+                                top: pxToRem(-4);
+                                left: pxToRem(8);
+                                display: inline-block;
+                                color: #fff;
+                                transform:rotate(45deg);
+                                -webkit-transform:rotate(45deg);
+                                -moz-transform:rotate(45deg);
+                            }
+                        }
+                    }
+
+                    /*.img{
+                        position: relative;
+                        float: left;
+                        display: inline-block;
+                        width: pxToRem(172);
+                        height: pxToRem(172);
+                        margin: pxToRem(16);
+                        border: pxToRem(2) dashed red;
+                        .imgjia{
+                            width: pxToRem(50);
+                            height: pxToRem(50);
+
+                            &::before{
+                                content: '';
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                width: pxToRem(50);
+                                margin-left: pxToRem(-23);
+                                margin-top: 0;
+                                border-top: pxToRem(6) solid #FF8800;
+                            }
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                height: pxToRem(50);
+                                margin-left: 0;
+                                margin-top: pxToRem(-24);
+                                border-left: pxToRem(6) solid #FF8800;
+                            }
+                        }
+                        //@include set-bg-img( $name: "icon-place1.png");
+                        border-radius: pxToRem(8);
+                        .del{
+                            display: inline-block;
+                            position: absolute;
+                            width: pxToRem(30);
+                            height: pxToRem(30);
+                            position: absolute;
+                            top: pxToRem(-15);
+                            right: pxToRem(-15);
+                           !* width: pxToRem(30);
+                            height: pxToRem(30);*!
+                            background-color: rgba(255,136,0,1);
+                            border: pxToRem(4) solid rgba(255,255,255,1);
+                            border-radius: 50%;
+                            //@include set-bg-img( $name: "icon-close1.png", $size: pxToRem(30) auto, $position: center center);
+                            span{
+                                position: absolute;
+                                top: pxToRem(-4);
+                                left: pxToRem(8);
+                                display: inline-block;
+                                color: #fff;
+                                transform:rotate(45deg);
+                                -webkit-transform:rotate(45deg);
+                                -moz-transform:rotate(45deg);
+                            }
+                        }
+                    }*/
+                }
+            }
+            .after-sale{
+                padding: 0 pxToRem(30);
+                .service-til{
+                    padding-top: pxToRem(20);
+                    font-size: pxToRem(32);
+                    color: #333;
+                    line-height: pxToRem(44);
+                }
+                .rich-text{
+                    padding: pxToRem(32) 0;
+                    font-size: pxToRem(28);
+                    color: #666;
+                    line-height: pxToRem(50);
+                }
+            }
+        }
+        .bottom{
+            overflow: hidden;
+            background-color: #fff;
+            .quit{
+                background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+                border-radius:40px;
+                margin: pxToRem(16) pxToRem(50);
+                height: pxToRem(80);
+                font-size: pxToRem(30);
+                color: #fff;
+                @extend .font-m;
+                line-height: pxToRem(80);
+                text-align: center;
+                //border-radius: pxToRem(8);
+                //@include set-bg-img( $name: "icon-submint.png");
+                &.no-onclick{
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}

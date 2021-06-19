@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+</head>
+<body style="background-color: initial">
+    <div class="flex-vertical">
+        <!-- 透明状态加transparent -->
+        <header class="header transparent">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title hide">
+                <span></span>
+            </div>
+            <div class="back right share" tapmode="hover" onclick="fnOpenShare()"></div>
+        </header>
+        <div class="flex-item-vertical">
+
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixStatusBar( $('header')[0] );
+
+        APP._frameAttr = {
+            name: api.frameName,
+            rect: {
+                h: $('header').height()
+            }
+        }
+        api.setFrameAttr(APP._frameAttr)
+
+        api.addEventListener({
+            name: api.winName
+        }, function(ret, err){
+            fnHeaderSwitch(ret.value);
+        });
+
+        api.addEventListener({
+            name: [api.winName, 'store_info'].join()
+        }, function(ret, err){
+            APP._data = ret.value;
+            fnValue('.title span', fnShowUserNickname_base(APP._data));
+        });
+    });
+
+    /*function fnOpenShare(){
+        APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+        APP._shareUrl = [APP._shareUrl, 'share/joindelegation'].join('');
+        APP._shareUrl = [APP._shareUrl, fnConvertParam_public({
+            id: APP._data.id,
+        })].join('');
+        fnCopy(APP._shareUrl)
+        return;
+        fnOpenShare_base({
+            title: fnShowUserNickname_base(APP._data),
+            msg: fnShowUserNickname_base(APP._data),
+            type: 1,
+            shareParam: {
+                id: APP._data.id,
+            }
+        })
+    }*/
+
+    function fnOpenShare() {
+
+      // 以下写法适用于iOS，Android 上分享url和分享文本是一样的。
+      APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+      APP._shareUrl = [APP._shareUrl, 'share/joindelegation'].join('');
+      APP._shareUrl = [APP._shareUrl, fnConvertParam_public({id: APP._param.id})].join('');
+      var sharedModule = api.require('shareAction');
+      sharedModule.share({
+        text:'Wololo',
+        path: APP._shareUrl,
+        thumbnail:'widget://image/icon-logo.png',
+        type: 'url',
+          iPad: {
+              arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                  x: 0,                  //左上角x坐标，数字类型
+                  y: 0,                  //左上角y坐标，数字类型
+                  w: 400,                  //宽度，数字类型
+                  h: 400,                  //高度，数字类型
+              },
+              contentSize: {           //JSON 对象，对话框大小
+                  w: 400,                  //宽度，数字类型
+                  h: 400                   //高度，数字类型
+              },
+              fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+              arrowDirection: 'any',      //字符串类型；箭头指向的方向；默认：any；取值范围：
+                                       //left：指向左边
+                                       //right：指向右边
+                                       //up：指向上边
+                                       //down：指向下边
+                                       //any：系统根据页面情况选择合适的方向
+          }
+
+      });
+
+    };
+
+    function fnHeaderSwitch(_data){
+        _data.bannerHeight -= $('header').height();
+        if( _data.bannerHeight > _data.scrollTop ){
+            $('.header').addClass('transparent');
+            $('.title').addClass('hide');
+        }else{
+            $('.header').removeClass('transparent');
+            $('.title').removeClass('hide');
+        }
+    }
+</script>
+</html>

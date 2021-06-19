@@ -1,0 +1,600 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+@mixin padding($top: 0, $left: 0, $right: 0, $bottom: 0) {
+    padding: $top $left $bottom $right;
+}
+@mixin fontWCT($size, $color, $weight: normal) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+body {
+    background-color: rgb(251,252,255);
+}
+.gap {
+    position: relative;
+    height: 150px;
+    width: 100%;
+    vertical-align: middle;
+    @include set-bg-img( $name: "v2/img_coupon.png", $size: 100%, $position: center center);
+    @include flex-box($direction: row);
+    margin-left: pxToRem(10);
+    margin-right: pxToRem(-48);
+    .left{
+        @include flex-box($direction: column);
+        position: absolute;
+        top: pxToRem(80);
+        left: 40px;
+        width: 80px;
+        .logo{
+            display: inline-block;
+            width: pxToRem(120);
+            height: pxToRem(120);
+            vertical-align: middle;
+            margin: 0 auto;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .name {
+            text-align: center;
+            text-transform: capitalize;
+            font-size: pxToRem(20);
+            color: #848484;
+            margin-top: pxToRem(14);
+        }
+    }
+    .line {
+        position: absolute;
+        top: pxToRem(56);
+        left: 120px;
+        display: inline-block;
+        width: pxToRem(2);
+        vertical-align: middle;
+        height: 100px;
+        border-right: 1px dashed #e6e6e6;
+    }
+    .right {
+        position: absolute;
+        top: pxToRem(56);
+        left: pxToRem(270);
+
+        .title {
+            .red {
+                text-transform: uppercase;
+                background-color: #FDEEEB;
+                border-radius: pxToRem(20);
+                color: #F3562F;
+                font-size: pxToRem(16);
+                padding: pxToRem(8) pxToRem(16);
+                font-weight: bold;
+                line-height: pxToRem(20);
+                letter-spacing: pxToRem(0.8);
+            }
+            .blue {
+                text-transform: uppercase;
+                background-color: #E7F1FF;
+                border-radius: pxToRem(20);
+                color: #3895FA;
+                font-size: pxToRem(16);
+                padding: pxToRem(8) pxToRem(16);
+                font-weight: bold;
+                line-height: pxToRem(20);
+                letter-spacing: pxToRem(0.8);
+            }
+        }
+        .number {
+            @include flex-box($direction: row);
+            margin-top: pxToRem(20);
+            .percentage {
+                font-size: pxToRem(50);
+            }
+            span {
+                color: #848484;
+                padding-left: pxToRem(12);
+            }
+        }
+    }
+}
+.content1 {
+    position: relative;
+    border-radius: pxToRem(20);
+    width: 92%;
+    margin: pxToRem(25) auto;
+    .top {
+        border-bottom: 1px dashed #e6dfdf;
+        @include flex-box($justify: space-between);
+        p {
+            &.topRight{
+                text-align: right;
+            }
+
+            span {
+                display: block;
+                line-height: 23px;
+            }
+        }
+        p:first-child {
+            padding-top: pxToRem(36);
+            padding-left: pxToRem(30);
+            .subtitle{
+                @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(20), $weight: 400);
+            }
+            span:last-child {
+                @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(24), $weight: 400);
+                text-decoration: line-through;
+            }
+            @include fontWCT($color: rgba(51, 51, 51, 1), $size: pxToRem(30), $weight: 400);
+            line-height: 20px;
+        }
+        p:last-child {
+            text-align: right;
+            padding-right: pxToRem(30);
+            padding-top: pxToRem(20);
+            span:last-child {
+                @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(24), $weight: 400);
+            }
+            span:first-child {
+
+                @include flex-box($justify:flex-end);
+                //display: inline-block;
+                @include fontWCT($color: rgba(255, 96, 67, 1), $size: pxToRem(60), $weight: 600);
+
+                span {
+                    font-size: pxToRem(34);
+                    display: inline-block;
+                }
+                .fuhao{
+                    color:#FC5030!important;
+                    display: inline-block;
+                }
+                .fuhaoB{
+                    color:#FFAE55!important;
+                    display: inline-block;
+                }
+                .fuhaoC{
+                    color:#50F897!important;
+                    display: inline-block;
+                }
+                .fuhaoD{
+                    color:#939393!important;
+                    display: inline-block;
+                }
+
+                .shuzi{
+                    margin-left: pxToRem(10);
+                    color: #FC5030!important;
+                    display: inline-block;
+                }
+                .shuziB{
+                    margin-left: pxToRem(10);
+                    color: #FFAE55!important;
+                    display: inline-block;
+                }
+                .shuziC{
+                    margin-left: pxToRem(10);
+                    color: #50F897!important;
+                    display: inline-block;
+                }
+                .shuziD{
+                    margin-left: pxToRem(10);
+                    color: #939393!important;
+                    display: inline-block;
+                }
+            }
+
+
+        }
+    }
+    .bottom {
+        @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+        p {
+            @include flex-box($justify: space-between);
+            span:first-child {
+                @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+            }
+            span:last-child {
+                border-radius: 24px;
+                @include fontWCT($weight: 400, $color: rgba(255, 255, 255, 1), $size: pxToRem(26));
+                padding: pxToRem(6) pxToRem(30);
+                white-space: nowrap;
+                @include flex-box($justify:center,$align:center)
+            }
+
+        }
+    }
+    .bottomA {
+        @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+        p {
+            @include flex-box($justify: space-between);
+            span:first-child {
+                @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+            }
+            span:last-child {
+                background:linear-gradient(135deg, #FF8B76, #FC5030);
+                @include fontWCT($weight: 400, $color: rgba(255, 255, 255, 1), $size: pxToRem(26));
+            }
+
+        }
+    }
+    .bottomB {
+        @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+        p {
+            @include flex-box($justify: space-between);
+            span:first-child {
+                @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+            }
+            span:last-child {
+                display: block;
+                //background: linear-gradient(135deg, rgba(255, 96, 67, 1) 0%, rgba(255, 147, 127, 1) 100%);
+                background:linear-gradient(135deg, #FFAE55, #FF7B22);
+                border-radius: 24px;
+                @include fontWCT($weight: 400, $color: rgba(255, 255, 255, 1), $size: pxToRem(26));
+                padding: pxToRem(6) pxToRem(30);
+
+            }
+
+        }
+    }
+    .bottomC {
+        @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+        p {
+            @include flex-box($justify: space-between);
+            span:first-child {
+                @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+            }
+            span:last-child {
+                display: block;
+                //background: linear-gradient(135deg, rgba(255, 96, 67, 1) 0%, rgba(255, 147, 127, 1) 100%);
+                background:linear-gradient(135deg, #34B42F, #50F897);
+                border-radius: 24px;
+                @include fontWCT($weight: 400, $color: rgba(255, 255, 255, 1), $size: pxToRem(26));
+                padding: pxToRem(6) pxToRem(30);
+
+            }
+
+        }
+    }
+    .bottomD {
+        @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+        p {
+            @include flex-box($justify: space-between);
+            span:first-child {
+                @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+            }
+            span:last-child {
+                display: block;
+                //background: linear-gradient(135deg, rgba(255, 96, 67, 1) 0%, rgba(255, 147, 127, 1) 100%);
+                background: #939393;
+                border-radius: 24px;
+                @include fontWCT($weight: 400, $color: rgba(255, 255, 255, 1), $size: pxToRem(26));
+                padding: pxToRem(6) pxToRem(30);
+                .statusB{background: #FFAE55}
+                .statusC{background: #50F897}
+                .statusD{background: #939393}
+            }
+
+        }
+    }
+    .statusGone {
+        background: linear-gradient(
+                        135deg,
+                        rgba(221, 221, 221, 1) 0%,
+                        rgba(198, 198, 198, 1) 100%
+        ) !important;
+    }
+}
+.content1:before {
+    content: "";
+    width: pxToRem(26);
+    height: pxToRem(26);
+    border-radius: 100%;
+    position: absolute;
+    top: 62%;
+    left: -2%;
+}
+.content1::after {
+    content: "";
+    width: pxToRem(26);
+    height: pxToRem(26);
+    border-radius: 100%;
+    position: absolute;
+    top: 62%;
+    right: -2%;
+}
+// 我的订单
+    .title_order {
+        background-color: white;
+        @include padding($top: pxToRem(58), $bottom: pxToRem(25));
+        @include flex-box();
+        border-bottom: 1px solid #EEEEEE;
+        p:nth-child(1) {
+            color: #333333;
+            padding-left: pxToRem(31);
+        }
+        p:nth-child(2) {
+            flex: 1;
+            @include fontWCT($weight: 800, $color: rgba(51, 51, 51, 1), $size: pxToRem(30));
+            padding-left: pxToRem(274);
+        }
+    }
+    .tabContent {
+        #swiper-container2 {
+            background: white;
+            .active-nav {
+                background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .active-nav:before {
+                content: "";
+                width: 50%;
+                height: pxToRem(10);
+                background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+                border-radius: pxToRem(100) pxToRem(100) 0px 0px;
+                position: absolute;
+                bottom: 0;
+            }
+            height: pxToRem(103);
+            .swiper-slide {
+                width: 20% !important;
+                @include flex-box($align: center, $justify: center);
+                @include fontWCT($weight: 400, $color: rgba(117, 117, 117, 1), $size: pxToRem(30));
+            }
+        }
+
+
+        .screen {
+            padding-top: pxToRem(27);
+            @include flex-box($justify: space-around);
+            p {
+                font-weight: 400;
+                @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(117, 117, 117, 1));
+                i {
+                    @include fontWCT($size: pxToRem(11), $weight: normal, $color: #989696);
+                }
+            }
+            .iconxiangshang-copy {
+                color: $bg-color;
+            }
+        }
+        .screenContent {
+            width: 90%;
+            margin: 0 auto;
+            .screen_one {
+                .title {
+                    @include fontWCT($size: pxToRem(30), $weight: 400, $color: rgba(51, 51, 51, 1));
+                    padding-bottom: pxToRem(27);
+                    padding-top: pxToRem(35);
+                }
+                .screen_content {
+                    @include flex-box($wrap: wrap);
+                    p {
+                        @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(51, 51, 51, 1));
+                        padding: pxToRem(11) 0;
+                        width: 21%;
+                        text-align: center;
+                        border-radius: pxToRem(10);
+                        border: 1px solid rgba(221, 221, 221, 1);
+                        margin-top: pxToRem(22);
+                        margin-right: pxToRem(25);
+                    }
+                    .active {
+                        @include fontWCT($size: pxToRem(26), $weight: 400, $color: rgba(254, 143, 49, 1));
+                        border-color: rgba(254, 143, 49, 1);
+                    }
+                }
+            }
+        }
+        .screenbtn {
+            position: fixed;
+            background: rgba(255, 255, 255, 1);
+            bottom: 0;
+            width: 100%;
+            padding-top: pxToRem(29);
+            padding-bottom: pxToRem(57);
+            @include flex-box($justify: space-around);
+
+            button {
+                @include fontWCT($size: pxToRem(30), $weight: 500, $color: rgba(255, 255, 255, 1));
+                border-radius: pxToRem(40);
+                padding: pxToRem(19) pxToRem(128);
+            }
+            button:first-child {
+                background: linear-gradient(135deg, rgba(221, 221, 221, 1) 0%, rgba(198, 198, 198, 1) 100%);
+
+                box-shadow: 1px 1px 10px rgba(198, 198, 198, 1);
+            }
+            button:last-child {
+                box-shadow: 1px 1px 10px rgba(255, 123, 34, 1);
+                background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+            }
+        }
+    }
+// 订单详情
+.orderDetail {
+    .title {
+        background-color: white;
+        @include padding($top: pxToRem(58), $bottom: pxToRem(25));
+        @include flex-box();
+        p:nth-child(1) {
+            color: #333333;
+            padding-left: pxToRem(31);
+        }
+        p:nth-child(2) {
+            flex: 1;
+            @include fontWCT($weight: 800, $color: rgba(51, 51, 51, 1), $size: pxToRem(30));
+            padding-left: pxToRem(274);
+        }
+    }
+    .content {
+        width: 95%;
+        padding-top: pxToRem(20);
+        margin: 0 auto;
+    }
+    .center {
+        .obligations {
+            .obligationsTitle {
+                background: rgba(255, 255, 255, 1);
+                border-radius: pxToRem(20);
+                @include padding($top: pxToRem(30), $bottom: pxToRem(30));
+                @include flex-box($justify: space-between, $align: center);
+                p {
+                    @include padding($left: pxToRem(33), $right: pxToRem(30));
+                }
+                p:nth-child(1) {
+                    @include fontWCT($weight: 500, $color: rgba(51, 51, 51, 1), $size: pxToRem(30));
+                    span {
+                        display: block;
+                        line-height: 26px;
+                    }
+                    span:nth-child(2) {
+                        @include fontWCT($weight: 400, $color: rgba(153, 153, 153, 1), $size: pxToRem(26));
+                    }
+                }
+                p:nth-child(2) {
+                    color: rgba(153, 153, 153, 1);
+                }
+            }
+            .obligationsPrice {
+                background-color: rgba(255, 255, 255, 1);
+                @include flex-box($justify: space-between, $align: center);
+                @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(15), $bottom: pxToRem(15));
+                // background: rgba(255, 255, 255, 1);
+                border-radius: pxToRem(25);
+                div {
+                    p {
+                        line-height: 39px;
+                    }
+                    .price {
+                        @include fontWCT($weight: 500, $color: rgba(255, 96, 67, 1), $size: pxToRem(30));
+                    }
+                }
+                div:nth-child(2) {
+                    p:nth-child(2) {
+                        span {
+                            @include padding($left: pxToRem(3), $right: pxToRem(3));
+                        }
+                        span:not(:nth-child(2)) {
+                            display: inline-block;
+                            width: pxToRem(30);
+                            height: pxToRem(30);
+                            line-height: pxToRem(25);
+                            border: 1px solid rgba(221, 221, 221, 1);
+                            text-align: center;
+                            font-size: 11px;
+                            color: #ccc;
+                            border-radius: pxToRem(10);
+                            padding: pxToRem(1);
+                        }
+                    }
+                }
+            }
+            .obligationsOrder {
+                background-color: white;
+                margin-top: pxToRem(25);
+                border-radius: pxToRem(20);
+                @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(15), $bottom: pxToRem(15));
+                p {
+                    line-height: 37px;
+                    @include flex-box($justify: space-between);
+                    span {
+                        @include fontWCT($weight: 400, $color: rgba(51, 51, 51, 1), $size: pxToRem(30));
+                    }
+                    span:nth-child(2) {
+                        @include fontWCT($weight: 500, $color: rgba(176, 176, 176, 1), $size: pxToRem(30));
+                    }
+                }
+            }
+        }
+    }
+
+    .playBottom {
+        width: 100%;
+        background-color: white;
+        position: fixed;
+        bottom: 0;
+        @include flex-box($justify: space-around);
+        @include padding($top: pxToRem(29), $bottom: pxToRem(57));
+        button {
+            background: linear-gradient(135deg, rgba(221, 221, 221, 1) 0%, rgba(198, 198, 198, 1) 100%);
+            border-radius: pxToRem(40);
+            @include fontWCT($weight: 500, $color: rgba(255, 255, 255, 1), $size: pxToRem(30));
+            padding: pxToRem(19) pxToRem(50);
+        }
+        .onPay {
+            background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+        }
+    }
+    .obligationsCoupon {
+        position: relative;
+        border-radius: pxToRem(20);
+        // width: 95%;
+        margin: pxToRem(25) auto;
+        background: white;
+        .top {
+            border-bottom: 1px dashed #e6dfdf;
+            @include flex-box($justify: space-between);
+            p {
+                span {
+                    display: block;
+                    line-height: 23px;
+                }
+            }
+            p:first-child {
+                padding-top: pxToRem(36);
+                padding-left: pxToRem(30);
+                span:nth-child(2) {
+                    @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(24), $weight: 400);
+                    text-decoration: line-through;
+                }
+                @include fontWCT($color: rgba(51, 51, 51, 1), $size: pxToRem(30), $weight: 400);
+                line-height: 20px;
+            }
+            p:last-child {
+                padding-right: pxToRem(30);
+                padding-top: pxToRem(20);
+                span:last-child {
+                    @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(24), $weight: 400);
+                }
+                span:first-child {
+                    display: inline-block;
+                    @include fontWCT($color: rgba(255, 96, 67, 1), $size: pxToRem(60), $weight: 600);
+                    span {
+                        font-size: pxToRem(34);
+                    }
+                }
+            }
+        }
+        .bottom {
+            @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+            p {
+                @include flex-box($justify: space-between);
+                span:first-child {
+                    @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+                }
+            }
+        }
+    }
+    .obligationsCoupon:before {
+        content: "";
+        width: pxToRem(26);
+        height: pxToRem(26);
+        background-color: rgba(244, 244, 244, 1);
+        border-radius: 100%;
+        position: absolute;
+        top: 62%;
+        left: -2%;
+    }
+    .obligationsCoupon::after {
+        content: "";
+        width: pxToRem(26);
+        height: pxToRem(26);
+        background-color: rgba(244, 244, 244, 1);
+        border-radius: 100%;
+        position: absolute;
+        top: 62%;
+        right: -2%;
+    }
+}

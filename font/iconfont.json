@@ -1,0 +1,44 @@
+{
+  "id": "1957323",
+  "name": "wololo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9490211",
+      "name": "quxiao",
+      "font_class": "quxiao1",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "4736669",
+      "name": "取消",
+      "font_class": "quxiao",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "13471621",
+      "name": "不可见",
+      "font_class": "bukejian",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "7418",
+      "name": "返回",
+      "font_class": "fanhui",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1012756",
+      "name": "返回",
+      "font_class": "iconfontzhizuobiaozhun19",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    }
+  ]
+}

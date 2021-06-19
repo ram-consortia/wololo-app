@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/aPublicMapSelection_win.css" />
+</head>
+
+<body class="flex-vertical">
+    <div class="header-top">
+        <div class="header">
+            <div class="back icon-back" tapmode="hover" onclick="fnClose()"></div>
+            <div class="title">地图选点</div>
+            <div class="back word right" tapmode="hover" onclick="fnSubmit()">确认</div>
+        </div>
+    </div>
+    <div class="flex-item-vertical">
+        <div id="myMap"></div>
+        <div class="address hide">
+            <!-- 详细地址：水电费水电费说 -->
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=e5d2a9c1279039ac329381342dd137e2"></script>
+<!-- <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol'></script> -->
+<!-- <script type='text/javascript' src='../../framework/bing.js'></script> -->
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        APP.fixStatusBar($('.header-top')[0]);
+        fnGetMap();
+    });
+
+    function fnGetMap(){
+        APP.map = new AMap.Map('myMap', {
+            // center: [117.000923, 36.675807],
+            resizeEnable: true,
+            zoom: 12
+        });
+
+        AMap.plugin('AMap.Geolocation', function() { //异步加载插件
+            var toolbar = new AMap.Geolocation();
+            APP.map.addControl(toolbar);
+        });
+
+        APP.map.on('click', displayInfo);
+    }
+
+
+    function displayInfo(e){
+        if( APP.marker ){
+            APP.map.remove(APP.marker);
+        }
+        // alert('您在[ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ]的位置点击了地图！');
+        APP.marker = new AMap.Marker({
+            position: new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()),
+        });
+        APP._location = {
+            longitude: e.lnglat.getLng(),
+            latitude: e.lnglat.getLat()
+        };
+        APP.map.add(APP.marker);
+    }
+
+    function fnSubmit() {
+        if (APP._location) {
+            fnClosePop(APP._location);
+        } else {
+            fnToast('请选择位置');
+        }
+    }
+
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data.time = api.pageParam.time;
+        api.sendEvent({
+            name: APP.EV_NAME.MAP_SELECTION,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+</script>
+
+</html>

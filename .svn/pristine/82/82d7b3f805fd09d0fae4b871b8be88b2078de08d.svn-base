@@ -1,0 +1,38 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body {
+  height: 100%;
+  width: 100%;
+
+  #wrap {
+    width: 100%;
+    height: 100%;
+    //background: rgba(0, 0, 0, .3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+  }
+
+  .bottom {
+      background: #ffffff;
+      height: pxToRem(150);
+      display: flex;
+      align-items: center;
+    .quit {
+        width: 100%;
+      margin: 0 pxToRem1(30) 0;
+      height: pxToRem(84);
+      text-align: center;
+      line-height: pxToRem(84);
+      font-size: pxToRem(30);
+      color: rgba(255, 255, 255, 1);
+      border-radius: pxToRem(40);
+      background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%);
+      box-shadow: 5px 10px 40px rgba(255, 174, 85, 0.5);
+    }
+  }
+
+}
+

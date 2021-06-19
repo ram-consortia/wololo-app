@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/newLogin.css">
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <div class="banner">
+        <div class="logo"><---</div>
+        <h2 class="bold">Continue</h2>
+        <h2 class="bold">with Email</h2>
+        <p>Register you account</p>
+        <p>using email</p>
+    </div>
+    <div class="content"></div>
+    <div class="input_group margin_bottom20">
+        <div class="input_item">
+            <div class="icon">邮</div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <div class="select">
+                        <span>+44</span>
+                    </div>
+                    <input type="number" placeholder="Phone">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon">邮</div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div>
+                    <input type="text" placeholder="Postal code">
+                </div>
+            </div>
+            <div tapmode="hover" id="getCode" class="eye">
+                Get
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon">秘</div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div>
+                    <input type="password" placeholder="Password">
+                </div>
+            </div>
+            <div tapmode="hover" class="eye">
+                <img src="../../image/icon-eye.png" alt="">
+            </div>
+        </div>
+        <div class="input_item btn">
+            SIGNUP
+        </div>
+    </div>
+</div>
+<script src="./inputscript.js"></script>
+<script>
+    inputScript();
+    // border_primary
+    // apiready=()=>{
+
+    // }
+
+</script>
+</body>
+</html>

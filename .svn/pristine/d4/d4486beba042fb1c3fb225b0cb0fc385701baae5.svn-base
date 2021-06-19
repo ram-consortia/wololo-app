@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+    <link rel="stylesheet" href="../../css/ic_img.css">
+    <link rel="stylesheet" href="../../css/wishList.css">
+</head>
+<style>
+    .bg {
+        height: 475px;
+        max-height: 70vh;
+    }
+
+    .like_fixed {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        right: 20px;
+    }
+
+    .like {
+        background-color: #ffffff;
+        width: 30px;
+        height: 30px;
+    }
+    .tag_hollow{
+        border-radius: 10px;
+        margin-right: 10px;
+        padding: 10px 15px;
+    }
+</style>
+<body class="flex column" id="wrap">
+<div class="flex1" style="overflow-y: auto">
+    <div class="bg relative">
+        <!--            <img src="" alt="">-->
+        <div class="flex flex_between padding20">
+            <div class="close"></div>
+            <div class="share_round"></div>
+        </div>
+        <div class="like_btn like_fixed">
+            <div class="like flex_center" style="display:flex;overflow: hidden"><img style="width: 80%" src="../../image/v2/ic_heart_red.png" alt=""></div>
+        </div>
+    </div>
+
+    <div class="padding20">
+        <div class="bold1 size16 black"></div>
+<!--        <div class="margin_top10 flex item_center">-->
+<!--            <div class="tag bg_red tx_upper">Superdeal</div>-->
+<!--            <div class="margin_left10 color_red size14">50% OFF</div>-->
+<!--        </div>-->
+        <div class="size24 flex margin_top20">
+            <div class="price">£0.00</div>
+<!--            <div class="through color_grey margin_left20">£0.00</div>-->
+        </div>
+        <div class="color_grey size12 margin_top20" style="line-height: 18px">
+            Short, fitted skirt in grained imitation leather. High waist with belt loops, a zip fly and covered press-stud,
+            and front pockets. Lining in woven fabric made from recycled polyester.
+        </div>
+<!--        <div class="margin_top20 size14 bold1">-->
+<!--            Available Sizes-->
+<!--        </div>-->
+<!--        <div class="margin_top20 flex flex_wrap">-->
+<!--            <div class="tag_hollow tag_active">32</div>-->
+<!--            <div class="tag_hollow">32</div>-->
+<!--            <div class="tag_hollow">32</div>-->
+<!--            <div class="tag_hollow">32</div>-->
+<!--            <div class="tag_hollow">32</div>-->
+<!--        </div>-->
+        <div class="margin_top20">
+            <div class="flex flex_between">
+                <div class="wid100 flex">
+                    <div>
+                        <img src="../../image/v2/ic_star.png" style="width: 34px;height: 34px">
+
+                    </div>
+                    <div class="color_grey size12 margin_left10 flex column flex_between">
+                        <div>Seller</div>
+                        <div class="black size14">hsodufhsoduihfosiudhfoisud</div>
+                    </div>
+                </div>
+                <div class="wid100 flex">
+                    <div>
+                        <img src="../../image/v2/ic_star.png" style="width: 34px;height: 34px">
+                    </div>
+                    <div class="color_grey margin_left10 size12 flex column flex_between">
+                        <div>Seller</div>
+                        <div class="black size14">0 | 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="margin_top20">
+            <div class="margin_top20 size16 bold">You may also like</div>
+            <div class="flex box">
+            <div class="wish_item">
+                <div class="wish_img">
+                </div>
+                <div class="commodity">
+                    <div class="grey size12">Hennes & Mauritz</div>
+                    <div class="commodity_type">Oversized Jacket akjdnakjfnaksjnfkjasnfkjsn</div>
+                    <div class="commodity_price">
+                        £0.00
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer padding20">
+    <div class="btn btn_default tx_upper">
+    </div>
+</div>
+</body>
+<script type="text/html" id="wrap-template">
+    <div class="flex1" style="overflow-y: auto">
+        <div class="bg relative">
+            <img class="absolute" src="{{product.images[0]}}" style="width: 100%;height: 100%;left: 0;top: 0">
+            <div class="flex flex_between absolute" style="width: 90%;left: 5%; top: 40px">
+                <div class="close" onclick="fnClose()" tapmode="hover"></div>
+                <div class="share_round"></div>
+            </div>
+            <div class="like_btn like_fixed" onclick="like()" tapmode="hover">
+                <div class="like flex_center" style="display:flex;overflow: hidden"><img style="width: 80%" src="../../image/v2/ic_heart_red.png" alt=""></div>
+            </div>
+        </div>
+
+        <div class="padding20">
+            <div class="bold1 size16 black">{{product.name}}</div>
+            <div class="size24 flex margin_top20">
+                <div class="price">£{{now_price}}</div>
+            </div>
+            <div class="color_grey size12 margin_top20" id="introduction" style="line-height: 18px">
+
+            </div>
+            <div class="margin_top20">
+                <div class="flex flex_between">
+                    <div class="flex" style="width: 70%">
+                        <div>
+                            <img src="{{store.avatar||'../../image/v2/icon-logo.png'}}" style="width: 34px;height: 34px">
+
+                        </div>
+                        <div class="color_grey size12 margin_left10 flex column flex_between">
+                            <div>Seller</div>
+                            <div class="black size14">{{store.user_nickname}}</div>
+                        </div>
+                    </div>
+                    <div class="wid100 flex"style="width: 30%">
+                        <div>
+                            <img src="../../image/v2/ic_star.png" style="width: 34px;height: 34px">
+                        </div>
+                        <div class="color_grey margin_left10 size12 flex column" onclick="toReviews({{store_id}})" tapmode="hover">
+                            <div>Seller</div>
+                            <div class="black size14"><span id="ev_score">0</span> | <span id="ev_num"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="margin_top20">
+                <div class="margin_top20 size16 bold">You may also like</div>
+                <div class="flex box">
+                    <div class="wish_item">
+                        <div class="wish_img">
+                        </div>
+                        <div class="commodity">
+                            <div class="grey size12">Hennes & Mauritz</div>
+                            <div class="commodity_type">Oversized Jacket akjdnakjfnaksjnfkjasnfkjsn</div>
+                            <div class="commodity_price">
+                                £0.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer padding20">
+        {{if group_type==2}}
+        <div class="btn btn_default tx_upper" onclick="toPay()" tapmode="hover">
+            Deals starting at £{{now_price}}
+        </div>
+        {{/if}}
+        {{if group_type==1}}
+        <div class="btn btn_default tx_upper" onclick="toPay()" tapmode="hover">
+            Super deal at £{{now_price}}
+        </div>
+        {{/if}}
+        {{if !group_type}}
+        <div class="btn btn_default tx_upper" onclick="toPay()" tapmode="hover">
+            Buy for £{{now_price}}
+        </div>
+        {{/if}}
+    </div>
+    </script>
+
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    let isLike=false;
+    let id ='';
+    APP.init(()=>{
+        getDetail();
+    })
+
+    function getDetail(){
+
+        fnAjax({
+            url:"base/deal/detail",
+            data:{
+                id:APP._param.id
+            },
+            method:"get"
+        },res=>{
+            id=res.data.store_id;
+            fnValue('#wrap', template('wrap-template', res.data));
+            fnAjax({
+                url:"user/user/detail",
+                method:'get',
+                data:{
+                    id
+                }
+            },res=>{
+                const {introduce,ev_num,ev_score,collect} =res.data.auth;
+                $('#introduction').text(introduce);
+                $('#ev_num').text(ev_num);
+                $('#ev_score').text(ev_score);
+                if(!collect){
+                    isLike=true;
+                }else{
+                    isLike=false;
+                }
+                if(isLike){
+                    $('.like').html('<img style="width: 80%" src="../../image/v2/ic_heart_red.png" alt="">');
+                }else{
+                    $('.like').html('');
+                }
+
+            })
+        });
+
+    }
+    function toPay(){
+
+    }
+    function like(){
+        if(isLike){
+            $('.like').html('<img style="width: 80%" src="../../image/v2/ic_heart_red.png" alt="">');
+        }else{
+            $('.like').html('');
+        }
+        fnAjax({
+            url:"user/collect/operation",
+            method:'post',
+            data:{
+                id,
+                is_cancel:isLike?1:0
+            },
+            hasProgress:false
+        },res=>{
+            fnToast(res.msg);
+            isLike=!isLike;
+        })
+    }
+    function toReviews(id){
+        fnOpen('my/userReviews_win.html',{
+            param:id
+        })
+    }
+</script>
+</html>

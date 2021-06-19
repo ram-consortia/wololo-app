@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/newLogin.css">
+    <script src="../../framework/zepto.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <div class="back" onclick="fnClose()" tapmode="hover"></div>
+    <div class="banner">
+        <img class="bg3" src="../../image/v2/img_email.png" alt="">
+    </div>
+    <div class="content padding20">
+        <div>
+            <div class="bold size32">Continue</div>
+            <div class="bold size32">With Email</div>
+            <div class="grey">Register your account using email.</div>
+        </div>
+    </div>
+    <div class="padding20 input_group">
+        <div class="input_item">
+            <div class="icon ic_email1"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="text" id="email" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="input_item bg_fff">
+            <div class="icon ic_pass"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div>
+                    <input id="password" type="password" placeholder="Password">
+                </div>
+            </div>
+            <div tapmode="hover" id="eye" class="eye">
+                <img src="../../image/icon-eye.png" alt="">
+            </div>
+        </div>
+        <div class="input_item btn" tapmode="hover" onclick="toVerify()">
+            Continue
+        </div>
+    </div>
+</div>
+<script src="./inputscript.js"></script>
+<script src="../../script/public.js"></script>
+<script src="../../script/base.js"></script>
+<script>
+    apiready=function (){
+        inputScript();
+    }
+    function toVerify(){
+
+        const email=$('#email').val().trim();
+        const password=$("#password").val();
+        if( email){
+            if( ! fnVerify_public( 'Email' ).test( email )){
+                fnToast('Please enter a valid email address');
+                return
+            }
+        }
+        if( ! fnVerify_public( 'Password' ).test( password ) ){
+            fnToast('Password should contain 6-18 character alphanumeric combination');
+            return;
+        }
+        fnAjax({
+            url:"user/index/check_register",
+            method:"post",
+            data:{
+                username:email,
+                user_type:2
+            }
+        },res=>{
+            if(res.code==0){
+                fnToast(res.msg)
+            }else{
+                api.openWin({
+                    name:"verify_email",
+                    url:"./verify_email.html",
+                    pageParam:{
+                        email,
+                        password
+                    }
+                })
+            }
+        })
+
+    }
+</script>
+</body>
+</html>

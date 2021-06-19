@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <style>
+        .list{
+            width: 100%;
+        }
+        .item{
+            display: flex;
+            margin: 0 0 20px 0 ;
+            line-height: 20px;
+        }
+        .content{
+            color: #1E1E1E;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pop" onclick="fnClose()" tapmode="hover">
+        <div class="card" onclick="event.cancelBubble=true" tapmode="hover">
+            <div class="header flex_center bold size24">
+                How it Works
+            </div>
+            <div class="body padding_top0">
+                <div class="list">
+                    <div class="item">
+                        <div class="bold color_grey">
+                            01
+                        </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="bold color_grey">
+                            02
+                        </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="bold color_grey">
+                            03
+                        </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                        </div>
+                    </div>
+                </div>
+                <div class="btn btn_default" tapmode="hover" onclick="fnOpen('my/helpFeedback_win.html')">
+                    LIVE CHAT
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script type="text/javascript" src="../../script/base.js"></script>
+    <script>
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <!-- <div class="content flex-item-vertical">
+
+        </div>
+        <div class="bottom" tapmode="hover" onclick="fnOpen('home/availableCoupons_win.html')">
+            <div class="bot">可用优惠券</div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="content flex-item-vertical">
+
+        </div>
+
+        <div id="toDiscove" class="bottom" tapmode="hover" onclick="switchClick()">
+            <div class="bot"></div>
+        </div>
+
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript">
+    let btnclick=0;
+    // 页面初始化
+    APP.init(function(){
+      // fnGet()
+      fnValue('#wrap', template('wrap-template', APP));
+        APP.fixTabBar('.bottom');
+
+        APP._htmlPath = 'home/storeDetails_frm.html';
+        fnOpen(APP._htmlPath, {
+            rect: {
+                // marginTop: $('.swiper').height()
+                marginBottom: $('.bottom').height()
+            }
+        });
+        APP._htmlHeaderPath = 'home/storeDetailsHeight_frm.html';
+        fnOpen(APP._htmlHeaderPath, {
+            rect: {
+                // marginTop: $('.swiper').height()
+                // marginBottom: $('.swiper').height()
+            }
+        });
+        setTimeout(()=>{
+            fnGetStart();
+        },500);
+
+    });
+    function fnGet(){
+      fnGetStoreDetails_base({
+        id: APP._param.id
+      }, function(ret){
+        APP._data = ret;
+        api.sendEvent({
+          name: [api.winName, 'store_info'].join(),
+          extra: ret
+        });
+
+      })
+    }
+
+    function createGroup() {
+        fnOpen("home/home_win.html",()=>{
+            api.execScript({
+                name:"home_win",
+                script: 'fnInitTableBar(1);'
+            });
+        });
+    }
+    function switchClick() {
+        if(btnclick==1){
+            fnClose();
+        }else if(btnclick==2){
+            createGroup();
+        }else if(btnclick==3){
+            toGroup();
+        }
+    }
+    var groups=[];
+    function fnGetStart(){
+      var _param = {
+        url: 'order/group/isGroup',
+        method: 'GET',
+        data: {
+          store_id: APP._param.id
+        }
+      }
+      fnAjax(_param, function(ret){
+        if(ret.code == 1){
+            if(ret.data.coupon_ids==0){
+                btnclick=1;
+                $('#toDiscove .bot').text("Go back to discover");
+            }else{
+                if(ret.data.group_id.length == 0){
+                    btnclick=2;
+                    $('#toDiscove .bot').text("Start Group");
+
+                }else{
+                    $('#toDiscove  .bot').text("Join a group");
+                    btnclick=3;
+                    groups=ret.data.group_id;
+                }
+            }
+
+        }
+      })
+    }
+    function toGroup() {
+        fnOpen('home/groups_win.html',{
+            param:groups
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,29 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    .header{
+        background-color: black;
+        .title{
+            color: white;
+        }
+        &:after{
+            display: none;
+        }
+        .back.icon-back{
+            @include set-bg-img( $name: 'icon-back1.png', $size: pxToRem(44) auto, $position: center center);
+        }
+    }
+    .wrap{
+        height: 100%;
+        .swiper-container{
+            height: 100%;
+            background-color: #000;
+            .swiper-wrapper{
+                .swiper-slide{
+                    @include set-bg-img( $name: 'rexiaokecheng.png', $size: contain);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../framework/iosSelect.css">
+    <link rel="stylesheet" href="../../css/aPublicTimeSelector_pop.css">
+</head>
+<body>
+<div class="screen" id="wrap"></div>
+</body>
+<script type="text/html" id="wrap-template"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../framework/iosSelect.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" >
+  // 页面初始化
+  // fnInit('');
+  // fnInit(new Date());
+  // fnInit(fnDateNow_public());
+  // fnInit('1541224673842');
+  // fnInit('2018/12');
+  // fnInit('2018/12/12 12:32');
+var expire_time
+  APP.init(function() {
+    APP.expire_time = APP._param.expire_time
+
+
+
+    APP._continuity = 0;
+    APP._selected_date = [];
+    APP._data = APP._param;
+    fnInit(APP._data.date);
+
+
+  });
+
+
+  function fnInit(_date) {
+    APP._date = new Date(_date);
+    // return;
+    // 判断是否是一个正常的时间x
+    if( isNaN(APP._date) ){
+      APP._date = new Date();
+    }
+
+    // 判断是否设置过需要显示的时间层级
+    if( ! APP._len ){
+      if( typeof _date === 'string' ){
+        var _split = _date.split(/[/ :]/);
+        if( _split.length <= 1 ){
+          if( _split[0].length <= 4 ){
+            APP._len = 1;
+          }
+        }else if( _split.length == 2 ){
+          // 年月格式补日，处理 ios 不能时间格式化兼容问题
+          _date+='/01';
+          APP._date = new Date(_date);
+          APP._len = 2;
+        }else{
+          APP._len = _split.length;
+        }
+      }
+    }
+    fnOpenSelector();
+    // $('body').removeClass('hide');
+  }
+
+
+  var dateData = function(callback){
+    var dataDToA = parseInt(APP.expire_time / 24 / 60 / 60)
+    if(dataDToA){
+      callback(formatDate(dataDToA - 1))
+    }else{
+      callback(formatDate(0))
+    }
+
+  }
+
+  var hourData = function(one, /*two, three,*/ callback) {
+    var hours = [];
+    var hourTo = parseInt(APP.expire_time / 60 / 60 % 24)
+
+    var hourToD
+    if(hourTo){
+      hourToD = hourTo - 1
+    }else{
+      hourToD = 24
+    }
+    for (var i = 0, len = 24; i < len; i++) {
+      hours.push({
+        id: i,
+        value: i + (APP._data.is_show_unit === false ? '' : ' ' + 'Hours')
+      });
+
+    }
+    callback(hours);
+  };
+  var minuteData = function(one, two, /*three, four,*/ callback) {
+    var minutes = [];
+    var _minute = APP.expire_time / 60 % 60;
+    var _minuteToD
+    if( _minute > 0 ){
+      _minute -= 0.01;
+      _minuteToD = _minute.toFixed(2);
+    }else{
+      _minuteToD = 60
+    }
+
+    if( APP._data.is_quarter ){
+      var _quarter = 15;
+      for (var i = 0, len = 60; i < len; i++) {
+        var _result = i % _quarter;
+        if( !_result ){
+          minutes.push({
+            id: i,
+            value: fnLt10Format(i) + (APP._data.is_show_unit === false ? '' : ' ' + 'Min')
+          });
+
+        }
+      }
+    }else {
+      for (var i = 0, len = 60; i < len; i++) {
+        minutes.push({
+          id: i,
+          value: i + (APP._data.is_show_unit === false ? '' : ' ' + 'Min')
+        });
+      }
+    }
+    callback(minutes);
+  };
+
+  function fnOpenSelector(){
+    var _date = new Date(APP._date);
+    var oneLevelId = APP._nowYear = _date.getFullYear();
+    var twoLevelId = _date.getMonth() + 1;
+    var threeLevelId = _date.getDate();
+    var fourLevelId = _date.getHours();
+    var fiveLevelId = _date.getMinutes();
+    var sixLevelId = _date.getSeconds();
+    var _sureText = fnLanguage_public(APP._data.sureText || '完成');
+    var _closeText = fnLanguage_public(APP._data.closeText || '取消');
+
+    APP._title = fnLanguage_public(APP._data.title || '参团时间筛选');
+    if( typeof APP._title == 'string' ){
+      APP._title = [APP._title];
+    };
+
+    var _title = APP._title[APP._continuity];
+    // debugAlert(1111, APP._title)
+
+    //var _data = [yearData, monthData, dateData, hourData, minuteData, secondsData];
+    var _data = [ dateData, hourData, minuteData];
+    if( APP._len ){
+      _data = _data.splice(0, APP._len);
+    }
+    var iosSelect = new IosSelect(_data.length,
+      _data,
+      {
+        // title: '时间选择',
+        closeText: _closeText,
+        sureText: _sureText,
+        title: _title,
+        oneLevelId: oneLevelId,
+        twoLevelId: twoLevelId,
+        threeLevelId: threeLevelId,
+        fourLevelId: fourLevelId,
+        fiveLevelId: fiveLevelId,
+        sixLevelId: sixLevelId,
+        itemShowCount: APP._data.itemShowCount || 5,
+        itemHeight: APP._data.itemHeight || 55,
+        callback: function (selectOneObj, selectTwoObj, selectThreeObj, selectFourObj, selectFiveObj, selectSixObj) {
+          // 选择完毕后的回调函数
+          for( var x in arguments ){
+            arguments[x].dom = null;
+          }
+          // debugAlert('2222222222 2',selectOneObj, selectTwoObj, selectThreeObj, selectFourObj, selectFiveObj, selectSixObj);
+          var _date = new Date(selectOneObj.id, selectTwoObj.id, selectThreeObj.id);
+          var _obj = {
+            date: _date,
+            value: {
+              one: selectOneObj,
+              two: selectTwoObj,
+              three: selectThreeObj,
+            }
+          }
+          fnSubmit(_obj);
+        },
+        fallback: function () {
+          // 选择取消后的回调函数
+          fnCloseModel(true);
+        },
+        maskCallback: function () {
+          // 点击背景层关闭组件时触发的方法
+          fnCloseModel();
+        }
+      });
+
+    $('ul').each(function(_index, _el) {
+      if ($(_el).find('li').length) {
+
+      } else {
+        $(_el).parent().remove();
+      }
+    })
+  }
+
+
+
+  // 数据初始化
+
+  function formatDate(count) {
+    var arr = [];
+    for (var i = 0; i <= count; i++) {
+      arr.push({
+        id: i + '',
+        //value: i + (APP._data.is_show_unit === false ? '' : '')
+        value: i + ' ' + 'Days'
+      });
+    }
+    return arr;
+  }
+
+
+
+  // 从透明的地方关闭的窗口
+  function fnCloseModel(_closeCallback) {
+    fnClosePop({
+      hasModel: true,
+      closeCallback: _closeCallback || false
+    });
+  }
+
+  // 关闭窗口并发送事件
+  function fnClosePop(_data) {
+    _data = _data || {};
+    _data.time = APP._param.time;
+    api.sendEvent({
+      name: APP.EV_NAME.CHOICE_GROUP_TIME,
+      extra: _data || {}
+    });
+    fnClose();
+  }
+
+
+
+  function fnSubmit(_obj) {
+
+    if(_obj){
+      APP.toTime = parseInt(_obj.value.one?_obj.value.one.id*60*60*24:0) + parseInt(_obj.value.two?_obj.value.two.id*60*60:0) + parseInt(_obj.value.three?_obj.value.three.id*60:0)
+    }
+
+
+      if( APP.expire_time ){
+        fnClosePop({
+          expire_time: APP.toTime? APP.toTime : 0
+        });
+      }else{
+        fnToast('请输入时间')
+      }
+
+  }
+  // APP._data = {
+  //     date: '2018/12/12 12:32'
+  // }
+  // fnInit(APP._data.date);
+</script>
+</html>

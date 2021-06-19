@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+    <link rel="stylesheet" href="../../css/webpublic.css">
+    <link rel="stylesheet" href="../../css/webbusinessCoupon.css">
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="top">
+            <div class="top-box">
+                <div class="top-item">
+                    <div class="photo"></div>
+                </div>
+                <div class="localization">北京市西城区西单大悦城6F美食街喜茶店</div>
+            </div>
+        </div>
+        <div class="content flex-item-vertical">
+            <div class="content-center">
+                <div class="select-left">
+                    <!-- 默认关闭，加active打开 -->
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item business-img">商家信息</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('business.html')">商家主页</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('evaluate.html')">全部评价(205)</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('opinion.html')">商铺详情</div>
+                            <div class="li active" tapmode="hover" onclick="fnOpen('businessCoupon.html')">优惠券(45)</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item order-img">我的订单</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单（105）</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">待接单(45)</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">制作中</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">在路上</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">未消费</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item other-img">其他</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('opinion.html')">意见反馈</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('contact.html')">联系我们</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('rule.html')">规则协议</div>
+                            <div class="li">在线客服</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="box">
+                        <!-- 选中加active -->
+                        <div class="box-wrap">
+                            <div class="item" tapmode="hover" onclick="fnOpen('business.html')">商家主页</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('evaluate.html')">全部评价</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('opinion.html')">商铺详情</div>
+                            <div class="item active" tapmode="hover" onclick="fnOpen('businessCoupon.html')">优惠券</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="discount">
+                            <div class="con">
+                                <!-- 失效优惠券加invalid -->
+                                <div class="coupon-img invalid">
+                                    <div class="img"></div>
+                                    <div class="coupon">
+                                        <div class="coupon-item">
+                                            <div class="price">
+                                                <p class="arch">代金券</p>
+                                                <p class="consume">已消费<br/>2 个</p>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="message">
+                                                <div class="message-item">
+                                                    <p class="shop-name">特色单品节日优惠</p>
+                                                    <div class="base">
+                                                        <p class="market-price">
+                                                            <span class="market">门市价￡120</span>
+                                                        </p>
+                                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="con">
+                                <div class="coupon-img">
+                                    <div class="img"></div>
+                                    <div class="coupon">
+                                        <div class="coupon-item">
+                                            <div class="price">
+                                                <p class="arch">代金券</p>
+                                                <p class="consume">已消费<br/>2 个</p>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="message">
+                                                <div class="message-item">
+                                                    <p class="shop-name">特色单品节日优惠</p>
+                                                    <div class="base">
+                                                        <p class="market-price">
+                                                            <span class="market">门市价￡120</span>
+                                                        </p>
+                                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-number">
+                        <span class="start"></span>
+                        <span class="num active">1</span>
+                        <span class="num">2</span>
+                        <span class="num">3</span>
+                        <span class="num">4</span>
+                        <span class="num">5</span>
+                        <span class="num">6</span>
+                        <span class="num">7</span>
+                        <span class="num">8</span>
+                        <span class="num">9</span>
+                        <span class="end"></span>
+                    </div>   
+                </div>
+            </div>
+            <div class="bottom-width">
+                <div class="bottom">
+                    <div class="bot-box">
+                        <div class="bot-item">
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">合作伙伴</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">关于我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">联系我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="record">
+                    <div class="agreement">
+                        <span class="treaty">用户协议</span>
+                        <span class="treaty">隐私协议</span>
+                        <span class="treaty">下载APP</span>
+                        <span class="treaty">意见反馈</span>
+                    </div>
+                    <div class="serve">©2014-2016 APICloud 京ICP备14027692号 京ICP证151131号 京公网安备 11010802020063号  |  </div>
+                </div>
+            </div>  
+        </div>  
+    </div> 
+               
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(_page) {
+        
+    });
+
+
+    var mySwiper = new Swiper('.swiper .swiper-container', {
+        autoplay:true,//等同于以下设置
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: '.swiper .swiper-pagination',
+        },
+    });
+    
+</script>
+</html>
+    

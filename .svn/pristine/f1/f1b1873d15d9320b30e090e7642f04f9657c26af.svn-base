@@ -1,0 +1,409 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+// $login_bg_width_position:100vw-70px;
+
+.login_bg_lf{
+    background: url('../image/login_bg_left.jpg') no-repeat -150px center;
+}
+
+.login_bg_rg{
+    background: url('../image/login_bg_right.png') no-repeat right bottom;
+}
+
+body {
+    height: 100%;
+    background-color: #fff;
+    .underline{
+        text-decoration: underline;
+    }
+    .mainTop{
+        height:  pxToRem1(190);;
+        padding: 0 pxToRem(80);
+        //background-color: orange;
+        @include set-bg-img( $name: "bolangtu.png");
+        color: #fff;
+
+        .signinT{
+            margin-top: pxToRem(80);
+        }
+        .tabTitle{
+            .tab-title{
+                @include flex-box($direction: column);
+                justify-content: center;
+                align-items: center;
+                p{
+                    color: #fff!important;
+                }
+            }
+            div p:last-child{
+                background-color: #fff;
+            }
+        }
+
+    }
+
+    .loginnow{
+        font-weight: bold;
+    }
+
+    .main{
+        height: 100%;
+        &.heheda{
+            padding: 0 pxToRem(80) pxToRem(60);
+            @include flex-box($justify: space-between,$direction: column);
+
+        }
+        .submit-wrap{
+            padding:0 pxToRem1(28);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        min-height: pxToRem(600);
+        .top{
+            // text-align: right;
+            margin-top: pxToRem(20);
+            // &.top-left{
+            //     text-align: left;
+            // }
+            // .close{
+            //     position: relative;
+            //     display: inline-block;
+            //     width: pxToRem1(52);
+            //     height: pxToRem1(52);
+            //     //@include set-bg-img( $name: "icon-close.png", $size: pxToRem1(22) auto, $position: center center);
+            //     /*&.no-onclick{
+            //         background: none;
+            //     }*/
+            //     span{
+            //         position: absolute;
+            //         top: 50%;
+            //         left: 50%;
+            //         transform: translate(-50%,-50%);
+            //     }
+            // }
+            // .back{
+            //     display: inline-block;
+            //     width: pxToRem1(52);
+            //     height: pxToRem1(52);
+            //     margin-top: pxToRem1(5);
+            //     @include set-bg-img( $name: "icon-back.png", $size: pxToRem1(22) auto, $position: center center);
+            // }
+        }
+        .signin{
+            &.setPsd{
+                margin-top: pxToRem1(38); 
+            }
+            margin-top: pxToRem1(65);
+            @include flex-box();
+            //padding: 0 pxToRem1(40) pxToRem1(34);
+            padding-bottom: pxToRem(70);
+            .sign{
+                @include flex-item();
+                font-size: pxToRem1(30);
+                color: #fff;
+                line-height: pxToRem1(42);
+                font-weight: bold;
+                @extend .font-m;
+                .mT{
+                    margin-top:  pxToRem1(40);
+                }
+            }
+            .register{
+                @include flex-box($direction: column);
+                font-size: pxToRem1(16);
+                color: #fff;
+                line-height: pxToRem1(28);
+                @include prefixCss3($property: align-self, $value: flex-end);
+                span:nth-child(1){
+                    font-size:PingFangSC-Regular;
+                }
+                span:nth-child(2){
+                    font-size:PingFang SC;
+                    font-weight: bold;
+                }
+            }
+        }
+        .mgt10{
+            padding-top: pxToRem(10);
+        }
+        .mgt70{
+            padding-bottom: pxToRem(50);
+        }
+        .main{
+            //padding: 0 pxToRem1(40);
+            .sel{
+                padding-bottom: pxToRem(13);
+                font-size: pxToRem1(18);
+                color: #999;
+                line-height: pxToRem1(25);
+                .phone{
+                    position: relative;
+                    display: inline-block;
+                    margin-right: pxToRem1(40);
+                    &.active{
+                        color: #333;
+                        @extend .font-m;
+                        &:after{
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            left: 50%;
+                            @include prefixCss3($property: transform, $value: translateX(-50%));
+                            width: pxToRem1(28);
+                            height: pxToRem1(8);
+                            margin-top: pxToRem1(1);
+                            @include set-bg-img( $name: "icon-sel.png", $size: pxToRem1(28) auto, $position: center center);
+                        }
+                    }
+                }
+            }
+            .ul{
+                .li{
+                    position: relative;
+                    @include flex-box();
+                    padding: pxToRem1(25) 0 0;
+                    font-size: pxToRem1(16);
+                    color: #333;
+                    line-height: pxToRem1(27);
+                    // @include border-bottom-m;
+                    border-bottom: 1px solid #eee;
+                    &::after{
+                        border-color: #eee;
+                    };
+                    .country_code{
+                        // margin-left: pxToRem1(100);
+                        color: #FF4F00;
+                        font-size: pxToRem1(16);
+                        position: absolute;
+                        left:pxToRem1(0);
+                        +input{
+                            margin-left: pxToRem1(40);
+                        }
+                    }
+                    .name{
+                        min-width: pxToRem1(62);
+                        padding-right: pxToRem1(20);
+                        .star{
+                            font-size: pxToRem1(16);
+                            color: #FF4F00;
+                        }
+                        &.down{
+                            &::after{
+                                content: '';
+                                display: inline-block;
+                                width: pxToRem1(12);
+                                height: pxToRem1(12);
+                                margin-left: pxToRem1(5);
+                                @include set-bg-img( $name: "icon-down.png", $size: pxToRem1(12) auto, $position: center center);
+                            };
+                        }
+                    }
+                    .input{
+                        @include flex-item();
+                        input{
+                            width: 100%;
+                            color: #939393;
+                        }
+
+                    }
+                    .eliminate{
+                        z-index:100;
+                        width: pxToRem1(22);
+                        height: pxToRem1(22);
+                        margin-left: pxToRem1(10);
+                        @include set-bg-img( $name: "icon-close1.png", $size: pxToRem1(18) auto, $position: center center);
+                        @include prefixCss3($property: align-self, $value: center);
+                    }
+                    .eye{
+                        width: pxToRem1(22);
+                        height: pxToRem1(22);
+                        margin-left: pxToRem1(10);
+                        @include set-bg-img( $name: "icon-eye.png", $size: pxToRem1(22) auto, $position: center center);
+                        @include prefixCss3($property: align-self, $value: center);
+                        &.active{
+                            @include set-bg-img( $name: "icon-eye1.png", $size: pxToRem1(22) auto, $position: center center);
+                        }
+                    }
+                    .code{
+                        padding: pxToRem(7) pxToRem(10);
+                        font-size: pxToRem1(12);
+                        color: #FF753C;
+                        line-height: pxToRem1(25);
+                        text-align: center;
+                        margin-left: pxToRem1(10);
+                        &.no-onclick{
+                            border: pxToRem1(1) solid #ccc;
+                            color: #ccc;
+                        }
+                    }
+                }
+            }
+            .jzmm{
+                width: pxToRem(20);
+                height: pxToRem(20);
+                border: pxToRem(2) solid red;
+                margin-left: pxToRem(10);
+            }
+            #remember{
+                margin: pxToRem(20);
+                background-color: orange;
+            }
+            .password{
+                text-align: right;
+                padding-top: pxToRem1(10.5);
+                font-size: pxToRem1(13);
+                color: #666;
+                line-height: pxToRem1(18);
+                .color{
+                    color: $bg-color;
+                }
+            }
+            .submint{
+                margin: pxToRem1(26) 0 pxToRem1(17);
+                width: 100%;
+                height: pxToRem1(44);
+                border-radius: pxToRem1(4);
+                @include set-bg-img( $name: "icon-submint.png");
+                font-size: pxToRem1(15);
+                color: #fff;
+                line-height: pxToRem1(44);
+                text-align: center;
+                &.no-onclick{
+                    opacity: 0.5;
+                }
+            }
+        }
+        .third-party{
+            margin: pxToRem1(10) pxToRem1(40) pxToRem1(30);
+            height: pxToRem1(9);
+            border-bottom: pxToRem1(1) solid #EAEAEA;
+            text-align: center;
+            .three{
+                font-size: pxToRem1(13);
+                color: #666;
+                line-height: pxToRem1(18);
+                background-color: #fff;
+                padding: 0 pxToRem1(15);
+            }
+        }
+        .bottom{
+            // overflow: hidden;
+            .box{
+                @include flex-box();
+                margin: 0 pxToRem1(30) pxToRem1(48);
+                .item{
+                    @include flex-item();
+                    text-align: center;
+                    font-size: pxToRem1(12);
+                    color: #666;
+                    line-height: pxToRem1(17);
+                    &::before{
+                        content: '';
+                        display: block;
+                        width: pxToRem1(24);
+                        height: pxToRem1(24);
+                        margin: 0 auto pxToRem1(12);
+                        @include set-bg-img( $name: "Facebook.png", $size: pxToRem1(24) auto, $position: center center);
+                    };
+                    &.facebook{
+                        &::before{
+                            @include set-bg-img( $name: "Facebook.png", $size: pxToRem1(24) auto, $position: center center);
+                        };
+                    }
+                    &.twitter{
+                        &::before{
+                            @include set-bg-img( $name: "Twitter.png", $size: pxToRem1(24) auto, $position: center center);
+                        };
+                    }
+                    &.google{
+                        &::before{
+                            @include set-bg-img( $name: "Google.png", $size: pxToRem1(24) auto, $position: center center);
+                        };
+                    }
+                    &.weichat{
+                        &::before{
+                            @include set-bg-img( $name: "Wx.png", $size: pxToRem1(24) auto, $position: center center);
+                        };
+                    }
+                    &.apple{
+                        &::before{
+                            @include set-bg-img( $name: "icon-apple.png", $size: pxToRem1(24) auto, $position: center center);
+                        };
+                    }
+                }
+            }
+            .agreement{
+                padding: pxToRem1(20) 0;
+                text-align: center;
+                font-size: pxToRem1(14);
+                color: #666;
+                line-height: pxToRem1(38);
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    width: pxToRem1(14);
+                    height: pxToRem1(14);
+                    margin-right: pxToRem1(10);
+                    vertical-align: sub;
+                    @include set-bg-img( $name: "icon-sel3.png", $size: pxToRem1(14) auto, $position: center center);
+                };
+                .color{
+                    color: $bg-color;
+                }
+                &.active{
+                    &::before{
+                        @include set-bg-img( $name: "icon-sel2.png", $size: pxToRem1(14) auto, $position: center center);
+                    };
+                }
+            }
+        }
+    }
+    .start-video{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 9;
+        @include flex-box();
+        background-color: black;
+        @include prefixCss3($property: transform, $value: translate(-50%, -50%));
+        // padding-bottom:75vh;    /*需要用padding来维持16:9比例,也就是9除以16*/
+        width: 100vw;
+        height: 100vh;
+        video{
+            position: absolute;
+            width: 100%;
+            height: auto;
+            left: 50%;
+            top: 50%;
+            @include prefixCss3($property: transform, $value: translate(-50%, -50%));
+        }
+    }
+    .agreement{
+        padding:0 pxToRem1(20);
+        font-size: pxToRem1(14);
+        color: #666;
+        line-height: pxToRem1(20);
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            left:0;
+            top:pxToRem1(3);
+            display: inline-block;
+            width: pxToRem1(14);
+            height: pxToRem1(14);
+            margin-right: pxToRem1(10);
+            vertical-align: sub;
+            @include set-bg-img( $name: "icon-sel3.png", $size: pxToRem1(14) auto, $position: center center);
+        };
+        .color{
+            color: $bg-color;
+            margin: 0 pxToRem1(3);
+        }
+        &.active{
+            &::before{
+                @include set-bg-img( $name: "icon-sel2.png", $size: pxToRem1(14) auto, $position: center center);
+            };
+        }
+    }
+}

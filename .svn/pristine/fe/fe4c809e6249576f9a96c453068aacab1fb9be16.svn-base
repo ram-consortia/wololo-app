@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/availableCoupons.css" />
+</head>
+<body>
+    <div id="wrap">
+        <!-- <div class="main">
+            <div class="con">
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="num">￡<span class="size">20</span></p>
+                            <p class="voucher">代金券 x2</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                <div class="base">
+                                    <p class="subtitle">特色单品节日优惠</p>
+                                    <p class="time">2019.01.04 - 2019.01.03</p>
+                                </div>
+                            </div>
+                            <span class="use" tapmode="hover" onclick="fnOpen('order/orderInformation_win.html')">
+                                <span class="use-word">立即<br/>使用</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="con">
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="num">￡<span class="size">20</span></p>
+                            <p class="voucher">代金券 x2</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">西单大悦城美食城</p>
+                                <div class="base">
+                                    <p class="subtitle">特色单品节日优惠</p>
+                                    <p class="time">2019.01.04 - 2019.01.03</p>
+                                </div>
+                            </div>
+                            <span class="use" tapmode="hover" onclick="fnOpen('order/discountCode_win.html')">
+                                <span class="use-word">打开<br/>二维码</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="no-data">暂无可用优惠券</div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="main hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无可用优惠券' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list _value}}
+            <div class="con" tapmode="hover" onclick="fnJump(this)">
+                <i class="hide">{{_value}}</i>
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="num">￡<span class="size">
+                                {{_value.coupon.price_group | fnGetMaxPrice_base}}
+                            </span></p>
+                            <p class="voucher">{{ {'target': _value.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}
+                                {{if +_value.surplus_count > YES}}
+                                    x{{_value.surplus_count}}
+                                {{/if}}
+                            </p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">{{_value.store | fnShowUserNickname_base}}</p>
+                                <div class="base">
+                                    <p class="subtitle">
+                                        <del>{{'门市价' | fnLanguage_public}}￡{{_value.coupon.price}}</del>
+                                    </p>
+                                    <p class="subtitle">{{_value.coupon.name}}</p>
+                                    <p class="time">
+                                        {{_value.coupon | fnGetCouponDateMsg_base}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="use-right">
+                                <!-- 所有状态都用默认色值，已关闭加close -->
+                                <p class="receipt">
+                                    {{if _value.after_sale && _value.after_sale.id }}
+                                        {{ {'target': _value.after_sale.status, 'key': 'id', 'resKey': 'name', 'data': AFTER_SALE.status} | fnGetRelation_public }}
+                                    {{else}}
+                                        {{if _value.status == ORDER.status.not.id && _value.store_order && _value.store_order.id}}
+                                            {{ {'target': _value.store_order.status, 'key': 'id', 'resKey': 'name', 'data': ORDER.store_status} | fnGetRelation_public }}
+                                        {{else}}
+                                            {{if [ORDER.status.not.id, ORDER.status.already.id].indexOf(+_value.status) == -1 }}
+                                                {{ {'target': _value.status, 'key': 'id', 'resKey': 'name', 'data': ORDER.status} | fnGetRelation_public }}
+                                            {{/if}}
+                                        {{/if}}
+                                    {{/if}}
+                                </p>
+
+                                {{if _value.status == ORDER.status.not.id}}
+                                    {{if _value.store_order && _value.store_order.id}}
+                                        {{if _value.store_order.status == ORDER.store_status.road.id}}
+                                            <span class="use" tapmode="hover" onclick="fnDeliveryCompletedOrder({{_value.store_order.id}})">
+                                                <span class="use-word">{{'配送完成' | fnLanguage_public}}</span>
+                                            </span>
+                                        {{/if}}
+                                    {{else}}
+                                        {{if +_value.surplus_count > 0}}
+                                            {{if _value.store.info.is_delivery}}
+                                                <span class="use" tapmode="hover" onclick="fnJump_base('order/orderInformation_win.html', {{_value.id}})">
+                                                    <span class="use-word">{{'立即使用' | fnLanguage_public}}</span>
+                                                </span>
+                                            {{else}}
+                                                <span class="use" tapmode="hover" onclick="fnJump_base('order/discountCode_win.html', {{_value}})">
+                                                    <span class="use-word">{{'打开二维码' | fnLanguage_public}}</span>
+                                                </span>
+                                            {{/if}}
+                                        {{/if}}
+                                    {{/if}}
+                                {{else if _value.status == ORDER.status.already.id}}
+                                    {{if _value.comment && _value.comment.id}}
+                                        <span class="use" tapmode="hover" onclick="fnJump_base('home/evaluateDetail_win.html', {{_value.comment.id}})">
+                                            <span class="use-word active">{{'已评价' | fnLanguage_public}}</span>
+                                        </span>
+                                    {{else}}
+                                        <span class="use" tapmode="hover" onclick="fnJump_base('home/evaluate_win.html', {{_value.id}}, 'order_id')">
+                                            <span class="use-word active">{{'去评价' | fnLanguage_public}}</span>
+                                        </span>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.GROUP_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+
+
+        api.addEventListener({
+            name: APP.EV_NAME.ORDER_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+    });
+
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        var _param = {
+            url: 'order/order/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE,
+                status: APP.ORDER.status.not.id,
+                store_id: APP._param.store_id
+            }
+        };
+
+        fnGetList_base(_param, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+
+    function fnJump(_el){
+        var _data = JSON.parse(fnValue($(_el).find('i.hide')[0]));
+        if( _data.status == APP.ORDER.status.in.id ){
+            fnJump_base('assemble/joinDelegation_win.html', _data.group_id);
+        }else{
+            fnJump_base('order/myorderDetail_win.html', _data.id);
+        }
+    }
+
+    function fnDeliveryCompletedOrder(_id){
+        fnDeliveryCompletedOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg);
+        })
+    }
+
+    function fnJumpEvaluate(){
+        fnJump_base('home/evaluate_win.html', {
+            id: APP._data.store_id,
+            order_id: APP._data.id
+        })
+    }
+</script>
+</html>

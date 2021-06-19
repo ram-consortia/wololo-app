@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+</head>
+<style>
+    .content{
+
+    }
+    .item{
+        background-color: #F2F7FB;
+        height: 134px;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+    .left{
+        color: rgba(1, 0, 1, .7);
+        display: flex;
+        width: 60%;
+        font-size: 18px;
+    }
+    .img_btn{
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+    }
+    .img_btn img{
+        width: 16px;
+        height: 16px;
+    }
+</style>
+<body style="display: flex;flex-direction: column;height: 100%">
+<div class="margin_top20"></div>
+
+<div class="flex item_center margin_left20 margin_top20 margin_bottom20">
+    <div class="back margin0" onclick="fnClose()"></div>
+    <div class="bold size24">Saved Addresses</div>
+</div>
+<div class="content flex1" id="list" style="overflow-y: auto">
+</div>
+<div class="padding20">
+    <div class="btn btn_default" tapmode="hover" onclick="fnOpen('my/addAddress_win.html')">
+        ADD NEW ADDRESS
+    </div>
+</div>
+
+</body>
+<script type="text/html" id="list-template">
+    {{each _list _value}}
+    <div class="item">
+        <div class="size12 bold {{_value.is_default?'color_primary':'color_grey'}}">DEFAULT SELECTED</div>
+        <div class="flex flex_between margin_top20">
+            <div class="left size18">
+                <div class="img_btn">
+                    <img src="../../image/v2/ic_pin.png" alt="">
+                </div>
+                <div>
+                    <div>{{_value.address1}}, {{_value.address2}}</div>
+                    <div>{{_value.city}}</div>
+                </div>
+            </div>
+            <div class="right flex flex_between">
+                <div class="img_btn" onclick="toEdit({{_value}})" tapmode="hover">
+                    <img src="../../image/v2/ic_edit.png" alt="">
+                </div>
+                <div class="img_btn"onclick="removeAddress({{_value}})" tapmode="hover">
+                    <img src="../../image/v2/ic_delete.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    APP.init(()=>{
+        getList();
+    });
+    function toEdit(param){
+        fnOpen('my/addAddress_win.html',{
+            param
+        })
+    }
+    function getList(){
+        var _param = {
+            url: 'user/addresses',
+            data: {
+                page: 1,
+                limit: 20,
+            },
+            method:"get"
+        };
+        $('#list').html('');
+        fnGetList_base(_param, function (ret) {
+            // if (ret.evType == 'scrolltobottom') {
+            //     getList();
+            // }
+        })
+    }
+    function removeAddress({id}){
+        fnAlert_public({
+            title: '提示', //‘’ | 选填 |不传则不显示弹窗顶部文案
+            msg: 'Are you sure you want to delete it', //’’ | 选填 |不传则不显示内容
+            buttons: [{ //’’ | 至少传入一个按钮 |数组有多少就显示多少按钮
+                text: 'Cancel', //’确认’ | 至少传入一个按钮 |按钮文案
+                callback: function () { //function | 必传 |点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: 'Confirm',
+                active: true, //false | 选填 | 是否高亮
+                callback: function () {
+                    fnAjax({
+                        url:'/user/addresses/'+id,
+                        method: "DELETE"
+                    },res=>{
+                        getList();
+                    })
+                }
+            }]
+        }, function () { //如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数
+
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/feedback.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">申请售后</div>
+        </header>
+
+        <div class="content flex-item-vertical">
+            <p class="tip">很遗憾，当前订单已经不能申请退款…</p>
+            <div class="con">
+                <div class="til">问题描述<span class="size">0/500</span></div>
+                <div class="textarea">
+                    <textarea type="text" placeholder="请输入售后问题描述"></textarea>
+                </div>
+            </div>
+            <div class="li" tapmode="hover" onclick="fnEmpty()">
+                <div class="feedback">优惠券数量</div>
+                <div class="input"></div>
+                <div class="number">
+                    不能点击加no-onclick
+                    <span class="reduce no-onclick"></span>
+                    <div class="num">
+                        <input type="text" readonly placeholder="1">
+                    </div>
+                    <span class="add"></span>
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">上传图片（1/3）</div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                </div>
+            </div>
+            <div class="after-sale">
+                <div class="service-til">售后说明</div>
+                <div class="rich-text">1、作为国内低代码开发平台的践行者，Apcloud（柚子（北京）科技有限公司）正在以高效的生产力工具与混合开发技术，为数以百万的企业与开发者构建高效的 T 环境； 2、Apicloudl 以北京总部为中心，将业务团队延伸至上海、深圳、重庆、青岛等 10 余个城市，服务能力辐射全国 3、凭借创新的开发技术和商业模式，早在 2016 年，Apicloud 被全球最具权威的 T 研究与顾问咨询机构 Gartner 评为中国区 Cool Vendor，成为全球企业客户部署移动战略时的推荐选择</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnOpen('my/refundSubmission_win.html')">提交</div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        {{set _is_not_apply_refund = NO}}
+        {{if !(_data.is_apply_refund && _data.group.is_apply_refund)}}
+            {{set _is_not_apply_refund = YES}}
+        {{/if}}
+
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'申请售后' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="content flex-item-vertical {{_is_not_apply_refund && 'no-onclick'}}">
+            {{if _is_not_apply_refund}}
+                <p class="tip">{{'很遗憾，当前订单已经不能申请退款' | fnLanguage_public}}…</p>
+            {{/if}}
+
+            <div class="con">
+                <div class="til">{{'问题描述' | fnLanguage_public}}
+                    （<span class="already-introduce">0</span>/{{_introduce_maxlength}}）
+                </div>
+                <div class="textarea">
+                    <textarea id="describe" placeholder="{{'请输入售后问题描述' | fnLanguage_public}}" maxlength="{{_introduce_maxlength}}"></textarea>
+                </div>
+            </div>
+            <div class="li">
+                <div class="feedback">{{'优惠券数量' | fnLanguage_public}}</div>
+                <div class="input"></div>
+                <div class="number">
+                    <!-- 不能点击加no-onclick -->
+                    <span tapmode="hover" onclick="fnEditNum()" class="reduce no-onclick"></span>
+                    <span class="num">
+                        <input id="count" readonly value="1">
+                    </span>
+                    <span tapmode="hover" onclick="fnEditNum(true)" class="add {{_maxCount <= 1 && 'no-onclick'}}"></span>
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">{{'上传图片' | fnLanguage_public}}
+                    （<span class="already-images">0</span>/{{_images_maxlength}}）
+                </div>
+                <div class="imgs" id="images">
+                    <!-- <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span> -->
+                    <span class="img" tapmode="hover" onclick="fnGetPicture(this)" data-is-add></span>
+                </div>
+            </div>
+            <div class="after-sale">
+                <div class="service-til">{{'售后说明' | fnLanguage_public}}</div>
+                <div class="rich-text pre-text" id="rule"></div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit {{_is_not_apply_refund && 'no-onclick'}}" tapmode="hover" onclick="fnSubmit()">{{'提交' | fnLanguage_public}}</div>
+        </div>
+    </script>
+
+    <script type="text/html" id="images-template">
+        <span data-img-url="{{_img.url}}" data-img-type="!avatar" data-id="{{_img.filepath}}" class="img pic" tapmode="hover" onclick="fnGetPicture(this)">
+            <span tapmode="hover" onClick="fnRemove(this)" class="del"></span>
+        </span>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP._introduce_maxlength = 500;
+        APP._images_maxlength = 3;
+        fnGet();
+    });
+
+    function fnGet(){
+        var _param = {
+            url: 'order/order/detail',
+            method: 'GET',
+            data: {
+                id: APP._param.id
+            }
+        }
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                APP._data = ret.data;
+                APP._maxCount = APP._data.surplus_count;
+
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+                APP.fixTabBar('.bottom');
+
+                fnGetPublicConfig_base(APP.GET_OPTION.after_saleuser, function(ret){
+                    // ret.content                       配置信息
+                    fnValue('#rule', ret.content);
+                })
+
+                fnInputListener_public(["#describe"], function(ret){
+                    fnCountNum();
+                })
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+
+    function fnEditNum(_isAdd){
+        var _count = fnValue('#count') || 0,
+            _maxCount = APP._maxCount;
+        if( _isAdd ){
+            if( _count < _maxCount ){
+                fnValue('#count', ++_count);
+            }
+        }else{
+            if( _count > 1 ){
+                fnValue('#count', --_count);
+            }
+        }
+
+        if( _count < _maxCount ){
+            $('.add').removeClass('no-onclick');
+        }else{
+            $('.add').addClass('no-onclick');
+        }
+
+        if( _count <= 1 ){
+            $('.reduce').addClass('no-onclick');
+        }else{
+            $('.reduce').removeClass('no-onclick');
+        }
+        // fnSumTotal();
+    }
+
+    //计算已输入字数
+    function fnCountNum(){
+        var _content = fnValue("#describe");
+        fnValue(".already-introduce", _content.length);
+    }
+
+    function fnRemove(_el){
+        fnKeyboardBlur_public();
+        event && event.stopPropagation();
+        $(_el).closest('.pic').remove();
+        fnHasShowAddImgBtn();
+    }
+
+    function fnGetPicture(_el){
+        var _isAdd = $(_el).attr('data-is-add') === '';
+        fnGetPicture_public({
+            el: _el,                             //可选 |           | Element |  如果该元素有图片地址，弹出菜单会有一个查看大图的选项
+            isClip: false,                       //可选 | false     | Boolean |  是否需要裁剪（如果max参数大于2，该字段无效）
+            max: _isAdd ? APP._images_maxlength - $('#images .pic').length : 1,                              //可选 | 1         | Number  |  选择照片时，可以最大选择几张图片
+            // compressQuality: 'medium',           //可选 | 'medium'  | String  |  图片压缩质量（high：超清、medium：高清、low：普通）
+            // isCameraOption: true,                //可选 | true      | Boolean |  是否需要拍照选项
+            // isAlbumOption: false,                //可选 | true      | Boolean |  是否需要选择图片选项
+            // isUploadServer: false,               //可选 | true      | Boolean |  是否需要使用服务器返回的图片地址数据，否则返回本地的图片地址信息
+            // finishText: '发送'                    //可选 | '确定'     | String  |  选择照片点击确定按钮的文字
+        }, function(ret) {
+            // alert(debugAlert(arguments))
+            // ret.url                       //必返     |           |  String           |  网络图片地址或者本地图片地址
+            // ret.filepath                  //非必返   |           |  String           |  网络图片名称（isUploadServer为false时该字段不返回）
+            APP._img = ret;
+            if( _isAdd ){
+                $(APP.dom('#images [data-is-add]')).before(template('images-template', APP));
+            }else{
+                $(_el).attr('data-img-url', ret.url);
+                $(_el).attr('data-id', ret.filepath);
+            }
+            fnHasShowAddImgBtn();
+        })
+    }
+
+    function fnHasShowAddImgBtn(){
+        fnValue('.already-images', $('#images .pic').length);
+        if( $('#images .pic').length >= APP._images_maxlength ){
+            $(APP.dom('#images [data-is-add]')).addClass('hide');
+        }else{
+            $(APP.dom('#images [data-is-add]')).removeClass('hide');
+        }
+        APP.initFn();
+    }
+
+    function fnSubmit(){
+        var _images = [];
+        $('#images .pic').each(function(_index, _el){
+            _images.push($(_el).data('id'));
+        })
+
+        if( ! fnValue('#describe') ){
+            fnToast($('#describe').attr('placeholder'));
+        }else if( ! _images.length ){
+            fnToast('请上传图片凭证');
+        }else{
+            var _param = {
+                url: 'order/after_sale/create',
+                method: 'POST',
+                data: {
+                    order_id: APP._param.id,
+                    describe: fnValue('#describe'),
+                    count: fnValue('#count'),
+                    images: _images.join()
+                }
+            }
+
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    api.sendEvent({
+                        name: APP.EV_NAME.ORDER_UPDATE,
+                        extra: {}
+                    });
+                    api.sendEvent({
+                        name: APP.EV_NAME.REFUND_UPDATE,
+                        extra: {}
+                    });
+
+                    ret.data.type = 2;
+                    fnOpen('my/refundSubmission_win.html', {
+                        param: ret.data
+                    })
+
+                    setTimeout(function(){
+                        fnClose();
+                    }, 1000)
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,60 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                margin: 0 auto;
+                padding-top: pxToRem(40);
+                width: pxToRem(2400);
+            }
+            .collection-center{
+                background-color: #fff;
+                margin-bottom: pxToRem(40);
+                box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                .coupons{
+                    overflow: hidden;
+                    padding: pxToRem(44) pxToRem(40) 0;
+                    .con{
+                        width: 50%;
+                        float: left;
+                        .coupon{
+                            margin: 0 pxToRem(20) pxToRem(34);
+                            .coupon-item{
+                                .price{
+                                    width: pxToRem(236);
+                                }
+                                .message{
+                                    .message-item{
+                                        .base{
+                                            .time{
+                                                padding-top: pxToRem(22);
+                                            }
+                                        }
+                                    }
+                                    .open-code{
+                                        width: pxToRem(188);
+                                        height: pxToRem(60);
+                                        border: pxToRem(2) solid #FF7C4A;
+                                        font-size: pxToRem(24);
+                                        color: #FF7C4A;
+                                        line-height: pxToRem(60);
+                                        text-align: center;
+                                        border-radius: pxToRem(8);
+                                        @include prefixCss3($property: align-self, $value: flex-end); 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+                
+        }
+    }
+    
+        
+}

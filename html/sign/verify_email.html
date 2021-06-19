@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/newLogin.css">
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <div>
+        <div class="back" onclick="fnClose()"></div>
+    </div>
+    <div>
+        <div class="img_verify email_login_bg"></div>
+    </div>
+    <div class="content padding20">
+        <div>
+            <div class="bold size32">Verify Email</div>
+            <div class="grey lineheight24">We have send a verification code to <span class="black underline bold" id="email"></span>. Please check your email address</div>
+            <div class="code_group">
+                <div class="code_input" data_index="1"><input type="number" /></div>
+                <div class="code_input" data_index="2"><input type="number" /></div>
+                <div class="code_input" data_index="3"><input type="number" /></div>
+                <div class="code_input" data_index="4"><input type="number" /></div>
+            </div>
+            <div>
+                Didn't receive the email yet?
+            </div>
+            <div class="grey">Please check our inbox or</div>
+            <div class="grey"><span class="underline bold black" id="verifyCode" tapmode="hover" onclick="sendCode()">resend</span> the link</div>
+        </div>
+    </div>
+    <div class="padding20 input_group">
+        <div class="input_item btn" tapmode="hover" onclick="register()">
+            Continue
+        </div>
+    </div>
+</div>
+<script src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    let time=60;
+    apiready=function (){
+        const {email} =api.pageParam;
+        $('#email').text(email);
+        sendCode();
+    }
+    function sendCode(){
+        const {email} =api.pageParam;
+        fnGetSmsCode_base({
+            username: email
+        }, function(ret){
+            //TODO 验证码发送完成后
+            countDown();
+        });
+    };
+    $('input').on('input',function (){
+        const curIndex=$(this).parent().attr('data_index')
+        let text=$(this).val();
+        $(this).val(text.charAt(text.length - 1));
+        let nextInput =$(this).parent().next().find('input')
+        if(text.length>0&&curIndex<4&&nextInput.val()==""){
+            nextInput.focus();
+        }
+        if(curIndex=="4"&&text){
+            register();
+        }
+    })
+    function countDown(){
+        let interval=null;
+        const that = $('#verifyCode').text().trim();
+        if (that == 'resend') {
+            interval = setInterval(() => {
+                time--;
+                $('#verifyCode').text(time);
+                if (time <= 0) {
+                    $('#verifyCode').text('resend');
+                    time=60;
+                    clearInterval(interval);
+                }
+            }, 1000)
+        }
+    }
+    function fnGetSmsCode_base(_obj, _cb) {
+        if (fnHasEmpty_public(_obj)) {
+            _obj = {};
+        } else if (typeof _obj === 'function') {
+            _cb = _obj;
+            _obj = {};
+        }
+        _obj.num = parseInt(Math.random() * 20000000);
+        _obj.date = fnDateNow_public() / 1000;
+
+        var _param = {
+            url: 'user/verification_code/send',
+            method: 'POST',
+            data: _obj
+        }
+        var _data = (_param.data.num * 100) + 'suzikeji' + _param.data.username + _param.data.date;
+        fnMd5_public({
+            data: _data
+        }, function (ret) {
+            _param.data.sign = ret.value;
+            fnAjax(_param, function (ret, err) {
+                if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                    _cb && _cb(ret);
+                } else {
+                    fnToast(ret.msg);
+                }
+            })
+        })
+    }
+    //开始注册
+    function register(){
+        let codes=$('input')[0].value+$('input')[1].value+$('input')[2].value+$('input')[3].value;
+        const {email,password} =api.pageParam;
+        var _param = {
+            url: 'user/index/register',
+            method: 'POST',
+            data: {
+                user_type: 2,
+                marketing_is_open:fnCookie(APP.LC_NAME.HAS_NOT_WELCOME)||2
+            }
+        }
+        _param.data.username=email;
+        _param.data.verification_code = codes;
+        fnCustomMd5_base({
+            data: password
+        }, function(ret){
+            _param.data.user_pass = ret.value;
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    fnCookie(APP.LC_NAME.LOGIN_USERNAME, {
+                        username: _param.data.username,
+                        country_code: _param.data.country_code?_param.data.country_code:44
+                    });
+                    fnCookie(APP.LC_NAME.USER, ret.data, function(){
+                        fnJoinHomeLogic_base();
+                    })
+                }else{
+                    fnToast(ret.msg);
+                }
+            });
+        })
+    }
+</script>
+</body>
+</html>

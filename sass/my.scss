@@ -1,0 +1,144 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+	height: 100%;
+	background-color: #fff;
+	.header{
+		.back{
+			&.bell{
+				padding: pxToRem(22) pxToRem(20);
+				width: pxToRem(44);
+				height: pxToRem(44);
+				z-index: 1;
+				@include set-bg-img( $name: 'icon-bell.png', $size: pxToRem(44) auto, $position: center center);
+				@include prefixCss3($property: align-self, $value: center);
+			}
+			&.scan{
+				padding: pxToRem(22) pxToRem(20);
+				width: pxToRem(44);
+				height: pxToRem(44);
+				z-index: 1;
+				@include set-bg-img( $name: 'icon-scan2.png', $size: pxToRem(44) auto, $position: center center);
+				@include prefixCss3($property: align-self, $value: center);
+			}
+		}
+	}
+	.content{
+		.top{
+			padding-top: pxToRem(24);
+			.top-box{
+				@include flex-box();
+				margin: 0 pxToRem(30);
+				height: pxToRem(224);
+				padding: 0 pxToRem(20) 0 pxToRem(40);
+				@include set-bg-img( $name: "icon-background.png");
+				border-radius: pxToRem(12);
+				.photo{
+					width: pxToRem(112);
+					height: pxToRem(112);
+					margin-right: pxToRem(24);
+					border-radius: 50%;
+					@include set-bg-img( $name: "icon-photo.png");
+					@include prefixCss3($property: align-self, $value: center);
+				}
+				.top-item{
+					@include flex-item();
+					@include prefixCss3($property: align-self, $value: center);
+					.name{
+						font-size: pxToRem(40);
+						color: #fff;
+						line-height: pxToRem(56);
+						@extend .font-m;
+						margin-bottom: pxToRem(14);
+					}
+					.grade{
+						display: inline-block;
+						height: pxToRem(30);
+						line-height: pxToRem(30);
+						padding: 0 pxToRem(12);
+						border: pxToRem(2) solid #fff;
+						border-radius: pxToRem(30);
+						font-size: pxToRem(22);
+						color: #fff;
+					}
+				}
+				.right{
+					width: pxToRem(28);
+					height: pxToRem(28);
+					@include prefixCss3($property: align-self, $value: center);
+					@include set-bg-img( $name: "icon-right.png", $size: pxToRem(28) auto, $position: center center);
+				}
+			}
+		}
+		.box{
+			@include flex-box();
+			padding: pxToRem(58) 0 pxToRem(64) 0;
+			text-align: center;
+			.item{
+				@include flex-item();
+				.img{
+					width: pxToRem(52);
+					height: pxToRem(52);
+					margin: 0 auto pxToRem(20);
+					@include set-bg-img( $name: "icon-scan.png", $size: pxToRem(52) auto, $position: center center);
+					&.shop{
+						@include set-bg-img( $name: "icon-shop.png", $size: pxToRem(52) auto, $position: center center);
+					}
+					&.refund{
+						@include set-bg-img( $name: "icon-refund.png", $size: pxToRem(52) auto, $position: center center);
+					}
+				}
+				.scan{
+					font-size: pxToRem(28);
+					color: #333;
+					line-height: pxToRem(40);
+				}
+			}
+		}
+		.ul{
+			padding: 0 pxToRem(30);
+			.li{
+				@include flex-box();
+				padding: pxToRem(32) 0;
+				@include border-bottom-m;
+				&::after{
+					border-color: #eee;
+				};
+				&:first-of-type{
+					content: '';
+					@include border-top-m;
+					&::before{
+						border-color: #eee;
+					};
+				};
+				.img{
+					width: pxToRem(48);
+					height: pxToRem(48);
+					margin: 0 pxToRem(24) 0 pxToRem(12);
+					@include set-bg-img( $name: "icon-mine.png", $size: pxToRem(48) auto, $position: center center);
+					&.us{
+						@include set-bg-img( $name: "icon-us.png", $size: pxToRem(48) auto, $position: center center);
+					}
+					&.service{
+						@include set-bg-img( $name: "icon-service.png", $size: pxToRem(48) auto, $position: center center);
+					}
+					&.set{
+						@include set-bg-img( $name: "icon-set.png", $size: pxToRem(48) auto, $position: center center);
+					}
+				}
+				.account{
+					@include flex-item();
+					font-size: pxToRem(28);
+					color: #333;
+					line-height: pxToRem(48);
+				}
+				.right{
+					width: pxToRem(28);
+					height: pxToRem(28);
+					@include prefixCss3($property: align-self, $value: center);
+					@include set-bg-img( $name: "icon-right1.png", $size: pxToRem(28) auto, $position: center center);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/shopsDetails.css" />
+</head>
+<body>
+    <div class="flex-vertical main" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">商铺详情</div>
+            <div class="back word right" tapmode="hover" onclick="fnEmpty()">确定</div>
+        </header>
+
+        <div class="flex-item-vertical content">
+            <div class="con">
+                <div class="til">商铺描述<span class="size">（0/100）</span></div>
+                编辑页面用textarea
+                <div class="textarea">
+                    <textarea type="text" placeholder="请输入售后问题描述"></textarea>
+                </div>
+                正常显示页面用describe
+                <div class="describe">
+                    1、作为国内低代码开发平台的践行者，Apcloud（柚子（北京）科技有限公司）正在以高效的生产力工具与混合开发技术，为数以百万的企业与开发者构建高效的 T 环境； 2、Apicloudl 以北京总部为中心，将业务团队延伸至上海、深圳、重庆、青岛等 10 余个城市，服务能力辐射全国 3、凭借创新的开发技术和商业模式，早在 2016 年，Apicloud 被全球最具权威的 T 研究与顾问咨询机构 Gartner 评为中国区 Cool Vendor，成为全球企业客户部署移动战略时的推荐选择
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">上传图片<span class="size">（2/9）</span></div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="save">保存</div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            {{if _param.isEdit}}
+                <div class="title">{{'编辑商铺详情' | fnLanguage_public}}</div>
+            {{else}}
+                <div class="title">{{'商铺详情' | fnLanguage_public}}</div>
+                <div class="back word right" tapmode="hover" onclick="fnJump()">{{'编辑' | fnLanguage_public}}</div>
+            {{/if}}
+        </header>
+
+        <div class="flex-item-vertical content">
+            {{if _data.auth.introduce || _param.isEdit }}
+                <div class="con">
+                    <div class="til">
+                        {{'商铺描述' | fnLanguage_public}}
+                        {{if _param.isEdit}}
+                            <span class="size">（<span class="already-introduce">0</span>/{{_introduce_maxlength}}）</span>
+                        {{/if}}
+                    </div>
+                    {{if _param.isEdit}}
+                        <!-- 编辑页面用textarea -->
+                        <div class="textarea">
+                            <textarea id="introduce" type="text" placeholder="{{'请输入商铺详情介绍' | fnLanguage_public}}" maxlength="{{_introduce_maxlength}}">{{_data.auth.introduce}}</textarea>
+                        </div>
+                    {{else}}
+                        <!-- 正常显示页面用describe -->
+                        <div class="describe pre-text">{{_data.auth.introduce}}</div>
+                    {{/if}}
+                </div>
+            {{/if}}
+
+            {{if (_data.auth.introduce_images && _data.auth.introduce_images.length) || _param.isEdit }}
+                <div class="con">
+                    <div class="til">
+                        {{if _param.isEdit}}
+                            {{'上传图片' | fnLanguage_public}}
+                            <span class="size">（<span class="already-images">0</span>/{{_images_maxlength}}）</span>
+                        {{else}}
+                            {{'商铺图片' | fnLanguage_public}}
+                        {{/if}}
+                    </div>
+                    <div class="imgs" id="images">
+                        {{each _data.auth.introduce_images}}
+                            {{include 'images-template' $value}}
+                        {{/each}}
+                        <!-- <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                        <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                        <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span> -->
+                        {{if _param.isEdit}}
+                            <span class="img" tapmode="hover" onclick="fnGetPicture(this)" data-is-add></span>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+
+        {{if _param.isEdit}}
+            <div tapmode="hover" onclick="fnSubmit()" class="bottom">
+                <div class="save">{{'保存' | fnLanguage_public}}</div>
+            </div>
+        {{/if}}
+    </script>
+
+    <script type="text/html" id="images-template">
+        <span data-img-url="{{url}}" data-img-type="!avatar" data-id="{{filepath || file_name}}" class="img pic" tapmode="hover" onclick="fnGetPicture(this)">
+            <span tapmode="hover" onClick="fnRemove(this)" class="del hide"></span>
+        </span>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP._introduce_maxlength = 1000;
+        APP._images_maxlength = 9;
+        fnInit();
+
+        if( ! APP._param.isEdit ){
+            api.addEventListener({
+                name: APP.EV_NAME.USER_UPDATE
+            }, function(ret, err){
+                fnInit();
+            });
+        }
+    });
+
+    function fnInit(){
+        fnGet();
+    }
+
+    function fnGet() {
+        fnGetStoreDetails_base(function(ret){
+            APP._data = ret;
+            fnValue('#wrap', template('wrap-template', APP));
+            APP.fixStatusBar( $('.header')[0] );
+
+            if( $('.bottom').length ){
+                APP.fixTabBar('.bottom');
+
+                fnInputListener_public(["#introduce"], function(ret){
+                    fnCountNum();
+                })
+                fnCountNum();
+            }
+            fnHasShowAddImgBtn();
+        })
+    }
+
+    //计算已输入字数
+    function fnCountNum(){
+        var _content = fnValue("#introduce");
+        fnValue(".already-introduce", _content.length);
+    }
+
+
+    function fnRemove(_el){
+        fnKeyboardBlur_public();
+        event && event.stopPropagation();
+        $(_el).closest('.pic').remove();
+        fnHasShowAddImgBtn();
+    }
+
+    function fnGetPicture(_el){
+        if( APP._param.isEdit ){
+            var _isAdd = $(_el).attr('data-is-add') === '';
+            fnGetPicture_public({
+                el: _el,                             //可选 |           | Element |  如果该元素有图片地址，弹出菜单会有一个查看大图的选项
+                isClip: false,                       //可选 | false     | Boolean |  是否需要裁剪（如果max参数大于2，该字段无效）
+                max: _isAdd ? APP._images_maxlength - $('#images .pic').length : 1,                              //可选 | 1         | Number  |  选择照片时，可以最大选择几张图片
+                // compressQuality: 'medium',           //可选 | 'medium'  | String  |  图片压缩质量（high：超清、medium：高清、low：普通）
+                // isCameraOption: true,                //可选 | true      | Boolean |  是否需要拍照选项
+                // isAlbumOption: false,                //可选 | true      | Boolean |  是否需要选择图片选项
+                // isUploadServer: false,               //可选 | true      | Boolean |  是否需要使用服务器返回的图片地址数据，否则返回本地的图片地址信息
+                // finishText: '发送'                    //可选 | '确定'     | String  |  选择照片点击确定按钮的文字
+            }, function(ret) {
+                // alert(debugAlert(arguments))
+                // ret.url                       //必返     |           |  String           |  网络图片地址或者本地图片地址
+                // ret.filepath                  //非必返   |           |  String           |  网络图片名称（isUploadServer为false时该字段不返回）
+                if( _isAdd ){
+                    $(APP.dom('#images [data-is-add]')).before(template('images-template', ret));
+                }else{
+                    $(_el).attr('data-img-url', ret.url);
+                    $(_el).attr('data-id', ret.filepath);
+                }
+                fnHasShowAddImgBtn();
+            })
+        }else{
+            fnPhotoBrowser(_el);
+        }
+    }
+
+    function fnPhotoBrowser(_el){
+        if( APP._data.auth.introduce_images && APP._data.auth.introduce_images.length ){
+            var _pic = [];
+            for( var i = 0; i < APP._data.auth.introduce_images.length; i++ ){
+                _pic.push(APP._data.auth.introduce_images[i].url);
+            }
+            fnPhotoBrowser_public({
+                pics: _pic,    // [] | Array | 必传 | 图片数组
+                default: $(_el).index() || 0  // 0 | number | 首次显示图片索引
+            });
+        }
+    }
+
+    function fnHasShowAddImgBtn(){
+        fnValue('.already-images', $('#images .pic').length);
+        if( $('#images .pic').length >= APP._images_maxlength ){
+            $(APP.dom('#images [data-is-add]')).addClass('hide');
+        }else{
+            $(APP.dom('#images [data-is-add]')).removeClass('hide');
+        }
+
+        if( APP._param.isEdit ){
+            $('.del').removeClass('hide');
+        }else{
+            $('.del').addClass('hide');
+        }
+        APP.initFn();
+    }
+
+
+
+    function fnSubmit(){
+        if( ! fnValue('#introduce') ){
+            fnToast($('#introduce').attr('placeholder'));
+        }else{
+            var _param = {
+                introduce: fnValue('#introduce'),
+                introduce_images: []
+            }
+            $('#images .pic').each(function(_index, _el){
+                _param.introduce_images.push($(_el).data('id'));
+            })
+            _param.introduce_images = _param.introduce_images.join();
+
+            fnUpdateStoreInfo_base(_param, function(ret){
+                fnToast(ret.msg, function(){
+                    fnClose();
+                });
+            })
+        }
+    }
+
+    function fnJump(){
+        fnOpen('business/shopsDetails_win.html', {
+            param: {
+                isEdit: APP.YES
+            },
+            repeat: APP.YES
+        })
+    }
+</script>
+</html>

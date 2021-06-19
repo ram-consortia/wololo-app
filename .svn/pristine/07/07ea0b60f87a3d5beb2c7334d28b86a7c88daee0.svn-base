@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+</head>
+<body style="background-color: initial">
+    <div class="flex-vertical">
+        <!-- 透明状态加transparent -->
+        <header class="header transparent">
+            <!-- <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title"></div>
+            <div class="back right share" tapmode="hover" onclick="fnOpen('pop/share_pop.html')"></div> -->
+        </header>
+        <div class="flex-item-vertical">
+
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    // APP.init(function(){
+    //     APP.fixStatusBar( $('header')[0] );
+    //     api.setFrameAttr({
+    //         name: api.frameName,
+    //         rect: {
+    //             h: $('header').height()
+    //         }
+    //     })
+    // });
+
+    APP.init(function(){
+        APP.fixStatusBar( $('.header')[0] );
+
+        api.setFrameAttr({
+            name: api.frameName,
+            rect: {
+                h: $('.header').height()
+            }
+        })
+
+    });
+
+    // function fnHeaderSwitch(_data){
+    //     _data.bannerHeight -= $('header').height();
+    //     if( _data.bannerHeight > _data.scrollTop ){
+    //         $('.header').addClass('transparent');
+    //     }else{
+    //         $('.header').removeClass('transparent');
+    //     }
+    // }
+</script>
+</html>

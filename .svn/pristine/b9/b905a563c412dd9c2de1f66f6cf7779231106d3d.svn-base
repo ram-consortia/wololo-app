@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/home_v2.css" />
+</head>
+<body style="height: 100%; background: initial;">
+
+    <div class="flex-vertical main" id="wrap1">
+        <div class="blank"></div>
+
+        <div class="flex-item-vertical">
+            <div class="header2">
+                <div class="header-left">
+                    <div class="logo-container">
+                        <div class="logo">
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="text">Morning, Ralph!</div>
+                        <div class="hand"></div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="cart">
+                        <div class="cart-ic">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>         
+            </div>
+            
+            <div class="top">
+                <div class="title">
+                    Let's get started
+                </div>
+                <div class="search-stores">
+                    <div class="search" >
+                        <span class="search-img"></span>
+                        <div class="input">
+                            <div style="width:100%;">
+                                <input id="keyword" type="search" placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="break-line">
+                <div class="title">deal of the day</div>
+                <div class="time">00:43:53</div>
+            </div> 
+
+            <div class="classification">
+                <div class="swiper-wrapper">
+                    <div class="gap swiper-slide">
+                        <div class="left">
+                            <div class="logo">
+                                <img src="../../image/v2/img_rayban.png"/>
+                            </div>
+                            <div class="name">ray ban</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="right">
+                            <div class="title">
+                                <span class="red">superdeal</span>
+                            </div>
+                            <div class="number">
+                                <div class="percentage">50%</div>
+                                <span>off</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-wrapper">
+                    <div class="gap swiper-slide">
+                        <div class="left">
+                            <div class="logo">
+                                <img src="../../image/v2/img_nike.png"/>
+                            </div>
+                            <div class="name">nike</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="right">
+                            <div class="title">
+                                <span class="blue">+1 Deal</span>
+                            </div>
+                            <div class="number">
+                                <div class="percentage">50%</div>
+                                <span>off</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+
+            <div class="promotions">
+                <div class="promotion orange">
+                    <div class="logo"></div>
+                    <div class="title">Food & Grocery</div>
+                    <div class="photo">
+                        <img src="../../image/v2/img_food.png"/>
+                    </div>
+                </div>
+
+                <div class="promotion darkorange">
+                    <div class="logo"></div>
+                    <div class="title">Fashion Store</div>
+                    <div class="photo">
+                        <img src="../../image/v2/img_fashion.png"/>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="break-line">
+                <div class="title">categories to bag</div>
+            </div> 
+
+            <div class="categories">
+                <div class="grocery"></div>
+                <div class="gift"></div>
+                <div class="food"></div>
+                <div class="clothing"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicActionSheet_pop.css">
+</head>
+
+<body class="flex-vertical hide">
+    <div class="flex-item-vertical close" tapmode ontouchstart="fnClose()"></div>
+    <div class="footer" id="wrap">
+        <!-- <ul id="buttons">
+            <li tapmode="hover" onclick="fnSubmit(this)" >拍照</li>
+            <li tapmode="hover" onclick="fnSubmit(this)" >图库</li>
+        </ul>
+        <ul id="cancel" class="hide">
+            class="cancel"
+            <li class="cancel" tapmode="hover" onclick="fnCloseModel()">取消</li>
+        </ul> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <ul id="buttons">
+            <!-- <li tapmode="hover" onclick="fnSubmit(this)" >拍照</li>
+            <li tapmode="hover" onclick="fnSubmit(this)" >图库</li> -->
+        </ul>
+        <ul id="cancel" class="hide">
+            <!-- class="cancel" -->
+            <li class="cancel" tapmode="hover" onclick="fnCloseModel()">{{'取消' | fnLanguage_public}}</li>
+        </ul>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnInit();
+    });
+
+    function fnInit() {
+        fnValue('#wrap', template('wrap-template', APP));
+        // 设置地步按钮
+        if (APP._param.buttons && APP._param.buttons.length) {
+            for (var x in APP._param.buttons) {
+                $('#buttons').append('<li tapmode="hover" onclick="fnSubmit(this)" >' + (fnLanguage_public(APP._param.buttons[x].text || '确认')) + '</li>');
+            }
+        } else {
+            fnClosePop();
+        }
+        api.parseTapmode();
+
+        if( APP._param.model ){
+            $('#cancel').removeClass('hide');
+        }
+        $('body').removeClass('hide');
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.ACTION_SHEET,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_el) {
+        fnClosePop({
+            buttonIndex: $(_el).index()
+        });
+    }
+</script>
+</html>

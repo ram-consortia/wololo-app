@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body>
+    <div class="flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">优惠券详情</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="discount">
+                失效优惠券加invalid
+                <div class="coupon-img" tapmode="hover" onclick="fnOpen('business/couponDetails_win.html')">
+                    <div class="img"></div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">代金券</p>
+                                <p class="consume">已消费<br/>2 个</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">特色单品节日优惠</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule">
+                <p class="rule-til">优惠规则</p>
+                <div class="rule-text">1、先排查数据本身是否出现问题。比如统计数据逻辑问题、数据接口出现bug未统计到、被环比/同比下降30%的数据是否出现特殊数据（比如环比数据中有现象级的爆款应用ZEO导致环比数据下降30%）、同比/环比数据差异是在哪些方面、有差异的数据之前的表现如何等。确认数据无异常之后再考虑下面。 2、再排查产品本身是否出现问题。比如服务器压力大出现响应时间多了0.3s、对热门应用的排序逻辑不符合用户认知、竞对出现爆款而我方未跟进、有bug等等。排除掉自身原因之后再考虑下面。</div>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'优惠券详情' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="discount">
+                <!-- 失效优惠券加invalid -->
+                <div class="coupon-img
+                    {{if +_data.is_expire}}
+                        invalid
+                    {{/if}}
+                ">
+                    <div data-img-url="{{_data | fnGetCouponImage_base}}" data-img-type="!watermark" class="img"></div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">{{ {'target': _data.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</p>
+                                <p class="consume">{{'已消费' | fnLanguage_public}}<br/>{{_data.total_write_off_count}} {{'个' | fnLanguage_public}}</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">{{_data.name}}</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">{{'门市价' | fnLanguage_public}}￡{{_data.price}}</span>
+                                        </p>
+                                        <p class="time">
+                                            {{_data | fnGetCouponDateMsg_base}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule">
+                <p class="rule-til">{{'优惠规则' | fnLanguage_public}}</p>
+                <div class="rule-text pre-text">{{_data.rule}}</div>
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+    });
+
+    function fnInit(){
+        fnAjax_base({
+            url: 'base/coupon/detail',
+            id: APP._param.id
+        }, function(ret){
+            APP._data = ret;
+            fnValue('#wrap', template('wrap-template', APP));
+            APP.fixStatusBar( $('.header')[0] );
+        })
+    }
+</script>
+</html>

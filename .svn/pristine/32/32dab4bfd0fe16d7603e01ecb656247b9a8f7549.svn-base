@@ -1,0 +1,52 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body{
+    background:rgba(0,0,0,0.5);
+    .wrap{
+        background-color: #fff;
+        padding-top: pxToRem(40);
+        .title{
+            text-align: center;
+            color: rgba(51,51,51,1);
+            line-height: pxToRem(40);
+            font-size: pxToRem(28);
+        }
+        .main{
+            padding-top: pxToRem(40);
+            padding-bottom: pxToRem(40);
+            .share{
+                @include flex-item();
+                text-align: center;
+                .logo{
+                    display: inline-block;
+                    width: pxToRem(88);
+                    height: pxToRem(88);
+                    margin-bottom: pxToRem(20);
+                    &.qq{
+                        @include set-bg-img($name: "QQ-logo.png");
+                    }
+                    &.weChat{
+                        @include set-bg-img($name: "weChat-logo.png");
+                    }
+                    &.weibo{
+                        @include set-bg-img($name: "weibo-logo.png");
+                    }
+                }
+                .text{
+                    color: rgba(51,51,51,1);
+                    line-height: pxToRem(40);
+                    font-size: pxToRem(28);
+                }
+            }
+        }
+        .cancel{
+            padding: pxToRem(30) 0;
+            text-align: center;
+            color: rgba(153,153,153,1);
+            line-height: pxToRem(40);
+            font-size: pxToRem(28);
+            border-top: pxToRem(2) solid #E9E9E9;
+        }
+    }
+}

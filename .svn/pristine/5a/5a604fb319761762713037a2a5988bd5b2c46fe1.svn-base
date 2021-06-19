@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/groupOften_pop.css">
+</head>
+
+<body>
+    <div class="fixed"></div>
+    <div class="screen" id="wrap">
+        <!-- <div class="preparation">
+            <span class="close" tapmode="hover" onclick="fnClose()"></span>
+        </div>
+        <div class="li">
+            <div class="name">选择拼团时长</div>
+            <div class="time">
+                <div class="input">
+                    <input type="text" value="0">
+                </div>
+                <span class="day">天</span>
+                <div class="input">
+                    <input type="text" value="5">
+                </div>
+                <span class="hour">小时</span>
+            </div>
+
+        </div>
+        <div class="bottom">
+            <div class="sure" tapmode="hover" onclick="fnOpen('assemble/pay_win.html')">提交支付</div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="preparation">
+            <span class="close" tapmode="hover" onclick="fnCloseModel()"></span>
+        </div>
+        <div class="li">
+            <div class="name">
+                {{if _param.is_add_virtual}}
+                    {{'我要凑人数' | fnLanguage_public}}
+                {{else}}
+                    {{'选择拼团时长' | fnLanguage_public}}
+                {{/if}}
+            </div>
+            <div class="time">
+                {{if _param.is_add_virtual}}
+                    <div class="input">
+                        <input id="virtual_human_count" data-limit-type="Number" maxlength="5" type="number" value="{{_param.lack}}">
+                    </div>
+                    <span class="day">{{'人' | fnLanguage_public}}</span>
+                {{else}}
+                    <div class="input">
+                        <input id="day" data-limit-type="CustomNumber" maxlength="11" type="number">
+                    </div>
+                    <span class="day">{{'天' | fnLanguage_public}}</span>
+
+                    <div class="input">
+                        <input id="hour" data-limit-type="CustomNumber" maxlength="11" type="number" >
+                    </div>
+                    <span class="hour">{{'小时' | fnLanguage_public}}</span>
+
+                    <div class="input">
+                        <input id="minute" data-limit-type="CustomNumber" maxlength="11" type="number" >
+                    </div>
+                    <span class="hour">{{'分' | fnLanguage_public}}</span>
+                {{/if}}
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="sure" tapmode="hover" onclick="fnSubmit()">
+                {{if _param.is_add_virtual}}
+                    {{'确定' | fnLanguage_public}}
+                {{else}}
+                    {{'确定开团' | fnLanguage_public}}
+                {{/if}}
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixTabBar('.bottom');
+        if( APP._param.is_add_virtual ){
+            fnFocus_public("#virtual_human_count");
+
+            fnInputListener_public(["#virtual_human_count"], function(ret){
+                var _virtual_human_count = fnValue('#virtual_human_count');
+                if( _virtual_human_count ){
+                    if( +_virtual_human_count < 1 ){
+                        fnValue('#virtual_human_count', 1);
+                    }else if( +_virtual_human_count >= APP._param.lack ){
+                        fnValue('#virtual_human_count', APP._param.lack);
+                    }else{
+
+                    }
+                }
+            })
+        }else{
+            fnFocus_public("#day");
+            fnFormat();
+            fnInputListener_public(["#day", '#hour', '#minute'], function(ret){
+                fnInput();
+            })
+        }
+    });
+
+    function fnFormat(){
+        if( $('#day').length ){
+            fnValue('#day', parseInt(APP._param.expire_time / 24 / 60 / 60));
+        }
+
+        if( $('#hour').length ){
+            fnValue('#hour', parseInt(APP._param.expire_time / 60 / 60 % 24));
+        }
+
+        if( $('#minute').length ){
+            var _minute = APP._param.expire_time / 60 % 60;
+            if( _minute > 0 ){
+                _minute -= 0.01;
+                _minute = _minute.toFixed(2);
+            }
+            fnValue('#minute', _minute);
+        }
+        // fnValue('#day', parseInt(APP._param.expire_time / 24 / 60 / 60));
+        // var _hour = APP._param.expire_time / 60 / 60 % 24;
+        // if( _hour && _hour < 1 ){
+        //     _hour -= 0.01;
+        //     _hour =  _hour.toFixed(2);
+        // }else{
+        //     _hour =  parseInt(_hour);
+        // }
+        // fnValue('#hour', _hour);
+        // // APP._expire_time = APP._param.expire_time;
+        // fnInput();
+    }
+
+    function fnInput(){
+        var _day = +fnValue('#day'),
+            _hour = +fnValue('#hour'),
+            _minute = +fnValue('#minute');
+        APP._expire_time = 0;
+
+        if( _day ){
+            APP._expire_time = _day * 24 * 60 * 60;
+        }
+        if( _hour ){
+            APP._expire_time += _hour * 60 * 60;
+        }
+        if( _minute ){
+            APP._expire_time += _minute * 60;
+        }
+        if( APP._expire_time <= APP._param.expire_time){
+
+        }else {
+            fnFormat();
+        }
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.CHOICE_GROUP_TIME,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit() {
+        if( APP._param.is_add_virtual ){
+            if( fnValue('#virtual_human_count') ){
+                fnClosePop({
+                    virtual_human_count: +fnValue('#virtual_human_count')
+                });
+            }else{
+                fnToast('请输入人数')
+            }
+        }else{
+            if( APP._expire_time ){
+                fnClosePop({
+                    expire_time: APP._expire_time
+                });
+            }else{
+                fnToast('请输入时间')
+            }
+        }
+    }
+</script>
+</html>

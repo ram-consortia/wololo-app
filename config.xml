@@ -1,0 +1,141 @@
+<widget id="A6011084791991" version="0.0.1">
+
+    <name>wololo</name>
+
+    <description>
+
+        Example For APICloud.
+
+    </description>
+
+    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+
+        Developer
+
+    </author>
+
+    <content src="index.html"/>
+
+    <access origin="*"/>
+
+    <preference name="pageBounce" value="false"/>
+
+    <preference name="appBackground" value="rgba(0,0,0,0.0)"/>
+
+    <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>
+
+    <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>
+
+    <preference name="hScrollBarEnabled" value="false"/>
+
+    <preference name="vScrollBarEnabled" value="false"/>
+
+    <preference name="autoLaunch" value="false"/>
+
+    <preference name="fullScreen" value="false"/>
+
+    <preference name="autoUpdate" value="true"/>
+
+    <preference name="smartUpdate" value="false"/>
+
+    <preference name="debug" value="true"/>
+
+    <preference name="statusBarAppearance" value="true"/>
+
+    <preference name="iOS7StatusBarAppearance" value="true" />
+
+    <permission name="readPhoneState"/>
+
+    <permission name="camera"/>
+
+    <permission name="record"/>
+
+    <permission name="location"/>
+
+    <permission name="fileSystem"/>
+
+    <permission name="internet"/>
+
+    <permission name="bootCompleted"/>
+
+    <permission name="hardware"/>
+
+    <preference name="appCertificateVerify" value="false" />
+
+    <preference name="checkSslTrusted" value="false" />
+
+    <preference name="urlScheme" value="ygjfapp" />
+
+    <preference name="appCertificateVerify" value="false" />
+
+    <preference name="useWKWebView" value="true"/>
+
+    <preference name="WKWebViewRecoveryMode" value="rebootApp"/>
+
+    <preference name="customRefreshHeader" value="UIPullRefresh"/>
+
+    <!-- android 支持64 位配置， apicloud 社区文档 https://community.apicloud.com/bbs/thread-139264-1-1.html -->
+    <preference name="android_abi" value="arm64-v8a"/>
+
+    <feature name="ajpush">
+        <param name="app_key" value="0cc8e00b664545255a16f4ba"/>
+        <param name="channel" value="APICloud"/>
+    </feature>
+
+    <feature name="wxPlus">
+        <param name="urlScheme" value="wxc17a7f554a7f5834"/>
+        <param name="apiKey" value="wxc17a7f554a7f5834"/>
+        <param name="apiSecret" value="db7bc050f5f1b1a5e7ecd39daf87a47d"/>
+        <param name="universalLink" value="https://com.Wolololtd.Wololo"/>
+    </feature>
+
+    <feature name="wxPayPlus">
+        <param name="urlScheme" value="wxc17a7f554a7f5834"/>
+        <param name="apiKey" value="wxc17a7f554a7f5834"/>
+        <param name="apiSecret" value="db7bc050f5f1b1a5e7ecd39daf87a47d"/>
+        <param name="universalLink" value="https://com.Wolololtd.Wololo"/>
+    </feature>
+
+    <feature name="googleMap">
+        <param name="android_api_key" value="AIzaSyAcsUl7OL-BDBBHtIfz2C-6AtKKipk3bqs"/>
+        <param name="ios_api_key" value="AIzaSyAcsUl7OL-BDBBHtIfz2C-6AtKKipk3bqs"/>
+        <param name="ios_directions_key" value="AIzaSyAcsUl7OL-BDBBHtIfz2C-6AtKKipk3bqs"/>
+    </feature>
+
+    <meta-data name="com.google.android.geo.API_KEY" value="AIzaSyAcsUl7OL-BDBBHtIfz2C-6AtKKipk3bqs"/>
+
+    <feature name="google">
+        <!-- <param name="android_clientID" value="198816622130-jj4htlf1ek9lg9qu502tg76f5c1mt6l9.apps.googleusercontent.com"/> -->
+        <param name="android_clientID" value="198816622130-rpdpqf3fnv8joc8m8claf5eok5faqp6s.apps.googleusercontent.com"/>
+        <param name="urlScheme" value="com.googleusercontent.apps.198816622130-ndt258vp75lboqt4pq4mhsue5172q0p3"/>
+        <param name="ios_clientID" value="198816622130-ndt258vp75lboqt4pq4mhsue5172q0p3.apps.googleusercontent.com"/>
+    </feature>
+
+    <!-- <meta-data name="com.google.android.gms.version" value="11020000"/> -->
+
+    <feature name="facebook">
+        <param name="urlScheme" value="fb578092486302477"/>
+        <param name="appId" value="578092486302477"/>
+    </feature>
+
+    <meta-data name="com.facebook.sdk.ApplicationId" value="fb578092486302477"/>
+
+    <preference name="querySchemes" value="fb,fbapi,fb-messenger-api,fbauth2,fbshareextension,twitter,iosamap,baidumap,comgooglemaps"/>
+
+    <!-- <feature name="Twitter">
+        <param name="urlScheme" value="twitterkit-FVKRsgLoQNeFxFwj2bgIFlOLI"/>
+        <param name="apiKey" value="FVKRsgLoQNeFxFwj2bgIFlOLI"/>
+        <param name="apiSecret" value="hDFNgVpultfp5vzxqFOCSY3PzvCzoFvhQluhGWrQirkkLpWybH"/>
+    </feature> -->
+
+    <feature name="Twitter">
+        <param name="urlScheme" value="twitterkit-3BidIkr2DOvk51Jh05t8i7VE0"/>
+        <param name="apiKey" value="3BidIkr2DOvk51Jh05t8i7VE0"/>
+        <param name="apiSecret" value="lztSnR6s9B1xHsLo3jdnLq5LpukzPeVZk0L2ROhyiBGItiVTsa"/>
+    </feature>
+<!--    <feature name="stripePay">-->
+<!--        <param name="publishableKey" value="pk_test_51Hek1UFZ19uZrJGnmmyhOlYkICujY9JMerEiDcgMLK3kQ8GX73EhBRHwuqJ6uDdIneec2RMOEjoVOvqNSU16tWyZ00K5vS2EJA"/>-->
+<!--        <param name="accentColor" value="#1E90FF"/>-->
+<!--        <param name="appleMerchantIdentifier" value="merchant.com.wololo"/>-->
+<!--    </feature>-->
+</widget>

@@ -1,0 +1,212 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    position: relative;
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    padding-bottom: pxToRem(224);
+                    .page-number{
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                    }
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .center{
+                        padding: pxToRem(40) pxToRem(80);
+                        .rule{
+                            display: inline-block;
+                            position: relative;
+                            .agreement{
+                                width: pxToRem(160);
+                                padding: pxToRem(15) pxToRem(24);
+                                border: pxToRem(1) solid #EAEAEA;
+                                border-radius: pxToRem(4);
+                                line-height: pxToRem(34);
+                                font-size: pxToRem(24);
+                                color: #666;
+                                &::after{
+                                    content: '';
+                                    display: inline-block;
+                                    width: pxToRem(20);
+                                    height: pxToRem(34);
+                                    vertical-align: bottom;
+                                    margin-left: pxToRem(40);
+                                    @include set-bg-img( $name: "web-down.png", $size: pxToRem(20) auto, $position: center center);
+                                };
+                            }
+                            &:hover{
+                                content: '';
+                                .agreement{
+                                    &::after{
+                                        @include set-bg-img( $name: "web-up.png", $size: pxToRem(20) auto, $position: center center);
+                                    };
+                                }
+                                .ul{
+                                    display: block;
+                                }
+                            };
+                            .ul{
+                                display: none;
+                                background-color: #FFFCFB;
+                                position: relative;
+                                position: absolute;
+                                top: pxToRem(78);
+                                left: pxToRem(0);
+                                border: pxToRem(2) solid #EAEAEA;
+                                border-radius: pxToRem(4);
+                                width: pxToRem(206);
+                                &::before{
+                                    content: '';
+                                    display: inline-block;
+                                    width: pxToRem(40);
+                                    height: pxToRem(40);
+                                    position: absolute;
+                                    top: pxToRem(-36);
+                                    right: pxToRem(22);
+                                    @include set-bg-img( $name: "web-top2.png", $size: pxToRem(40) auto, $position: center center);
+                                };
+                                .li{
+                                    height: pxToRem(64);
+                                    line-height: pxToRem(64);
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    text-align: center;
+                                    &.active,&:hover{
+                                        background-color: $bg-color;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                        .evaluate{
+                            .con{
+                                @include flex-box();
+                                .pho{
+                                    margin: pxToRem(32) pxToRem(20) pxToRem(28) 0;
+                                    width: pxToRem(60);
+                                    height: pxToRem(60);
+                                    /*margin-right: pxToRem(20);*/
+                                    border-radius: 50%;
+                                    @include set-bg-img( $name: "web-photo.png");
+                                }
+                                .evaluate-con{
+                                    @include flex-item();
+                                    padding: pxToRem(32) 0 pxToRem(28);
+                                    border-bottom: pxToRem(2) solid #EAEAEA;
+                                    .evaluate-box{
+                                        @include flex-box();
+                                        .evaluate-message{
+                                            @include flex-item();
+                                            .evaluate-name{
+                                                font-size: pxToRem(24);
+                                                color: #666;
+                                                line-height: pxToRem(34);
+                                            }
+                                            .stars{
+                                                font-size: 0;
+                                                margin-top: pxToRem(4);
+                                                @include prefixCss3($property: align-self, $value: center);
+                                                .star{
+                                                    display: inline-block;
+                                                    width: pxToRem(28);
+                                                    height: pxToRem(28);
+                                                    margin: 0 pxToRem(5);
+                                                    @include set-bg-img( $name: "icon-star.png", $size: pxToRem(28) auto, $position: center center);
+                                                    &.half-star{
+                                                        @include set-bg-img( $name: "icon-half.png", $size: pxToRem(28) auto, $position: center center);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .time{
+                                            font-size: pxToRem(24);
+                                            color: #999;
+                                            line-height: pxToRem(34);
+                                            margin-left: pxToRem(10);
+                                        }
+                                    }
+                                    .text{
+                                        padding-top: pxToRem(14);
+                                        font-size: pxToRem(28);
+                                        color: #333;
+                                        line-height: pxToRem(48);
+                                    }
+                                    .reply{
+                                        margin-top: pxToRem(18);
+                                        padding: pxToRem(30);
+                                        background-color: #F7F7F7;
+                                        border-radius: pxToRem(4);
+                                        font-size: pxToRem(28);
+                                        color: #333;
+                                        line-height: pxToRem(40);
+                                        .color{
+                                            font-weight: bold;
+                                        }
+                                    }
+                                    .reply-input{
+                                        margin-top: pxToRem(14);
+                                        padding: pxToRem(26) pxToRem(28);
+                                        background-color: #F7F7F7;
+                                        border-radius: pxToRem(4);
+                                        font-size: pxToRem(28);
+                                        color: #333;
+                                        line-height: pxToRem(40);
+                                        input{
+
+                                        }
+                                    }
+                                }
+                            }
+                                
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

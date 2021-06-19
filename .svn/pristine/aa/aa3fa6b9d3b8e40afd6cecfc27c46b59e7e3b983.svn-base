@@ -1,0 +1,480 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+@mixin padding($top: 0, $left: 0, $right: 0, $bottom: 0) {
+    padding: $top $left $bottom $right;
+}
+@mixin fontWCT($size, $color, $weight: normal) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+body{
+    background-color: #fff;
+    height: 100%;
+    &.background{
+        background-color: #F9F9F9;
+    }
+    .content{
+        background: #eeeeee;
+        padding: pxToRem(26);
+    }
+    .order-header{
+        background-color: #fff;
+        .order-box{
+            @include flex-box();
+            text-align: center;
+            @include border-bottom-m;
+            &::after{
+                border-color: #EAEAEA;
+            };
+            .order-item{
+                @include flex-item();
+                padding: 0 pxToRem(3);
+                white-space: nowrap;
+                overflow-x: auto;
+                .state{
+                    position: relative;
+                    display: inline-block;
+                    padding: 0 pxToRem(39);
+                    height: pxToRem(82);
+                    font-size: pxToRem(30);
+                    color: #666;
+                    line-height: pxToRem(82);
+                    &.active{
+                        color: #333;
+                        &::after{
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            bottom: pxToRem(2);
+                            left: 50%;
+                            @include prefixCss3($property: transform, $value: translateX(-50%));
+                            width: pxToRem(56);
+                            height: pxToRem(16);
+                            @include set-bg-img( $name: "icon-sel.png", $size: pxToRem(56) auto, $position: center center);
+                        };
+                    }
+                }
+            }
+            .month{
+                display: inline-block;
+                height: pxToRem(82);
+                width: pxToRem(152);
+                font-size: pxToRem(26);
+                color: #333;
+                line-height: pxToRem(82);
+                box-shadow:0px 0px 16px 1px rgba(0,0,0,0.08);
+                /*@include border-left-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };*/
+                &::after{
+                    content: '';
+                    display: inline-block;
+                    width: pxToRem(28);
+                    height: pxToRem(28);
+                    margin-left: pxToRem(12);
+                    vertical-align: middle;
+                    @extend .font-m;
+                    @include set-bg-img( $name: "icon-down2.png", $size: pxToRem(28) auto, $position: center center);
+
+                };
+            }
+        }
+    }
+    .top-header{
+        .box{
+            @include flex-box();
+            text-align: center;
+            @include border-bottom-m;
+            &::after{
+                border-color: #EAEAEA;
+            };
+            .item{
+                position: relative;
+                @include flex-item();
+                height: pxToRem(104);
+                line-height: pxToRem(104);
+                font-size: pxToRem(30);
+                color: #666;
+                line-height: pxToRem(104);
+                &.active{
+                    color: #333;
+                    &::after{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 50%;
+                        bottom: pxToRem(12);
+                        width: pxToRem(56);
+                        height: pxToRem(16);
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                        @include set-bg-img( $name: "icon-sel.png", $size: pxToRem(56) auto, $position: center center);
+                    };
+                }
+            }
+        }
+    }
+    .top{
+        .obligationsTitle {
+            background: rgba(255, 255, 255, 1);
+            border-radius: pxToRem(20);
+            @include padding($top: pxToRem(30), $bottom: pxToRem(30));
+            @include flex-box($justify: space-between, $align: center);
+            .title_left{
+                @include padding($left: pxToRem(33), $right: pxToRem(30));
+                .countdown {
+                    @include fontWCT($weight: 400, $color: rgba(153, 153, 153, 1), $size: pxToRem(26));
+                    margin-top: pxToRem(20);
+                }
+                .title{
+                    @include fontWCT($weight: 800, $color: rgba(51, 51, 51, 1), $size: pxToRem(30));
+                    display: block;
+                }
+            }
+            .mar_ri{
+                @include fontWCT($weight: 400, $color: rgba(153, 153, 153, 1), $size: pxToRem(26));
+                margin-right: pxToRem(20);
+            }
+            .listen_pt{
+                visibility: hidden;
+            }
+
+        }
+        .img{
+            width: 100%;
+            min-height: pxToRem(182);
+            /*@include set-bg-img( $name: "icon-top.png");*/
+            @include set-bg-img( $name: "icon-top.png");
+            border-top-left-radius: pxToRem(8);
+            border-top-right-radius: pxToRem(8);
+            box-shadow:0px -24px 40px 0px rgba(255,124,73,0.1);
+            /*.state{
+                padding: pxToRem(44) pxToRem(42) pxToRem(22);
+                font-size: pxToRem(40);
+                color: #fff;
+                line-height: pxToRem(56);
+                @include text-overflow(1);
+                @extend .font-m;
+            }*/
+            .img-box{
+                padding: pxToRem(44) pxToRem(42) pxToRem(22);
+                @include flex-box();
+                .img-item{
+                    @include flex-item();
+                    font-size: pxToRem(40);
+                    color: #fff;
+                    line-height: pxToRem(56);
+                    @include text-overflow(1);
+                    @extend .font-m;
+                }
+                .assemble{
+                    font-size: pxToRem(26);
+                    color: #fff;
+                    line-height: pxToRem(56);
+                    @include prefixCss3($property: align-self, $value: center);
+                    &::after{
+                        content: '';
+                        display: inline-block;
+                        width: pxToRem(28);
+                        height: pxToRem(28);
+                        margin-left: pxToRem(6);
+                        vertical-align: sub;
+                        @include set-bg-img( $name: "icon-right.png", $size: pxToRem(28) auto, $position: center center);
+                    };
+                }
+            }
+            .time{
+                padding: 0 pxToRem(42) pxToRem(55);
+                font-size: pxToRem(26);
+                color: #fff;
+                line-height: pxToRem(36);
+                @include text-overflow(1);
+            }
+        }
+    }
+    //第二块 开始
+    .obligationsCoupon {
+        position: relative;
+        border-radius: pxToRem(20);
+        background: white;
+        margin: pxToRem(20) 0;
+        .subtitle{
+            @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(20), $weight: 400);
+        }
+        .top {
+            border-bottom: 1px dashed #e6dfdf;
+            @include flex-box($justify: space-between);
+            p {
+                span {
+                    display: block;
+                    line-height: 23px;
+                }
+            }
+            p:first-child {
+                padding-top: pxToRem(26);
+                padding-left: pxToRem(30);
+                .delete_line {
+                    @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(24), $weight: 400);
+                    text-decoration: line-through;
+                }
+                @include fontWCT($color: rgba(51, 51, 51, 1), $size: pxToRem(30), $weight: 400);
+                line-height: 20px;
+            }
+            p:last-child {
+                padding-right: pxToRem(30);
+                padding-top: pxToRem(20);
+                span:last-child {
+                    @include fontWCT($color: rgba(176, 176, 176, 1), $size: pxToRem(24), $weight: 400);
+                }
+                span:first-child {
+                    display: inline-block;
+                    @include fontWCT($color: rgba(255, 96, 67, 1), $size: pxToRem(60), $weight: 600);
+                    span {
+                        font-size: pxToRem(34);
+                    }
+                }
+            }
+        }
+        .bottom {
+            border-radius: 0 0 pxToRem(20) pxToRem(20);
+            @include padding($left: pxToRem(30), $right: pxToRem(30), $top: pxToRem(25), $bottom: pxToRem(25));
+            p {
+                @include flex-box($justify: space-between);
+                span:first-child {
+                    @include fontWCT($weight: 400, $color: rgba(176, 176, 176, 1), $size: pxToRem(24));
+                }
+            }
+        }
+    }
+    .obligationsCoupon:before {
+        content: "";
+        width: pxToRem(26);
+        height: pxToRem(26);
+        background-color: rgba(244, 244, 244, 1);
+        border-radius: 100%;
+        position: absolute;
+        top: 62%;
+        left: -2%;
+    }
+    .obligationsCoupon::after {
+        content: "";
+        width: pxToRem(26);
+        height: pxToRem(26);
+        background-color: rgba(244, 244, 244, 1);
+        border-radius: 100%;
+        position: absolute;
+        top: 62%;
+        right: -2%;
+    }
+    //第二块 结束
+    .order-ul{
+        margin-bottom: pxToRem(26);
+        background: #ffffff;
+        border-radius:pxToRem(20);
+        .order-li{
+            padding: pxToRem(30);
+            @include flex-box($justify: space-between);
+            .order-name{
+                @include fontWCT($color: rgba(44, 44, 44, 1), $size: pxToRem(26), $weight: 400);
+            }
+            .order-price{
+                @include fontWCT($color: #999, $size: pxToRem(26), $weight: 400);
+            }
+        }
+    }
+    .write-off{
+        padding: pxToRem(20) pxToRem(30);
+    }
+        .ul{
+            background-color: #fff;
+            margin-bottom: pxToRem(20);
+            padding-bottom: pxToRem(40);
+            .li-first{
+                padding: pxToRem(24) 0;
+                margin: 0 pxToRem(30);
+                font-size: pxToRem(30);
+                color: #333;
+                line-height: pxToRem(42);
+                @extend .font-m;
+                @include border-bottom-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    width: pxToRem(18);
+                    height: pxToRem(18);
+                    border-radius: 50%;
+                    margin-right: pxToRem(16);
+                    background:linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+                };
+            }
+            .li{
+                padding: pxToRem(30) 0;
+                margin: 0 pxToRem(30);
+                font-size: pxToRem(28);
+                color: #666;
+                line-height: pxToRem(40);
+                @include border-bottom-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };
+                .width{
+                    display: inline-block;
+                    color: #333;
+                    width: pxToRem(152);
+                }
+            }
+        }
+
+    .rule{
+        margin: pxToRem(20) pxToRem(30);
+        box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+        padding: pxToRem(30) pxToRem(32);
+        border: pxToRem(2) solid #EAEAEA;
+        border-radius:0px 0px 4px 4px;
+        .rule-til{
+            font-size: pxToRem(36);
+            color: #333;
+            line-height: pxToRem(50);
+            &::before{
+                content: '';
+                display: inline-block;
+                width: pxToRem(8);
+                height: pxToRem(36);
+                margin-right: pxToRem(16);
+                vertical-align: middle;
+                @include set-bg-img( $name: "icon-line.png", $size: pxToRem(8) auto, $position: center center);
+            };
+        }
+        .rule-text{
+            padding-left: pxToRem(24);
+            padding-top: pxToRem(20);
+            font-size: pxToRem(30);
+            color: #666;
+            line-height: pxToRem(56);
+        }
+    }
+    .number{
+        @include flex-box();
+        width: pxToRem(202);
+        height: pxToRem(58);
+        border: pxToRem(2) solid #E1E1E5;
+        border-radius: pxToRem(4);
+        .reduce{
+            width: pxToRem(58);
+            height: pxToRem(58);
+            @include set-bg-img( $name: "icon-reduce.png", $size: pxToRem(24) auto, $position: center center);
+            border-right: pxToRem(2) solid #E1E1E5;
+            &.no-onclick{
+                @include set-bg-img( $name: "icon-reduce1.png", $size: pxToRem(24) auto, $position: center center);
+            }
+        }
+        .num{
+            @include flex-item();
+            line-height: pxToRem(58);
+            font-size: pxToRem(28);
+            color: #323233;
+            input{
+                text-align: center;
+            }
+        }
+        .add{
+            width: pxToRem(58);
+            height: pxToRem(58);
+            @include set-bg-img( $name: "icon-add.png", $size: pxToRem(24) auto, $position: center center);
+            border-left: pxToRem(2) solid #E1E1E5;
+            &.no-onclick{
+                @include set-bg-img( $name: "icon-add1.png", $size: pxToRem(24) auto, $position: center center);
+            }
+        }
+    }
+    .bottom{
+        overflow: hidden;
+        background-color: #fff;
+        @include border-top-m;
+        &::before{
+            border-color: #EAEAEA;
+        };
+        .bottom-box{
+            @include flex-box();
+            padding: pxToRem(28) pxToRem(32) pxToRem(14);
+            .bottom-item{
+                @include flex-item();
+                line-height: pxToRem(62);
+                font-size: pxToRem(26);
+                color: #333;
+                @extend .font-m;
+            }
+
+        }
+        .sure{
+            margin: pxToRem(20) pxToRem(30);
+            height: pxToRem(80);
+            line-height: pxToRem(80);
+            border-radius: pxToRem(8);
+            font-size: pxToRem(30);
+            color: #fff;
+            text-align: center;
+            @include set-bg-img( $name: "icon-submint.png");
+        }
+    }
+
+    .bottom{
+        overflow: hidden;
+    }
+    .footer{
+    }
+    .bot{
+        @include flex-box($justify:space-around);
+        background-color: #fff;
+        padding: pxToRem(24) pxToRem(32);
+        // margin: 0 0 pxToRem(20);
+        @include border-bottom-m;
+        &::after{
+            border-color: #EAEAEA;
+        };
+        @include border-top-m;
+        &::before{
+            border-color: #EAEAEA;
+        };
+        &.bot-bottom{
+            margin: 0;
+        }
+        .bot-item{
+            @include flex-item();
+            text-align: left;
+            font-size: pxToRem(32);
+            color: #FF7C4A;
+            line-height: pxToRem(60);
+            @extend .font-m;
+            .size{
+                font-size: pxToRem(44);
+            }
+        }
+        .del-order{
+            background: linear-gradient(135deg, rgba(221, 221, 221, 1) 0%, rgba(198, 198, 198, 1) 100%);
+            border-radius: pxToRem(40);
+            @include fontWCT($weight: 500, $color: rgba(255, 255, 255, 1), $size: pxToRem(30));
+            padding: pxToRem(19) pxToRem(30);
+            &.not-evaluated{
+                border: pxToRem(2) solid $bg-color;
+                @include fontWCT($weight: 500, $color: rgba(255, 255, 255, 1), $size: pxToRem(30));
+                background: linear-gradient(135deg, rgba(255, 174, 85, 1) 0%, rgba(255, 123, 34, 1) 100%)!important;
+            }
+        }
+    }
+    .origins{
+        color:$color-radical-red!important;
+        font-weight: bold !important;
+    }
+}
+
+
+#no-data{
+    &::before{
+        @include set-bg-img( $name: "icon-nodata3.png", $size: pxToRem(320) auto, $position: center bottom);
+    };
+}

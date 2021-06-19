@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/feedback.css" />
+</head>
+<body>
+    <div class="flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div class="back account" tapmode="hover" onclick="fnEmpty()">帐号：17637545823</div>
+            <div class="title"></div>
+            <div class="back word right" tapmode="hover" onclick="fnEmpty()">退出登录</div>
+        </header>
+
+        <div class="flex-item-vertical">
+
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div class="back account">{{'帐号' | fnLanguage_public}}：{{_user.mobile || _user.user_email}}</div>
+            <div class="title"></div>
+            <div class="back word right" tapmode="hover" onclick="fnLogout_public()">{{'退出登录' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="flex-item-vertical">
+
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+
+        APP.exitApp();
+    });
+
+    function fnInit(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+                APP._htmlPath = 'sign/business_frm.html';
+                fnOpen(APP._htmlPath, {
+                    rect: {
+                        marginTop: $('.header').height()
+                    }
+                });
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    }
+</script>
+</html>

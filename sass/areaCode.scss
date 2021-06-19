@@ -1,0 +1,27 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    ul{
+        background-color: #fff;
+        padding: 0 pxToRem(30);
+        li{
+            @include flex-box();
+            padding: pxToRem(34) 0;
+            font-size: pxToRem(32);
+            color: #333;
+            line-height: pxToRem(44);
+            @include border-bottom-m;
+            &::after{
+                border-color: #eee;
+            };
+            .country{
+                @include flex-item();
+                @include text-overflow(1);
+            }
+            .number{
+                
+            }
+        }
+    }
+    
+}

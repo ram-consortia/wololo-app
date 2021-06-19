@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/orderInformation.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">填写下单信息</div>
+        </header>
+
+        <div class="content flex-item-vertical">
+            <div class="ul">
+                <div class="li">
+                    <div class="name">*姓名</div>
+                    <div class="input">
+                        <input type="text" placeholder="请输入姓名">
+                    </div>
+                </div>
+                <div class="li">
+                    <div class="name">*手机号</div>
+                    <div class="input">
+                        <input type="text" placeholder="请输入手机号">
+                    </div>
+                </div>
+                <p class="address">*收货地址</p>
+                <div class="textarea">
+                    <textarea type="text" placeholder="请输入收货地址"></textarea>
+                </div>
+                <div class="li li-gap">
+                    <div class="name">优惠券数量</div>
+                    <div class="input"></div>
+                    <div class="number">
+                        加号，减号不能点击分别加no-onclick
+                        <span class="reduce no-onclick"></span>
+                        <div class="num">
+                            <input type="text" readonly value="1">
+                        </div>
+                        <span class="add"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnEmpty()">提交</div>
+        </div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'填写下单信息' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="content flex-item-vertical">
+            <div class="ul">
+                <div class="li">
+                    <div class="name">*{{'姓名' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="full_name" maxlength="20" type="text" placeholder="{{'请输入姓名' | fnLanguage_public}}">
+                    </div>
+                </div>
+                <div class="li">
+                    <div class="name">*{{'手机号' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="mobile" data-limit-type="Number" maxlength="11" type="tel" placeholder="{{'请输入手机号' | fnLanguage_public}}">
+                    </div>
+                </div>
+                <p class="address">*{{'收货地址' | fnLanguage_public}}</p>
+                <div class="textarea">
+                    <textarea id="address" maxlength="100" type="text" placeholder="{{'请输入收货地址' | fnLanguage_public}}"></textarea>
+                </div>
+                <div class="li li-gap">
+                    <div class="name">{{'优惠券数量' | fnLanguage_public}}</div>
+                    <div class="input"></div>
+                    <div class="number">
+                        <span tapmode="hover" onclick="fnEditNum()" class="reduce"></span>
+                        <span class="num">
+                            <input id="count" type="text" readonly>
+                        </span>
+                        <span tapmode="hover" onclick="fnEditNum(true)" class="add"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnSubmit()">{{'提交' | fnLanguage_public}}</div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnGet();
+    });
+
+
+    function fnGet(){
+        fnGetOrderDetail_base({
+            id: APP._param.id
+        }, function(ret){
+            APP._data = ret;
+            fnValue('#wrap', template('wrap-template', APP));
+            APP.fixStatusBar( $('.header')[0] );
+
+            if( $('.bottom').length ){
+                APP.fixTabBar('.bottom');
+            }
+            fnEditNum(true);
+        })
+    }
+
+
+    function fnEditNum(_isAdd){
+        var _count = +(fnValue('#count') || 0),
+            _maxCount = +APP._data.surplus_count;
+
+        if( _isAdd ){
+            if( _count < _maxCount ){
+                fnValue('#count', ++_count);
+            }
+        }else{
+            if( _count > 1 ){
+                fnValue('#count', --_count);
+            }
+        }
+
+        if( _count < _maxCount ){
+            $('.add').removeClass('no-onclick');
+        }else{
+            $('.add').addClass('no-onclick');
+        }
+
+        if( _count <= 1 ){
+            $('.reduce').addClass('no-onclick');
+        }else{
+            $('.reduce').removeClass('no-onclick');
+        }
+    }
+
+    function fnSubmit(){
+        if( ! fnValue('#full_name') ){
+            fnToast($('#full_name').attr('placeholder'));
+        }else if( ! fnValue('#mobile') ){
+            fnToast($('#mobile').attr('placeholder'));
+        }else if( ! fnValue('#address') ){
+            fnToast($('#address').attr('placeholder'));
+        }else{
+            var _param = {
+                url: 'order/order/create',
+                method: 'POST',
+                data: {
+                    order_id: APP._param.id,
+                    full_name: fnValue('#full_name'),
+                    mobile: fnValue('#mobile'),
+                    address: fnValue('#address'),
+                    count: fnValue('#count')
+                }
+            }
+            fnAjax(_param, function(ret) {
+                if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                    api.sendEvent({
+                        name: APP.EV_NAME.ORDER_UPDATE,
+                        extra: {}
+                    });
+
+                    fnToast(ret.msg, function(){
+                        fnClose();
+                    });
+                } else {
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body class="background">
+    <div class="main" id="wrap">
+        <!-- <div class="content">
+            <div class="discount">
+                <div class="person">
+                    <span class="photo"></span>
+                    <div class="person-message">
+                        <p class="name">韩梅梅</p>
+                        <p class="id">ID：8635334523</p>
+                    </div>
+                    <span class="consumption">未消费</span>
+                </div>
+                <div class="coupon-img" tapmode="hover" onclick="fnOpen('business/couponDetails_win.html')">
+                    选中加active
+                    <div class="img">
+                        <span class="stop">核销时间：2019.10.23 15:32</span>
+                        <span class="sel active"></span>
+                    </div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">代金券</p>
+                                <p class="consume">数量<br/>2 个</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">特色单品节日优惠</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="coupon-img" tapmode="hover" onclick="fnOpen('business/couponDetails_win.html')">
+                    <div class="img"><span class="sel"></span></div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">单品券</p>
+                                <p class="consume">数量<br/>2 个</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">西单大悦城美食城</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="no-data" class="height7">{{'暂无数据' | fnLanguage_public}}</div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="content">
+            <div class="discount">
+                <div class="person">
+                    <span class="photo" data-img-url="{{_user.avatar}}" data-img-type="!avatar"></span>
+                    <div class="person-message">
+                        <p class="name">{{_user | fnShowUserNickname_base}}</p>
+                        <p class="id">ID：{{_user.code_id}}</p>
+                    </div>
+                    <span class="consumption hide" id="status"></span>
+                </div>
+
+                <div id="list" class="main hide">
+
+                </div>
+            </div>
+        </div>
+        <div id="no-data" class="height7 hide">{{'暂无优惠券' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}}
+            <div class="coupon-img
+                {{if +$value.surplus_count}}
+                    item
+                {{/if}}
+            " tapmode onclick="fnJump_base('business/couponDetails_win.html', {{$value.coupon.id}})">
+                <i class="hide">{{$value}}</i>
+                <div
+                    {{if _locUser.user_type == USER_TYPE.user.value || ! +_store.auth.is_delivery}}
+                        tapmode="hover" onClick="fnSwitchTable(this)"
+                    {{/if}}
+                    class="img"
+                    data-img-url="{{$value | fnGetCouponImage_base}}" data-img-type="!avatar"
+                 >
+                    {{if $value.last_write_off && $value.last_write_off.id}}
+                        <span class="stop">{{'核销时间' | fnLanguage_public}}：{{$value.last_write_off.create_time | dateFormat 'yyyy.MM.dd hh:mm'}}</span>
+                    {{/if}}
+
+                    {{if _locUser.user_type == USER_TYPE.user.value || ! +_store.auth.is_delivery}}
+                        <span class="sel"></span>
+                    {{/if}}
+                </div>
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="arch">{{ {'target': $value.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</p>
+                            <p class="consume">{{'数量' | fnLanguage_public}}<br/>{{$value.surplus_count}} {{'个' | fnLanguage_public}}</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">{{$value.coupon.name}}</p>
+                                <div class="base">
+                                    <p class="market-price">
+                                        <span class="market">{{'门市价' | fnLanguage_public}}￡{{$value.coupon.price}}</span>
+                                    </p>
+                                    <p class="time">
+                                        {{$value.coupon | fnGetCouponDateMsg_base}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                APP._locUser = _user.user;
+                if( APP._param.type == 2 ){
+                    APP._user = _user.user;
+
+                    fnUser_public({
+                        id: APP._param.store_id,               //选填     |      |     Number  |  如果传入该值 isLastData 失效
+                        hasProgress: true        //选填     |   true   |     Boolean  |  是否请求加载动画
+                    }, function(_user){
+                        APP._store = _user;
+                        _start();
+                    })
+                }else{
+                    APP._store = _user.user;
+                    fnUser_public({
+                        id: APP._param.user_id,               //选填     |      |     Number  |  如果传入该值 isLastData 失效
+                        hasProgress: true        //选填     |   true   |     Boolean  |  是否请求加载动画
+                    }, function(_user){
+                        APP._user = _user;
+                        _start();
+                    })
+                }
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+
+        function _start(){
+            fnValue('#wrap', template('wrap-template', APP));
+
+            fnInit();
+            fnRefresh(function(){
+                //                      下拉以后则会触发该回调
+                fnInit();
+            });
+
+            api.addEventListener({
+                name: APP.EV_NAME.ORDER_UPDATE
+            }, function(ret, err){
+                fnInit();
+            });
+        }
+    });
+
+
+    function fnInit(){
+        if( APP._param.type == 1 ){
+            // fnAjax_base({
+            //     url: 'order/order_store/detail',
+            //     order_id: APP._param.id
+            // }, function(ret){
+            //     APP._list = [ret];
+            //     fnValue('#list', template('list-template', APP));
+            //     $('#list').removeClass('hide');
+            //
+            //     fnBottomInit();
+            //
+            //     fnStatusInit();
+            // }, function(ret){
+            //     fnToast(ret.msg, function(){
+            //         fnClose();
+            //     });
+            // })
+
+            fnGetOrderDetail_base({
+                id: APP._param.id,
+                store_id: APP._store.id
+            }, function(ret){
+                APP._list = [ret];
+                fnValue('#list', template('list-template', APP));
+                $('#list').removeClass('hide');
+
+                fnBottomInit();
+                fnStatusInit();
+            })
+        }else{
+            APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+            fnGet();
+        }
+    }
+
+    function fnGet(){
+        var _param = {
+            url: 'order/order/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE,
+                status: APP.ORDER.status.not.id,
+                user_id: APP._param.id,
+                store_id: APP._store.id
+            }
+        };
+
+        // 用户看自己在商家下未核销的订单
+        if( APP._param.type == 2 ){
+            _param.data.user_id = APP._user.id;
+        }
+
+        fnGetList_base(_param, function(ret){
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            } else if( ret.evType == 'success' ){
+                fnStatusInit();
+
+                fnBottomInit();
+            }
+        })
+    }
+
+    function fnStatusInit(){
+        if( $(APP.dom('#list:not(.hide)')).find('.coupon-img.item').length ){
+            fnValue('#status', fnLanguage_public('未消费'));
+            $('#status').removeClass('hide');
+        }else{
+            $('#status').addClass('hide');
+        }
+    }
+
+    function fnSwitchTable(_el){
+        event && event.stopPropagation();
+        var _data = JSON.parse(fnValue($(_el).closest('.coupon-img').find('i.hide')[0]));
+        $('.sel').removeClass('active');
+        if( +_data.surplus_count ){
+            $(_el).find('.sel').addClass('active');
+        }
+
+        api.execScript({
+            script: 'fnBottomInit('+JSON.stringify(_data)+','+JSON.stringify(APP._store)+');'
+        });
+    }
+
+
+    function fnBottomInit(){
+        if( APP._locUser.user_type == APP.USER_TYPE.user.value || ! + APP._store.auth.is_delivery ){
+            var _els = $(APP.dom('#list:not(.hide)')).find('.coupon-img.item');
+            if( _els.length ){
+                fnSwitchTable(_els.eq(0).find('.img')[0])
+            }else{
+                api.execScript({
+                    script: 'fnBottomInit();'
+                });
+            }
+        }
+    }
+</script>
+</html>

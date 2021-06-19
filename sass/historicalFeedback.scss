@@ -1,0 +1,65 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .con{
+        padding: pxToRem(40) pxToRem(30);
+        @include border-bottom-m;
+        &::after{
+            border-color: #EAEAEA;
+        };
+        &:last-of-type{
+            &::after{
+                border: none;
+            };
+        };
+        .box{
+            @include flex-box();
+            .item{
+                @include flex-item();
+                font-size: pxToRem(30);
+                color: #333;
+                line-height: pxToRem(44);
+                //@extend .font-s;
+            }
+            .time{
+                font-size: pxToRem(22);
+                color: #999;
+                line-height: pxToRem(44);
+            }
+        }
+        .text{
+            padding: pxToRem(34) 0 pxToRem(8);
+            font-size: pxToRem(26);
+            color: #666;
+            line-height: pxToRem(48);
+        }
+        .imgs{
+            overflow: hidden;
+            margin: 0 pxToRem(-16);
+            .img{
+                position: relative;
+                float: left;
+                display: inline-block;
+                width: pxToRem(160);
+                height: pxToRem(160);
+                margin: pxToRem(16);
+                border-radius: pxToRem(8);
+                @include set-bg-img( $name: "icon-background1.png");
+            }
+        }
+        .reply{
+            margin-top: pxToRem(24);
+            padding: pxToRem(28) pxToRem(40);
+            background-color: #F7F7F7;
+            border-radius: pxToRem(4);
+            font-size: pxToRem(26);
+            color: #666;
+            line-height: pxToRem(42);
+            /*.size{
+                @extend .font-m;
+            }*/
+        }
+    }
+}

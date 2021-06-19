@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" href="../../css/ic_img.css">
+</head>
+
+<body style="height: 100%; background: initial;">
+    <div class="control">
+        <div class="exp_title bold">
+            All Deals
+        </div>
+        <div class="right">
+            <div style="margin-right: 22px">
+                <img src="../../image/v2/deals_search.png">
+            </div>
+            <div>
+                <img src="../../image/v2/deals_set.png">
+            </div>
+        </div>
+    </div>
+    <div id="list">
+    </div>
+</body>
+<script type="text/html" id="list-template">
+    {{each _list _value}}
+    <div class="coupon_bgi" tapmode="hover" onclick="toCouponDetail({{_value}})">
+        <div class="margin_left20">
+            <div class="logo">
+                <img style="width: 100%;height: 100%" src="{{_value.product.images[0]}}" alt="">
+            </div>
+            <div class="size12 color_grey flex flex_center margin_top10">{{_value.store.user_nickname}}</div>
+        </div>
+
+        <div class="dashed"></div>
+        <div class="h100 margin_left20" style="width: 200px">
+            <div class="flex item_center">
+                {{if _value.group_type==2}}
+                <span class="tag bg_blue">+1 DEAL</span>
+                {{else}}
+                <span class="tag bg_red">SUPERDEAL</span>
+                {{/if}}
+                <span class="time size12 color_red bold margin_left10"></span>
+                <span class="share margin_left10"></span>
+            </div>
+
+            <div class="specs size12 color_grey margin_top20 ellipsis" style="color: #1E1E1E">{{_value.name}}</div>
+            <div class="margin_top10">
+                <span class="bold size20">£{{_value.now_price}}</span>
+                <span class="size16 through grey">£{{_value.product.price}}</span>
+            </div>
+            <div class="grey size12">Tap to view more details</div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    let current_page = 0,last_page=1,timer=[];
+
+    function toCouponDetail(e){
+        fnOpen("home/couponDetail_win.html",{
+            param:e
+        })
+    }
+    APP.init(function(){
+        fnGet();
+        fnRefresh(function () {
+            fnGet();
+        });
+    });
+    function fnGet() {
+        var _param = {
+            url: 'base/deal/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 10,
+            }
+        };
+        if(APP._param.key){
+            _param.data.category_id=APP._param.key
+        };
+        fnGetList_base(_param, function (ret) {
+            timer.push(...APP._list);
+            setInterval(()=>{
+                for(let i =0;i<timer.length;i++){
+                    const date=new Date().valueOf();
+                    try{
+                        $(".time").eq(i).text(formatduring(timer[i].expire_time*1000-parseInt(date/1000)*1000))
+                    }catch (err){
+
+                    };
+                }
+            },1000)
+            if (ret.evType == 'scrolltobottom') {
+                fnGet();
+            }
+        })
+    }
+</script>
+</html>

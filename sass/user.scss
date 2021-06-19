@@ -1,0 +1,720 @@
+@charset 'utf-8';
+@import 'public/_config.scss';
+
+body {
+  background-color: #ffffff;
+
+  .version{
+    position: absolute;
+    left: 43%;
+    bottom: 0;
+    text-align: center;
+    color: #757575;
+    background: #fff;
+  }
+  .user {
+    /*position: relative;*/
+    height: 100%;
+    background: #fff;
+    .zhedang{
+      width: 100%;
+      position: absolute;
+      top: pxToRem(172);
+      left: 0;
+      background: #f7f7f7;
+      height: 100vh;
+      -moz-opacity: 0.1;
+      opacity: .5;
+      filter: alpha(opacity=50);
+
+    }
+    .feitu{
+      width: 100%;
+      height: pxToRem(600);
+      position: absolute;
+      top: pxToRem(800);
+      left: pxToRem(14);
+      @include set-bg-img( $name: "youhuiquanfeitu.png", $size: 100% 100%, $position: center center);
+
+
+    }
+    .itemButtomT{
+      position: absolute;
+      top: pxToRem(1234);
+      left: pxToRem(60);
+      color: #fff;
+      .shop-nameT{
+        font-size: pxToRem(34);
+        font-weight:600;
+
+        line-height:pxToRem(48);
+      }
+      .market-priceT{
+        font-size: pxToRem(22);
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+
+        line-height: pxToRem(30);
+        margin-top: pxToRem(10);
+      }
+      .timeT{
+        font-size: pxToRem(22);
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        margin-top: pxToRem(28);
+
+      }
+    }
+    //二维码相关
+    .userTopA{
+      padding: pxToRem(64) pxToRem(40) 0;
+      @include set-bg-img( $name: "bolangtu.png", $size: 100% auto, $position: center );
+      height: pxToRem(285);
+      position: relative;
+      &.userTopB{
+        background: #f7f7f7;
+
+      }
+      &.userTopAB{
+        height: pxToRem(324);
+      }
+      .butt{
+        position: absolute;
+        top: pxToRem(1360);
+        margin: 0 pxToRem(80);
+        background: linear-gradient(134deg, #FFAE55 0%, #FF7D24 100%);
+        color: #fff;
+        height: pxToRem(80);
+        text-align: center;
+        line-height:  pxToRem(80);
+        border-radius: pxToRem(60);
+        width: 68%;
+      }
+      .userTopW {
+        @include flex-box($justify: space-between);
+        .userTopWSpan{
+
+          height: pxToRem(70);
+          width: pxToRem(70);
+          margin-left: -15px;
+          margin-top: -5px;
+          @include set-bg-img( $name: 'icon-back.png', $size: pxToRem(44) auto, $position: center center);
+
+
+          &.userTopWSpanA{
+            @include set-bg-img( $name: 'icon-back1.png', $size: pxToRem(44) auto, $position: center center);
+          }
+        }
+
+        .topRight {
+          color: rgba(255,255,255,1);
+          font-size: pxToRem(64);
+          margin-top: pxToRem(34);
+          margin-bottom: pxToRem(50);
+          &.topRightA{
+            color:#939393
+          }
+        }
+      }
+      .contentFloat {
+        //position: absolute;
+        //bottom: pxToRem(-30);
+        //left: pxToRem(30);
+        //width: calc(100% - #{pxToRem(60)});
+        @include flex-box($justify: space-between, $direction: column);
+        //height: pxToRem(144);
+        z-index: 10;
+        background-color: rgba(255,255,255,1);
+        box-shadow: pxToRem(0) pxToRem(4) pxToRem(20) 0 rgba(0,0,0,.1);
+        border-radius: pxToRem(20);
+
+        &.contentFloatA{
+          margin-top: pxToRem(60);
+          @include flex-box($justify:flex-start,$direction: column);
+          height: pxToRem(800);
+
+        }
+        .contentFloatTop {
+          @include flex-box($justify: space-between);
+          .userLeft {
+            @include flex-box();
+            .contentFloatTopUser {
+              //box-shadow: pxToRem(3) pxToRem(3) rgba(240, 237, 241, 0.9);
+              margin-left: pxToRem(40);
+              margin-top: pxToRem(-50);
+              width: pxToRem(130);
+              height: pxToRem(130);
+              border: pxToRem(5) solid rgba(255,255,255,1);
+              border-radius: pxToRem(10);
+              box-shadow:0 pxToRem(4) pxToRem(20) 0 rgba(0,0,0,0.1);
+              @include set-bg-img(
+                      $name: 'icon-logo.png',
+                      $size: pxToRem(130),
+                      $position: center
+              );
+            }
+            .contentFloatTopName {
+              margin-left: pxToRem(25);
+              margin-top: pxToRem(12);
+              .contentFloatTopNameTop {
+                margin-bottom: pxToRem(8);
+                font-size: pxToRem(32);
+                color: rgba(66,66,66,1);
+                font-family:PingFangSC-Medium ;
+                // font-weight:600;
+              }
+              .contentFloatTopNameFooter {
+                width: pxToRem(112);
+                height: pxToRem(30);
+                background-color: #ffe7c9;
+                border-radius: pxToRem(10);
+                font-size: 0;
+                display: flex;
+                i {
+                  font-style: normal;
+                  width: pxToRem(38);
+                  height: pxToRem(38);
+                  display: block;
+                  vertical-align: middle;
+                  margin-top: pxToRem(-4);
+                  @include set-bg-img(
+                          $name: 'huiyuan.png',
+                          $size: pxToRem(38),
+                          $position: center
+                  );
+                }
+                span {
+                  display: block;
+                  height: 100%;
+                  line-height: pxToRem(35);
+                  margin-left: pxToRem(10);
+                  font-size: pxToRem(18);
+                  color: #feaa32;
+                }
+              }
+            }
+          }
+          .contentFloatTopEwm {
+            margin-top: pxToRem(27);
+            width: pxToRem(42);
+            height: pxToRem(42);
+            margin-right: pxToRem(40);
+            @include set-bg-img( $name: "icon-order1.png", $size: pxToRem(42) auto, $position: center center);
+          }
+        }
+
+
+
+        .contentFloatBottom{
+          padding: pxToRem(50) pxToRem(80) pxToRem(50);
+          &.contentFloatBottomA{
+            padding: 0;
+            @include flex-box($justify: center,$align:center,$direction:column);
+            height: 100%;
+          }
+
+          .succes{
+            width: pxToRem(242);
+            height: pxToRem(242);
+            margin-top: pxToRem(-80);
+            img{
+              width: 100%;
+            }
+            p{
+              font-size: pxToRem(32);
+              color: #333;
+              text-align: center;
+            }
+
+          }
+          .Reason{
+            padding-top: pxToRem(160);
+            text-align: center;
+            margin-bottom: pxToRem(-160);
+            font-size: pxToRem(36);
+            color: #707070;
+            span{
+              display: block;
+            }
+
+          }
+          .id{
+            text-align: center;
+            font-size: pxToRem(34);
+          }
+          .code{
+            width: pxToRem(500);
+            height: pxToRem(500);
+
+            margin: pxToRem(40) auto 0;
+            canvas{
+              width: 100%;
+              height: 100%;
+            }
+            img{
+              width: 100%;
+            }
+            hide{
+              display: none!important;
+            }
+          }
+        }
+      }
+
+      .youhuiquan{
+
+        margin-top: pxToRem(50);
+        .coupon-img{
+
+
+          .img{
+            width: 100%;
+            height: pxToRem(290);
+            border-top-left-radius: pxToRem(16);
+            border-top-right-radius: pxToRem(16);
+            @include set-bg-img( $name: "icon-background5.png");
+          }
+
+          .coupon{
+            height: pxToRem(400);
+            //@include set-bg-img( $name: "bolangtu.png");
+            @include set-bg-img( $name: "bolang33.png");
+            //background-color: rgba(150,226,225,1);
+            border-radius: pxToRem(80);
+            margin-top: pxToRem(-16);
+            position: relative;
+            color: #fff;
+
+            .itemT{
+              position: absolute;
+              left: pxToRem(-20);
+              bottom: pxToRem(180);
+              display: inline-block;
+              width: pxToRem(40);
+              height: pxToRem(40);
+              background-color: rgba(244,244,244,1);
+              border-radius: 50%;
+            }
+            .itemY{
+              position: absolute;
+              right: pxToRem(-20);
+              bottom: pxToRem(180);
+              display: inline-block;
+              width: pxToRem(40);
+              height: pxToRem(40);
+              background-color: rgba(244,244,244,1);
+              border-radius: 50%;
+            }
+            .coupon-item{
+              @include flex-box($direction: column);
+
+              .itemTop{
+                @include flex-box($justify:space-between);
+                height: pxToRem(200);
+                border-bottom: pxToRem(4) dashed rgba(244,244,244,1);
+                .itemRight{
+                  height: pxToRem(124);
+                  width: pxToRem(224);
+                  margin-top: pxToRem(40);
+                  margin-right: pxToRem(50);
+                  .img{
+                    width: 100%;
+                    height: 100%;
+                    /*@include set-bg-img( $name: "WololoWhiteTransparent.png");*/
+                    @include set-bg-img( $name: "WololoWhiteTransparent.png", $size: 100% 100%, $position: center center);
+                  }
+
+                }
+              }
+              .itemButtom{
+                height: pxToRem(200);
+                color: #fff;
+                margin: 0 pxToRem(50);
+                .shop-name{
+                  font-size: pxToRem(34);
+                  font-weight:600;
+
+                  line-height:pxToRem(48);
+                }
+                .market-price{
+                  font-size: pxToRem(22);
+                  font-family:PingFangSC-Regular,PingFang SC;
+                  font-weight:400;
+
+                  line-height: pxToRem(30);
+                  margin-top: pxToRem(10);
+                }
+                .time{
+                  font-size: pxToRem(22);
+                  font-family:PingFangSC-Regular,PingFang SC;
+                  font-weight:400;
+
+                  margin-top: pxToRem(10);
+                  margin-top: pxToRem(60);
+                }
+              }
+
+              .itemLeft{
+                @include flex-box($direction: column);
+                margin-left: pxToRem(50);
+                .leftHer{
+                  margin-top: pxToRem(50);
+                  margin-bottom: pxToRem(12);
+                  .size{
+                    font-size: pxToRem(80);
+                    font-weight:900;
+
+                  }
+                  .voucher{
+                    font-size: pxToRem(24);
+                    font-family:PingFangSC-Regular,PingFang SC;
+                    font-weight:400;
+
+                  }
+                }
+
+              }
+              .itemRight{
+
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+
+    //我的页面相关
+    .userTop {
+
+      padding-top: pxToRem(104);
+      @include flex-box($direction: column);
+      background-color: #ff9450;
+      @include set-bg-img( $name: "bolangtu.png", $size: 100% auto, $position: center );
+      height: pxToRem(285);
+      position: relative;
+      .userTopW {
+        @include flex-box($justify: space-between);
+        .userTopWSpan{
+
+          height: pxToRem(28);
+          width: pxToRem(12);
+          @include set-bg-img( $name: 'icon-back.png', $size: pxToRem(28) auto, $position: center center);
+
+        }
+        .topW {
+          font-size: pxToRem1(32);
+          color: rgba(255,255,255,1);
+          padding: pxToRem(18) 0 0 pxToRem(40);
+          font-family: PingFangSC-Medium;
+        }
+        .topRight {
+          .topRightSaoma {
+            display: inline-block;
+            width: pxToRem(40);
+            height: pxToRem(40);
+            padding-top: pxToRem(30);
+            @include set-bg-img(
+              $name: 'saoma.png',
+              $size: pxToRem(40),
+              $position: center
+            );
+          }
+          .topRightXiaoxi {
+            display: inline-block;
+            width: pxToRem(40);
+            height: pxToRem(40);
+            padding: pxToRem(30) pxToRem(30) 0 pxToRem(34);
+            @include set-bg-img(
+              $name: 'xiaoxi.png',
+              $size: pxToRem(40),
+              $position: center
+            );
+          }
+
+          .contentFloatTopEwm {
+            display: inline-block;
+            width: pxToRem(40);
+            height: pxToRem(40);
+            padding-top: pxToRem(30);
+            margin-right: pxToRem(30);
+            @include set-bg-img( $name: "myCode.png", $size: pxToRem(42) auto, $position: center center);
+          }
+
+        }
+      }
+      .contentFloat {
+        position: absolute;
+        bottom: pxToRem(-30);
+        left: pxToRem(30);
+        width: calc(100% - #{pxToRem(60)});
+        @include flex-box($justify: space-between, $direction: column);
+        height: pxToRem(144);
+        z-index: 10;
+        background-color: rgba(255,255,255,1);
+        box-shadow: pxToRem(0) pxToRem(4) pxToRem(20) 0 rgba(0,0,0,.1);
+        border-radius: pxToRem(20);
+        .contentFloatTop {
+          @include flex-box($justify: space-between);
+          .userLeft {
+            width: 100%;
+            @include flex-box();
+            .contentFloatTopUser {
+              //box-shadow: pxToRem(3) pxToRem(3) rgba(240, 237, 241, 0.9);
+              margin-left: pxToRem(40);
+              margin-top: pxToRem(-50);
+              width: pxToRem(130);
+              height: pxToRem(130);
+              border: pxToRem(5) solid rgba(255,255,255,1);
+              border-radius: pxToRem(10);
+              box-shadow:0 pxToRem(4) pxToRem(20) 0 rgba(0,0,0,0.1);
+              @include set-bg-img(
+                $name: 'icon-logo.png',
+                $size: pxToRem(130),
+                $position: center
+              );
+            }
+            .contentFloatTopName {
+              margin-left: pxToRem(25);
+              margin-top: pxToRem(12);
+              width: calc(100% - #{pxToRem(206)});
+              .contentFloatTopNameTop {
+                margin-bottom: pxToRem(8);
+                font-size: pxToRem(32);
+                color: rgba(66,66,66,1);
+                width: 100%;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+                // font-weight:600;
+              }
+              .contentFloatTopNameFooter {
+                width: pxToRem(112);
+                height: pxToRem(30);
+                background-color: #ffe7c9;
+                border-radius: pxToRem(10);
+                font-size: 0;
+                display: flex;
+                i {
+                  font-style: normal;
+                  width: pxToRem(38);
+                  height: pxToRem(38);
+                  display: block;
+                  vertical-align: middle;
+                  margin-top: pxToRem(-4);
+                  @include set-bg-img(
+                    $name: 'huiyuan.png',
+                    $size: pxToRem(38),
+                    $position: center
+                  );
+                }
+                span {
+                  display: block;
+                  height: 100%;
+                  line-height: pxToRem(35);
+                  margin-left: pxToRem(10);
+                  font-size: pxToRem(18);
+                  color: #feaa32;
+                }
+              }
+            }
+          }
+          .contentFloatTopEwm {
+            margin-top: pxToRem(27);
+            width: pxToRem(42);
+            height: pxToRem(42);
+            margin-right: pxToRem(34);
+            @include set-bg-img( $name: "icon-order1.png", $size: pxToRem(42) auto, $position: center center);
+          }
+        }
+        .contentFloatFooter {
+          @include flex-box($justify: space-around);
+          line-height: pxToRem(125);
+          span {
+            width: pxToRem(40);
+            height: pxToRem(34);
+            display: inline-block;
+            vertical-align: middle;
+          }
+          i {
+            font-size: pxToRem(28);
+            color: rgba(66,66,66,1);
+            font-style: normal;
+          }
+          .contentFloatFooterL {
+            span {
+              @include set-bg-img(
+                $name: 'dianpu.png',
+                $size: pxToRem(40),
+                $position: center
+              );
+            }
+          }
+          .contentFloatFooterR {
+            span {
+              @include set-bg-img(
+                $name: 'shouhou.png',
+                $size: pxToRem(40),
+                $position: center
+              );
+            }
+          }
+        }
+      }
+    }
+    .userContent {
+      background-color: #fff;
+      position: relative;
+      margin-bottom: pxToRem(98);
+      .contentTop {
+        @include flex-box($justify: space-around);
+        @include border-bottom-m($style: solid, $color: #efecf0, $scale: 0.5);
+        background-color: rgba(255,255,255,1);
+        margin-bottom: pxToRem(20);
+        /*padding-top: pxToRem(190);
+        padding-bottom: pxToRem(34);*/
+        padding: pxToRem(80) pxToRem(30) pxToRem(30) pxToRem(30);
+        p {
+          font-size: pxToRem(26);
+          color: rgba(153,153,153,1);
+          text-align: center;
+          padding-top: pxToRem(14);
+        }
+        span {
+          width: pxToRem(98);
+          height: pxToRem(98);
+          display: inline-block;
+        }
+        .contTop{
+          width: 25%;
+          text-align: center;
+        }
+        .contentTopA {
+          span {
+            @include set-bg-img(
+              $name: 'zhanghaoguanli.png',
+              $size: pxToRem(92),
+              $position: center
+            );
+          }
+        }
+        .contentTopB {
+          span {
+            @include set-bg-img(
+              $name: 'lianxiwomen.png',
+              $size: pxToRem(92),
+              $position: center
+            );
+          }
+        }
+        .contentTopC {
+          span {
+            @include set-bg-img(
+              $name: 'kefu.png',
+              $size: pxToRem(92),
+              $position: center
+            );
+          }
+        }
+        .contentTopD {
+          span {
+            @include set-bg-img(
+              $name: 'shezhi.png',
+              $size: pxToRem(92),
+              $position: center
+            );
+          }
+        }
+      }
+
+      .contentBottom {
+        @include border-top-m($style: solid, $color: #efecf0, $scale: 0.5);
+        padding: pxToRem(40) pxToRem(30);
+        background-color: rgba(255,255,255,1);
+        line-height: pxToRem(109);
+        li {
+          @include flex-box($justify: space-between);
+          @include border-bottom-m($style: solid, $color: #eee, $scale: 0.5);
+          color: #757575;
+          font-size: pxToRem(28);
+          font-family: PingFangSC-Regular;
+          a {
+            color: rgba(117,117,117,1);
+            font-size: pxToRem(26);
+          }
+          i {
+            display: inline-block;
+            width: pxToRem(30);
+            @include set-bg-img(
+              $name: 'goOn.png',
+              $size: pxToRem(14),
+              $position: center
+            );
+          }
+        }
+      }
+    }
+
+    .userBottom {
+      @include border-top-m($style: solid, $color: #f1eff2, $scale: 0.5);
+      background-color: rgba(255,255,255,1);
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      height: pxToRem(98);
+      padding-top: pxToRem(10);
+      .userBottomDiv {
+        @include flex-box($justify: space-around);
+        span {
+          width: pxToRem(42);
+          height: pxToRem(50);
+          display: inline-block;
+        }
+        p {
+          color: rgba(201,201,201,1);
+          font-size: pxToRem(20);
+          text-align: center;
+        }
+        .userBottomLiA {
+          span {
+            @include set-bg-img(
+              $name: 'shouye.png',
+              $size: pxToRem(42),
+              $position: center
+            );
+          }
+        }
+        .userBottomLiB {
+          span {
+            @include set-bg-img(
+              $name: 'pingtuan.png',
+              $size: pxToRem(42),
+              $position: center
+            );
+          }
+        }
+        .userBottomLiC {
+          span {
+            @include set-bg-img(
+              $name: 'dingdan.png',
+              $size: pxToRem(42),
+              $position: center
+            );
+          }
+        }
+        .userBottomLiD {
+          span {
+            @include set-bg-img(
+              $name: 'wode.png',
+              $size: pxToRem(42),
+              $position: center
+            );
+          }
+        }
+      }
+    }
+  }
+}

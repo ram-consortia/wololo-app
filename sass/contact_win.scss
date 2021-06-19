@@ -1,0 +1,78 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .main{
+        height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+        .header{
+            margin-top: pxToRem(20);
+          }
+          .wrap{
+            flex: 1;
+            overflow: auto;
+              @include flex-item();
+              padding: 0 pxToRem(40) pxToRem(60);
+              @include flex-box($justify: space-between,$direction: column);
+              .textarea_cont{
+                margin:pxToRem(60) 0 ;
+                padding: pxToRem(30)  pxToRem(24);
+                border-radius:12px;
+                border: 1px solid #D0D3DD;
+                min-height: pxToRem1(230);
+                box-sizing: border-box;
+                font-size:pxToRem1(16);
+                font-family: Helvetica Neue;
+                color:#707070;
+              }
+              .radio_wrap{
+                padding: pxToRem1(20) 0 pxToRem1(12);
+                border-bottom: 1px solid #EEEEEE;
+                @include flex-box($justify: space-between);
+                .radio_left{
+                    @include flex-box($direction: column);
+                  flex: 1;
+                    color: #757575;
+                    font-family: PingFangSC-Regular;
+                    .title{
+                        font-size:pxToRem1(14);
+                        line-height: pxToRem1(20);
+                    }
+                    .tips{
+                        font-size:pxToRem1(12);
+                        line-height: pxToRem1(14);
+                    }
+                }
+                .radio_right{
+                    width: pxToRem1(48);
+                    height: pxToRem1(30);
+                    position: relative;
+                    left: 0;
+
+                    @include set-bg-img( $name: 'v2/ic_incative.png', $size: pxToRem1(28) auto);
+                }
+                &.checked{
+                    .radio_right{
+                        @include set-bg-img( $name: 'v2/ic_incative_checked.png', $size: pxToRem1(28) auto);
+                    }
+                }
+            }
+              .bottom{
+                  .quit{
+                      margin:0 pxToRem1(60) 0;
+                      height: pxToRem(84);
+                      text-align: center;
+                      line-height: pxToRem(84);
+                      font-size: pxToRem(30);
+                      color: rgba(255,255,255,1);
+                      border-radius: pxToRem(40);
+                      background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+                      box-shadow: 5px 10px 40px rgba(255,174,85,0.5);
+                  }
+              }
+          }
+    }
+}

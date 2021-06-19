@@ -1,0 +1,192 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .box{
+                        
+                    }
+                    .center{
+                        padding: pxToRem(40);
+                        .business-top{
+                            margin-bottom: pxToRem(40);
+                            @include flex-box();
+                            border: pxToRem(2) solid #EAEAEA;
+                            padding: pxToRem(32) pxToRem(40) pxToRem(36);
+                            .business-item{
+                                @include flex-item();
+                                .name{
+                                    font-size: pxToRem(36);
+                                    color: #333;
+                                    line-height: pxToRem(50);
+                                    font-weight: bold;
+                                }
+                                .pag{
+                                    margin: pxToRem(18) 0;
+                                    .hot{
+                                        display: inline-block;
+                                        font-size: pxToRem(26);
+                                        color: #fff;
+                                        height: pxToRem(36);
+                                        line-height: pxToRem(36);
+                                        padding: 0 pxToRem(10);
+                                        border-radius: pxToRem(36);
+                                        margin-right: pxToRem(8);
+                                        vertical-align: middle;
+                                        background: linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+                                    }
+                                    .branch{
+                                        font-size: pxToRem(22);
+                                        color: $bg-color;
+                                        height: pxToRem(28);
+                                        line-height: pxToRem(28);
+                                        padding: 0 pxToRem(8);
+                                        border: pxToRem(2) solid $bg-color;
+                                        border-radius: pxToRem(2);
+                                        margin-right: pxToRem(20);
+                                        @include prefixCss3($property: align-self, $value: center);
+                                    }
+                                }
+                                .line{
+                                    padding: pxToRem(13) 0;
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(34);
+                                    .color{
+                                        color: #666;
+                                    }
+                                    .orange-color{
+                                        color: $bg-color;
+                                        .size{
+                                            font-size: pxToRem(34);
+                                            font-weight: bold;
+                                            @extend .font-din;
+                                        }
+                                    }
+                                    .edit{
+                                        display: inline-block;
+                                        width: pxToRem(34);
+                                        height: pxToRem(34);
+                                        margin-left: pxToRem(20);
+                                        vertical-align: bottom;
+                                        @include set-bg-img( $name: "web-edit.png", $size: pxToRem(34) auto, $position: center center);
+                                    }
+                                }
+                            }
+                            .business-img{
+                                margin-left: pxToRem(50);
+                                .merchant{
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(50);
+                                    &.merchant-center{
+                                        text-align: center;
+                                    }
+                                }
+                                .merchant-img{
+                                    width: pxToRem(440);
+                                    height: pxToRem(330);
+                                    margin-top: pxToRem(18);
+                                    @include set-bg-img( $name: "icon-background4.png");
+                                }
+                                .code-img{
+                                    position: relative;
+                                    margin: pxToRem(22) 0 pxToRem(16);
+                                    width: pxToRem(280);
+                                    height: pxToRem(280);
+                                    border: pxToRem(2) solid #F1F1F1;
+                                    img{
+                                        position: absolute;
+                                        left: 50%;
+                                        top: 50%;
+                                        @include prefixCss3($property: transform, $value: translate(-50%, -50%));
+                                        width: pxToRem(240);
+                                        height: pxToRem(240);
+                                    }
+                                }
+                            }
+                        }
+                        .business-address{
+                            border: pxToRem(2) solid #EAEAEA;
+                            .business{
+                                padding: pxToRem(30) pxToRem(40);
+                                font-size: pxToRem(28);
+                                color: #333;
+                                line-height: pxToRem(40);
+                                font-weight: bold;
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                .edit-word{
+                                    font-size: pxToRem(24);
+                                    font-weight: normal;
+                                    float: right;
+                                }
+                            }
+                            .address-ul{
+                                padding: pxToRem(2) pxToRem(40);
+                                .address-li{
+                                    padding: pxToRem(20) 0;
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(34);
+                                    @include flex-box();
+                                    .input{
+                                        @include flex-item();
+                                    }
+                                    .name-right{
+                                        margin-right: pxToRem(46);
+                                        color: #666;
+                                        .star{
+                                            color: #FF4F00;
+                                        }
+                                    }
+                                }
+                            }
+                            .location{
+                                padding: pxToRem(20) pxToRem(40) pxToRem(40);
+                                font-size: pxToRem(24);
+                                color: #666;
+                                line-height: pxToRem(34);
+                            }
+
+                            .map-wrap{
+                                position: relative;
+                                height: pxToRem(616);
+                                width: 100%;
+                                .map{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                                .icon-location{
+                                    z-index: 2;
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    width: pxToRem(50);
+                                    height: pxToRem(100);
+                                    @include set-bg-img( $name: "icon-location2.png", $size: 100% 100%, $position: center center);
+                                    @include prefixCss3( $property: transform, $value: translate(-50%, -100%));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+}

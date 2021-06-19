@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">核销订单</div>
+        </header>
+
+        <div class="flex-item-vertical">
+
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{(_param.title || '核销订单') | fnLanguage_public}}</div>
+        </header>
+
+        <div class="flex-item-vertical">
+
+        </div>
+        <div class="bottom hide" id="bottom">
+            <!-- <div class="bottom-box">
+                <div class="bottom-item">核销数量 可用 3 个</div>
+                <div class="number">
+                    加号，减号不能点击分别加no-onclick
+                    <span class="reduce no-onclick"></span>
+                    <div class="num">
+                        <input type="text" readonly value="1">
+                    </div>
+                    <span class="add"></span>
+                </div>
+            </div>
+            <div class="sure" tapmode="hover" onclick="fnOpen('my/refundSubmission_win.html')">确认核销</div> -->
+        </div>
+    </script>
+
+    <script type="text/html" id="bottom-template">
+        <div class="bottom-box">
+            <div class="bottom-item">{{'核销数量' | fnLanguage_public}} {{'可用' | fnLanguage_public}} {{_data.surplus_count}} {{'个' | fnLanguage_public}}</div>
+            <div class="number {{(_locUser.user_type == USER_TYPE.user.value && +_store.auth.is_delivery) && 'hide'}}">
+                <span tapmode="hover" onclick="fnEditNum()" class="reduce"></span>
+                <span class="num">
+                    <input class="no-onclick" id="count" type="text" readonly>
+                </span>
+                <span tapmode="hover" onclick="fnEditNum(true)" class="add"></span>
+            </div>
+        </div>
+
+        {{if _locUser.user_type == USER_TYPE.user.value && +_store.auth.is_delivery}}
+            <div class="sure" tapmode="hover" onclick="fnJumpUse()">{{'确认使用' | fnLanguage_public}}</div>
+        {{else}}
+            <div class="sure" tapmode="hover" onclick="fnSubmit()">{{'确认核销' | fnLanguage_public}}</div>
+        {{/if}}
+
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                APP._locUser = _user.user;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+                APP._htmlPath = 'business/writeOff_frm.html';
+                fnOpen(APP._htmlPath, {
+                    rect: {
+                        marginTop: $('.header').height(),
+                        marginBottom: $('.bottom').height()
+                    }
+                });
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    });
+
+    function fnBottomInit(_data, _store){
+        APP._data = _data;
+        APP._store = _store;
+        var _marginBottom = 0;
+        if( APP._data && +APP._data.surplus_count ){
+            fnValue('#bottom', template('bottom-template', APP));
+            $('#bottom').removeClass('hide')
+            APP.fixTabBar('.bottom');
+            fnEditNum(true);
+            _marginBottom = $('.bottom').height();
+        }else{
+            $('#bottom').addClass('hide')
+        }
+
+        api.setFrameAttr({
+            name: fnGetPathName_public(APP._htmlPath),
+            rect: {
+                marginTop: $('.header').height(),
+                marginBottom: _marginBottom
+            }
+        });
+    }
+
+
+    function fnEditNum(_isAdd){
+        var _count = +(fnValue('#count') || 0),
+            _maxCount = +APP._data.surplus_count;
+
+        if( _isAdd ){
+            if( _count < _maxCount ){
+                fnValue('#count', ++_count);
+            }
+        }else{
+            if( _count > 1 ){
+                fnValue('#count', --_count);
+            }
+        }
+
+        if( _count < _maxCount ){
+            $('.add').removeClass('no-onclick');
+        }else{
+            $('.add').addClass('no-onclick');
+        }
+
+        if( _count <= 1 ){
+            $('.reduce').addClass('no-onclick');
+        }else{
+            $('.reduce').removeClass('no-onclick');
+        }
+    }
+
+
+    function fnSubmit(){
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '确定核销订单？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // alert('点击测试环境')
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    // alert('点击正式环境')
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            var _param = {
+                url: 'order/order_store/write_off',
+                method: 'POST',
+                data: {
+                    order_id: APP._data.id,
+                    count: fnValue('#count')
+                }
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    api.sendEvent({
+                        name: APP.EV_NAME.ORDER_UPDATE,
+                        extra: {}
+                    });
+
+                    fnOpen('my/refundSubmission_win.html', {
+                        param: {
+                            type: 6,
+                            msg: [fnLanguage_public('共使用'), _param.data.count, fnLanguage_public('张'), fnGetRelation_public({
+                                target: APP._data.coupon.type,                      //必填 |           |  String/Number   |  需要对比的值
+                                key: 'id',                      //选填 |     'id'  |  String          |  需要对比数据中的 key 值
+                                resKey: 'name',                //选填 |     'id'  |  String          |  需要对比数据中返回的 key 值
+                                data: APP.COUPON.type
+                            })].join('')
+                        }
+                    })
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+    function fnJumpUse(){
+        fnJump_base('order/orderInformation_win.html', APP._data.id)
+    }
+</script>
+</html>

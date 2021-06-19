@@ -1,0 +1,370 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body class="background">
+    <div class="main" id="wrap">
+        <!-- <div class="content">
+            <div class="discount">
+                <div class="coupon-img coupon-background" tapmode="hover" onclick="fnOpen('business/orderDetails_win.html')">
+                    <div class="img">
+                        <span class="receipt">待接单</span>
+                    </div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">代金券</p>
+                                <p class="consume">数量<br/>2 个</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">特色单品节日优惠</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-box">
+                        <div class="user-item">用户ID ：7823096654</div>
+                        默认拒绝、已配送、未评价、去回复、已回复，加receipt接单
+                        <span class="refuse" tapmode="hover" onclick="fnEmpty()">拒绝</span>
+                        <span class="refuse receipt" tapmode="hover" onclick="fnEmpty()">接单</span>
+                    </div>
+                </div>
+
+                <div class="coupon-img coupon-background" tapmode="hover" onclick="fnOpen('business/orderDetails_win.html')">
+                    <div class="img">
+                        <span class="receipt">待接单</span>
+                    </div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">代金券</p>
+                                <p class="consume">数量<br/>2 个</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">特色单品节日优惠</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03有效</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-box">
+                        <div class="user-item">用户ID ：7823096654</div>
+                        默认拒绝、已配送、未评价、去回复、已回复，加receipt接单
+                        <span class="refuse" tapmode="hover" onclick="fnEmpty()">拒绝</span>
+                        <span class="refuse receipt" tapmode="hover" onclick="fnEmpty()">接单</span>
+                    </div>
+                </div>
+
+                <div class="coupon-img coupon-background" tapmode="hover" onclick="fnOpen('business/orderDetails_win.html')">
+                    <div class="img">
+                        <span class="receipt">制作中</span>
+                    </div>
+                    <div class="coupon">
+                        <div class="coupon-item">
+                            <div class="price">
+                                <p class="arch">单品券</p>
+                                <p class="consume">数量<br/>2 个</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="message">
+                                <div class="message-item">
+                                    <p class="shop-name">西单大悦城美食城</p>
+                                    <div class="base">
+                                        <p class="market-price">
+                                            <span class="market">门市价￡120</span>
+                                        </p>
+                                        <p class="time">2019.01.04 - 2019.01.03</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-box">
+                        <div class="user-item">用户ID ：7823096654</div>
+                        <span class="refuse" tapmode="hover" onclick="fnOpen('business/shopScore_win.html')">去回复</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="content">
+            <div class="discount hide" id="list">
+
+            </div>
+            <div id="no-data" class="hide">{{'暂无数据' | fnLanguage_public}}</div>
+        </div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list _value}}
+            <div class="coupon-img coupon-background" tapmode="hover" onclick="fnJump_base('business/orderDetails_win.html', {{_value.id}})">
+                <div class="img" data-img-url="{{_value | fnGetCouponImage_base}}" data-img-type="!avatar">
+                    <span class="receipt">{{ {'target': _value.status, 'key': 'id', 'resKey': 'name', 'data': ORDER.store_status} | fnGetRelation_public }}</span>
+                </div>
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="arch">{{ {'target': _value.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</p>
+                            <p class="consume">{{'数量' | fnLanguage_public}}<br/>
+                                {{if _user.auth.is_delivery}}
+                                    {{if _value.write_off_log && _value.write_off_log.length}}
+                                        {{_value.write_off_log[0]['count']}}
+                                    {{/if}}
+                                {{else}}
+                                    {{_value.order.surplus_count}}
+                                {{/if}} {{'个' | fnLanguage_public}}
+                            </p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">{{_value.coupon.name}}</p>
+                                <div class="base">
+                                    <p class="market-price">
+                                        <span class="market">{{'门市价' | fnLanguage_public}}￡{{_value.coupon.price}}</span>
+                                    </p>
+                                    <p class="time">
+                                        {{_value.coupon | fnGetCouponDateMsg_base}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-box">
+                    <div class="user-item">{{'用户ID' | fnLanguage_public}} ：{{_value.user.code_id}}</div>
+
+                    {{set _isoperation = YES}}
+                    {{if _user.auth.is_delivery && _value.status == ORDER.store_status.not.id}}
+                        {{set _isoperation = NO}}
+                    {{/if}}
+
+                    {{if _isoperation}}
+
+
+                        {{if _value.status == ORDER.store_status.wait.id }}
+                            {{set _isoperation = NO}}
+                            <!-- 默认拒绝、已配送、未评价、去回复、已回复，加receipt接单 -->
+                            <span class="refuse" tapmode="hover" onclick="fnRefuseOrder({{_value.id}})">{{'拒绝' | fnLanguage_public}}</span>
+                            <span class="refuse receipt" tapmode="hover" onclick="fnReceiptOrder({{_value.id}})">{{'接单' | fnLanguage_public}}</span>
+                        {{else if _value.status == ORDER.store_status.in.id}}
+                            {{set _isoperation = NO}}
+                            <span class="refuse receipt" tapmode="hover" onclick="fnDeliveryOrder({{_value.id}})">{{'已配送' | fnLanguage_public}}</span>
+                        {{else}}
+                            {{if +_value.order.surplus_count}}
+
+                            {{else}}
+                                {{set _isoperation = NO}}
+                                <span class="refuse" tapmode="hover" onclick="fnDelete({{_value.id}})">{{'删除订单' | fnLanguage_public}}</span>
+
+
+                                {{if _value.order.comment && _value.order.comment.id}}
+                                    <span class="refuse receipt" tapmode="hover" onclick="fnJump_base('home/evaluateDetail_win.html', {{_value.order.comment.id}})">
+                                        {{if _value.order.comment.reply}}
+                                            {{'已回复' | fnLanguage_public}}
+                                        {{else}}
+                                            {{'去回复' | fnLanguage_public}}
+                                        {{/if}}
+                                    </span>
+                                {{else}}
+                                    <span class="refuse">{{'未评价' | fnLanguage_public}}</span>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+
+                    {{/if}}
+
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+
+        api.addEventListener({
+            name: APP.EV_NAME.ORDER_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.JPUSH_JUMP
+        }, function(ret, err){
+            fnInit();
+        });
+
+
+        api.addEventListener({
+            name: ['start', api.winName].join()
+        }, function(ret, err){
+            debugAlert(3333333, arguments)
+            if( ret.value.frameName ){
+                if( ret.value.frameName == api.frameName ){
+                    _start();
+                }
+            }else{
+                _start();
+            }
+
+            function _start(){
+                APP._date = ret.value.date || new Date().Format('yyyy-MM');
+                fnStart();
+            }
+        });
+    });
+
+
+    function fnInit(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                setTimeout(function(){
+                    api.execScript({
+                        script: 'fnStart("'+api.frameName+'");'
+                    });
+                }, 100)
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+    function fnStart(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+    function fnGet(){
+        var _param = {
+            url: 'order/order_store/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 4
+                // limit: APP.PAGE.SKIP_PAGE
+            }
+        };
+        if( APP._date ){
+            _param.data.date = APP._date;
+        }
+
+        if( APP._param._groupParam ){
+            _param.data.status = APP._param._groupParam;
+        }
+
+        fnGetList_base(_param, function(ret){
+            // debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+
+    function fnRefuseOrder(_id){
+        fnRefuseOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg);
+        })
+    }
+
+    function fnReceiptOrder(_id){
+        fnReceiptOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg);
+        })
+    }
+
+    function fnDeliveryOrder(_id){
+        fnDeliveryOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg);
+        })
+    }
+
+    function fnDelete(_id){
+        event && event.stopPropagation();
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '是否要删除订单？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // alert('点击测试环境')
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    // alert('点击正式环境')
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            var _param = {
+                url: 'order/order_store/delete',
+                method: 'POST',
+                data: {
+                    id: _id
+                }
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    fnInit();
+                    fnToast(ret.msg, function(){
+
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+</script>
+</html>

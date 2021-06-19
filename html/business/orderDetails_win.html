@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body class="background">
+    <div class="main flex-vertical" id="wrap">
+
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'订单详情' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="content flex-item-vertical">
+            <div class="discount">
+                <div class="person">
+                    <span class="photo" data-img-url="{{_data.user.avatar}}" data-img-type="!avatar"></span>
+                    <div class="person-message">
+
+                        <div class="name">
+                            <div class="text">{{_data.user | fnShowUserNickname_base}}</div>
+                            <span class="consumption">{{ {'target': _data.status, 'key': 'id', 'resKey': 'name', 'data': ORDE.store_status} | fnGetRelation_public }}</span>
+                        </div>
+                        <div class="id">
+                            <div class="text">ID：{{_data.user.code_id}}</div>
+                            {{if _data.status == ORDER.store_status.road.id}}
+                                {{if _data.delivery_completed_expire_time_temp > 0}}
+                                    <p data-count-down="{{_data.delivery_completed_expire_time_temp}}" class="time js-count-down">{{'还剩' | fnLanguage_public}}<span class="js-hour">0</span>{{'时' | fnLanguage_public}}<span class="js-minute">0</span>{{'分自动完成' | fnLanguage_public}}</p>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+                {{if _data.order.order_address && _data.order.order_address.id}}
+                    {{if [ORDER.store_status.wait.id, ORDER.store_status.in.id, ORDER.store_status.road.id].indexOf(+_data.status) != -1}}
+                        <div class="location">
+                            <div class="location-box">
+                                <div class="information">
+                                    <div class="info-name">{{_data.order.order_address.full_name}}</div>
+                                    <span class="phone">{{_data.order.order_address.mobile}}</span>
+                                </div>
+                                <div class="loca pre-text">{{_data.order.order_address.address}}</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
+                <div class="coupon-img" tapmode="hover" onclick="fnJump_base('business/couponDetails_win.html', {{_data.coupon.id}})">
+                    <div class="img" data-img-url="{{_data | fnGetCouponImage_base}}" data-img-type="!avatar"></div>
+                    <div class="coupon-edge">
+                        <p class="shopping">{{_data.store | fnShowUserNickname_base}}</p>
+                        <div class="coupon">
+                            <div class="coupon-item">
+                                <div class="price">
+                                    <p class="arch">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</p>
+                                    <p class="consume">{{'数量' | fnLanguage_public}}<br/>
+                                        {{if _user.auth.is_delivery}}
+                                            {{if _data.write_off_log && _data.write_off_log.length}}
+                                                {{_data.write_off_log[0]['count']}}
+                                            {{/if}}
+                                        {{else}}
+                                            {{_data.order.surplus_count}}
+                                        {{/if}} {{'个' | fnLanguage_public}}
+                                    </p>
+                                </div>
+                                <div class="line"></div>
+                                <div class="message">
+                                    <div class="message-item">
+                                        <p class="shop-name">{{_data.coupon.name}}</p>
+                                        <div class="base">
+                                            <p class="market-price">
+                                                <span class="market">{{'门市价' | fnLanguage_public}}￡{{_data.coupon.price}}</span>
+                                            </p>
+                                            <p class="time">
+                                                {{_data.coupon | fnGetCouponDateMsg_base}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{set _isoperation = YES}}
+                {{if _user.auth.is_delivery && _data.status == ORDER.store_status.not.id}}
+                    {{set _isoperation = NO}}
+                {{/if}}
+
+                {{if _isoperation}}
+                    {{if _data.write_off_log && _data.write_off_log.length}}
+                        {{each _data.write_off_log}}
+                            <div class="ul">
+                                <div class="li-first">{{'核销记录' | fnLanguage_public}}{{$index | fnNumberToUpperCase_base}}</div>
+                                <div class="li"><span class="width">{{'核销数量' | fnLanguage_public}}</span>x{{$value.count}}</div>
+                                <div class="li"><span class="width">{{'下单时间' | fnLanguage_public}}</span>{{$value.create_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                                {{if $value.refuse_time}}
+                                    <div class="li"><span class="width">{{'拒绝时间' | fnLanguage_public}}</span>{{$value.refuse_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                                {{/if}}
+                                {{if $value.receipt_time}}
+                                    <div class="li"><span class="width">{{'接单时间' | fnLanguage_public}}</span>{{$value.receipt_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                                {{/if}}
+                                {{if $value.delivery_time}}
+                                    <div class="li"><span class="width">{{'配送时间' | fnLanguage_public}}</span>{{$value.delivery_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                                {{/if}}
+                                {{if $value.completed_time}}
+                                    <div class="li"><span class="width">{{'完成时间' | fnLanguage_public}}</span>{{$value.completed_time | dateFormat 'yyyy/MM/dd hh:mm'}}</div>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    {{/if}}
+
+                {{/if}}
+            </div>
+        </div>
+
+
+
+        {{if _data.status == ORDER.store_status.wait.id }}
+            {{set _isoperation = NO}}
+            <div class="footer">
+                <div class="bot">
+                    <p class="bot-item"></p>
+                    <!-- 默认已回复、拒绝、已配送、删除订单，加not-evaluated未评价、未回复、接单 -->
+                    <span tapmode="hover" onclick="fnRefuseOrder({{_data.id}})" class="del-order">{{'拒绝' | fnLanguage_public}}</span>
+                    <span tapmode="hover" onclick="fnReceiptOrder({{_data.id}})" class="del-order not-evaluated">{{'接单' | fnLanguage_public}}</span>
+                </div>
+            </div>
+        {{else if _data.status == ORDER.store_status.in.id}}
+            {{set _isoperation = NO}}
+            <div class="footer">
+                <div class="bot">
+                    <p class="bot-item"></p>
+                    <!-- 默认已回复、拒绝、已配送、删除订单，加not-evaluated未评价、未回复、接单 -->
+                    <span tapmode="hover" onclick="fnDeliveryOrder({{_data.id}})" class="del-order not-evaluated">{{'已配送' | fnLanguage_public}}</span>
+                </div>
+            </div>
+        {{else}}
+            {{if +_data.order.surplus_count}}
+
+            {{else}}
+                {{set _isoperation = NO}}
+                <div class="footer">
+                    <div class="bot">
+                        <p class="bot-item"></p>
+                        <!-- 默认已回复、拒绝、已配送、删除订单，加not-evaluated未评价、未回复、接单 -->
+                        <span tapmode="hover" onclick="fnDelete()" class="del-order">{{'删除订单' | fnLanguage_public}}</span>
+
+                        {{if _data.order.comment && _data.order.comment.id}}
+                            <span class="del-order not-evaluated" tapmode="hover" onclick="fnJump_base('home/evaluateDetail_win.html', {{_data.order.comment.id}})">
+                                {{if _data.order.comment.reply}}
+                                    {{'已回复' | fnLanguage_public}}
+                                {{else}}
+                                    {{'去回复' | fnLanguage_public}}
+                                {{/if}}
+                            </span>
+                        {{else}}
+                            <span class="del-order">{{'未评价' | fnLanguage_public}}</span>
+                        {{/if}}
+                    </div>
+                </div>
+                <!-- <div class="bot">
+                    <span class="del-order">删除订单</span>
+                    <span class="del-order not-evaluated">未评价</span>
+                </div> -->
+            {{/if}}
+        {{/if}}
+
+
+        {{if +_user.auth.is_delivery }}
+            {{set _isoperation = NO}}
+        {{/if}}
+
+        {{if _isoperation}}
+            <div class="bottom">
+                <div class="bottom-box">
+                    <div class="bottom-item">{{'核销数量' | fnLanguage_public}} {{'可用' | fnLanguage_public}} {{_data.order.surplus_count}} {{'个' | fnLanguage_public}}</div>
+                    <div class="number">
+                        <span tapmode="hover" onclick="fnEditNum()" class="reduce"></span>
+                        <span class="num">
+                            <input id="count" type="text" readonly>
+                        </span>
+                        <span tapmode="hover" onclick="fnEditNum(true)" class="add"></span>
+                    </div>
+                </div>
+                <div class="sure" tapmode="hover" onclick="fnSubmit()">{{'确认核销' | fnLanguage_public}}</div>
+            </div>
+        {{/if}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+
+        api.addEventListener({
+            name: APP.EV_NAME.ORDER_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+    });
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnAjax_base({
+                    url: 'order/order_store/detail',
+                    id: APP._param.id
+                }, function(ret){
+                    // ret = {"id":1,"store_id":27,"order_id":65,"coupon_id":8,"user_id":31,"update_time":1578032934,"create_time":1578032934,"status":1,"coupon":{"id":8,"type":3,"create_time":1577695704,"update_time":1577695709,"store_id":27,"limit_collar":5,"validity_type":3,"total":5,"upper_limit_time":7200,"price":"100.00","price_group":["100","49","10"],"name":"哈哈","image":"http://jf.suuzi.cn/upload/system/20191228/beebf2c32c33d2e470aef4bc31fcdde8.png","is_upper":1,"total_grant":0,"total_pay":0,"delete_time":0,"validity_start_time":0,"validity_end_time":0,"validity_day":100,"participants":0},"user":{"id":31,"user_nickname":"","code_id":"jJOG2020010298995757","avatar":""},"order":{"id":65,"pay_coupon_count":1}}
+                    // console.log( ret )
+                    APP._data = ret;
+                    fnValue('#wrap', template('wrap-template', APP));
+                    APP.fixStatusBar( $('.header')[0] );
+
+                    if( $('.bottom').length ){
+                        APP.fixTabBar('.bottom');
+                    }else{
+                        if( $('.footer').length ){
+                            APP.fixTabBar('.footer');
+                        }
+                    }
+
+                    if( $('#count').length ){
+                        fnEditNum(true);
+                    }
+                })
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+
+    function fnEditNum(_isAdd){
+        var _count = +(fnValue('#count') || 0),
+            _maxCount = +APP._data.order.surplus_count;
+
+        if( _isAdd ){
+            if( _count < _maxCount ){
+                fnValue('#count', ++_count);
+            }
+        }else{
+            if( _count > 1 ){
+                fnValue('#count', --_count);
+            }
+        }
+
+        if( _count < _maxCount ){
+            $('.add').removeClass('no-onclick');
+        }else{
+            $('.add').addClass('no-onclick');
+        }
+
+        if( _count <= 1 ){
+            $('.reduce').addClass('no-onclick');
+        }else{
+            $('.reduce').removeClass('no-onclick');
+        }
+    }
+
+
+    function fnSubmit(){
+        var _param = {
+            url: 'order/order_store/write_off',
+            method: 'POST',
+            data: {
+                id: APP._param.id,
+                count: fnValue('#count')
+            }
+        }
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                api.sendEvent({
+                    name: APP.EV_NAME.ORDER_UPDATE,
+                    extra: {}
+                });
+
+                fnOpen('my/refundSubmission_win.html', {
+                    param: {
+                        type: 6,
+                        msg: [fnLanguage_public('共使用'), _param.data.count, fnLanguage_public('张'), fnGetRelation_public({
+                            target: APP._data.coupon.type,                      //必填 |           |  String/Number   |  需要对比的值
+                            key: 'id',                      //选填 |     'id'  |  String          |  需要对比数据中的 key 值
+                            resKey: 'name',                //选填 |     'id'  |  String          |  需要对比数据中返回的 key 值
+                            data: APP.COUPON.type
+                        })].join('')
+                    }
+                })
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+
+
+
+    function fnDelete(){
+        event && event.stopPropagation();
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '是否要删除订单？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // alert('点击测试环境')
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    // alert('点击正式环境')
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            var _param = {
+                url: 'order/order_store/delete',
+                method: 'POST',
+                data: {
+                    id: APP._param.id
+                }
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    api.sendEvent({
+                        name: APP.EV_NAME.ORDER_UPDATE,
+                        extra: {}
+                    });
+                    fnToast(ret.msg, function(){
+                        fnClose();
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+    function fnRefuseOrder(_id){
+        fnRefuseOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg, function(){
+                fnClose();
+            });
+        })
+    }
+
+    function fnReceiptOrder(_id){
+        fnReceiptOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg);
+        })
+    }
+
+    function fnDeliveryOrder(_id){
+        fnDeliveryOrder_base({
+            id: _id
+        }, function(ret){
+            fnToast(ret.msg);
+        })
+    }
+</script>
+</html>

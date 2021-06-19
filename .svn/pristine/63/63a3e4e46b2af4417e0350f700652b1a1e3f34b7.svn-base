@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <style>
+        .card{
+            height: 440px;
+            background-color: #F2F7FB;
+        }
+        .card1{
+            height: 342px;
+            box-shadow: #0000000F 0px 3px 12px;
+            background-color: #ffffff;
+            margin: 0 20px;
+            border-radius: 8px;
+            padding: 20px 0;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .header{
+            height: 68px!important;
+        }
+        .logo{
+            left: 29px;
+            top: -44px;
+            width: 83px;
+            height: 94px;
+        }
+        .purchase{
+            height: 35px;
+        }
+        .card_round_left{
+            position: absolute;
+            left: -15px;
+            border-radius: 50%;
+            background-color: #F2F7FB;
+            top: 190px;
+            height: 30px;
+            width: 30px;
+        }
+        .card_round_right{
+            position: absolute;
+            right: -15px;
+            background-color: #F2F7FB;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            top: 190px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pop" id="wrap"  onclick="fnClose1()" tapmode="hover">
+
+    </div>
+    <script type="text/html" id="wrap-template">
+        <div class="card" tapmode="hover" onclick="event.cancelBubble=true" style="overflow: visible">
+            <div class="flex justify_end relative header">
+                <div class="bold size24" style="z-index: 10">Yay ! Deal Joined</div>
+                <img src="../../image/v2/img_gift_joined.png" class="absolute logo">
+            </div>
+            <div class="card1">
+                <div class="card_round_left"></div>
+                <div class="card_round_right"></div>
+                <div class="flex flex_between">
+                    <div class="tag_default bg_red" style="margin-left: -2px;height: 12px">
+                        {{group_type==1?'SUPERDEAL':'+1 DEAL'}}
+                    </div>
+                    <div class="tx_right padding_right20">
+                        <div class="color_grey size12">
+                            Expires in
+                        </div>
+                        <div class="color_red timer" style="margin-top: 3px">
+                            00:00:00
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <img src="../../image/v2/purchase.png" class="purchase" />
+                </div>
+                <div class="flex flex_center column">
+                    <div class="img_nike">
+                        <img src="{{product[0]}}" alt="">
+                    </div>
+                    <div class="grey tx_center">Tap to view</div>
+                </div>
+                <div>
+                    <div class="tx_center margin_top20">
+                        {{product.name}}
+                    </div>
+                    <div class="margin_top20 flex flex_center">
+                        <div class="bold size26">£{{now_price}}</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </script>
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script type="text/javascript" src="../../script/base.js"></script>
+    <script type="text/javascript" src="../../framework/template-web.js"></script>
+    <script>
+        APP.init(()=>{
+            const detail=APP._param.detail;
+            setInterval(()=>{
+                const date=new Date().valueOf();
+                $('#timer').text(formatduring(detail.expire_time*1000-parseInt(date/1000)*1000))
+            },1000);
+            setTimeout(()=>{
+                fnClose1();
+            },3000);
+            fnValue('#wrap', template('wrap-template', detail));
+        })
+        function fnClose1(){
+            api.execScript({
+                name: 'couponDetail_win',
+                script: "getDetail()"
+            });
+            fnClose();
+        }
+    </script>
+</body>
+</html>

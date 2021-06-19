@@ -1,0 +1,52 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body{
+	background-color: #fff;
+    .main{
+		padding: pxToRem(60) pxToRem(84)  pxToRem(300);
+		box-sizing: border-box;
+    	font-size: pxToRem(28);
+    	color: #555;
+		line-height: pxToRem(48);
+	}
+	.mainTop{
+        padding: pxToRem(160) pxToRem(80) 0;
+        //@include set-bg-img( $name: "bolangtu.png");
+		@include set-bg-img( $name: "bolang33.png");
+		color: #fff;
+		.top{
+			  margin-top: pxToRem(20);
+		}
+    }
+	.signin{
+		@include flex-box();
+		padding-bottom: pxToRem(70);
+		.title{
+			width: pxToRem1(150); ;
+			font-size: pxToRem1(30);
+			color: #fff;
+			line-height: pxToRem1(42);
+			@extend .font-m;
+		}
+	}
+	.bottom{
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		background-color: #fff;
+		padding:pxToRem1(30) 0 ;
+		.agree{
+			margin:0 pxToRem1(60) 0;
+			height: pxToRem(84);
+			text-align: center;
+			line-height: pxToRem(84);
+			font-size: pxToRem(30);
+			color: rgba(255,255,255,1);
+			border-radius: pxToRem(40);
+			background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+			box-shadow: 5px 10px 40px rgba(255,174,85,0.5);
+		}
+	}
+}

@@ -1,0 +1,134 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .header{
+      margin-top: pxToRem(20);
+    }
+    .headerTo{
+      margin-top: 0;
+    }
+    .textarea_cont{
+        min-height: pxToRem(400);
+    }
+    .mart200{
+        margin-top: pxToRem(200);
+    }
+    .content{
+        padding-bottom: pxToRem1(32);
+        @include flex-box($justify:space-between,$direction:column);
+    	.ul{
+            padding:0 pxToRem(32);
+            .avt{
+              height: pxToRem(14);
+              width: 100%;
+              background-color: rgba(244,244,244,1);
+            }
+    		.li{
+                color:#757575 ;
+                padding: pxToRem(33) pxToRem(30);
+    			@include flex-box();
+    			//padding: pxToRem(33) 0;
+                // @include border-bottom-m;
+                border-bottom: 1px solid #eee;
+				&::after{
+				    border-color: #eee;
+				};
+
+                /*&.spacing{
+                    padding: pxToRem(28) 0;
+                }*/
+                &.li-img{
+                    padding: pxToRem(20) 0;
+                }
+                &.limg{
+                   padding: pxToRem(30) 0;
+                }
+                /*&.li-top{
+                    padding: pxToRem(39) 0;
+                }*/
+
+                .facebook{
+                    display: inline-block;
+                    width: pxToRem(48);
+                    height: pxToRem(54);
+                    margin-right: pxToRem(24);
+                    @include set-bg-img( $name: "icon-facebook1.png", $size: pxToRem(48) auto, $position: center center);
+                    &.twitter{
+                        @include set-bg-img( $name: "icon-twitter1.png", $size: pxToRem(48) auto, $position: center center);
+                    }
+                    &.google{
+                        @include set-bg-img( $name: "icon-google1.png", $size: pxToRem(48) auto, $position: center center);
+                    }
+                    &.weichat{
+                        @include set-bg-img( $name: "icon-weichat1.png", $size: pxToRem(48) auto, $position: center center);
+                    }
+                    &.apple{
+                        @include set-bg-img( $name: "icon-apple.png", $size: pxToRem(48) auto, $position: center center);
+                    }
+                }
+    			.account{
+    				font-size: pxToRem(28);
+                    font-family: PingFangSC-Regular;
+					line-height: pxToRem(42);
+                    @include prefixCss3($property: align-self, $value: center);
+    			}
+                .img{
+                    width: pxToRem(80);
+                    height: pxToRem(80);
+                    border-radius: 50%;
+                    @include set-bg-img( $name: "icon-photo.png");
+                }
+                .input{
+                    @include flex-item();
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    @include prefixCss3($property: align-self, $value: center);
+                    input{
+                        text-align: right;
+                    }
+                }
+                .switch{
+                    width: pxToRem(90);
+                    height: pxToRem(52);
+                    margin-left: pxToRem(12);
+                    @include set-bg-img( $name: "icon-switch.png", $size: pxToRem(90) auto, $position: center center);
+                    &.active{
+                        @include set-bg-img( $name: "icon-switch1.png", $size: pxToRem(90) auto, $position: center center);
+                    }
+                }
+    			.right{
+    				width: pxToRem(28);
+					height: pxToRem(28);
+                    margin-left: pxToRem(12);
+					@include prefixCss3($property: align-self, $value: center);
+					@include set-bg-img( $name: "icon-right1.png", $size: pxToRem(28) auto, $position: center center);
+    			}
+    		}
+    	}
+    }
+    .buttom_wrap{
+        margin-top:pxToRem1(30) ;
+        p{
+            text-align: center;
+            font-size:pxToRem(28) ;
+            font-family:PingFangSC-Regular;
+            margin-bottom: pxToRem(20);
+        }
+        .bottom{
+            .quit{
+                margin:0 pxToRem1(60) 0;
+                height: pxToRem(84);
+                text-align: center;
+                line-height: pxToRem(84);
+                font-size: pxToRem(30);
+                color: rgba(255,255,255,1);
+                border-radius: pxToRem(40);
+                background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+                box-shadow: 5px 10px 40px rgba(255,174,85,0.5);
+            }
+        }
+    }
+}

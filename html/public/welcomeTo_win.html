@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" href="../../framework/swiper.min.css">
+
+</head>
+
+<body style="height: 100%;padding: 60px 0 0 0;box-sizing: border-box;background: #fff">
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide flex column item_center">
+            <img src="../../image/v2/ic_logo.png" style="width: 115.28px;height: 30.48px">
+            <img src="../../image/v2/img_walk1.png" style="width: 185.12px;height: 231.2px" class="margin_top20 bg_main">
+            <div class="bold size32 tx_center margin_top20" style="width: 80%;line-height: 38px">You have come to the right place!</div>
+            <div style="color: #848484;width: 95%" class="flex item_center flex_between footer_bar bold">
+                <div class="size18"></div>
+                <div class="size18" onclick="mySwiper.slideTo(2)">SKIP</div>
+                <div class="size32" onclick="mySwiper.slideNext()"><svg viewBox="64 64 896 896" focusable="false" data-icon="arrow-right" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-.7 5.2-2L869 536.2a32.07 32.07 0 000-48.4z"></path></svg></div>
+            </div>
+        </div>
+        <div class="swiper-slide flex column item_center">
+            <img src="../../image/v2/ic_logo.png" style="width: 115.28px;height: 30.48px">
+            <img src="../../image/v2/img_walk1.png" style="width: 185.12px;height: 231.2px" class="margin_top20 bg_main">
+            <div class="bold size32 tx_center margin_top20" style="width: 80%;line-height: 38px">Discover deals!</div>
+            <div style="color: #848484;width: 95%" class="flex item_center flex_between footer_bar bold">
+                <div class="size32" onclick="mySwiper.slidePrev()"><svg viewBox="64 64 896 896" focusable="false" data-icon="arrow-left" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M872 474H286.9l350.2-304c5.6-4.9 2.2-14-5.2-14h-88.5c-3.9 0-7.6 1.4-10.5 3.9L155 487.8a31.96 31.96 0 000 48.3L535.1 866c1.5 1.3 3.3 2 5.2 2h91.5c7.4 0 10.8-9.2 5.2-14L286.9 550H872c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"></path></svg></div>
+                <div class="size18" onclick="mySwiper.slideTo(2)">SKIP</div>
+                <div class="size32" onclick="mySwiper.slideNext()"><svg viewBox="64 64 896 896" focusable="false" data-icon="arrow-right" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-.7 5.2-2L869 536.2a32.07 32.07 0 000-48.4z"></path></svg></div>
+            </div>
+        </div>
+        <div class="swiper-slide flex column item_center">
+            <img src="../../image/v2/ic_logo.png" style="width: 115.28px;height: 30.48px">
+            <img id="showBg" src="../../image/v2/img_walk1.png" style="width: 185.12px;height: 231.2px" class="margin_top20 bg_main">
+            <div class="bold size32 tx_center margin_top10" style="width: 80%;line-height: 38px">Share more! Save more!</div>
+            <div style="color: #848484;width: 95%" class="footer_bar">
+                <div class="flex policy"  tapmode="hover" onclick="checkToggle(this)">
+                    <img src="../../image/v2/ic_checkbox_inactive.png" id="policy1">
+                    <div class="color_grey size12 lineheight16">
+                        I agree to wololo’s <span class="underline color_blue" tapmode="hover" onclick="fnOpenRichText_public({value:'agreementuser',title:'用户协议' })">Terms of Service</span> and confirm that I have read wololo’s <span class="underline color_blue" tapmode="hover"  onclick="fnOpenRichText_public({value:'privacyuser',title:'隐私协议' })">Privacy Policy.</span>
+                    </div>
+                </div>
+                <div class="flex policy" tapmode="hover" onclick="checkToggle(this)">
+                    <img src="../../image/v2/ic_checkbox_inactive.png" id="policy2" >
+                    <div class="color_grey size12 lineheight16">
+                        I want to receive emails about wololo, Cool local businesses, wololo tips and tricks, and new features. I can withdraw my consent at any time through my account settings.
+                    </div>
+                </div>
+                <div class="btn btn_default" tapmode="hover" onclick="checks(()=>fnOpen('sign/register_win.html'))">SIGNUP</div>
+                <div class="btn btn_white" tapmode="hover" onclick="checks(()=>fnOpen('sign/signIn_win.html'),'login')"> LOGIN</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pagination"></div>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 5000,//可选选项，自动滑动
+        width : window.innerWidth,
+        height : window.innerHeight,
+        pagination : '.pagination',
+    });
+    if(window.innerHeight<667){
+        $('#showBg').hide()
+    };
+    function checkToggle(e){
+        let img = e.getElementsByTagName('img')[0]
+        if(img.src.includes('ic_checkbox_active.png')){
+            img.src='../../image/v2/ic_checkbox_inactive.png';
+        }else{
+            img.src='../../image/v2/ic_checkbox_active.png';
+        }
+    }
+    function checks(e,type){
+        if(policy1.src.includes('ic_checkbox_active.png')||type=='login'){
+            if(policy2.src.includes('ic_checkbox_active.png')){
+                fnCookie(APP.LC_NAME.HAS_NOT_WELCOME,1)
+            }else{
+                fnCookie(APP.LC_NAME.HAS_NOT_WELCOME,2)
+            }
+
+            e();
+        }else{
+            fnToast("Please review wololo's Terms of Services and Privacy Policy");
+        }
+    }
+    APP.init(()=>{
+        api.addEventListener({
+            name:"keyback"
+        },function(ret,err){
+            if(mySwiper.activeIndex){
+                mySwiper.slidePrev();
+            }else{
+                fnClose(function() {
+                    if (APP._keybackStatus) {
+                        api.closeWidget({
+                            silent: true
+                        });
+                    } else {
+                        api.toast({
+                            //msg: fnLanguage_public('再按一次退出') + api.appName
+                            msg: fnLanguage_public("再按一次退出") + api.appName
+                        });
+                        APP._keybackStatus = true;
+                    }
+                    setTimeout(function() {
+                        APP._keybackStatus = false;
+                    }, 2000);
+                });
+            }
+        });
+    })
+</script>
+<style type="text/css">
+    .swiper-container{
+        width: 100%;
+        height: 100%;
+        /*width: 100%;*/
+        /*height: 300px;*/
+    }
+    .swiper-slide{
+        height: 100%!important;
+        border-radius: 0!important;
+        position: relative;
+    }
+    .pagination {
+        position: absolute;
+        z-index: 20;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    .bg_main{
+        max-height: 30%;
+        width: auto;
+    }
+    .footer_bar{
+        position: absolute;
+        bottom: 40px;
+        padding: 0 30px;
+    }
+    .footer_bar>div{
+        padding: 20px;
+    }
+    .footer_bar img{
+        width: 23px;
+        height: 23px;
+        margin-right: 20px;
+    }
+    .policy{
+        padding: 10px!important;
+    }
+    .btn_white{
+        background: #fff;
+        border: none;
+        color: #1E1E1E;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,187 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .box{
+                        @include flex-box();
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                            @include flex-item();
+                        }
+                        .read{
+                            position: relative;
+                            font-size: pxToRem(24);
+                            color: #666;
+                            line-height: pxToRem(44);
+                            margin-right: pxToRem(40);
+                            @include prefixCss3($property: align-self, $value: center); 
+                            &:hover{
+                                .empty-messages{
+                                    display: block;
+                                }
+                            };
+                            .empty-messages{
+                                display: none;
+                                z-index: 2;
+                                position: absolute;
+                                top: pxToRem(50);
+                                right: pxToRem(-30);
+                                background-color: #fff;
+                                width: pxToRem(386);
+                                box-shadow:0px -4px 16px 0px rgba(0,0,0,0.15);
+                                border-radius: pxToRem(8);
+                                padding: pxToRem(20) pxToRem(20) pxToRem(44);
+                                &::before{
+                                    content: '';
+                                    display: inline-block;
+                                    position: absolute;
+                                    top: pxToRem(-14);
+                                    right: pxToRem(64);
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 6px solid transparent;
+                                    border-right: 6px solid transparent;
+                                    border-bottom: 8px solid #fff;
+                                };
+                                .mess{
+                                    text-align: center;
+                                    font-size: pxToRem(28);
+                                    color: #000;
+                                    line-height: pxToRem(44);
+                                    &::before{
+                                        content: '';
+                                        display: inline-block;
+                                        width: pxToRem(28);
+                                        height: pxToRem(28);
+                                        margin-right: pxToRem(16);
+                                        vertical-align: middle;
+                                        @include set-bg-img( $name: "web-badge1.png", $size: pxToRem(28) auto, $position: center center);
+                                    };
+                                }
+                                .depressed-button{
+                                    padding-top: pxToRem(24);
+                                    text-align: right;
+                                    .cancel{
+                                        display: inline-block;
+                                        padding: 0 pxToRem(16);
+                                        border: pxToRem(2) solid #D9D9D9;
+                                        border-radius: pxToRem(4);
+                                        line-height: pxToRem(44);
+                                        font-size: pxToRem(28);
+                                        color: #000;
+                                        margin: 0 pxToRem(5);
+                                        &.sure{
+                                            background-color: $bg-color;
+                                            color: #fff;
+                                            border: pxToRem(2) solid $bg-color;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .person{
+                        margin: 0 auto;
+                        ul{
+                            margin: pxToRem(40);
+                            border: pxToRem(2) solid #EAEAEA;
+                            li{
+                                @include flex-box();
+                                padding: pxToRem(44) pxToRem(80) pxToRem(44) pxToRem(52);
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                &:last-of-type{
+                                    content: '';
+                                    border-bottom: none;
+                                };
+                                .item{
+                                    @include flex-item();
+                                    font-size: pxToRem(24);
+                                    line-height: pxToRem(34); 
+                                    .row{
+                                        color: #333;
+                                        @include text-overflow(1);
+                                    }
+                                    .time{
+                                        color: #666;
+                                        padding-top: pxToRem(44);
+                                        @include text-overflow(1);
+                                    }
+                                }
+                                .look-right{
+                                    position: relative;
+                                    @include prefixCss3($property: align-self, $value: flex-end);
+                                    .bad{
+                                        position: absolute;
+                                        right: 0;
+                                        top: pxToRem(-50);
+                                        display: block;
+                                        width: pxToRem(16);
+                                        height: pxToRem(16);
+                                        background-color: #FF4F00;
+                                        border-radius: 50%;
+                                        margin-bottom: pxToRem(40);
+                                        text-align: right;
+                                    }
+                                    .look{
+                                        display: block;
+                                        width: pxToRem(168);
+                                        height: pxToRem(56);
+                                        border: pxToRem(2) solid #979797;
+                                        text-align: center;
+                                        margin-left: pxToRem(20);
+                                        font-size: pxToRem(24);
+                                        color: #333;
+                                        line-height: pxToRem(56);
+                                        border-radius: pxToRem(8);
+                                    }
+                                }
+                                    
+                            }
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

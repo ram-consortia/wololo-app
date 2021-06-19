@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicPtAlert_pop.css">
+</head>
+
+<body class="flex-vertical">
+<div class="footer" id="wrap" tapmode="hover" onclick="closeModal()">
+
+    HelloHelloHelloHelloHelloHello
+</div>
+
+
+<script type="text/html" id="wrap-template">
+    <div class="container"  tapmode="hover" onclick="propagation()">
+        <header>{{'您的拼团已成功'|fnLanguage_public}}</header>
+        <div class="content">
+            {{'请到付款页面看看您抢到多少折扣！'|fnLanguage_public}}
+        </div>
+        <footer>
+            <button tapmode="hover" onclick="toFukuan()">
+                {{'去付款'|fnLanguage_public}}
+            </button>
+        </footer>
+    </div>
+</script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnInit();
+    });
+    function closeModal() {
+        api.closeFrame({
+            name:'aPublicPtAlert_pop'
+        })
+    }
+    function fnInit() {
+        fnValue('#wrap', template('wrap-template', APP));
+    }
+    function toFukuan() {
+        fnJump_base('order/myorderDetail_win.html', api.pageParam.order_id);
+        closeModal();
+
+    }
+    function propagation(){
+        event.stopPropagation();
+        return 0;
+    }
+</script>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+    <style>
+        .price{
+            width: 45%;
+            height: 56px;
+            border-radius: 12px;
+            background: #F2F7FB;
+        }
+        .price img{
+            width: 24px;
+            height: 24px;
+        }
+        .ic_price{
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tags{
+            padding: 10px 15px;
+        }
+        .categories .tags{
+            margin-bottom: 10px;
+        }
+        .footer{
+            height: 60px;
+            margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .reset{
+            width: 104px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body style="height: 100%; background: initial;" class="column flex relative">
+
+<div>
+    <div class="flex item_center margin_top20 padding20" tapmode="hover" onclick="fnClose()">
+        <div class="back2"></div>
+        <div class="back_title">
+            Filter & Sort
+        </div>
+    </div>
+
+</div>
+<div class="flex1 padding20">
+    <div class="flex flex_between">
+        <div class="price flex">
+            <div class="ic_price">
+                <img src="../../image/v2/ic_pound.png" alt="">
+
+            </div>
+            <input class="input flex1 padding_bottom0" id="min" placeholder="min" type="number"/>
+        </div>
+        <div class="price flex">
+            <div class="ic_price">
+                <img src="../../image/v2/ic_pound.png" alt="">
+
+            </div>
+            <input class="input flex1 padding_bottom0" id="max" placeholder="max" type="number"/>
+        </div>
+    </div>
+    <div class="tx_upper size12 grey padding_top20">
+        Deals and Offer
+    </div>
+    <div class="flex flex_wrap margin_top10 tab">
+        <div class="tag_hollow tags tx_upper radius10 margin_right20 tag_active" id="superDeal">Super Deal</div>
+        <div class="tag_hollow tags tx_upper radius10" id="deals">+1 Deal</div>
+    </div>
+    <div class="tx_upper size12 grey padding_top20">
+        Sort by
+    </div>
+    <div class="flex flex_wrap margin_top10 tab" >
+        <div class="tag_hollow tags tx_upper radius10 margin_right20 tag_active" id="participants">Most Popular</div>
+        <div class="tag_hollow tags tx_upper radius10 margin_right20" id="price_coupon_max">£ low to High</div>
+    </div>
+
+    <div class="tx_upper size12 grey padding_top20">
+        Categories
+    </div>
+    <div class="flex flex_wrap margin_top10 categories tab" >
+        <div class="tag_hollow tags tx_upper radius10 margin_right20 tag_active" ids="34">Food & Drink</div>
+        <div class="tag_hollow tags tx_upper radius10 margin_right20" ids="32">Beauty</div>
+        <div class="tag_hollow tags tx_upper radius10 margin_right20" ids="33">Shopping</div>
+        <div class="tag_hollow tags tx_upper radius10 margin_right20" ids="37">Entertainment</div>
+        <div class="tag_hollow tags tx_upper radius10 margin_right20" ids="36">Sports</div>
+        <div class="tag_hollow tags tx_upper radius10 margin_right20" ids="35">Services</div>
+    </div>
+</div>
+<div class="footer">
+    <div class="btn btn_default flex1" tapmode="mover" onclick="onFilter()">Apply</div>
+    <div class="reset" onclick="reset()" tapmode="hover">RESET</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    $('.tab .tag_hollow').on('touchstart',e=>{
+        const current =$(e.target);
+        if(current.hasClass('tag_active')){
+            current.removeClass('tag_active')
+        }else{
+            current.addClass('tag_active');
+            if(current.attr('id')=='superDeal'){
+                $('#deals').removeClass('tag_active')
+            }
+            if(current.attr('id')=='deals'){
+                $('#superDeal').removeClass('tag_active')
+            }
+        }
+    })
+    function reset(){
+        $('.tag_hollow').removeClass('tag_active');
+        $('#min').val('');
+        $('#max').val('');
+    }
+    function onFilter(){
+        const param={
+            category_ids:getSearchItem($('.categories .tag_active')),
+            page:1,
+            price_min:$('#min').val()||0,
+            price_max:$('#max').val()||1000,
+            group_type: getSearchItem($('.deals .tag_active')),
+        }
+        if($('#participants').hasClass('tag_active')){
+            param.participants=1;
+        }
+        if($('#price_coupon_max').hasClass('tag_active')){
+            param.price_coupon_max=1;
+        }
+        api.execScript({
+            name:'merchantsDetail_win',
+            script:`fnGet(${JSON.stringify(param)})`
+        })
+        fnClose()
+    }
+    function getSearchItem(lists){
+        let arr=[];
+        for(let i = 0;i<lists.length;i++){
+            arr.push($(lists[i]).attr('ids'));
+        }
+        return arr.join(',')
+    }
+</script>
+</html>

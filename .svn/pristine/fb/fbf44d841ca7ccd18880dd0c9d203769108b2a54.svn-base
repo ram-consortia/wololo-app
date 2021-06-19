@@ -1,0 +1,373 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/signIn.css">
+    <link rel="stylesheet" type="text/css" href="../../css/messageA.css" />
+    <!--<link rel="stylesheet" type="text/css" href="../../css/message.css" />-->
+</head>
+<body>
+    <div class="main flex-vertical" id="wrap">
+        <div class="message">
+            <div class="messHeader">
+                <!--<i class="headerLeft" tapmode="hover" onclick="fnClose();"></i>-->
+                <div class="top top-left">
+                    <span class="back" tapmode="hover" onclick="fnClose()"></span>
+                </div>
+                <p>消息中心</p>
+                <div class="headerRight">
+                    <i class="icon icon-clear" tapmode="hover" onclick="fnDeleteNewsA()"></i>
+                    <span class="wenzi" tapmode="hover" onclick="fnClearNewsA()">全部已读</span>
+                </div>
+            </div>
+            <div class="contentTab">
+                <div class="item active" data-path="business/message_frm.html" data-param="{{NEWS.type.notification.type}}">
+                    <p >系统消息</p>
+                    <span></span>
+                </div>
+                <div class="item" data-path="business/message_frm.html" data-param="{{NEWS.type.message.type}}">
+                    <p >平台消息</p>
+                    <span></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="message">
+            <div class="messHeader">
+                <!--<i class="headerLeft" tapmode="hover" onclick="fnClose();"></i>-->
+                <div class="top top-left">
+                    <span class="back" tapmode="hover" onclick="fnClose()"></span>
+                </div>
+                <p>{{'消息中心' | fnLanguage_public}}</p>
+                <div class="headerRight">
+                    <i class="icon icon-clear" tapmode="hover" onclick="fnDeleteNewsA()"></i>
+                    <span class="wenzi" tapmode="hover" onclick="fnClearNewsA()">{{'全部已读' | fnLanguage_public}}</span>
+                </div>
+            </div>
+            <div class="contentTab">
+                <div class="item " data-path="business/message_frm.html" data-param="{{NEWS.type.notification.type}}">
+                    <p >{{NEWS.type.notification.name | fnLanguage_public}}</p>
+                    <span></span>
+                </div>
+                <div class="item" data-path="business/message_frm.html" data-param="{{NEWS.type.message.type}}">
+                    <p >{{NEWS.type.message.name | fnLanguage_public}}</p>
+                    <span></span>
+                </div>
+
+            </div>
+        </div>
+            <!--<div class="messageContent">
+
+                <div class="content">
+                    <div class="contentSub">
+                        <div class="subTop">
+                            <i><img width="100%" height="100%" src="./image/Google.png" /><span></span></i>
+                            <div class="subTopWenzi">
+                                <p class="wenziP">系统消息</p>
+                                <p class="wenziS">2019-05-17 12:11:03</p>
+                            </div>
+                        </div>
+                        <p class="subFooter">
+                            如何让你遇见我
+                            在我最美丽的时刻
+                            为这
+                            我已在佛前求了五百年
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>-->
+
+
+        <!--<div class="top-header">
+            <header class="header">
+                <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+                <div class="title">{{'消息中心' | fnLanguage_public}}</div>
+                <div class="back right flex">
+                    <div class="icon icon-clear" tapmode="hover" onclick="fnDeleteNews()"></div>
+                    <div class="text" tapmode="hover" onclick="fnClearNews()">{{'全部已读' | fnLanguage_public}}</div>
+                </div>
+            </header>
+
+            <div class="box">
+                <div data-path="business/message_frm.html" data-param="{{NEWS.type.notification.type}}" class="item">
+                    {{NEWS.type.notification.name | fnLanguage_public}}
+                    <span class="number hide" id="notification">0</span>
+                </div>
+                <div data-path="business/message_frm.html" data-param="{{NEWS.type.message.type}}" class="item">
+                    {{NEWS.type.message.name | fnLanguage_public}}
+                    <span class="number hide" id="message">0</span>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="content flex-item-vertical">
+
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        //APP.fixStatusBar( $('.top-header')[0] );
+        APP.fixStatusBar( $('.message')[0] );
+        /*fnOpenGroup({
+            navSeletor: '.box .item',                                    //必填  |    ''    |    String    |  导航选择器
+            marginTop: $('.top-header').height(),                            //选填  |    0     |    Number    |  group 距离顶部距离
+            scrollEnabled: true,                                             //选填  |  false   |    Boolean   |  frame 组是否可以左右滑动
+            index: 0,                                                        //选填  |    0     |    Number    |  选中的tab项
+            preload: 0,                                                      //选填  |    0     |    Number    |  预加载的 frame 个数
+            param: {                                                         //选填  |    {}    |    Object    |  公共参数
+
+            }
+        });*/
+
+      function fnSwitchTable(_el){
+        fnSwitchTable_base({
+          el: _el
+        }, function(){
+          fnInput();
+        },true);
+      }
+
+      fnOpenGroup({
+        navSeletor: '.contentTab .item',                                    //必填  |    ''    |    String    |  导航选择器
+        marginTop: $('.message').height(),                            //选填  |    0     |    Number    |  group 距离顶部距离
+        scrollEnabled: true,                                             //选填  |  false   |    Boolean   |  frame 组是否可以左右滑动
+        index: 0,                                                        //选填  |    0     |    Number    |  选中的tab项
+        preload: 0,                                                      //选填  |    0     |    Number    |  预加载的 frame 个数
+        param: {                                                         //选填  |    {}    |    Object    |  公共参数
+
+        }
+      });
+
+        fnStatisticInit();
+
+        api.addEventListener({
+            name: APP.EV_NAME.MESSAGE
+        }, function(ret, err){
+            fnStatisticInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.JPUSH_JUMP
+        }, function(ret, err){
+            fnStatisticInit();
+        });
+    });
+
+    function fnStatisticInit(){
+        fnGetMsgTotal_base({
+            type: APP.NEWS.type.notification.type
+        }, function(ret){
+            if( ret.un_read_news_ids && ret.un_read_news_ids.length ){
+                $('#notification').removeClass('hide');
+                fnValue('#notification', ret.un_read_news_ids.length);
+            }else{
+                $('#notification').addClass('hide');
+            }
+        })
+
+        fnGetMsgTotal_base({
+            type: APP.NEWS.type.message.type
+        }, function(ret){
+            if( ret.un_read_news_ids && ret.un_read_news_ids.length ){
+                $('#message').removeClass('hide');
+                fnValue('#message', ret.un_read_news_ids.length);
+            }else{
+                $('#message').addClass('hide');
+            }
+        })
+    }
+
+    function fnDeleteNews(){
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '确定清空全部消息？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            var _param = {
+                url: 'user/news/delete_news',
+                method: 'POST',
+                data: {
+                    type: $('.box .item.active').data('param') || 0
+                }
+            }
+
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    fnStatisticInit();
+                    api.sendEvent({
+                        name: api.winName,
+                        extra: {}
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+
+
+    }
+
+    function fnClearNews(){
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: '确定标记所有消息为已读？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            var _param = {
+                url: 'user/news/clear',
+                method: 'POST',
+                data: {
+                    type: $('.box .item.active').data('param') || 0
+                }
+            }
+
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    fnStatisticInit();
+                    api.sendEvent({
+                        name: api.winName,
+                        extra: {}
+                    });
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+    function fnDeleteNewsA(){
+      fnAlert_public({
+        // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+        msg: '确定清空全部消息？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+        buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+          text: '取消', //必选 |    ''      | string     |  按钮文案
+          callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+
+          }
+        }, {
+          text: '确定',
+          active: true, //可选 |    false   | Boolean    |  是否高亮
+          callback: function() {
+            _start();
+          }
+        }]
+      }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+        debugAlert('从透明层关闭窗口回调')
+      });
+
+      function _start(){
+        var _param = {
+          url: 'user/news/delete_news',
+          method: 'POST',
+          data: {
+            type: $('.contentTab .item .active').data('param') || 0
+          }
+        }
+
+        fnAjax(_param, function(ret){
+          if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+            fnStatisticInit();
+            api.sendEvent({
+              name: api.winName,
+              extra: {}
+            });
+          }else{
+            fnToast(ret.msg);
+          }
+        })
+      }
+
+
+    }
+
+    function fnClearNewsA(){
+      fnAlert_public({
+        // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+        msg: '确定标记所有消息为已读？', //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+        buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+          text: '取消', //必选 |    ''      | string     |  按钮文案
+          callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+
+          }
+        }, {
+          text: '确定',
+          active: true, //可选 |    false   | Boolean    |  是否高亮
+          callback: function() {
+            _start();
+          }
+        }]
+      }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+        debugAlert('从透明层关闭窗口回调')
+      });
+
+      function _start(){
+        var _param = {
+          url: 'user/news/clear',
+          method: 'POST',
+          data: {
+            type: $('.contentTab .item .active').data('param') || 0
+          }
+        }
+
+        fnAjax(_param, function(ret){
+          if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+            fnStatisticInit();
+            api.sendEvent({
+              name: api.winName,
+              extra: {}
+            });
+          }else{
+            fnToast(ret.msg);
+          }
+        })
+      }
+    }
+</script>
+</html>

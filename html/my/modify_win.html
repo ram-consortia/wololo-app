@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/modify.css" />
+</head>
+
+<body>
+    <div class="flex-vertical" id="wrap">
+
+    </div>
+
+
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">
+               Edit {{(_param.isEditMobile ? '手机号' : '邮箱') | fnLanguage_public}}
+            </div>
+        </header>
+            <div class="main">
+                <div class="ul">
+                    {{if _param.isEditMobile}}
+        				<div class="li">
+                            <div class="input">
+                                <div class="country_code">+44</div>
+                                <input id="mobile" data-limit-type="Number" maxlength="11" type="tel" placeholder="Phone Number">
+                            </div>
+                            <div tapmode="hover" onClick="fnClear(this)" class="eliminate clear-input hide"></div>
+                        </div>
+
+                    {{else}}
+        				<div class="li">
+                            <div class="input">
+                                <input id="email" data-limit-type="Email" maxlength="30" type="text" placeholder="Email Address">
+                            </div>
+                            <div tapmode="hover" onClick="fnClear(this)" class="eliminate clear-input hide"></div>
+                        </div>
+        				
+                    {{/if}}
+
+
+    				<div class="li">
+                        <div class="input">
+                            <input id="verification_code" data-limit-type="Number" maxlength="4" type="tel" placeholder="Authentication Code">
+                        </div>
+                        <!-- 倒计时加no-noclick -->
+                        <div tapmode="hover" onclick="fnSendCode(this)" class="code">{{'获取验证码' | fnLanguage_public}}</div>
+    				</div>
+
+    				<div class="li">
+                        <div class="input">
+                            <input id="user_pass" data-limit-type="Alphanumeric" type="password" placeholder="Password">
+                        </div>
+                        <!-- 显示加active -->
+                        <div tapmode="hover" onClick="fnSwitchEye_base(this)" class="eye"></div>
+    				</div>
+                </div>
+                <div class="submit-wrap">
+                    <div class="quit  no-onclick" tapmode="hover" onclick="fnSubmit()" >Send</div><!--tapmode="hover" onclick="fnEmpty()"-->
+                </div>
+    			<!-- 不能点击置灰加no-onclick -->
+                <!--<div class="submint no-onclick" tapmode="hover" onclick="fnSubmit()">{{'完成' | fnLanguage_public}}</div>-->
+            </div>
+       
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function () {
+        fnInit();
+    });
+    // var api={getPrefs :function(){},parseTapmode :function(){}}
+    // fnValue('#wrap', template('wrap-template', {_param:{}}));
+
+    function fnInit() {
+        fnUser_public({
+            isLastData: true        //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）
+        }, function (_user) {
+            if (_user) {
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar($('.header')[0]);
+                var _input = ['#verification_code', '#user_pass'];
+                if (APP._param.isEditMobile) {
+                    fnSetCountryFix(APP.COUNTRY_JSON[0]);
+                    _input.push('#mobile');
+                } else {
+                    _input.push('#email');
+                }
+
+                fnInputListener_public(_input, function () {
+                    fnInput();
+                })
+            } else {
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+
+    function fnSubmit() {
+        var _data = fnGetUsername();
+        fnCustomMd5_base({
+            data: fnValue('#user_pass')
+        }, function (ret) {
+            var _param = {
+                url: 'user/index/update_username',
+                method: 'POST',
+                data: {
+                    username: _data.username,
+                    country_code: _data.country_code,
+                    verification_code: fnValue('#verification_code'),
+                    user_pass: ret.value
+                }
+            }
+            fnAjax(_param, function (ret) {
+                if (ret.code == APP.HTTP_STATUS.SUCCESS) {
+                    fnToast(ret.msg, function () {
+                        fnBackLogin_public();
+                    });
+                } else {
+                    fnToast(ret.msg);
+                }
+            })
+        })
+    }
+
+    function fnGetUsername() {
+        if (APP._param.isEditMobile) {
+            return {
+                username: fnValue('#mobile'),
+                country_code: $('#country_code').attr('data-id'),
+                msg: $('#mobile').attr('placeholder'),
+                isMobile: APP.YES
+            }
+        } else {
+            return {
+                username: fnValue('#email'),
+                msg: $('#email').attr('placeholder'),
+                isMobile: APP.NO
+            }
+        }
+    }
+
+
+    function fnInput() {
+        $('.clear-input').each(function (_index, _el) {
+            var _input = $(_el).parent().find('input');
+            if (fnValue(_input[0]).length) {
+                $(_el).removeClass('hide');
+            } else {
+                $(_el).addClass('hide');
+            }
+        })
+
+        var _data = fnGetUsername();
+
+
+
+
+        if (_data.username.length && fnValue('#verification_code').length && fnValue('#user_pass').length) {
+            //$('.submint').removeClass('no-onclick');
+            $('.quit').removeClass('no-onclick');
+        } else {
+            //$('.submint').addClass('no-onclick');
+            $('.quit').addClass('no-onclick');
+        }
+    }
+
+    function fnChoiceRedio() {
+        fnChoiceRedio_base({
+            default: fnValue('#country_code'),
+            data: APP.COUNTRY_JSON
+        }, function (ret) {
+            fnSetCountryFix(ret);
+        })
+    }
+
+
+    function fnSetCountryFix(_data) {
+        fnValue('#country_code', _data.value);
+        $('#country_code').attr('data-id', _data.id);
+    }
+
+
+    function fnClear(_el) {
+        var _input = $(_el).parent().find('input');
+        fnValue(_input[0], '');
+        fnInput();
+    }
+
+    function fnSendCode(_el) {
+        var _data = fnGetUsername();
+        if (!_data.username) {
+            fnToast(_data.msg);
+        } else {
+            fnGetSmsCode_base({
+                username: [_data.isMobile ? _data.country_code : '', _data.username].join('')
+            }, function (ret) {
+                fnCount_base(_el, 60);
+            });
+        }
+    }
+</script>
+
+</html>

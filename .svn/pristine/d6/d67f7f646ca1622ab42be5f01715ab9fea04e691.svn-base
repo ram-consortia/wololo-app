@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/shopsDetails.css" />
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="content flex-item-vertical">
+            <div class="con">
+                <div class="til">商铺描述<span class="size">（0/100）</span></div>
+                <!-- 编辑页面用textarea -->
+                <div class="textarea">
+                    <textarea type="text" placeholder="请输入售后问题描述"></textarea>
+                </div>
+                <!-- 正常显示页面用describe -->
+                <div class="describe">
+                    1、作为国内低代码开发平台的践行者，Apcloud（柚子（北京）科技有限公司）正在以高效的生产力工具与混合开发技术，为数以百万的企业与开发者构建高效的 T 环境； 2、Apicloudl 以北京总部为中心，将业务团队延伸至上海、深圳、重庆、青岛等 10 余个城市，服务能力辐射全国 3、凭借创新的开发技术和商业模式，早在 2016 年，Apicloud 被全球最具权威的 T 研究与顾问咨询机构 Gartner 评为中国区 Cool Vendor，成为全球企业客户部署移动战略时的推荐选择
+                </div>
+            </div>
+            <div class="con">
+                <div class="til">上传图片<span class="size">（2/9）</span></div>
+                <div class="imgs">
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                    <span class="img" tapmode="hover" onclick="fnPhotoBrowser_public({pics: ['https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=1533342937,863465620&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=d5a84ac4ea3e5703b2876e4785394be3']})"><span class="del"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="save">保存</div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+       APP.fixTabBar('.bottom');
+    });
+
+
+
+
+</script>
+</html>

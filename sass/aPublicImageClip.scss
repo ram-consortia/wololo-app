@@ -1,0 +1,17 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+body{
+    .footer{
+        padding: pxToRem(29);
+        div{
+            color: rgba(51,51,51,1);
+            line-height: pxToRem(42);
+            font-size: pxToRem(31);
+            @include flex-item();
+            &.finish{
+                text-align: right;
+            }
+        }
+    }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" href="../../css/explore.css">
+</head>
+
+<body style="height: 100%; background: #FBFCFF;">
+<div class="control">
+    <div class="exp_title bold">
+        All Merchants
+    </div>
+    <div class="right">
+        <div style="margin-right: 22px">
+            <img src="../../image/v2/deals_search.png">
+        </div>
+        <div>
+            <img src="../../image/v2/deals_set.png">
+        </div>
+    </div>
+</div>
+<div id="list" class="explore_list">
+
+</div>
+<script type="text/html" id="list-template">
+    {{each _list _value}}
+    <div class="exlist_item" onclick="toDetail({{_value.id}})">
+        <div class="item_content">
+            <div class="logo">
+                <img src="{{_value.auth.images[0]&&_value.auth.images[0].url || '../../image/dianpu.png'}}" alt="">
+            </div>
+            <div class="desc">
+                <div class="title">
+                    {{_value.user_nickname}}
+                </div>
+                <div class="available">
+                    132 Products available
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    APP.init(function(){
+        // fnGetList();
+        fnGet();
+        fnRefresh(function () {
+            fnGet();
+        });
+    });
+    function fnGet() {
+        var _param = {
+            url: 'user/user/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 10,
+            }
+        };
+        if(APP._param.key){
+            _param.data.category_id=APP._param.key
+        };
+        fnGetList_base(_param, function (ret) {
+            if (ret.evType == 'scrolltobottom') {
+                fnGet();
+            }
+        })
+    }
+    function toDetail(id){
+        fnOpen('home/merchantsDetail_win.html',{
+            param:{
+                id
+            }
+        })
+    }
+</script>
+</body>
+</html>

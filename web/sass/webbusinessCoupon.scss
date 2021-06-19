@@ -1,0 +1,197 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    position: relative;
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    padding-bottom: pxToRem(224);
+                    .page-number{
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                    }
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .center{
+                        padding: pxToRem(26) pxToRem(30);
+                        .discount{
+                            overflow: hidden;
+                            .con{
+                                float: left;
+                                width: 33.3%;
+                            }
+                            .coupon-img{
+                                margin: pxToRem(14) pxToRem(10);
+                                &.invalid{
+                                    background-color: #fff;
+                                    .coupon{
+                                        .coupon-item{
+                                            .price{
+                                                .arch{
+                                                    background-color: #ccc;
+                                                }
+                                                .consume{
+                                                    color: #999;
+                                                    border: pxToRem(2) solid #ccc;
+                                                }
+                                            } 
+                                            .message{
+                                                position: relative;
+                                                &::after{
+                                                    content: '';
+                                                    display: inline-block;
+                                                    position: absolute;
+                                                    right: 0;
+                                                    bottom: 0;
+                                                    width: pxToRem(150);
+                                                    height: pxToRem(96);
+                                                    @include set-bg-img( $name: "icon-invalid.png");
+                                                }; 
+                                            }
+                                        }
+                                    }
+                                }
+                                .img{
+                                    position: relative;
+                                    width: 100%;
+                                    height: pxToRem(302);
+                                    border-top-left-radius: pxToRem(16);
+                                    border-top-right-radius: pxToRem(16);
+                                    @include set-bg-img( $name: "icon-background5.png");
+                                }
+                                .coupon{
+                                    margin-top: pxToRem(-28);
+                                    .coupon-item{
+                                        .price{
+                                            z-index: 2;
+                                            .arch{
+                                                height: pxToRem(46);
+                                                background-color: $bg-color;
+                                                font-size: pxToRem(22);
+                                                color: #fff;
+                                                line-height: pxToRem(46);
+                                                text-align: center;
+                                            }
+                                            .consume{
+                                                padding: pxToRem(10) 0;
+                                                font-size: pxToRem(22);
+                                                color: $bg-color;
+                                                line-height: pxToRem(32);
+                                                text-align: center;
+                                                border: pxToRem(2) solid $bg-color;
+                                            }
+                                            &.invalid{
+                                                .num{
+                                                    background-color: #ccc;
+
+                                                }
+                                                .voucher{
+                                                    border: 1px solid #ccc;
+                                                    color: #999;
+                                                }
+                                            }
+                                        }
+                                        .line{
+                                            z-index: 2;
+                                        }
+                                        .message{
+                                            z-index: 1;
+                                            .message-item{
+                                                .shop-name{
+                                                    font-size: pxToRem(26);
+
+                                                }
+                                                .base{
+                                                    .time{
+                                                        font-size: pxToRem(22);
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                .user-box{
+                                    @include flex-box();
+                                    padding: 0 pxToRem(20);
+                                    height: pxToRem(98);
+                                    background-color: #fff;
+                                    position: relative;
+                                    z-index: 2;
+                                    .user-item{
+                                        @include flex-item();
+                                        font-size: pxToRem(22);
+                                        color: #666;
+                                        line-height: pxToRem(56);
+                                        @include prefixCss3($property: align-self, $value: center);
+                                    }
+                                    .refuse{
+                                        display: inline-block;
+                                        width: pxToRem(124);
+                                        height: pxToRem(52);
+                                        line-height: pxToRem(52);
+                                        text-align: center;
+                                        border: pxToRem(2) solid #999;
+                                        border-radius: pxToRem(4);
+                                        font-size: pxToRem(24);
+                                        color: #333;
+                                        margin-left: pxToRem(16);
+                                        @include prefixCss3($property: align-self, $value: center);
+                                        &.receipt{
+                                            border: pxToRem(2) solid $bg-color;
+                                            color: $bg-color;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

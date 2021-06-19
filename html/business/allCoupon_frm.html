@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body>
+    <div class="discount" id="wrap">
+        <!-- 失效优惠券加invalid
+        <div class="coupon-img invalid" tapmode="hover" onclick="fnOpen('business/couponDetails_win.html')">
+            <div class="img"></div>
+            <div class="coupon">
+                <div class="coupon-item">
+                    <div class="price">
+                        <p class="arch">代金券</p>
+                        <p class="consume">已消费<br/>2 个</p>
+                    </div>
+                    <div class="line"></div>
+                    <div class="message">
+                        <div class="message-item">
+                            <p class="shop-name">特色单品节日优惠</p>
+                            <div class="base">
+                                <p class="market-price">
+                                    <span class="market">门市价￡120</span>
+                                </p>
+                                <p class="time">2019.01.04 - 2019.01.03有效</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="coupon-img" tapmode="hover" onclick="fnOpen('business/couponDetails_win.html')">
+            <div class="img"></div>
+            <div class="coupon">
+                <div class="coupon-item">
+                    <div class="price">
+                        <p class="arch">代金券</p>
+                        <p class="consume">已消费<br/>2 个</p>
+                    </div>
+                    <div class="line"></div>
+                    <div class="message">
+                        <div class="message-item">
+                            <p class="shop-name">西单大悦城美食城</p>
+                            <div class="base">
+                                <p class="market-price">
+                                    <span class="market">门市价￡120</span>
+                                </p>
+                                <p class="time">2019.01.04 - 2019.01.03</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无优惠券' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}}
+            <!-- 失效优惠券加invalid -->
+            <div class="coupon-img
+                {{if +$value.is_expire}}
+                    invalid
+                {{/if}}
+            " tapmode="hover" onclick="fnJump_base('business/couponDetails_win.html', {{$value.id}})">
+                <div data-img-url="{{$value | fnGetCouponImage_base}}" data-img-type="!avatar" class="img"></div>
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="arch">{{ {'target': $value.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</p>
+                            <p class="consume">{{'已消费' | fnLanguage_public}}<br/>{{$value.total_write_off_count}} 个</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">{{$value.name}}</p>
+                                <div class="base">
+                                    <p class="market-price">
+                                        <span class="market">{{'门市价' | fnLanguage_public}}￡{{$value.price}}</span>
+                                    </p>
+                                    <p class="time">
+                                        {{$value | fnGetCouponDateMsg_base}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnInit();
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    });
+
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        fnGetList_base({
+            url: 'base/coupon/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE,
+                store_id: APP._param.id || APP._user.id
+            }
+        }, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }else if( ret.evType == 'success' ){
+                api.execScript({
+                    script: 'fnInit('+JSON.stringify(ret.data)+');'
+                });
+            }
+        })
+    }
+</script>
+</html>

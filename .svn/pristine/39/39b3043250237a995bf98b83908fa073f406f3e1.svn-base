@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+}
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("../script/proximanova.ttf");
+}
+@font-face {
+    font-family: "Proxima Nova bold";
+    src: url("../script/ProximaNovaBold.otf");
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-family: "Proxima Nova";
+    color: #333333;
+    background-color: #FBFCFF;
+    --primary:#ff852b;
+}
+.primary{
+    color: var(--primary);
+}
+.border_none{
+    border: none!important;
+}
+.bg_fff{
+    background-color: #ffffff!important;
+}
+input{
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    width: 100%;
+    background: none;
+}
+.page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 0;
+    overflow-x: hidden;
+}
+.grey{
+    color: #8d8d8d;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.size32{
+    font-size: 32px;
+}
+.border_primary{
+    border-color: var(--primary)!important;
+}
+.margin_bottom20{
+    margin-bottom: 20px;
+}
+.margin_top20{
+    margin-top: 20px;
+}
+.pr0{
+    padding-right: 0px!important;
+}
+.btn{
+    background:var(--primary)!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: "Proxima Nova bold";
+    letter-spacing:1px;
+    font-weight: bolder;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+.btn:active{
+    border-width: 2px;
+}
+.bold{
+    font-family: "Proxima Nova bold";
+    letter-spacing:1px;
+}
+.black{
+    color: #333333;
+}
+.flex{
+    display: flex;
+}
+.flex_center{
+    justify-content: center;
+    align-items: center;
+}
+.flex_between{
+    justify-content: space-between;
+}
+.item_center{
+    align-items: center;
+}
+.justify_center{
+    justify-content: center;
+}
+.wid100{
+    width: 100%;
+}
+.pading_right20{
+    box-sizing: border-box;
+    padding-right: 20px;
+}
+.padding20{
+    padding:20px;
+}
+.underline{
+    text-decoration: underline;
+}
+.back{
+    margin-left: 20px;
+    width: 50px;
+}
+.shadow{
+    box-shadow: #EAEAEA 15px 15px 20px;
+}
+.tx_center{
+    text-align: center;
+}
+.back:before{
+    font-family: "Microsoft Sans Serif";
+    font-weight: bolder;
+    font-size: 30px;
+    content: "←";
+}

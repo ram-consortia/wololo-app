@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/aPublicImageClip.css" />
+</head>
+<body style="height: 100%;">
+    <div class="flex-vertical" id="wrap">
+        <!-- <div class="main flex-item-vertical">
+
+        </div>
+        <div class="bottom">
+            <div class="footer flex-wrap">
+                <div class="cancel" tapmode="hover" onclick="fnCloseModel()">取消</div>
+                <div class="finish" tapmode="hover" onclick="fnSubmit()">完成</div>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">]\
+        <div class="main flex-item-vertical">
+
+        </div>
+        <div class="bottom">
+            <div class="footer flex-wrap">
+                <div class="cancel" tapmode="hover" onclick="fnCloseModel()">{{'取消' | fnLanguage_public}}</div>
+                <div class="finish" tapmode="hover" onclick="fnSubmit()">{{'完成' | fnLanguage_public}}</div>
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixTabBar('.bottom');
+        fnInit();
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err){
+            fnCloseModel();
+        });
+
+        api.setWinAttr({
+            slidBackEnabled: false
+        });
+    });
+
+
+    function fnInit(){
+        APP._FNImageClip = api.require('FNImageClip');
+        var _param = {
+            rect: {
+                x: 0,
+                y: $('.header').height() || 0,
+                w: $('.main').width(),
+                h: $('.main').height()
+            },
+            srcPath: APP._param.path,
+            highDefinition: true,
+            style: {
+                mask: 'rgba(0,0,0,0.3)',
+                clip: {
+                    w: $('.main').width() - 62,
+                    h: $('.main').width() - 62,
+                    x: 31,
+                    y: (api.winHeight - $('.main').width() -  62)/2,
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
+                    borderWidth: 1,
+                    appearance: APP._param.appearance || 'circular'
+                }
+            },
+            mode: 'image',
+            // fixedOn: api.winName
+        };
+        debugAlert('打开裁剪', _param);
+        APP._FNImageClip.open(_param, function(ret, err) {
+            debugAlert('裁剪回调', arguments);
+        });
+    }
+
+    function fnRest(){
+        APP._FNImageClip.reset();
+    }
+
+    function fnSubmit(){
+        var _param = {
+            destPath: ['fs://FNImageClip', fnDateNow_public(), '.png'].join(''),
+            copyToAlbum: false,
+            quality: 1
+        }
+        debugAlert('存储裁剪图片开始', _param)
+        APP._FNImageClip.save(_param, function(ret, err) {
+            debugAlert('存储裁剪图片结束', arguments)
+            fnClosePop({
+                path: ret.destPath
+            });
+        });
+    }
+
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel(){
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data){
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.IMAGE_CLIP,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+</script>
+</html>

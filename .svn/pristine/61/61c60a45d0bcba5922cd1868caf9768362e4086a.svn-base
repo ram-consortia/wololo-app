@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/screen_pop.css">
+</head>
+
+<body class="hide">
+    <div class="fixed" tapmode="hover" onclick="fnCloseModel()"></div>
+    <div class="screen">
+        <div class="flex-vertical main" id="wrap">
+            <!-- <div class="preparation">
+                <span class="close" tapmode="hover" onclick="fnClose()"></span>
+                <p class="prepar">筛选</p>
+                <span class="collection">我的收藏</span>
+            </div>
+            <div class="flex-item-vertical content">
+                <div class="con">
+                    <p class="state">营业状态</p>
+                    <div class="sort">
+                        <span class="status active">全部</span>
+                        <span class="status">营业中</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">人气</p>
+                    <div class="sort">
+                        <span class="status">由高到低</span>
+                        <span class="status">由低到高</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">评分</p>
+                    <div class="sort">
+                        <span class="status">由高到低</span>
+                        <span class="status">由低到高</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <p class="state">等级</p>
+                    <div class="sort">
+                        <span class="status">由高到低</span>
+                        <span class="status">由低到高</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="sure">确定</div>
+            </div>
+            <div class="bottom">
+                <div class="bot-box">
+                    <div class="bot-item">重置</div>
+                    <div class="bot-item bot-sure">确定</div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="preparation">
+            <span class="close" tapmode="hover" onclick="fnCloseModel()"></span>
+
+            <p class="prepar">{{'筛选' | fnLanguage_public}}</p>
+            {{if !_param.isOrder}}
+                <span tapmode="hover" onclick="fnSubmit(true)" class="collection">{{'我的收藏' | fnLanguage_public}}</span>
+            {{/if}}
+        </div>
+        <div class="flex-item-vertical content">
+            {{each _param._data}}
+                <div class="con">
+                    <p class="state">{{$value.title | fnLanguage_public}}</p>
+                    <div class="sort">
+                        {{each $value.data $item $key}}
+                            <span tapmode="hover" onclick="fnSwitchTable(this)" data-index="{{$index}}" data-key="{{$key}}" data-id="{{$item.id}}" class="status {{$item.active && 'active'}}">{{$item.name | fnLanguage_public}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="bottom">
+            <div class="bot-box">
+                <div class="bot-item" tapmode="hover" onclick="fnRest()">{{'重置' | fnLanguage_public}}</div>
+                <div tapmode="hover" onclick="fnSubmit()" class="bot-item bot-sure">{{'确定' | fnLanguage_public}}</div>
+            </div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        APP._param.data = JSON.parse(APP._param.data);
+        APP._param._data = fnCloneObject_public(APP._param.data);
+        fnInit();
+    });
+
+    function fnInit(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixTabBar('.bottom');
+        $('body').removeClass('hide');
+    }
+
+    function fnSwitchTable(_el){
+        var _index = $(_el).data('index'),
+            _key = $(_el).data('key'),
+            _id = $(_el).data('id');
+        fnSwitchTable_base({
+            el: _el
+        }, function(){
+            for( var x in APP._param.data[_index]['data'] ){
+                delete APP._param.data[_index]['data'][x]['active'];
+            }
+            APP._param.data[_index]['data'][_key]['active'] = APP.YES;
+            APP._param.data[_index]['active'] = _id;
+        })
+    }
+
+    function fnRest(){
+        $('.con').each(function(_index, _el){
+            fnSwitchTable($(_el).find('.status')[0]);
+        })
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.OPEN_SCREEN_POP,
+            extra: JSON.stringify(_data || {})
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_isJumpCollection) {
+        var _data = APP._param;
+        if( _isJumpCollection ){
+            _data = {
+                isJumpCollection: APP.YES
+            }
+        }
+        fnClosePop(_data);
+    }
+</script>
+</html>

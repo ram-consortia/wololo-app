@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/allCoupon.css" />
+</head>
+<body>
+    <div class="flex-vertical" id="wrap">
+        <!-- <div class="top-header">
+            <header class="header">
+                <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+                <div class="title">全部评价</div>
+            </header>
+            <div class="box">
+                <div class="item active">待回复(3)</div>
+                <div class="item">已回复(67)</div>
+            </div>
+        </div>
+
+
+        <div class="flex-item-vertical">
+
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="top-header">
+            <header class="header">
+                <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+                <div class="title">{{'全部评价' | fnLanguage_public}}</div>
+            </header>
+            <div class="box">
+                <div data-path="business/shopScore_frm.html" class="item">{{'待回复' | fnLanguage_public}}(<span id="not">0</span>)</div>
+                <div data-path="business/shopScore_frm.html" class="item">{{'已回复' | fnLanguage_public}}(<span id="already">0</span>)</div>
+            </div>
+        </div>
+
+
+        <div class="flex-item-vertical">
+
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.top-header')[0] );
+        fnOpenGroup({
+            navSeletor: '.box .item',                                    //必填  |    ''    |    String    |  导航选择器
+            marginTop: $('.top-header').height(),                            //选填  |    0     |    Number    |  group 距离顶部距离
+            scrollEnabled: true,                                             //选填  |  false   |    Boolean   |  frame 组是否可以左右滑动
+            index: 0,                                                        //选填  |    0     |    Number    |  选中的tab项
+            preload: 0,                                                      //选填  |    0     |    Number    |  预加载的 frame 个数
+            param: {                                                         //选填  |    {}    |    Object    |  公共参数
+
+            }
+        });
+    });
+
+
+
+    function fnGetCommentAll(){
+        fnGetCommentStatistics_base(function(ret){
+            fnValue('#not', ret.not);
+            fnValue('#already', ret.already);
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/modify.css" />
+</head>
+<body>
+    <div class="main">
+        <div class="ul">
+            <div class="li">
+                <span class="name down" tapmode="hover" onclick="fnOpen('sign/areaCode_win.html')">+44</span>
+                <div class="input">
+                    <input type="text" placeholder="请输入新手机号">
+                </div>
+                <span class="eliminate"></span>
+            </div>
+            <div class="li">
+                <span class="name">验证码</span>
+                <div class="input">
+                    <input type="text" placeholder="请输入验证码">
+                </div>
+                <!-- 倒计时加no-noclick -->
+                <span class="code">获取验证码</span>
+            </div>
+            <div class="li">
+                    <span class="name">密码</span>
+                    <div class="input">
+                        <input type="text" placeholder="请输入登录密码进行验证">
+                    </div>
+                    <!-- 显示加active -->
+                    <span class="eye" tapmode="hover" onclick="fnEmpty()"></span>
+                </div>
+        </div>
+        <!-- 不能点击置灰加no-onclick -->
+        <div class="submint no-onclick">完成</div>
+    </div>
+        
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+       
+    });
+
+
+    
+    
+</script>
+</html>

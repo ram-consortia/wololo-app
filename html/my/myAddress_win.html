@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/contact_win.css" />
+</head>
+
+<body>
+<div class="main" id="wrap">
+    <header class="header">
+        <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+        <div class="title">My Address</div>
+    </header>
+    <div class="wrap">
+        <div class="content">
+            <textarea class="textarea_cont" name="emailcont" id="emailcont" placeholder="My Address"></textarea>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="saveAddress()">Save</div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function (_page) {
+        APP._data={
+            type:''
+        }
+        APP.fixStatusBar($('.header')[0]);
+        $('#emailcont').on('input', function (e) {
+            let content = $('#emailcont').val() || "";
+            if (content.trim() == "") {
+
+            } else {
+
+            }
+        })
+        let params = {
+            url: "user/user/get_user_info",
+            method: "get",
+        };
+        fnAjax(params, function (ret) {
+            $('#emailcont').val(ret.data.address)
+        })
+    })
+
+
+    function saveAddress() {
+        let content = $('#emailcont').val();
+        if (content.trim() == "") {
+            fnToast('Please input');
+            return;
+        }
+        let params = {
+            url: "user/index/update_user",
+            method: "POST",
+            data: {
+                address:content,
+            }
+        };
+        fnAjax(params, function (ret) {
+            if (ret.code == 1) {
+                fnClose();
+            }
+            fnToast(ret.msg)
+        })
+
+    }
+
+</script>
+
+</html>

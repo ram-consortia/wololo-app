@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+</head>
+<body style="background-color: initial">
+    <div class="flex-vertical">
+        <!-- 透明状态加transparent -->
+        <header class="header transparent">
+            <div class="title hide">
+                <span></span>
+            </div>
+        </header>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixStatusBar( $('header')[0] );
+        APP._frameAttr = {
+            name: api.frameName,
+            rect: {
+                h: $('header').height()
+            }
+        }
+        api.setFrameAttr(APP._frameAttr)
+
+        api.addEventListener({
+            name: api.winName
+        }, function(ret, err){
+
+            fnHeaderSwitch(ret.value);
+        });
+        fnValue('.title span', fnLanguage_public(APP._param.title));
+    });
+
+    function fnHeaderSwitch(_data){
+        _data.bannerHeight -= $('header').height();
+        if( _data.bannerHeight > _data.scrollTop ){
+            $('.header').addClass('transparent');
+            $('.title').addClass('hide');
+        }else{
+            $('.header').removeClass('transparent');
+            $('.title').removeClass('hide');
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicWelcome_win.css">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide swiper-slide2">
+                     <div style="left: 55%; top: 65%;" class="btn" tapmode onClick="fnNext()"></div>
+                </div>
+                <div class="swiper-slide swiper-slide3">
+                     <div style="left: 40%; top: 74%;" class="btn" tapmode onClick="fnNext()"></div>
+                </div>
+                <div tapmode onClick="fnSubmit()" class="swiper-slide swiper-slide4">
+                     <div style="left: 50%; top: 45%;" class="btn" tapmode onClick="fnNext()"></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="skip" tapmode="hover" onclick="skipTo()">Skip</div>
+        <div class="footerD">
+            <span class="footerDd footerDdC active"></span>
+            <span class="footerDd footerDdA"></span>
+            <span class="footerDd footerDdB"></span>
+        </div>
+
+        <div tapmode onClick="fnSubmit()" class="jump">
+            Start
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    var hehe = ''
+    APP.init(function() {
+
+        hehe = api.winName
+
+        APP.exitApp();
+        // APP.fixTabBar('.footer');
+        APP.removeLaunchView();
+        APP._mySwiper = new Swiper('.swiper-container', {
+            on: {
+                transitionEnd: function() {
+                    if( APP._mySwiper.activeIndex >= $('.swiper-slide').length-1 ){
+                        $('.jump').removeClass('hide');
+                        $('.jump').css('visibility','visible');
+                    }else{
+
+                    }
+                    if( APP._mySwiper.activeIndex ==0){
+                      $('.footerDdC').addClass('active').siblings().removeClass('active')
+                    }else if( APP._mySwiper.activeIndex ==1){
+                      $('.footerDdA').addClass('active').siblings().removeClass('active')
+                    }else if( APP._mySwiper.activeIndex ==2){
+                      $('.footerDdB').addClass('active').siblings().removeClass('active')
+                    }
+                },
+            }
+        });
+    });
+
+    function fnNext() {
+        if( APP._mySwiper.activeIndex >= $('.swiper-slide').length-1 ){
+            fnSubmit();
+        }else{
+            APP._mySwiper.slideNext();
+        }
+    }
+
+    function skipTo(){
+      fnOpen('sign/register_win.html',{param: {idr:'ed3',winName:hehe}})
+    }
+
+    function fnSubmit() {
+        fnShowProgress_public(api.winName);
+        setTimeout(function(){
+            fnCloseProgress_public(api.winName);
+        }, 6000);
+        fnCookie(APP.LC_NAME.HAS_NOT_WELCOME, true);
+        api.sendEvent({
+            name: APP.EV_NAME.SUBMIT_JOIN_HOME,
+            extra: {}
+        });
+        fnOpen('sign/register_win.html', {
+            animation: { //打开的动画
+              type: 'none'
+            },
+            param: {idr:'ed3',winName:hehe}
+          }
+        );
+    }
+</script>
+
+</html>

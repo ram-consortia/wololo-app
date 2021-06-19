@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/signIn.css">
+</head>
+<body>
+	<div class="main flex-vertical">
+		<div class="top top-left">
+			<span class="back" tapmode="hover" onclick="fnClose()"></span>
+		</div>
+		<div class="signin">
+			<div class="sign">绑定账号</div>
+		</div>
+		<div class="main flex-item-vertical">
+			<div class="sel">
+				<!-- 选中加active -->
+				<span class="phone active">手机号</span>
+				<span class="phone" tapmode="hover" onclick="fnEmpty()">邮箱</span>
+			</div>
+			<div class="ul">
+				<div class="li">
+					<span class="name down" tapmode="hover" onclick="fnOpen('sign/areaCode_win.html')"><span class="star">*</span>+44</span>
+					<div class="input">
+						<input type="text" placeholder="请输入手机号">
+					</div>
+					<span class="eliminate"></span>
+				</div>
+				<div class="li">
+					<span class="name"><span class="star">*</span>验证码</span>
+					<div class="input">
+						<input type="text" placeholder="请输入验证码">
+					</div>
+					<!-- 倒计时加no-noclick -->
+					<span class="code">获取验证码</span>
+				</div>
+				<div class="li">
+					<span class="name">密码</span>
+					<div class="input">
+						<input type="text" placeholder="至少6-18位数字或字母组合">
+					</div>
+					<!-- 显示加active -->
+					<span class="eye" tapmode="hover" onclick="fnEmpty()"></span>
+				</div>
+			</div>
+			<!-- 不能点击置灰加no-onclick -->
+			<div class="submint no-onclick" tapmode="hover" onclick="fnOpen('home/home_win.html')">确定</div>
+		</div>
+		<div class="bottom">
+			<!-- 选中加active -->
+			<p class="agreement active">请阅读并同意<span class="color" tapmode="hover" onclick="fnOpen('public/aPublicRichText_win.html')">《用户协议》</span>和<span class="color" tapmode="hover" onclick="fnOpen('public/aPublicRichText_win.html')">《隐私协议》</span></p>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        APP.fixStatusBar('.top');
+        APP.fixTabBar('.bottom');
+    });
+</script>
+</html>

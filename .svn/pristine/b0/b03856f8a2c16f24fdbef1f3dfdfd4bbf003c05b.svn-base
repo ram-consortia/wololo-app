@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" href="../../css/lijie.css">
+    <link rel="stylesheet" href="../../css/coupon2.css">
+</head>
+<body style="box-sizing: border-box;background: #fff" >
+    <div class="back" tapmode="hover" onclick="fnClose()"></div>
+    <div class="padding20 flex1 flex column padding_top0" id="wrap">
+        <div class="header">
+
+            <div class="question_mark flex flex_center" tapmode="hover" onclick="fnOpen('pop/howItWork_pop.html')">
+                <span>?</span>
+            </div>
+        </div>
+        <div>
+            <img class="at_shop" src="../../image/v2/at_shop.png">
+        </div>
+        <div class="flex flex_center column">
+            <div class="img_nike">
+                <img src="../../image/icon-photo.png" alt="">
+            </div>
+            <div class="grey tx_center">Tap to view</div>
+        </div>
+        <div>
+            <div class="name">
+
+            </div>
+            <div class="specs">
+<!--                <div>-->
+<!--                    <span class="label size12 color_grey">SIZE-</span>-->
+<!--                    <span class="black size16" id="size">32</span>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <span class="label size12 color_grey">COLOR-</span>-->
+<!--                    <span class="black size16" id="colors">White</span>-->
+<!--                </div>-->
+
+            </div>
+            <div class="price flex flex_center">
+                <div class="bold">£0.00</div>
+                <div class="size24 color_grey through margin_left10">£0.00</div>
+            </div>
+            <div class="margin_top20 flex flex_between item_center">
+                <div class="profile_group">
+                    <div class="profile">
+                        <img src="../../image/icon-photo.png" />
+                    </div>
+                    <div class="profile">
+                        <img src="../../image/icon-photo.png" />
+                    </div>
+                    <div class="profile">
+                        <img src="../../image/icon-photo.png" />
+                        <div class="num">
+                            0
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span style="color: #848484">Member Limit: </span>
+                    <span>0</span>
+                </div>
+            </div>
+            <div class="flex_between flex margin_top20">
+                <div>
+                    <div class="bold">Barry and 0 other</div>
+                    <div class="grey">
+                        already joined the group
+                    </div>
+                </div>
+                <div class="btn_hollow" onclick="share()" tapmode="hover">
+                    <span class="share_primary"></span>
+                    <span style="font-weight: bold;margin-left: 5px" class="size12">Share Deal</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex_center column margin_bottom20 margin_top20">
+            <div class="color_grey size12">Expires in</div>
+            <div class="color_primary bold1 size14 margin_top10">Expires in</div>
+        </div>
+        <div class="btn btn_default" >JOIN DEAL</div>
+    </div>
+
+
+<script type="text/html" id="wrap-template">
+    <div class="header">
+        <span style="margin-left: -20px" class="tag_default bold {{group_type==1?'bg_red':'bg_blue'}}">{{group_type==1?'SUPERDEAL':'+1 DEAL'}}</span>
+        <div class="question_mark flex flex_center" tapmode="hover" onclick="fnOpen('pop/howItWork_pop.html')">
+            <span>?</span>
+        </div>
+    </div>
+    <div>
+        <img class="at_shop" src="../../image/v2/at_shop.png">
+    </div>
+    <div class="flex flex_center column">
+        <div class="img_nike">
+            <img src="{{product.images[0]}}" alt="">
+        </div>
+        <div class="grey tx_center">Tap to view</div>
+    </div>
+    <div>
+        <div class="name">
+            {{name}}
+        </div>
+        <div class="specs">
+
+
+        </div>
+        <div class="price flex flex_center">
+            <div class="bold">£{{now_price}}</div>
+            <div class="size24 color_grey through margin_left10">£{{product.price}}</div>
+        </div>
+        {{if group_type==1}}
+        <div class="progress_bar margin_top20">
+            <div class="bg" id="progress"></div>
+            <div>£{{now_price}}</div>
+            <div>£{{product.price}}</div>
+        </div>
+        {{/if}}
+        <div class="margin_top20 flex flex_between item_center">
+            <div class="profile_group">
+                {{each buy_users}}
+                <div class="profile">
+                    <img src="{{$value.avatar}}" />
+                    {{if $index ==buy_users.length-1 }}
+                    <div class="num">
+                        {{people_nums}}
+                    </div>
+                    {{/if}}
+                </div>
+                {{/each}}
+            </div>
+            <div>
+                <span style="color: #848484">Member Limit: </span>
+                <span>{{member_limit}}</span>
+            </div>
+        </div>
+        <div class="flex_between flex margin_top20">
+            <div>
+                <div class="bold">Barry and {{people_nums}} other</div>
+                <div class="grey">
+                    already joined the group
+                </div>
+            </div>
+            <div class="btn_hollow" onclick="share()" tapmode="hover">
+                <span class="share_primary"></span>
+                <span style="font-weight: bold;margin-left: 5px" class="size12">Share Deal</span>
+            </div>
+        </div>
+    </div>
+    {{if group_type==1}}
+    <div class="flex flex_center column margin_bottom20 margin_top20">
+        <div class="color_grey size12">Expires in</div>
+        <div class="color_primary bold1 size14 margin_top10" id="timer"></div>
+    </div>
+    {{else}}
+    <div class="flex flex_center column margin_bottom20 margin_top20">
+        <div class="color_grey size12">Only <span class="color_primary size14">{{total}}</span> remaining</div>
+    </div>
+    {{/if}}
+    {{if is_join==0}}
+    <div class="btn btn_default" onclick="joinDeal()" tapmode="hover">JOIN DEAL</div>
+    {{else}}
+        {{if group_type==1}}
+            <div class="btn btn_default" onclick="toRedeem()" tapmode="hover">REDEEM OFFER</div>
+        {{else}}
+            <div class="tx_center">Awaiting for your +1</div>
+        {{/if}}
+    {{/if}}
+</script>
+    <script type="text/javascript" src="../../framework/zepto.min.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script type="text/javascript" src="../../script/base.js"></script>
+    <script type="text/javascript" src="../../framework/template-web.js"></script>
+    <script>
+        let detail={};
+        APP.init(()=>{
+            getDetail();
+        })
+        function getDetail(){
+            let url="base/deal/detail";
+            if(APP._param.paramType=='order'){
+                url='order/order/detail2'
+            }
+            fnAjax({
+                url,
+                data:{
+                    id:APP._param.id
+                }
+            },function (res){
+                detail=res.data;
+                fnValue('#wrap', template('wrap-template', res.data));
+                try {
+                    $("#progress").css({
+                        width:(res.data.people_nums / res.data.member_limit*100)+'%'
+                    })
+                }catch (err){
+
+                }
+                setInterval(()=>{
+                    const date=new Date().valueOf();
+                    $('#timer').text(formatduring(res.data.expire_time*1000-parseInt(date/1000)*1000))
+                },1000)
+            })
+        }
+        function joinDeal(){
+            if(detail.group_type==1){
+                //super deal
+                fnAjax({
+                    url:"order/group/join2",
+                    method: 'POST',
+                    data:{
+                        id:detail.group2[0].id,
+                    }
+                },function (res){
+                    if(res.code){
+                        fnOpen('pop/dealJoined_pop.html',{
+                            param: {
+                                detail
+                            }
+                        })
+                    }else{
+                        fnToast(res.msg)
+                    }
+                })
+            }else{
+                // +1 deal
+                fnOpen('pop/createNewGroup_pop.html',{
+                    param:{
+                        deal_id:APP._param.id
+                    }
+                })
+            }
+
+        }
+        function share(){
+            APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+            APP._shareUrl = [APP._shareUrl, 'share/joindelegation'].join('');
+            APP._shareUrl = [APP._shareUrl, fnConvertParam_public({id: APP._param.id})].join('');
+            var sharedModule = api.require('shareAction');
+            sharedModule.share({
+                text:'Check out this deal on Wololo - '+detail.name+'\n '+ APP._shareUrl,
+                path: APP._shareUrl,
+                thumbnail:'widget://image/icon-logo.png',
+                type: 'text',
+                iPad: {
+                    arrowRect: {             //JSON 对象，iPad中显示时箭头指向的位置
+                        x: 0,                  //左上角x坐标，数字类型
+                        y: 0,                  //左上角y坐标，数字类型
+                        w: 400,                  //宽度，数字类型
+                        h: 400,                  //高度，数字类型
+                    },
+                    contentSize: {           //JSON 对象，对话框大小
+                        w: 400,                  //宽度，数字类型
+                        h: 400                   //高度，数字类型
+                    },
+                    fixedOn: api.winName,              //字符串类型；对话框所依附的窗口；默认：于当前 window
+                    arrowDirection: 'any',
+                }
+            });
+        }
+        function toRedeem(){
+            fnOpen('order/receipt_win.html',{
+                param:{
+                    id:123
+                }
+            })
+        }
+    </script>
+</body>
+</html>

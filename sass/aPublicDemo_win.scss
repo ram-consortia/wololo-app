@@ -1,0 +1,45 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    ul  {
+        &::before{
+            content: attr(data-title);
+            display: block;
+            padding: pxToRem(60) pxToRem(30) pxToRem(30);
+            background-color: #eee;
+        }
+        &#chat-list{
+            .chat-icon{
+                margin-right: pxToRem(10);
+                width: pxToRem(80);
+                height: pxToRem(80);
+                @include set-bg-img($name: "default-icon.png");
+            }
+        }
+        li{
+            padding: pxToRem(30) pxToRem(60);
+            border-bottom: 1px solid #eee;
+            &.gradient{
+                @include fnGradient;
+            }
+            &#sideslip{
+                position: relative;
+                background-color: #fff;
+                overflow-x: hidden;
+                .text{
+
+                }
+                .right-btns{
+                    position: absolute;
+                    left: 100%;
+                    top: 0;
+                    bottom: 0;
+                }
+            }
+
+            // &.gradient-custom{
+            //     @include fnGradient($deg: 65deg, $start: red 0%, $end: green 100%);
+            // }
+        }
+    }
+}

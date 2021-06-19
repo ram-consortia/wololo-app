@@ -1,0 +1,123 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+
+    .main{
+        .content{
+
+            .sw-detailB{
+                color: red!important;
+                font-size: pxToRem(24);
+                .mendian{
+                    font-size: pxToRem(60);
+                    //line-height: pxToRem(42);
+                    color:green;
+                }
+            }
+            .pre-textB{
+                word-wrap:break-word!important;
+            }
+            .con{
+                margin: 0 pxToRem(30) pxToRem(10);
+                padding-bottom: pxToRem(28);
+                @include border-bottom-m;
+                &::after{
+                    border-color: #EAEAEA;
+                };
+                &:last-of-type{
+                    &::after{
+                        border: none;
+                    };
+                };
+                &.con-line{
+                    @include border-bottom-m;
+                    &::after{
+                        border-color: #eee;
+                    };
+                }
+                .textareas{
+                    padding: pxToRem(6) 0 pxToRem(32);
+                    height: pxToRem(40);
+                    font-size: pxToRem(28);
+                    color: #666;
+                    line-height: pxToRem(40);
+                }
+                .describe{
+                    font-size: pxToRem(28);
+                    color: #666;
+                    line-height: pxToRem(40);
+                }
+                .til{
+                    padding: pxToRem(26) 0;
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    .size{
+                        padding-left: pxToRem(8);
+                        font-size: pxToRem(24);
+                    }
+                    .num{
+                        float: right;
+                        font-size: pxToRem(24);
+                    }
+                }
+                .textarea{
+                    background-color: #F7F7F7;
+                    padding: pxToRem(28) pxToRem(16);
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    height: pxToRem(162);
+                    border-radius: pxToRem(4);
+                    textarea{
+                        height: 100%;
+                    }
+                }
+                .imgs{
+                    overflow: hidden;
+                    margin: 0 pxToRem(-16);
+                    .img{
+                        position: relative;
+                        float: left;
+                        display: inline-block;
+                        width: pxToRem(172);
+                        height: pxToRem(172);
+                        margin: pxToRem(16);
+                        @include set-bg-img( $name: "icon-place1.png");
+                        border-radius: pxToRem(8);
+                        .del{
+                            display: inline-block;
+                            position: absolute;
+                            width: pxToRem(60);
+                            height: pxToRem(60);
+                            position: absolute;
+                            top: pxToRem(-30);
+                            right: pxToRem(-30);
+                            @include set-bg-img( $name: "icon-close1.png", $size: pxToRem(30) auto, $position: center center);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .bottom{
+        overflow: hidden;
+        @include border-top-m;
+        &::before{
+            border-color: #EAEAEA;
+        };
+        .save{
+            margin: pxToRem(16) pxToRem(30);
+            border-radius: pxToRem(8);
+            height: pxToRem(80);
+            text-align: center;
+            line-height: pxToRem(80);
+            font-size: pxToRem(30);
+            color: #fff;
+            text-align: center;
+            @include set-bg-img( $name: "icon-submint.png");
+        }
+    }
+}

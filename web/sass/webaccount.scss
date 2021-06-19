@@ -1,0 +1,148 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            .content-center{
+                @include flex-box();
+                padding-top: pxToRem(40);
+                padding-bottom: pxToRem(60);
+                width: pxToRem(2400);
+                margin: 0 auto;
+
+                .right{
+                    @include flex-item();
+                    background-color: #fff;
+                    box-shadow:0px 4px 8px 0px rgba(0,0,0,0.06);
+                    .box{
+                        border-bottom: pxToRem(2) solid #EAEAEA;
+                        .box-wrap{
+                            overflow: hidden;
+                        }
+                        .item{
+                            float: left;
+                            position: relative;
+                            padding: pxToRem(34) pxToRem(60) pxToRem(44);
+                            text-align: center;
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            &.active{
+                                color: #333;
+                                &::after{
+                                    content: '';
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: pxToRem(8);
+                                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                                    width: pxToRem(56);
+                                    height: pxToRem(16);
+                                    @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                };
+                            }
+                        }
+                    }
+                    .account{
+                        padding: pxToRem(40);
+                        ul{
+                            border: pxToRem(2) solid #EAEAEA; 
+                            margin-bottom: pxToRem(28);  
+                            li{
+                                @include flex-box();
+                                padding: pxToRem(52);
+                                border-bottom: pxToRem(2) solid #EAEAEA;
+                                &:last-of-type{
+                                    border-bottom: none;
+                                };
+                                .name{
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(52);
+                                    width: pxToRem(296);
+                                    font-weight: bold;
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    &.facebook{
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            width: pxToRem(32);
+                                            height: pxToRem(52);
+                                            margin-right: pxToRem(30);
+                                            vertical-align: bottom;
+                                            @include set-bg-img( $name: "web-facebook.png", $size: pxToRem(32) auto, $position: center center);
+                                        };
+                                    }
+                                    &.twitter{
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            width: pxToRem(32);
+                                            height: pxToRem(52);
+                                            margin-right: pxToRem(30);
+                                            vertical-align: bottom;
+                                            @include set-bg-img( $name: "web-twitter.png", $size: pxToRem(32) auto, $position: center center);
+                                        };
+                                    }
+                                    &.wechat{
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            width: pxToRem(32);
+                                            height: pxToRem(52);
+                                            margin-right: pxToRem(30);
+                                            vertical-align: bottom;
+                                            @include set-bg-img( $name: "web-wechat.png", $size: pxToRem(32) auto, $position: center center);
+                                        };
+                                    }
+                                }
+                                .input{
+                                    @include flex-item();
+                                    font-size: pxToRem(24);
+                                    color: #666;
+                                    line-height: pxToRem(52);
+                                    @include prefixCss3($property: align-self, $value: center);
+                                }
+                                .ties{
+                                    border: pxToRem(2) solid #979797;
+                                    border-radius: pxToRem(8);
+                                    width: pxToRem(164);
+                                    height: pxToRem(52);
+                                    font-size: pxToRem(24);
+                                    color: #333;
+                                    line-height: pxToRem(52);
+                                    text-align: center;
+                                    margin: 0 pxToRem(22);
+                                    cursor: pointer;
+                                    &.binding{
+                                        border: pxToRem(2) solid #FF7C4A;
+                                        color: #FF7C4A;
+                                    }
+                                }
+                            }
+                        }
+                        .tip{
+                            background-color: #F7F7F7;
+                            padding: pxToRem(18) pxToRem(52) pxToRem(16);
+                            font-size: pxToRem(24);
+                            color: #666;
+                            line-height: pxToRem(34);
+                            p{
+                                padding: pxToRem(10) 0;
+                                &.tip-tiltle{
+                                    font-weight: bold;
+                                    padding: pxToRem(14) 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+            
+        }
+    }
+      
+}

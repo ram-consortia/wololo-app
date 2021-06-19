@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/home_v2.css"/>
+</head>
+<body>
+<div class="top-header order" style="padding-top: 10px; box-sizing: border-box">
+    <div class="head-item" style="padding-bottom: 10px">
+        <div class="back" tapmode="hover" onclick="fnClose()"></div>
+
+        <header>
+            <div class="padding20 size32 bold padding_top0" id="titleName">Explore</div>
+        </header>
+        <div class="box tabbar">
+            <div data-path="home/exploreDeals_frm.html" class="item">
+                Deals
+            </div>
+<!--            <div data-path="home/exploreProduct_frm.html" class="item">-->
+<!--                Products-->
+<!--            </div>-->
+            <div data-path="home/exploreMerchants_frm.html" class="item">
+                Merchants
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    APP.init(function () {
+        $('#titleName').text(APP._param.name);
+        fnOpenGroup({
+            navSeletor: '.box .item',                                    //必填  |    ''    |    String    |  导航选择器
+            marginTop: $('.head-item').height()+30,                            //选填  |    0     |    Number    |  group 距离顶部距离
+            scrollEnabled: true,                                             //选填  |  false   |    Boolean   |  frame 组是否可以左右滑动
+            index: 0,                                                        //选填  |    0     |    Number    |  选中的tab项
+            preload: 0,                                                      //选填  |    0     |    Number    |  预加载的 frame 个数
+            param: {                                                         //选填  |    {}    |    Object    |  公共参数
+            }
+        });
+    })
+
+</script>
+</body>
+</html>

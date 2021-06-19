@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/discountCode.css" />
+</head>
+<body class="hide">
+    <div class="flex-vertical" id="wrap">
+        <div class="flex-item-vertical">
+            <div class="main">
+
+                <div class="content">
+                    <div class="img-wrap">
+                        <div class="top">
+                            <div class="photo" >
+                                <img src="{{_user.avatar}}" alt="">
+                            </div>
+                            <p class="id">ID：{{_user.code_id}}</p>
+                            <!--<div data-img-url="{{_user.avatar}}" data-img-type="!avatar" class="photo"></div>
+                            <div class="message">
+                                <p class="name">{{'我的二维码' | fnLanguage_public}}</p>
+                                <p class="id">ID：{{_user.code_id}}</p>
+                            </div>-->
+
+                        </div>
+                        <div class="code" id="canvas">
+                            <!-- <img src="" alt=""> -->
+                            <img src="../../image/icon-logo.png" id="img" class="hide">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <p class="save hide" tapmode="hover" onclick="fnSave()">{{'保存至相册' | fnLanguage_public}}</p>
+
+        </div>
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">
+                {{if _param.sn}}
+                {{'优惠券二维码' | fnLanguage_public}}
+                {{else if _param.store_user_id}}
+                {{'商铺二维码' | fnLanguage_public}}
+                {{else}}
+                {{'我的二维码' | fnLanguage_public}}
+                {{/if}}
+            </div>
+        </header>
+        <div class="flex-item-vertical">
+            <div class="main">
+
+                <div class="content">
+                    <div class="img-wrap">
+                        <div class="top">
+                            <div class="photo" >
+                                <img src="{{_user.avatar}}" alt="">
+                            </div>
+                            <p class="id">ID：{{_user.code_id}}</p>
+                            <!--<div data-img-url="{{_user.avatar}}" data-img-type="!avatar" class="photo"></div>
+                            <div class="message">
+                                <p class="name">{{'我的二维码' | fnLanguage_public}}</p>
+                                <p class="id">ID：{{_user.code_id}}</p>
+                            </div>-->
+
+                        </div>
+                        <div class="code" id="canvas">
+                            <!-- <img src="" alt=""> -->
+                            <img src="../../image/icon-logo.png" id="img" class="hide">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <p class="save hide" tapmode="hover" onclick="fnSave()">{{'保存至相册' | fnLanguage_public}}</p>
+
+        </div>
+
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/jquery.min.js"></script>
+<script type="text/javascript" src="../../framework/jquery-qrcode-0.17.0.min.js"></script>
+<script type="text/javascript" src="../../framework/html2canvas.min.js"></script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+    });
+
+
+    function fnInit(){
+
+        fnUser_public({
+            isLastData: true,        //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）
+            hasProgress: APP.NO
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+
+                // 二维码类型（type）。0：用户二维码 code_id，1：优惠券订单单号二维码,2：商户二维码
+                var _content = {
+                    type: 0,
+                    id: APP._user.id,
+                    CURRENT_APP_ID: APP.CURRENT_APP_ID,
+                    user_id: APP._user.id
+                }
+                if( APP._param.sn ){
+                    // 订单二维码
+                    _content = {
+                        type: 1,
+                        id: APP._param.id,
+                        CURRENT_APP_ID: APP.CURRENT_APP_ID,
+                        user_id: APP._param.user_id,
+                        store_id: APP._param.store_id
+                    }
+                }else if( APP._param.store_user_id ){
+                    // 商户二维码
+                    _content = {
+                        type: 2,
+                        CURRENT_APP_ID: APP.CURRENT_APP_ID,
+                        store_id: APP._user.id
+                    }
+                }
+                var _param = {
+                    render: "canvas",
+                    ecLevel: "H",
+                    minVersion: 1,
+                    fill: "#333333",
+                    background: "#ffffff",
+                    // content
+                    text: JSON.stringify(_content),
+
+                    // size in pixel
+                    size: $('#canvas').width()*2,
+                    radius: 0,
+                    quiet: 1,
+                    mode: 4,
+                    mSize: 0.25,
+                    mPosX: 0.5,
+                    mPosY: 0.45,
+                    label: "jQuery.qrcode",
+                    fontname: "Ubuntu",
+                    fontcolor: "#ff9818",
+                    image: $('#img')[0]
+                }
+                setTimeout(function(){
+                    $('#canvas').qrcode(_param);
+                    $('.save').removeClass('hide')
+                    $('body').removeClass('hide')
+                }, 100)
+                // fnEncodeImg_public({
+                //     content: JSON.stringify(_content)            //必填     |   ''   |     string  |  生成二维码的字符串
+                // }, function(ret){
+                //     // ret.path                                             //必返   string  |  二维码本地地址
+                //     APP._codeImg = ret.path;
+                //     $('.code').css({
+                //         'background-image': 'url('+ret.path+')'
+                //     })
+                //     $('.save').removeClass('hide')
+                // })
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+
+    //保存图片
+    function fnSave(){
+        fnCreatImg(function(ret){
+            fnSaveMediaToAlbum_public(ret.path);
+        })
+    }
+
+    function fnCreatImg(_cb, _selector){
+        html2canvas(document.querySelector(_selector || '.img-wrap')).then(function(canvas){
+            // debugAlert(4444444, canvas)
+            var _base64 = canvas.toDataURL("image/png");
+            // $('body').append(_base64);
+            fnDecodeBase64ToImg_public({
+                base64: _base64.replace('data:image/png;base64,', '')                //必填 |           |  String           |  需要转换的 base64（不能包含base64的 “data:image/png;base64,”)
+            }, function(ret){
+                // ret.path                                                          //必返 |           |  String           |  转换后的本地路径
+                _cb && _cb(ret);
+            })
+        });
+    }
+</script>
+</html>

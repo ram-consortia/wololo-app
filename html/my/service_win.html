@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/service.css" />
+</head>
+<body>
+    <div class="flex-vertical" id="wrap">
+         <!--<header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">售后详情</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="top">
+                &lt;!&ndash;<div class="img">&ndash;&gt;
+                    <div class="imgHeader">
+                        <p class="state">售后成功</p>
+                        <p class="time">2018.8.12 18:16</p>
+                    </div>
+
+                    <div class="note">
+                        <p class="time title">未通过原因</p>
+                        <div class="text pre-text">fssfdfdsfdsfdsfdsfd234324324324132gfdsfdsfdsyjytjytjytjrytfdgdfdgfdgfd不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧不行吧
+                        </div>
+                    </div>
+                &lt;!&ndash;</div>&ndash;&gt;
+            </div>
+            <div class="ul-refund">
+                <div class="li-refund">
+                    <div class="refund-item">退款总金额</div>
+                    <div class="money">￡120.00</div>
+                </div>
+                <div class="li-refund">
+                    <div class="refund-item">退款信息</div>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="cont">
+                    <div class="contImg">
+                        <img width="100%" height="100%" src="../../image/Google.png" />
+                    </div>
+                    <div class="message">
+                        <div class="message-item">
+                            <p class="shop-name">西单大悦城美食城</p>
+                            <div class="base">
+                                <p class="subtitle">特色单品节日优惠</p>
+                                <p class="time">50.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                &lt;!&ndash;<div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            &lt;!&ndash;<p class="num">￡<span class="size">20</span></p>
+                            <p class="voucher">代金券 x2</p>&ndash;&gt;
+                            <img width="100%" height="100%" src="../../image/Google.png" />
+                        </div>
+                        &lt;!&ndash;<div class="line"></div>&ndash;&gt;
+                        <div class="message">
+                            <div class="message-item">
+                                <p class="shop-name">西单大悦城美食城</p>
+                                <div class="base">
+                                    <p class="subtitle">特色单品节日优惠</p>
+                                    <p class="time">2019.01.04 - 2019.01.03</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>&ndash;&gt;
+            </div>
+            <ul class="ulP">
+                <li class="liP">
+                    <div class="name">服务编号</div>
+                    <div class="message">3428793092634534</div>
+                </li>
+                <li class="liP">
+                    <div class="name">退款原因</div>
+                    <div class="message">尺寸拍错/不喜欢/效果差</div>
+                </li>
+                <li class="liP">
+                    <div class="name">退款金额</div>
+                    <div class="message">￡120.00</div>
+                </li>
+                <li class="liP">
+                    <div class="name">申请件数</div>
+                    <div class="message">1</div>
+                </li>
+                <li class="liP">
+                    <div class="name">申请时间</div>
+                    <div class="message">2018.08.06 11:20</div>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'售后详情' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="top">
+                <div class="img">
+                    <p class="state">{{ {'target': _data.status, 'key': 'id', 'resKey': 'name', 'data': AFTER_SALE.status} | fnGetRelation_public }}</p>
+
+                    {{if _data.status != AFTER_SALE.status.in.id}}
+                        <p class="time">{{_data.update_time | dateFormat 'yyyy.MM.dd hh:mm'}}</p>
+                    {{/if}}
+
+                    {{if _data.remarks}}
+                        <div class="note">
+                            <p class="time title">{{'未通过原因' | fnLanguage_public}}</p>
+                            <div class="text pre-text">{{_data.remarks}}</div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="ul-refund">
+                <div class="li-refund">
+                    <div class="refund-item">{{'退款总金额' | fnLanguage_public}}</div>
+                    <div class="money">￡{{_data.price}}</div>
+                </div>
+                <div class="li-refund">
+                    <div class="refund-item">{{'退款信息' | fnLanguage_public}}</div>
+                </div>
+            </div>
+
+            <div tapmode="hover" onclick="fnJump_base('home/couponsDetails_win.html', {{_data.coupon.id}})" class="middle">
+                <div class="coupon">
+                    <div class="coupon-item">
+                        <div class="price">
+                            <p class="num">￡<span class="size">{{_data.coupon.price_group | fnGetMaxPrice_base}}</span></p>
+                            <p class="voucher">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }} x{{_data.count}}</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="message">
+                            <div class="message-item">
+                                {{if _data.store && _data.store.id}}
+                                    <p class="shop-name">{{_data.store | fnShowUserNickname_base}}</p>
+                                {{/if}}
+
+                                <div class="base">
+                                    <p class="subtitle">{{_data.coupon.name}}</p>
+                                    <p class="time">
+                                        {{_data.coupon | fnGetCouponDateMsg_base}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="ulP">
+                <li class="liP">
+                    <div class="name">{{'服务编号' | fnLanguage_public}}</div>
+                    <div class="message">{{_data.sn}}</div>
+                </li>
+                <li class="liP">
+                    <div class="name">{{'问题描述' | fnLanguage_public}}</div>
+                    <div class="message">{{_data.describe}}</div>
+                </li>
+                <li class="liP">
+                    <div class="name">{{'退款金额' | fnLanguage_public}}</div>
+                    <div class="message">￡{{_data.price}}</div>
+                </li>
+                <li class="liP">
+                    <div class="name">{{'申请件数' | fnLanguage_public}}</div>
+                    <div class="message">{{_data.count}}</div>
+                </li>
+                <li class="liP">
+                    <div class="name">{{'申请时间' | fnLanguage_public}}</div>
+                    <div class="message">{{_data.create_time | dateFormat 'yyyy.MM.dd hh:mm'}}</div>
+                </li>
+            </ul>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnGet();
+    });
+
+
+    function fnGet(){
+        var _param = {
+            url: 'order/after_sale/detail',
+            method: 'GET',
+            data: {
+                id: APP._param.id
+            }
+        }
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                const data= [
+                    {
+                        "id": 14,
+                        "coupon_id": 5,
+                        "status": 1,
+                        "group_id": 15,
+                        "store_id": 20,
+                        "create_time": "2019-12-05 11:53:08",
+                        "coupon": {
+                            "id": 5,
+                            "name": "哈哈优惠券",
+                            "type": 2,
+                            "price_group": [
+                                "50",
+                                "20"
+                            ],
+                            "price": "100.00",
+                            "validity_type": 3,
+                            "validity_start_time": 0,
+                            "validity_end_time": 0,
+                            "validity_day": 100
+                        },
+                        "store": {
+                            "id": 20,
+                            "user_nickname": "后台添加3",
+                            "auth": {
+                                "images": [
+                                    {
+                                        "file_name": "",
+                                        "url": ""
+                                    }
+                                ],
+                                "category_id": 16,
+                                "ev_score": "3.6",
+                                "user_id": 20,
+                                "address": "",
+                                "lon": "",
+                                "lat": "",
+                                "category": {
+                                    "id": 16,
+                                    "parent_id": 0,
+                                    "name": {
+                                        "zh_cn": "一级2",
+                                        "en_us": "一级2"
+                                    },
+                                    "icon": "http://ygjf.com/upload/system/20191122/36822cdfa6744fe8df4f5af6a988c8f9.jpg"
+                                }
+                            }
+                        },
+                        "group": {
+                            "id": 15,
+                            "status": 1,
+                            "participants": 1,
+                            "price_coupon_max": 20
+                        }
+                    }
+                ]
+                // APP._data = ret.data;
+                APP._data = data;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar( $('.header')[0] );
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css"/>
+</head>
+<style>
+    .tag_hollow {
+        display: inline-block;
+    }
+
+    .nowrap {
+        width: 100%;
+        overflow: auto;
+        height: 50px;
+        white-space: nowrap;
+    }
+
+    .pingj {
+        background-color: #F2F7FB;
+        border-radius: 12px;
+        overflow: hidden;
+        padding: 20px;
+        padding-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .pingjcont {
+        height: 67px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        line-height: 18px;
+        font-size: 12px;
+        color: #666D72;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #00A84D;
+    }
+
+    .name {
+        color: #010001;
+        font-size: 14px;
+    }
+
+    .timer {
+        font-size: 12px;
+        color: #666D72;
+    }
+
+    .profile1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2px 0;
+        margin-left: 7px;
+    }
+</style>
+<body style="display: flex;flex-direction: column;height: 100%">
+<div class="flex item_center margin_left20 margin_top20 margin_bottom20 padding_top20">
+    <div class="back margin0" onclick="fnClose()"></div>
+    <div class="bold size24">User Reviews</div>
+</div>
+<div class="padding20 padding_top0 flex1" style="overflow-y: auto">
+    <!--    <div class="nowrap">-->
+    <!--        <div class="tag_hollow tag_active">Most Helpful</div>-->
+    <!--        <div class="tag_hollow">Most Helpful</div>-->
+    <!--        <div class="tag_hollow">Most Helpful</div>-->
+    <!--        <div class="tag_hollow">Most Helpful</div>-->
+    <!--        <div class="tag_hollow">Most Helpful</div>-->
+    <!--    </div>-->
+    <div id="list">
+
+    </div>
+</div>
+</div>
+<div class="padding20">
+    <div class="btn btn_default" onclick="toReview()">
+        Write a Review
+    </div>
+</div>
+
+</body>
+<script type="text/html" id="list-template">
+    {{each _list _value index}}
+    <div class="pingj">
+        <div class="flex justify_end padding20">
+            <div class="size0 star_wrap">
+
+            </div>
+        </div>
+        <div class="pingjcont">
+            {{_value.content}}
+        </div>
+        <div class="flex margin_top10">
+            <div class="avatar">
+                <img src="{{_value.user.avatar||'../../image/v2/icon-logo.png'}}" alt="">
+            </div>
+            <div class="profile1">
+                <div class="name prosemi">{{_value.user.user_nickname}}</div>
+                <div class="timer">{{_value.update_time | formatTimer}}</div>
+            </div>
+        </div>
+    </div>
+    {{_value.score,index | createArray }}
+
+    {{/each}}
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    let id = null;
+    APP.init(() => {
+        id = APP._param;
+        fnGet();
+    })
+    function refresh(){
+        APP.PAGE.START_PAGE=1;
+        $('#list').html('');
+        fnGet();
+    }
+    function fnGet(params) {
+        if (params) {
+            // $('#list').html('');
+        }
+        var _param = {
+            url: 'base/comment/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 10,
+                store_id: id
+            }
+        };
+        fnGetList_base(_param, function (ret) {
+            if (ret.evType == 'scrolltobottom') {
+                fnGet();
+            }
+        })
+    }
+
+    function toReview() {
+        fnOpen('my/writeReviews_win.html', {
+            param: {
+                id,
+            }
+        })
+    }
+
+    function formatTimer(timespan) {
+        timespan *= 1000;
+        var dateTime = new Date(timespan);
+
+        var year = dateTime.getFullYear();
+        var month = dateTime.getMonth() + 1;
+        var day = dateTime.getDate();
+        var hour = dateTime.getHours();
+        var minute = dateTime.getMinutes();
+        var second = dateTime.getSeconds();
+        var now = new Date();
+        var now_new = Date.parse(now.toDateString());  //typescript转换写法
+
+        var milliseconds = 0;
+        var timeSpanStr;
+
+        milliseconds = now_new - timespan;
+
+        if (milliseconds <= 1000 * 60 * 1) {
+            timeSpanStr = 'current';
+        } else if (1000 * 60 * 1 < milliseconds && milliseconds <= 1000 * 60 * 60) {
+            timeSpanStr = Math.round((milliseconds / (1000 * 60))) + 'minute ago';
+        } else if (1000 * 60 * 60 * 1 < milliseconds && milliseconds <= 1000 * 60 * 60 * 24) {
+            timeSpanStr = Math.round(milliseconds / (1000 * 60 * 60)) + 'hour ago';
+        } else if (1000 * 60 * 60 * 24 < milliseconds && milliseconds <= 1000 * 60 * 60 * 24 * 15) {
+            timeSpanStr = Math.round(milliseconds / (1000 * 60 * 60 * 24)) + 'days ago';
+        } else if (milliseconds > 1000 * 60 * 60 * 24 * 15 && year == now.getFullYear()) {
+            timeSpanStr = month + '-' + day + ' ' + hour + ':' + minute;
+        } else {
+            timeSpanStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+        }
+        return timeSpanStr;
+    }
+
+    function createArray(num, index) {
+        let str = "";
+        Array(num).fill(1).forEach(item => {
+            str += '<div class = "star" />'
+        })
+        setTimeout(() => {
+            $('.star_wrap').eq(index).html(str);
+        }, 200)
+    }
+</script>
+
+</html>

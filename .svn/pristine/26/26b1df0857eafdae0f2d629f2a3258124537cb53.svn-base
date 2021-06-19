@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/set.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/openingRegiment.css" />
+</head>
+<body>
+<div class="main flex-vertical" id="wrap">
+    <header class="header">
+        <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+        <div class="title">Groups</div>
+    </header>
+    <div class="content contflex1" id="list-group">
+    </div>
+</div>
+</body>
+<script type="text/html" id="wrap-template">
+    <div id="list" class="hide">
+
+    </div>
+</script>
+<script type="text/html" id="list-template">
+    {{each _list}}
+    <div tapmode="hover" onclick="fnJump_base('assemble/joinDelegation_win.html', {{$value.id}})" class="coupon-img">
+
+        <div class="con">
+
+            <div class="couponA">
+                <div class="time
+                                    {{if $value.status == GROUP.status.in.id}}
+                                        js-count-down
+                                        {{else}}
+                                        hide
+                                    {{/if}}
+                                " data-count-down="{{$value.expire_time_temp}}" data-count-down-end-execution-function="fnInit">
+                    <span class="number"><span class="js-hour">0</span></span>:
+                    <span class="number"><span class="js-minute">0</span></span>:
+                    <span class="number"><span class="js-second">0</span></span>
+                </div>
+                <div class="coupon-item">
+                    <div class="message">
+                        <div class="message-item">
+                            <p class="shopname">{{$value.coupon.name}}</p>
+                            <div class="base">
+
+                                <p class="subtitle">{{'门市价' | fnLanguage_public}}￡{{$value.coupon.price}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price">
+                        <p class="num">
+                            ￡<span class="size">{{$value.coupon.price_group | fnGetMaxPrice_base}}</span>
+                        </p>
+
+                        <p class="market-price">
+                            {{ {'target': $value.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}
+                        </p>
+
+                    </div>
+                </div>
+                <span class="conLeft"></span>
+                <span class="conRight"></span>
+            </div>
+            <div class="offered">
+                <div class="offered-box">
+                    <div class="offered-item">
+                        <p class="people">
+                            {{'已参团' | fnLanguage_public}}
+                            {{$value.participants}}
+                            {{'人' | fnLanguage_public}}，{{'还差' | fnLanguage_public}}{{$value.coupon.price_group.length - $value.participants}}{{'人' | fnLanguage_public}}</p>
+
+                    </div>
+
+                    {{if $value.status == GROUP.status.in.id}}
+                    <!-- 默认去参团,已参团加join,已成团加clustering -->
+                    {{if $value.is_join}}
+                    <span class="group join" >{{'已参团' | fnLanguage_public}}</span>
+                    {{else}}
+                    <span class="group">{{'去参团' | fnLanguage_public}}</span>
+                    {{/if}}
+                    {{else}}
+                    <span class="group clustering">{{'已成团' | fnLanguage_public}}</span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    // fnJump_base('assemble/joinDelegation_win.html',{id:groups[0]});
+    APP.init(function(){
+        fnValue('#list-group', template('wrap-template', APP));
+        fnInit();
+
+    });
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+
+        let data={
+            page: APP.PAGE.START_PAGE,
+            limit: 5,
+            // limit: APP.PAGE.SKIP_PAGE,
+            status: 1
+        }
+        if(APP._param){
+            data.group_id=APP._param.join()
+        }
+        var _param = {
+            url: 'order/group/index',
+            data
+        }
+        if( APP._keyword ){
+            _param.data.keyword = APP._keyword;
+        }
+        if( APP._category_ids ){
+            _param.data.category_ids = APP._category_ids;
+        }
+        fnGetList_base(_param, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+</script>
+</html>

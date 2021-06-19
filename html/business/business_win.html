@@ -1,0 +1,724 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/storeDetails.css" />
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+</head>
+<body>
+    <div class="main" id="wrap">
+
+        <!-- <div class="content">
+            <div class="swiper">
+                <div class="top-btn">
+                    <span class="bell">
+                        <span class="badge"></span>
+                    </span>
+                </div>
+                <div class="wrap">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="photo">
+                                    <img src="../../image/icon-background6.png">
+                                    <div class="pho"></div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="photo">
+                                    <img src="../../image/icon-background6.png">
+                                    <div class="pho"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="total">30张图</span>
+                </div>
+            </div>
+            <div class="top business-top">
+                <div class="name">
+                    <span class="hot">hot</span>北京市西城区西单大悦城6F信悦美食街喜茶店
+                </div>
+                <div class="tip-box">
+                    <div class="tip-item">
+                        <span class="branch">LV3</span>
+                        <span class="branch business-branch">餐饮店</span>
+                    </div>
+                    <span class="ticket"></span>
+                </div>
+            </div>
+            <div class="order-box">
+                <div class="order-item" tapmode="hover" onclick="fnOpen('business/allOrder_win.html')">
+                    <p class="number">326</p>
+                    <p class="order">全部订单</p>
+                </div>
+                <div class="order-item" tapmode="hover" onclick="fnOpen('business/allCoupon_win.html')">
+                    <p class="number">10</p>
+                    <p class="order">优惠券</p>
+                </div>
+                <div class="order-item" tapmode="hover" onclick="fnOpen('business/code_win.html')">
+                    <p class="scan"></p>
+                    <p class="order">扫一扫</p>
+                </div>
+            </div>
+            <ul>
+                <li class="no-line">
+                    <span class="account shops"></span>
+                    <div class="store">商铺二维码</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li class="no-line">
+                    <span class="account search"></span>
+                    <div class="store">搜索核销</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li>
+                    <div class="store">营业时间</div>
+                    <div class="input">
+                        <input type="text" readonly value="10am-2pm">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnOpen('business/shopScore_win.html')">
+                    <div class="store">商铺评分</div>
+                    <div class="input">
+                        全部评价(604)
+                    </div>
+                    <span class="score"><span class="num">4.3</span>分</span>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnOpen('business/addressInformation_win.html')">
+                    <div class="store">经营地区</div>
+                    <div class="input">
+                        <input type="text" readonly value="北三环中路44号院文教产业园东门...">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li>
+                    <div class="store">联系电话</div>
+                    <div class="input">
+                        <input type="text" readonly value="18528385938">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li onclick="fnOpen('business/shopsDetails_win.html')">
+                    <div class="store">商铺详情</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <span class="modify">修改</span>
+                    <div class="right"></div>
+                </li>
+                <li>
+                    <div class="store">网址信息</div>
+                    <div class="input">
+                        <input type="text" readonly value="https://www.apicloud.com/">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li>
+                    <div class="store">Instagram</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <span class="modify">FM哲</span>
+                    <div class="right"></div>
+                </li>
+                <li class="li-top" onclick="fnOpen('my/accountManagement_win.html')">
+                    <span class="account"></span>
+                    <div class="store">帐号管理</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li onclick="fnOpen('my/set_win.html')">
+                    <span class="account set"></span>
+                    <div class="store">基础设置</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li>
+                    <span class="account service"></span>
+                    <div class="store">在线客服</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+            </ul>
+        </div> -->
+
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <div class="content">
+            <div class="swiper">
+                <div class="top-btn">
+                    <span tapmode="hover" onclick="fnOpen('business/message_win.html')" class="bell" id="message">
+                        <span class="badge hide"></span>
+                    </span>
+                </div>
+                <div tapmode onclick="fnOpen('business/img_win.html')" class="wrap">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {{if _data.auth.images && _data.auth.images.length }}
+                                {{each _data.auth.images}}
+                                    <div class="swiper-slide">
+                                        <div class="photo">
+                                            <img src="../../image/icon-background6.png">
+                                            <div data-img-url="{{$value.url}}" data-img-type="!avatar" class="pho"></div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            {{else}}
+                                <div class="swiper-slide">
+                                    <div class="photo">
+                                        <img src="../../image/icon-background6.png">
+                                        <div class="pho"></div>
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <span class="total">{{_data.auth.images.length}}
+                    {{'张图' | fnLanguage_public}}</span>
+                </div>
+            </div>
+            <div class="top business-top">
+                <div class="name">
+                    {{if +_data.auth.hot_grade}}
+                        <span class="hot">hot</span>
+                    {{/if}}
+
+                    {{_data | fnShowUserNickname_base}}
+                </div>
+                <div class="tip-box">
+                    <div class="tip-item">
+                        <span class="branch">{{ {'target': _data.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span>
+                        <span class="branch">{{_data.auth.category.name | fnLanguageSwitch_base}}</span>
+                    </div>
+                    <span class="ticket hide" id="isCoupon"></span>
+                </div>
+            </div>
+            <div class="order-box">
+                <div class="order-item" tapmode="hover" onclick="fnOpenOrderHome()">
+                    <p class="number" id="order">0</p>
+                    <p class="order">{{'全部订单' | fnLanguage_public}}</p>
+                </div>
+                <div class="order-item" tapmode="hover" onclick="fnOpen('business/allCoupon_win.html')">
+                    <p class="number" id="coupon">0</p>
+                    <p class="order">{{'优惠券' | fnLanguage_public}}</p>
+                </div>
+                <div class="order-item" tapmode="hover" onclick="fnOpenBarCode()">
+                    <p class="scan"></p>
+                    <p class="order">{{'扫一扫' | fnLanguage_public}}</p>
+                </div>
+            </div>
+            <ul>
+                <li tapmode="hover" onclick="fnJump_base('order/discountCode_win.html', {{_data.id}}, 'store_user_id')" class="no-line">
+                    <span class="account shops"></span>
+                    <div class="store">{{'商铺二维码' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+
+                <li tapmode="hover" onclick="fnSearchWriteOrder()" class="no-line" >
+                    <span class="account search"></span>
+                    <div class="store">{{'搜索核销' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+
+                <li tapmode="hover" onclick="fnMultistageSelector()">
+                    <div class="store">{{'营业时间' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="business"
+                            {{if _data.business && _data.business.length}}
+                                data-start="{{_data.business[0].start_time}}"
+                                data-end="{{_data.business[0].end_time}}"
+                            {{/if}}
+                         type="text" readonly placeholder="{{'请选择营业时间' | fnLanguage_public}}">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnOpen('business/shopScore_win.html')">
+                    <div class="store">{{'商铺评分' | fnLanguage_public}}</div>
+                    <div class="input">
+                        {{'全部评价' | fnLanguage_public}}(<span id="commentAll">0</span>)
+                    </div>
+                    <span class="score"><span class="num">{{_data.auth.ev_score}}</span>{{'分' | fnLanguage_public}}</span>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnOpen('business/addressInformation_win.html')">
+                    <div class="store">{{'经营地区' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly value="{{_data.auth.address}}" placeholder="{{'请设置经营地区' | fnLanguage_public}}">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li>
+                    <div class="store">{{'联系电话' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly value="{{_data.mobile}}">
+                    </div>
+                </li>
+                <li tapmode="hover" onclick="fnOpen('business/shopsDetails_win.html')">
+                    <div class="store">{{'商铺详情' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <span class="modify">{{'修改' | fnLanguage_public}}</span>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnSetUserUrl()">
+                    <div class="store">{{'网址信息' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="user_url" type="text" readonly placeholder="{{'请输入网址信息' | fnLanguage_public}}" value="{{_data.user_url}}">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnSetUserInstagram()">
+                    <div class="store">{{'Instagram账号' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input id="instagram" type="text" readonly placeholder="{{'请输入Instagram账号' | fnLanguage_public}}" value="{{_data.instagram}}">
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li class="li-top" tapmode="hover" onclick="fnOpen('my/accountManagement_win.html')">
+                    <span class="account"></span>
+                    <div class="store">{{'帐号管理' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnOpen('my/set_win.html')">
+                    <span class="account set"></span>
+                    <div class="store">{{'基础设置' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+                <li tapmode="hover" onclick="fnOpenMeiQia_base()">
+                    <span class="account service"></span>
+                    <div class="store">{{'在线客服' | fnLanguage_public}}</div>
+                    <div class="input">
+                        <input type="text" readonly>
+                    </div>
+                    <div class="right"></div>
+                </li>
+            </ul>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+
+        APP.exitApp();
+
+        api.addEventListener({
+            name: APP.EV_NAME.USER_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: 'viewappear'
+        }, function(ret, err){
+            fnStatisticsInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.ORDER_UPDATE
+        }, function(ret, err){
+            fnStatisticsInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.JPUSH_JUMP
+        }, function(ret, err){
+            fnStatisticsInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.JPUSH_JUMP
+        }, function(ret, err){
+            // alert(debugAlert('444', arguments))
+            fnMessageJump_base(ret.value);
+        });
+
+        setTimeout(function(){
+            fnCookie(APP.LC_NAME.JPUSH_JUMP, function(ret){
+                if( ret ){
+                    fnMessageJump_base(ret);
+                }
+            });
+        }, 600)
+    });
+
+    function fnInit(){
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._data = _user.user;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixTabBar('.content');
+                APP.fixStatusBar('.top-btn');
+
+
+                var mySwiper = new Swiper('.swiper-container', {
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: '.swiper-pagination'
+                    }
+                });
+                fnStatisticsInit();
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+    function fnStatisticsInit(){
+        fnGetCoupon();
+
+        fnGetCommentAll();
+
+        fnSetBusinessFormat();
+
+        fnGetOrder();
+
+        fnGetMsgTotal_base({
+            // type: APP.NEWS.type.notification.type
+        }, function(ret){
+            if( ret.un_read_news_ids && ret.un_read_news_ids.length ){
+                $('#message .badge').removeClass('hide');
+            }else{
+                $('#message .badge').addClass('hide');
+            }
+        })
+    }
+
+
+    function fnGetCommentAll(){
+        fnGetCommentStatistics_base({
+            hasProgress: APP._data ? APP.NO : APP.YES,
+            page: 1,
+            limit: 1
+        }, function(ret){
+            fnValue('#commentAll', +ret.already + ret.not);
+        })
+    }
+
+
+    function fnGetCoupon(){
+        fnGetCouponStatistics_base({
+            hasProgress: APP._data ? APP.NO : APP.YES
+        }, function(ret){
+            fnValue('#coupon', ret.total);
+            if( +ret.total ){
+                $('#isCoupon').removeClass('hide');
+            }else{
+                $('#isCoupon').addClass('hide');
+            }
+        })
+    }
+
+
+    function fnGetOrder(){
+        fnAjax_base({
+            url: 'order/order_store/index',
+            page: 1,
+            limit: 1,
+            hasProgress: {
+                status: APP._data ? APP.NO : APP.YES
+            }
+            // status: APP.ORDER.store_status.not.id
+        }, function(ret){
+            fnValue('#order', ret.total);
+        })
+        // fnGetCouponStatistics_base(function(ret){
+        //     fnValue('#coupon', ret.total);
+        //     if( +ret.total ){
+        //         $('#isCoupon').removeClass('hide');
+        //     }else{
+        //         $('#isCoupon').addClass('hide');
+        //     }
+        // })
+    }
+
+    function fnSetBusinessFormat(){
+        if( $('#business').attr('data-start') && $('#business').attr('data-end') ){
+            var _start = fnFormatTimeData_base($('#business').attr('data-start')),
+                _end = fnFormatTimeData_base($('#business').attr('data-end'));
+            fnValue('#business', [[_start.hour.viewValue, ':', _start.min.viewValue, _start.hour.unit].join(''), [_end.hour.viewValue, ':', _end.min.viewValue, _end.hour.unit].join('')].join(' - '))
+        }
+    }
+
+    function fnMultistageSelector(_isEnd) {
+        var _data = fnGetTimeData_base();
+        var _active = [0, 0];
+        if( _isEnd ){
+            if( $('#business').attr('data-end') ){
+                var _activeTemp = fnFormatTimeData_base($('#business').attr('data-end'), 'id');
+                _active = [_activeTemp.hour.id, _activeTemp.min.id];
+            }
+        }else{
+            if( $('#business').attr('data-start') ){
+                var _activeTemp = fnFormatTimeData_base($('#business').attr('data-start'), 'id');
+                _active = [_activeTemp.hour.id, _activeTemp.min.id];
+            }
+        }
+
+        fnMultistageSelector_public({
+            active: _active, //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+            data: [_data.hours, _data.mins], //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+            title: _isEnd ? '选择结束时间' : '选择起始时间'
+        }, function(ret) {
+            // ret                               // Array |  如果点击确定按钮该回调则会触发，并返回数组数据，数组索引与传入数据源 data 一一对应
+            APP[_isEnd ? 'end_time' : 'start_time'] = fnFormatTimeToSecond_base(0, ret[0].id, ret[1].id);
+
+            // alert(debugAlert(arguments))
+            if( _isEnd ){
+                var _param = {
+                    url: 'user/business/operation',
+                    method: 'POST',
+                    data: {
+                        start_time: APP['start_time'],
+                        end_time: APP['end_time']
+                    }
+                }
+                if( _param.data.end_time <= _param.data.start_time ){
+                    fnToast('结束时间不能小于起始时间')
+                }else {
+                    $('#business').attr('data-start', _param.data.start_time)
+                    $('#business').attr('data-end', _param.data.end_time)
+
+                    fnAjax(_param, function(ret, err) {
+                        if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                            fnSetBusinessFormat();
+                            fnRefreshUserInfo_public({
+                                hasSendEvent: APP.NO
+                            }, function(ret){
+
+                            })
+                        }else{
+                            fnToast(ret.msg);
+                        }
+                    });
+                }
+            }else{
+                setTimeout(function(){
+                    fnMultistageSelector(true);
+                }, 100)
+            }
+        })
+    }
+
+    function fnSetUserUrl(){
+        fnOpenInputPop_public({
+            title: '网址信息',                //选填 |           |  String    |  选项 id
+            msg: fnValue('#user_url'),               //必填 |           |  String    |  选项 id
+            placeholder: $('#user_url').attr('placeholder'),
+            isForcedInput: true,         //选填 | false     |  Boolean   |  是否强制输入
+            maxlength: 100,                //选填 |            |  Number   |  最大输入长度（不设置就没有长度限制）
+            buttons: [{                   //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '关闭',          //必选 |    ''      | string     |  按钮文案
+                callback: function(ret) {    //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // ret.text             输入的内容
+                    debugAlert(arguments)
+                }
+            }, {
+                text: '确定',
+                active: true,             //可选 |    false   | Boolean    |  是否高亮
+                callback: function(ret) {
+                    debugAlert(arguments)
+                    // alert('正式环境')
+                    fnUserUpdate_public({
+                        user_url: ret.text,        //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）
+                        hasSendEvent: false
+                    }, function(_user){
+                        // _user.user         //更新后的用户信息。也可以监听 APP.EV_NAME.USER_UPDATE 事件
+                        fnValue('#user_url', ret.text)
+                    })
+                }
+            }]
+        }, function(){                  //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            // alert(1)
+        });
+    }
+
+
+
+    function fnSetUserInstagram(){
+        fnOpenInputPop_public({
+            title: 'Instagram账号',                //选填 |           |  String    |  选项 id
+            msg: fnValue('#instagram'),               //必填 |           |  String    |  选项 id
+            placeholder: $('#instagram').attr('placeholder'),
+            isForcedInput: true,         //选填 | false     |  Boolean   |  是否强制输入
+            maxlength: 100,                //选填 |            |  Number   |  最大输入长度（不设置就没有长度限制）
+            buttons: [{                   //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '关闭',          //必选 |    ''      | string     |  按钮文案
+                callback: function(ret) {    //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // ret.text             输入的内容
+                    debugAlert(arguments)
+                }
+            }, {
+                text: '确定',
+                active: true,             //可选 |    false   | Boolean    |  是否高亮
+                callback: function(ret) {
+                    debugAlert(arguments)
+                    // alert('正式环境')
+                    fnUserUpdate_public({
+                        instagram: ret.text,        //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）
+                        hasSendEvent: false
+                    }, function(_user){
+                        // _user.user         //更新后的用户信息。也可以监听 APP.EV_NAME.USER_UPDATE 事件
+                        fnValue('#instagram', ret.text)
+                    })
+                }
+            }]
+        }, function(){                  //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            // alert(1)
+        });
+    }
+
+    function fnSearchWriteOrder(){
+        fnOpenInputPop_public({
+            title: '搜索优惠券',                //选填 |           |  String    |  选项 id
+            // msg: '',               //必填 |           |  String    |  选项 id
+            placeholder: '请输入优惠券ID或用户ID',
+            isForcedInput: true,         //选填 | false     |  Boolean   |  是否强制输入
+            maxlength: 100,                //选填 |            |  Number   |  最大输入长度（不设置就没有长度限制）
+            buttons: [{                   //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消',          //必选 |    ''      | string     |  按钮文案
+                callback: function(ret) {    //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // ret.text             输入的内容
+                    debugAlert(arguments)
+                }
+            }, {
+                text: '搜索',
+                active: true,             //可选 |    false   | Boolean    |  是否高亮
+                callback: function(ret) {
+                    debugAlert(arguments)
+                    _start(ret.text);
+                }
+            }]
+        }, function(){                  //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            // alert(1)
+        });
+
+        function _start(_keyword){
+            var _param = {
+                url: 'order/order/search_write',
+                method: 'POST',
+                data: {
+                    keyword: _keyword,
+                    store_id: APP._data.id
+                }
+            }
+            fnAjax(_param, function(ret, err) {
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    if( ret.data.order && ret.data.order.length ){
+                        _start({
+                            type: 1,
+                            id: ret.data.order[0].id,
+                            user_id: ret.data.order[0].user_id,
+                            store_id: ret.data.order[0].store_id
+                        })
+                    }else if( ret.data.user && ret.data.user.length ){
+                        _start({
+                            type: 0,
+                            id: ret.data.user[0].id,
+                            user_id: ret.data.user[0].id
+                        })
+                    }else{
+                        fnToast('没有相关的优惠券ID或用户ID');
+                    }
+
+                    function _start(_data){
+                        fnOpen('business/writeOff_win.html', {
+                            param: _data
+                        })
+                    }
+                }else{
+                    fnToast(ret.msg);
+                }
+            });
+        }
+    }
+
+    function fnOpenOrderHome(){
+        // if( APP._data.auth.is_delivery ){
+        // }else{
+        //     alert('跳转非配送订单页面')
+        // }
+        fnOpen('business/allOrder_win.html')
+    }
+
+    function fnOpenBarCode(){
+        fnOpenBarCode_public(function(ret){
+            debugAlert('扫码完成啊')
+            setTimeout(function(){
+                debugAlert('扫码完成开始啊')
+                // alert(1)
+                try{
+                    var _data = JSON.parse(ret.content);
+                }catch(err){
+                    var _data = ret.content;
+                }
+
+                if( _data.CURRENT_APP_ID == APP.CURRENT_APP_ID ){
+                    if( _data.store_id ){
+                        if( APP._data.id == _data.store_id ){
+                            _start();
+                        }else {
+                            fnToast(fnLanguage_public('二维码有误，识别无效'))
+                        }
+                    }else {
+                        _start();
+                    }
+                }else{
+                    fnToast([fnLanguage_public('请认准'), fnLanguage_public(api.appName), fnLanguage_public('二维码')].join(''))
+                }
+
+                function _start(){
+                    fnOpen('business/writeOff_win.html', {
+                        param: _data
+                    })
+                }
+            }, 500)
+        })
+    }
+</script>
+</html>

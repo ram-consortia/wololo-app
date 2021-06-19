@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" href="../../css/aPublicPhotoBrowser_win.css">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+</head>
+
+<body>
+    <div class="flex-vertical wrap">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">0/0</div>
+        </header>
+        <!-- <header class="header">
+            <div class="top">
+                <div tapmode="hover" onclick="fnClose();" class="back icon-close"></div>
+                <div class="title">0/0</div>
+            </div>
+        </header> -->
+        <div class="flex-item-vertical main">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- <div class="swiper-slide"></div>
+                    <div class="swiper-slide"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    APP.init(function() {
+        APP.fixStatusBar('.header');
+        fnInit();
+    });
+
+    function fnInit() {
+        // api.setWinAttr({
+        //     scaleEnabled: true
+        // });
+         var _data = APP._param;
+
+        $('.swiper-container').height($('.main').height());
+
+        for (var x in _data.pics) {
+            $('.swiper-wrapper').append('<div data-img-url="' + _data.pics[x] + '" class="swiper-slide"></div>');
+        }
+
+        new Swiper('.swiper-container', {
+            initialSlide: _data.default || 0,
+            on: {
+                init: function() {
+                    fnSumPage(this);
+                },
+                transitionEnd: function() {
+                    fnSumPage(this);
+                },
+                slideChange: function() {
+                    fnSumPage(this);
+                },
+                touchEnd: function() {
+                    fnSumPage(this);
+                }
+            }
+        });
+        fnCacheImgs('.main');
+    }
+
+    function fnSumPage(_swiper) {
+        fnValue('.title', (_swiper.activeIndex + 1) + '/' + _swiper.slides.length);
+        if (!_swiper.slides.length) {
+            fnClose();
+        }
+    }
+</script>
+
+</html>

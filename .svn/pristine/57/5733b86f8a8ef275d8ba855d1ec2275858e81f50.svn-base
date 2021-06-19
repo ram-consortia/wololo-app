@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" href="../../css/newLogin.css">
+    <link rel="stylesheet" href="../../css/ic_img.css">
+</head>
+<style>
+.input_item{
+    border:0!important;
+}
+</style>
+<body style="display: flex;flex-direction: column;height: 100%">
+<div class="margin_top20"></div>
+<div class="flex item_center margin_left20 margin_top20 margin_bottom20">
+    <div class="back margin0" onclick="fnClose()"></div>
+    <div class="bold size24">Add New Card</div>
+</div>
+<div class="content flex1 padding20" style="overflow-y: auto;display: block">
+    <div class="input_group">
+        <div class="input_item">
+            <div class="icon ic_card"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="number" id="card_number" placeholder="Card number">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon ic_dob"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="text" id="date" placeholder="Expiry date">
+                </div>
+            </div>
+        </div>
+        <div class="input_item">
+            <div class="icon ic_key"></div>
+            <div class="input_content">
+                <div class="label">
+
+                </div>
+                <div class="flex">
+                    <input type="password" id="cvv" maxlength="3" placeholder="CVV">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="padding20">
+    <div class="btn btn_default" onclick="addCard()" tapmode="hover">
+        SAVE CARD
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    function close(){
+        if(APP._param.fromWin=='checkout'){
+            api.execScript({
+                name:"checkout_win",
+                script:"queryCard()"
+            })
+        }
+        fnClose();
+    }
+    function addCard(){
+        const date = $('#date').val();
+        const params={
+            number:$('#card_number').val(),
+            year:'20'+date.split('/')[0],
+            month:date.split('/')[1],
+            cvc:$('#cvv').val()
+        }
+        fnAjax({
+            url:"user/cards",
+            method:"POST",
+            data:params
+        },res=>{
+            fnToast(res.msg)
+            if(res.code){
+                if(APP._param.fromWin!='checkout') {
+                    api.execScript({
+                        name: "saveCards_win",
+                        script: "getList()"
+                    })
+                }
+                close();
+            }
+        })
+    }
+    $('#date').on('keyup',function (e){
+        if(e.target.value.length>5){
+            $('#date').val($('#date').val().substr(0,5))
+        }
+        if(e.target.value.length==2&&e.keyCode!=8){
+            $('#date').val($('#date').val()+'/')
+        }
+        if(e.target.value.length==3&&e.keyCode!=8&&!e.target.value.includes('/')){
+            $('#date').val($('#date').val()[0]+$('#date').val()[1]+'/'+$('#date').val()[2])
+        }
+    })
+</script>
+
+</html>

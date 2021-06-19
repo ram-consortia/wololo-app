@@ -1,0 +1,65 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+
+
+.box{
+  justify-content:space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  .wish_item{
+    width:160px;
+    max-width: 48%;
+    position: relative;
+    margin-bottom: 20px;
+    .wish_img{
+      overflow: hidden;
+      height: 208px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      .like_btn{
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+      }
+      .like{
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: red;
+      }
+      .nolike{
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: black;
+      }
+    }
+    .commodity{
+
+    }
+    .commodity_name{
+      text-transform: uppercase;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 15px;
+      color: #676d72;
+      overflow: hidden;
+    }
+    .commodity_type{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: bold;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+    .commodity_price{
+      font-weight: bold;
+      margin-top: 10px;
+      color: #000;
+    }
+  }
+
+}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+// --- 引入函数定义 ---
+@import "_function.scss";
+
+// === 配置文件 ===
+
+// 公共
+$design-diagram: 720; //设计稿宽度（必须设置，影响 function.scss）
+
+$page-bg-color: transparent; //产品页面基础底色（ 必须设置，影响 _initialization.scss ）
+
+$border-color: #706776; //产品页面border基础颜色 （ 必须设置，影响 _mixture.scss ）
+
+$font-color: #333; //产品页面文字基础颜色 （ 必须设置，影响 _public.scss、_initialization.scss ）
+
+$img-src: "../image/"; //图标路径( 像对于css文件夹内的css 必须设置，影响 __mixture.scss )
+
+$border-color-gray: #ddd; // 灰色边框线颜色  分割线颜色 （ 非必需 ）
+
+
+
+// 红色
+$color-rad: #ff0000; // ( 轮播分页器 )
+
+// 粉红色
+$color-radical-red: #ff5363; //  关注按钮 性别女bgcolor
+
+// 藏青色
+$color-ustream-blue: #1784ff; // 性别男bgcolor
+
+// 深品红蓝
+$color-quartz: #584f60; // ( win头部bgcolor 影响 public )
+
+// 主体颜色
+$bg-color: #FE8F31;
+
+
+
+
+// --- 引入宏定义 ---
+@import "_mixture.scss";
+
+// --- 引入占位定义 ---
+@import "_appoint.scss";
+
+// --- 引入初始化文件 ---
+@import "_initialization.scss";
+
+// --- 引入公共样式 ---
+@import "_public.scss";

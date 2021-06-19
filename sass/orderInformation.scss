@@ -1,0 +1,107 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .main{
+        .content{
+            .ul{
+                padding: 0 pxToRem(30);
+                .address{
+                    padding: pxToRem(29) 0;
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                }
+                .textarea{
+                    background-color: #F7F7F7;
+                    padding: pxToRem(28) pxToRem(16);
+                    border-radius: pxToRem(4);
+                    height: pxToRem(162);
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    textarea{
+                        height: 100%;
+                    }
+                }
+                .li{
+                    @include flex-box();
+                    padding: pxToRem(29) 0;
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(42);
+                    @include border-bottom-m;
+                    &::after{
+                        border-color: #EAEAEA;
+                    };
+                    &.li-gap{
+                        padding: pxToRem(20) 0;
+                    }
+                    .name{
+                        min-width: pxToRem(150); 
+                        @include prefixCss3($property: align-self, $value: center);
+                    }
+                    .input{
+                        @include flex-item();
+
+                    }
+                    .number{
+                        @include flex-box();
+                        width: pxToRem(202);
+                        height: pxToRem(58);
+                        border: pxToRem(2) solid #E1E1E5;
+                        border-radius: pxToRem(4);
+                        .reduce{
+                            width: pxToRem(58);
+                            height: pxToRem(58);
+                            @include set-bg-img( $name: "icon-reduce.png", $size: pxToRem(24) auto, $position: center center);
+                            border-right: pxToRem(2) solid #E1E1E5;
+                            &.no-onclick{
+                                @include set-bg-img( $name: "icon-reduce1.png", $size: pxToRem(24) auto, $position: center center);
+                            }
+                        }
+                        .num{
+                            @include flex-item();
+                            line-height: pxToRem(58);
+                            font-size: pxToRem(28);
+                            color: #323233;
+                            input{
+                                text-align: center;
+                            }
+                        }
+                        .add{
+                            width: pxToRem(58);
+                            height: pxToRem(58);
+                            @include set-bg-img( $name: "icon-add.png", $size: pxToRem(24) auto, $position: center center);
+                            border-left: pxToRem(2) solid #E1E1E5;
+                            &.no-onclick{
+                                @include set-bg-img( $name: "icon-add1.png", $size: pxToRem(24) auto, $position: center center);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+    .bottom{
+        overflow: hidden;
+        @include border-top-m;
+        &::before{
+            border-color: #EAEAEA;
+        };
+        .quit{
+            margin: pxToRem(10) pxToRem(30);
+            height: pxToRem(92);
+            font-size: pxToRem(30);
+            color: #fff;
+            @extend .font-m;
+            line-height: pxToRem(92);
+            text-align: center;
+            border-radius: pxToRem(8);
+            @include set-bg-img( $name: "icon-submint.png");
+        }
+    }
+}

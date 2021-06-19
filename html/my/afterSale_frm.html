@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/afterSale.css" />
+</head>
+<body>
+    <div class="main" id="wrap">
+        <!--<div  tapmode="hover" onclick="fnJump_base('my/service_win.html', {{$value.id}})" class="con">
+            <div class="odd-numbers">
+                <div class="number">'服务单号'</div>
+
+                <span class="look del" tapmode="hover" onclick="fnDeleteAfterSale({{$value.id}})">删除</span>
+
+            </div>
+            <div class="coupon">
+                <div class="coupon-item">
+
+                    &lt;!&ndash;<div class="line"></div>&ndash;&gt;
+                    <div class="message">
+                        <div class="message-item">
+
+                            <p class="shop-name">呵呵</p>
+
+
+                            <div class="base">
+                                <p class="subtitle">嘻嘻</p>
+                                <p class="time">
+                                    哈哈
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price">
+                        <p class="num">￡<span class="size">{{$value.coupon.price_group | fnGetMaxPrice_base}}</span></p>
+                        <p class="voucher">{{ {'target': $value.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }} x{{$value.count}}</p>
+                    </div>
+                </div>
+                <span class="couLeft"></span>
+                <span class="couRright"></span>
+            </div>
+            <div class="bot">
+
+
+                &lt;!&ndash; 默认售后处理中、售后完成  加close售后关闭 &ndash;&gt;
+                <div class="after-saleTo after-sale
+                        ['', '', 'close'][$value.status - 1]
+                    ">{{ {'target': $value.status, 'key': 'id', 'resKey': 'name', 'data': AFTER_SALE.status} | fnGetRelation_public }}</div>
+                <span class="look">{{'查看详情' | fnLanguage_public}}</span>
+            </div>
+        </div>-->
+
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div id="list" class="hide">
+
+        </div>
+        <div id="no-data" class="hide">{{'暂无相关订单' | fnLanguage_public}}</div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{each _list}}
+            <div  tapmode="hover" onclick="fnJump_base('my/service_win.html', {{$value.id}})" class="con">
+                <div class="odd-numbers">
+                    <div class="number">{{'服务单号' | fnLanguage_public}}：{{$value.sn}}</div>
+                    {{if [AFTER_SALE.status.yes.id, AFTER_SALE.status.close.id].indexOf(+$value.status) != -1 }}
+                    <span class="look del" tapmode="hover" onclick="fnDeleteAfterSale({{$value.id}})">{{'删除' | fnLanguage_public}}</span>
+                    {{/if}}
+                </div>
+                <div class="coupon">
+                    <div class="coupon-item">
+
+                        <!--<div class="line"></div>-->
+                        <div class="message">
+                            <div class="message-item">
+                                {{if $value.store && $value.store.id}}
+                                    <p class="shop-name">{{$value.store | fnShowUserNickname_base}}</p>
+                                {{/if}}
+
+                                <div class="base">
+                                    <p class="subtitle">{{$value.coupon.name}}</p>
+                                    <p class="time">
+                                        {{$value.coupon | fnGetCouponDateMsg_base}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <p class="num">￡<span class="size">{{$value.coupon.price_group | fnGetMaxPrice_base}}</span></p>
+                            <p class="voucher">{{ {'target': $value.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }} x{{$value.count}}</p>
+                        </div>
+                    </div>
+                    <span class="couLeft"></span>
+                    <span class="couRright"></span>
+                </div>
+                <div class="bot">
+
+
+                    <!-- 默认售后处理中、售后完成  加close售后关闭 -->
+                    <div class="after-saleTo after-sale
+                        ['', '', 'close'][$value.status - 1]
+                    ">{{ {'target': $value.status, 'key': 'id', 'resKey': 'name', 'data': AFTER_SALE.status} | fnGetRelation_public }}</div>
+                    <span class="look">{{'查看详情' | fnLanguage_public}}</span>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+
+        fnInit();
+        fnRefresh(function(){
+            //                      下拉以后则会触发该回调
+            fnInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.REFUND_UPDATE
+        }, function(ret, err){
+            fnInit();
+        });
+    });
+
+
+    function fnInit(){
+        APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+        fnGet();
+    }
+
+
+    function fnGet(){
+        fnGetList_base({
+            url: 'order/after_sale/index',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: APP.PAGE.SKIP_PAGE
+            }
+        }, function(ret){
+            debugAlert(arguments)
+            if( ret.evType == 'scrolltobottom' ){
+                fnGet();
+            }
+        })
+    }
+
+    function fnDeleteAfterSale(_id){
+        fnDeleteAfterSale_base({
+            id: _id
+        }, function(ret){
+
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/evaluate.css" />
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="content flex-item-vertical">
+            <div class="top">
+                <p>给商铺评分</p>
+                <span class="stars">
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star empty-star"></span>
+                    <span class="star empty-star"></span>
+                    <span class="star empty-star"></span>
+                </span>
+            </div>
+            <div class="textarea">
+                <textarea type="text" placeholder="说说您的心得分享给其他想购买的朋友吧～"></textarea>
+                <div class="number">0/200</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="quit" tapmode="hover" onclick="fnOpen('my/refundSubmission_win.html')">提交</div>
+        </div>
+    </div>
+    <div id="no-data">暂无评价</div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixTabBar('.bottom');
+    });
+
+
+    
+    
+</script>
+</html>

@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/search_pop.css" />
+</head>
+<body style="height: 100%;">
+    <div class="flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div class="search-stores">
+                <div class="search">
+                    <span class="search-img"></span>
+                    <div class="inpit">
+                        <input type="text" placeholder="搜索门店">
+                    </div>
+                    <span class="del"></span>
+                </div>
+                <span class="screen" tapmode="hover" onclick="fnClose()">取消</span>
+            </div>
+        </header>
+        <div class="flex-item-vertical main">
+            <div class="history">
+                <div class="history-box">
+                    <div class="his">搜索历史</div>
+                    <span class="del"></span>
+                </div>
+                <div class="search-history">
+                    <span class="shop">肯德基</span>
+                    <span class="shop">搜索历史</span>
+                    <span class="shop">APICloud</span>
+                    <span class="shop">西单大悦城</span>
+                    <span class="shop">喜茶</span>
+                </div>
+            </div>
+
+            <ul>
+                <li>
+                    <div class="name"><span class="select">肯德基</span></div>
+                    <div class="type">餐饮店</div>
+                </li>
+                <li>
+                    <div class="name"><span class="select">肯德基</span>（前门餐厅）</div>
+                    <div class="type">餐饮店</div>
+                </li>
+                <li>
+                    <div class="name"><span class="select">肯德基</span>（朝阳门餐厅）</div>
+                    <div class="type">餐饮店</div>
+                </li>
+                <li>
+                    <div class="name">（中关村）<span class="select">肯德基</span>奶茶店</div>
+                    <div class="type">餐饮店</div>
+                </li>
+            </ul>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div class="search-stores">
+                <div class="search">
+                    <span class="search-img"></span>
+                    <div class="inpit">
+                        <form onsubmit="return fnSearch()" style="width:100%;">
+                            <input id="keyword" type="search" placeholder="Search">
+                        </form>
+                    </div>
+                    <div tapmode="hover" onClick="fnClear(this)" class="del clear-input hide"></div>
+                </div>
+                <span class="screen" tapmode="hover" onclick="fnClose()">{{'取消' | fnLanguage_public}}</span>
+            </div>
+        </header>
+        <div class="flex-item-vertical main">
+            {{if _keywords && _keywords.length}}
+                <div class="history">
+                    <div tapmode="hover" onclick="fnRemove()" class="history-box">
+                        <div class="his">{{'搜索历史' | fnLanguage_public}}</div>
+                        <span class="del"></span>
+                    </div>
+                    <div class="search-history">
+                        {{each _keywords}}
+                            <span tapmode="hover" onclick="fnSubmit({{$value}})" class="shop">{{$value.keyword}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+            {{else}}
+                <div id="no-data" class="height3 hide">{{'暂无搜索历史' | fnLanguage_public}}</div>
+            {{/if}}
+
+            <div id="search">
+                <!-- <ul>
+                    <li>
+                        <div class="name"><span class="select">肯德基</span></div>
+                        <div class="type">餐饮店</div>
+                    </li>
+                    <li>
+                        <div class="name"><span class="select">肯德基</span>（前门餐厅）</div>
+                        <div class="type">餐饮店</div>
+                    </li>
+                    <li>
+                        <div class="name"><span class="select">肯德基</span>（朝阳门餐厅）</div>
+                        <div class="type">餐饮店</div>
+                    </li>
+                    <li>
+                        <div class="name">（中关村）<span class="select">肯德基</span>奶茶店</div>
+                        <div class="type">餐饮店</div>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="search-template">
+        {{if _search && _search.length}}
+            <ul>
+                {{each _search}}
+                   <li tapmode="hover" onclick="fnJump(this)">
+                       <i class="hide">{{$value}}</i>
+                       <div class="name">
+                           {{#$value._user_nickname}}
+                       </div>
+                       <div class="type">{{$value.auth.category.name | fnLanguageSwitch_base}}</div>
+                   </li>
+               {{/each}}
+           </ul>
+       {{/if}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnInit();
+        fnFocus_public("#keyword");
+
+        fnInputListener_public(["#keyword"], function(ret){
+            fnGetList();
+            fnInput();
+        })
+    });
+
+    function fnInit(){
+        APP._keywordLocName = ['keyword', APP._param.searchKey].join();
+        APP._keywords = fnCookie(APP._keywordLocName) || [];
+
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('header')[0] );
+    }
+
+    function fnGetList(){
+        if( fnValue('#keyword') ){
+            var _param = {
+                url: 'user/user/index',
+                method: 'GET',
+                isBlur: APP.NO,
+                hasProgress: {
+                    status: APP.NO
+                },
+                data: {
+                    page: APP.YES,
+                    limit: 1000,
+                    keyword: fnValue('#keyword')
+                }
+            }
+            if( APP._param.__category_id ){
+                _param.data.category_id = APP._param.__category_id;
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    APP._search = ret.data.data;
+
+                    fnLayout();
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }else{
+            delete APP._search;
+            fnLayout();
+        }
+    }
+
+
+
+    function fnInput(){
+        $('.clear-input').each(function(_index, _el){
+            var _input = $(_el).parent().find('input');
+            if( fnValue(_input[0]).length ){
+                $(_el).removeClass('hide');
+            }else{
+                $(_el).addClass('hide');
+            }
+        })
+    }
+
+    function fnClear(_el){
+        var _input = $(_el).parent().find('input');
+        fnValue(_input[0], '');
+        fnInput();
+    }
+
+    function fnRemove(){
+        fnAlert_public({
+            // title: '提示', //可选 |    ''     | string     |  弹窗标题文案，不传则不显示弹窗顶部文案
+            msg: fnLanguage_public('是否清空搜索历史？'), //可选 |    ''     | string     |  弹窗内容 （可解析html格式内容），不传则不显示内容
+            buttons: [{ //必选 |    []      | Array     |  弹窗底部按钮，至少传入一个按钮（数组有多少就显示多少按钮）
+                text: '取消', //必选 |    ''      | string     |  按钮文案
+                callback: function() { //必选 |            | Function   | 点击按钮时触发该回调函数
+                    // alert('点击测试环境')
+                }
+            }, {
+                text: '确定',
+                active: true, //可选 |    false   | Boolean    |  是否高亮
+                callback: function() {
+                    // alert('点击正式环境')
+                    _start();
+                }
+            }]
+        }, function() { //可选 |            | Function   | 如果设置回调函数，打开的弹窗则可以点击背景关闭，并触发该回调函数，否则点击背景不能关闭弹窗
+            debugAlert('从透明层关闭窗口回调')
+        });
+
+        function _start(){
+            fnRmCookie(APP._keywordLocName);
+            setTimeout(function(){
+                fnInit();
+                // $('.history').remove();
+            }, 300)
+        }
+    }
+
+    function fnLayout(){
+        APP._search = APP._search || [];
+        for( var x in APP._search ){
+            APP._search[x]._user_nickname = APP._search[x].user_nickname.replace(fnValue('#keyword'), function(_keyword){
+                return '<span class="select">'+_keyword+'</span>';
+            })
+        }
+        // if( $('#no-data').length ){
+        //     if( APP._search.length ){
+        //         $('#no-data').addClass('hide');
+        //     }else{
+        //         $('#no-data').removeClass('hide');
+        //     }
+        // }
+        fnValue('#search', template('search-template', APP));
+    }
+
+    function fnSearch(){
+        var _keyword = fnValue('#keyword');
+        // if( _keyword ){
+            fnSubmit({
+                keyword: _keyword||""
+            })
+        // }else{
+        //     fnToast('请输入关键字');
+        // }
+        return false;
+    }
+
+    function fnJump(_el){
+        var _data = JSON.parse(fnValue($(_el).find('i.hide')[0]));
+        fnSubmit({
+            id: _data.id,
+            keyword: _data.user_nickname,
+            lat: _data.auth.lat,
+            lon: _data.auth.lon,
+            store_id: _data.id
+        })
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.SEARCH_POP,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_obj) {
+        if( _obj.keyword ){
+            var _tempKeywordArr = [_obj.keyword],
+                _tempArr = [_obj];
+            for( var x in APP._keywords ){
+                if( _tempArr.length < 20 && _tempKeywordArr.indexOf(APP._keywords[x].keyword) == -1 ){
+                    _tempKeywordArr.push(APP._keywords[x].keyword);
+                    _tempArr.push(APP._keywords[x]);
+                }
+            }
+            fnCookie(APP._keywordLocName, _tempArr)
+        }
+        if( APP._param.resultHtmlPath ){
+            fnInit();
+            fnOpen(APP._param.resultHtmlPath, {
+                param: _obj
+            })
+        }else{
+            fnClosePop(_obj);
+        }
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,59 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    height: 100%;
+    background-color: #fff;
+    .header{
+        padding-top: pxToRem(50);
+        background-color: #fff;
+        .back{
+            &.share{
+                padding: pxToRem(22) pxToRem(20);
+                width: pxToRem(44);
+                height: pxToRem(44);
+                @include set-bg-img( $name: 'icon-share.png', $size: pxToRem(44) auto, $position: center center);
+            }
+        }
+    }
+    .content{
+        position: relative;
+        height: 100%;
+    }
+    .wrap{
+        flex:1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .time_wrap{
+            flex:1;
+            padding-top: pxToRem(400);
+            padding-bottom:pxToRem(40) ;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #eee;
+            .text{
+                margin-top:pxToRem(40);
+                p{
+                    font-size: pxToRem(26);
+                    line-height: pxToRem(32);
+                    text-align: center;
+                }
+            }
+        }
+        .sure{
+            margin: pxToRem(30) pxToRem(50);
+            height: pxToRem(80);
+            font-size: pxToRem(30);
+            color: #fff;
+            @extend .font-m;
+            line-height: pxToRem(80);
+            text-align: center;
+            border-radius: pxToRem(40);
+            background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+            //@include set-bg-img( $name: "icon-submint.png");
+        }
+    }
+    
+
+}

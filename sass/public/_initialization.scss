@@ -1,0 +1,319 @@
+@charset "utf-8";
+// === 初始化 begin===
+html{
+    height: 100%;
+    background-color: $page-bg-color;
+    outline: none;
+    // 去除 ios safari浏览器的默认触摸弹出菜单
+    -webkit-touch-callout: none;
+    // 不让用户选择文字
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    // 处理chrome强制将小于12px的文本按照12px来解析的bug
+    -webkit-text-size-adjust: none;
+    font-size: 32px;
+    font-family: 'Proxima Nova','Helvetica Neue','San Francisco','Muli','sans-serif';
+}
+
+// ---滚动条清除默认样式---
+html::-webkit-scrollbar{
+    width: 0px;
+}
+
+@font-face {
+    font-family: DINAlternateBold;
+    src: url('../framework/DINAlternateBold.ttf');
+}
+
+
+body{
+    // font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,Arial,STHeiTi,sans-serif;
+    // 6月29号更改的字体
+    min-height: 100%;
+    font-size: 14px;
+    line-height: 1.2;
+    color: $font-color;
+}
+html,body{
+    // background-color: $page-bg-color;
+}
+
+a,
+aside,
+article,
+body,
+blockquote,
+code,
+cite,
+div,
+dl,
+dt,
+dd,
+del,
+em,
+footer,
+figcaption,
+figure,
+form,
+fieldset,
+header,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+img,
+li,
+legend,
+mark,
+nav,
+ol,
+p,
+pre,
+section,
+span,
+strong,
+th,
+td,
+time,
+textarea,
+ul,
+var{
+    margin: 0;
+    padding: 0;
+}
+
+article,
+aside,
+div,
+header,
+section,
+footer,
+nav,
+figure,
+li{
+    display: block;
+}
+
+th{
+    font-weight: normal;
+}
+
+input,
+textarea,
+button,
+select,
+label,
+[contenteditable]{
+    // 去除input的默认点击效果
+    outline: none;
+    border: 0;
+    // 去掉默认的样式
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font: inherit;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    // 去掉移动端点击时出现的背景
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select:text
+}
+input,
+textarea{
+    width: 100%;
+    &::-webkit-input-placeholder{
+        color: #bbb;
+    }
+    &[type=search]{
+        &::-webkit-search-cancel-button{
+            display: none;
+            -webkit-appearance: none;
+        }
+    }
+}
+
+select, textarea{
+    width: 100%;
+}
+textarea{
+    resize:none;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: normal;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active{
+    text-decoration: none;
+    font-weight: normal;
+    outline: none;
+    color: inherit;
+    // 去掉移动端a标签点击时出现的背景
+    -webkit-tap-highlight-color: transparent;
+}
+
+// //去掉input textarrea a 等在移动端ios可选取的元素在获得焦点时的默认效果(待实验)
+// a:focus,
+// input:focus,
+// textarea:focus{
+//     border: 0;
+// }
+
+img{
+    border: none;
+    // 处理图片在有些浏览器下与容器有几px的间距问题
+    vertical-align: middle;
+    // 处理移动端图片点击时出现的背景
+    -webkit-tap-highlight-color: transparent;
+    // 禁用长按弹出保存菜单   当遇到要识别二维码的时候需要将值设置成auto
+    pointer-events: none;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    vertical-align: middle;
+}
+
+// 控制可编辑元素的站位文字
+[contenteditable]{
+    &:empty::before{
+        content: attr(placeholder);
+        color: #ccc;
+    }
+    &:focus::before{
+        &:empty::before{
+            content: attr(placeholder);
+        }
+        &:not(:empty)::before{
+            content: initial;
+        }
+    }
+}
+video{
+    width: 100%;
+}
+
+// ---去掉number的上箭头和下箭头---
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=number]{
+    width: 100%;
+}
+
+input{
+    // 自定义 单选
+    &[type=radio] + label{
+        // display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding-left: 1.5em;
+        font-size: 1em;
+        color: inherit;
+        &::before{
+            content: "";
+            position: absolute;
+            width: 1em;
+            height: 1em;
+            left: 1px;
+            top: 50%;
+            @include transform( translateY( -50% ) );
+            @include prefixCss3();
+            background-color:#fff;
+            box-shadow: 0 0 0 1px #bbb;
+            @include transition();
+        }
+    }
+    &[type=radio] + label::before{
+        border-radius: 50%;
+        border: .25em solid #fff;
+    }
+    &[type=radio]:checked + label::before{
+        background-color: #00a0e9;
+        box-shadow: 0 0 0 1px #00a0e9;
+    }
+
+    &[type=checkbox]{
+        display: none;
+        & ~ label{
+            vertical-align: middle;
+        }
+    }
+
+    // 自定义 复选按钮
+    &[type=checkbox][last] ~ label:last-of-type{
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border: 1px solid #bbb;
+        @include prefixCss3();
+        border-radius: 50%;
+        @include transition();
+        @include transform(rotatez(-137deg));
+    }
+    &[type=checkbox][last]:checked ~ label:last-of-type{
+        background-color: $color-radical-red;
+        border-color: $color-radical-red;
+        position: relative;
+        &::before{
+            content: "";
+            position: absolute;
+            width: .1em;
+            height: .6em;
+            background-color: #fff;
+            top: .25em;
+            left: .35em;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            width: .4em;
+            height: .1em;
+            background-color: #fff;
+            top: .25em;
+            left: 0.35em;
+        }
+    }
+    // 自定义 单选／复选按钮 结束
+
+    // 自定义 滑块
+    &[type="range"]::-webkit-slider-thumb{
+
+    }
+    // 自定义 滑块 结束
+}
+
+
+
+
+[contenteditable]{
+    &:empty::before{
+        color: #BEBFC0;
+    }
+}
+
+input,
+textarea{
+    &::-webkit-input-placeholder{
+        color: #ccc;
+    }
+}
+
+// === 初始化 end===

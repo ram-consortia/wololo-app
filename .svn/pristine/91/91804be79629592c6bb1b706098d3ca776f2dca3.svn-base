@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+    <link rel="stylesheet" href="../../css/webpublic.css">
+    <link rel="stylesheet" href="../../css/webbusiness.css">
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="top">
+            <div class="top-box">
+                <div class="top-item">
+                    <div class="photo"></div>
+                    <div class="place">北京市西城区西单大悦城6F美食街喜茶店</div>
+                </div>
+                <div class="search-right">
+                    <div class="search">
+                        <span class="search-img"></span>
+                        <div class="input">
+                            <input type="text" placeholder="搜索核销">
+                        </div>
+                        <span class="eliminate"></span>
+                        <span class="screen">搜索</span>
+                    </div>
+                </div>
+                <div class="home-box">
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('message.html')">消息中心</span>
+                    <span class="home-item">商铺二维码</span>
+                </div>
+            </div>
+        </div>
+        <div class="content flex-item-vertical">
+            <div class="content-center">
+                <div class="select-left">
+                    <!-- 默认关闭，加active打开 -->
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item business-img">商家信息</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li active" tapmode="hover" onclick="fnOpen('business.html')">商家主页</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('evaluate.html')">全部评价(205)</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('opinion.html')">商铺详情</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('businessCoupon.html')">优惠券(45)</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item order-img">我的订单</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单（105）</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">待接单(45)</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">制作中</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">在路上</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">未消费</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item other-img">其他</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('opinion.html')">意见反馈</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('contact.html')">联系我们</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('rule.html')">规则协议</div>
+                            <div class="li">在线客服</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="box">
+                        <!-- 选中加active -->
+                        <div class="box-wrap">
+                            <div class="item active" tapmode="hover" onclick="fnOpen('business.html')">商家主页</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('evaluate.html')">全部评价</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('opinion.html')">商铺详情</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('businessCoupon.html')">优惠券</div>
+                            <div class="item" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="business-top">
+                            <div class="business-item">
+                                <p class="name">伦敦市西城区西单大悦城6层信悦美食街喜茶店</p>
+                                <div class="pag">
+                                    <span class="hot">hot</span>
+                                    <span class="branch">LV3</span>
+                                    <span class="branch">餐饮店</span>
+                                </div>
+                                <div class="line">商铺评分：<span class="orange-color"><span class="size">5.0</span>分</span></div>
+                                <div class="line">联系方式：<span class="color">1847394744</span></div>
+                                <div class="line">营业时间：<span class="color">10am ～ 2pm</span><span class="edit"></span></div>
+                                <div class="line">网址信息：<span class="color">https: //www. Apicloud.com</span><span class="edit"></span></div>
+                            </div>
+                            <div class="business-img">
+                                <p class="merchant">商铺二维码</p>
+                                <div class="code-img">
+                                    <img src="../../image/icon-background1.png">
+                                </div>
+                                <p class="merchant merchant-center">点击图片可放大</p>
+                            </div>
+                            <div class="business-img">
+                                <p class="merchant">商家图片(30)</p>
+                                <div class="merchant-img"></div>
+                            </div>
+                        </div>
+                        <div class="business-address">
+                            <div class="business">经营地址<span class="edit-word">编辑</span></div>
+                            <div class="address-ul">
+                                <div class="address-li"><span class="name-right"><span class="star">*</span>所在城市</span>伦敦</div>
+                                <div class="address-li"><span class="name-right"><span class="star">*</span>详细地址</span>北京市海淀区北三环中路 44 号院文教产业园东门 F 座 4 层</div>
+                            </div>
+                            <p class="location">若定位不准，请手动拖动地图位置</p>
+                            <div class="map"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="bottom-width">
+                <div class="bottom">
+                    <div class="bot-box">
+                        <div class="bot-item">
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">合作伙伴</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">关于我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">联系我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="record">
+                    <div class="agreement">
+                        <span class="treaty">用户协议</span>
+                        <span class="treaty">隐私协议</span>
+                        <span class="treaty">下载APP</span>
+                        <span class="treaty">意见反馈</span>
+                    </div>
+                    <div class="serve">©2014-2016 APICloud 京ICP备14027692号 京ICP证151131号 京公网安备 11010802020063号  |  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 图片管理弹窗 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">图片管理</div>
+                <span class="close"></span>
+            </div>
+            <div class="imgs-center flex-item-vertical">
+                <div class="imgs">
+                    <div class="img">
+                        <div class="pho-img">
+                            <img src="../../image/icon-background1.png">
+                            <span class="pho">
+                                <span class="sel active"></span>
+                                <span class="homepage active">主页</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <div class="pho-img">
+                            <img src="../../image/icon-background1.png">
+                            <span class="pho">
+                                <span class="sel active"></span>
+                                <span class="homepage">设为主页</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <div class="pho-img">
+                            <img src="../../image/icon-background1.png">
+                            <span class="pho">
+                                <span class="sel"></span>
+                                <span class="homepage">设为主页</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <div class="pho-img">
+                            <img src="../../image/icon-background1.png">
+                            <span class="pho">
+                                <span class="sel"></span>
+                                <span class="homepage">设为主页</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <div class="pho-img">
+                            <img src="../../image/icon-background1.png">
+                            <span class="pho">
+                                <span class="sel"></span>
+                                <span class="homepage">设为主页</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <div class="pho-img">
+                            <img src="../../image/icon-background1.png">
+                            <span class="pho">
+                                <span class="sel"></span>
+                                <span class="homepage">设为主页</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-button">
+                    <span class="quit submint">提交</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 搜索个人码核销 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">核销订单</div>
+                <span class="close"></span>
+            </div>
+            <div class="number-verification flex-item-vertical">
+                <div class="order-top">
+                    <div class="photo"></div>
+                    <div class="subtitle">
+                        <p>韩梅梅</p>
+                        <p class="time">ID：8635334523</p>
+                    </div>
+                    <div class="order-right">未消费</div>
+                </div>
+                <div class="tr-li">
+                    <div class="tr">
+                        <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                            <div class="message-item">
+                                <div class="img"></div>
+                                <div class="base">
+                                    <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                    <p class="subtitle">有效期2019.10.23-2019.10.30</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="td twenty-percent">
+                            <div class="cash-coupon">
+                                <p>折扣券</p>
+                            </div>
+                            <p class="market-price">门市价￡120</p>
+                        </div>
+                        <div class="td twenty-percent">
+                            <div class="td-box">
+                                <div class="receipt close">数量：2</div>
+                            </div>
+                        </div>
+                        <div class="td twenty-percent">
+                            <!-- 选中加active -->
+                            <span class="td-select active"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tr-li">
+                    <div class="tr">
+                        <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                            <div class="message-item">
+                                <div class="img"></div>
+                                <div class="base">
+                                    <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                    <p class="subtitle">有效期2019.10.23-2019.10.30</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="td twenty-percent">
+                            <div class="cash-coupon">
+                                <p>折扣券</p>
+                            </div>
+                            <p class="market-price">门市价￡120</p>
+                        </div>
+                        <div class="td twenty-percent">
+                            <div class="td-box">
+                                <div class="receipt close">数量：2</div>
+                            </div>
+                        </div>
+                        <div class="td twenty-percent">
+                            <span class="td-select"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="melt-bottom">
+                <div class="melt">
+                    <span>核销数量 可用3个</span>
+                    <div class="number-edit">
+                        <!-- 不可点击加no-onclick -->
+                        <div class="reduce"></div>
+                        <div class="num">
+                            <input type="text" value="1">
+                        </div>
+                        <div class="add"></div>
+                    </div>
+                </div>
+                <div class="sure">确认核销</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(_page) {
+
+    });
+
+
+    var mySwiper = new Swiper('.swiper .swiper-container', {
+        autoplay:true,//等同于以下设置
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: '.swiper .swiper-pagination',
+        },
+    });
+
+</script>
+</html>

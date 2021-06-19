@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/addressInformation.css" />
+</head>
+
+<body>
+    <div class="flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">地址信息</div>
+            <div class="back word right" tapmode="hover" onclick="fnEmpty()">确定</div>
+        </header>
+
+        <div class="li" tapmode="hover" onclick="fnOpen('home/city_win.html')">
+            <div class="item">所在城市</div>
+            <div class="input">
+                <input type="text" value="伦敦">
+            </div>
+            <div class="right"></div>
+        </div>
+        <div class="address">
+            <span class="site">详情地址</span>
+            <div class="input">
+                <textarea rows="3" placeholder="请输入详细地址"></textarea>
+            </div>
+        </div>
+        <p class="location">若定位不准，请手动拖动地图位置</p>
+
+        <div class="flex-item-vertical main" id="map">
+            <div class="icon-location"></div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">{{'地址信息' | fnLanguage_public}}</div>
+            <div class="back word right" tapmode="hover" onclick="fnSubmit()">{{'确定' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="li" tapmode="hover" onclick="fnChoiceCity(this)">
+            <div class="item">{{'所在城市' | fnLanguage_public}}</div>
+            <div class="input">
+                <input id="address_id" readonly placeholder="{{'请选择所在城市' | fnLanguage_public}}"
+                    {{if _user.auth.city && _user.auth.city.city}}
+                        value="{{_user.auth.city.city}}"
+                        data-id="{{_user.auth.city.id}}"
+                    {{else}}
+                        value="{{_user.auth.address_city_name}}"
+                    {{/if}}
+                >
+            </div>
+            <div class="right"></div>
+        </div>
+        <div class="address">
+            <span class="site">{{'详情地址' | fnLanguage_public}}</span>
+            <div class="input">
+                <textarea data-lat="{{_user.auth.lat}}" data-lon="{{_user.auth.lon}}" id="address" rows="3" placeholder="{{'请输入详细地址' | fnLanguage_public}}" maxlength="80">{{_user.auth.address}}</textarea>
+            </div>
+        </div>
+        <p class="location">{{'若定位不准，请手动拖动地图位置' | fnLanguage_public}}</p>
+
+        <div class="flex-item-vertical main">
+            <div id="map" class="map"></div>
+            <div class="icon-location"></div>
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function() {
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function(_user){
+            if( _user ){
+                // 当前登陆了用户
+                APP._user = _user.user;
+                fnValue('#wrap', template('wrap-template', APP));
+                APP.fixStatusBar($('.header')[0]);
+                fnLoadScript_public({
+                    src: APP.THREE.GOOGLE.map.value
+                }, function(){
+                    if( APP._user.auth.lat && APP._user.auth.lat ){
+                        fnOpenMap(APP._user.auth);
+                    }else{
+                        fnGetLocation_base(function(ret){
+                            fnOpenMap(ret);
+                        })
+                    }
+                })
+            }else{
+                // 当前没有登陆用户
+            }
+        })
+    });
+
+
+    function fnChoiceCity(_el){
+        fnChoiceCity_base(function(ret){
+            fnValue('#address_id', ret.city);
+            $('#address_id').attr('data-id', ret.id);
+        })
+    }
+
+    function fnSubmit(){
+        if( ! fnValue('#address_id') ){
+            fnToast($('#address_id').attr('placeholder'));
+        }else if( ! fnValue('#address') ){
+            fnToast($('#address').attr('placeholder'));
+        }else{
+            fnUpdateStoreInfo_base({
+                address_id: $('#address_id').data('id') || 0,
+                address_city_name: fnValue('#address_id'),
+                address: fnValue('#address'),
+                lat: $('#address').data('lat'),
+                lon: $('#address').data('lon')
+            }, function(ret){
+                fnToast(ret.msg, function(){
+                    fnClose();
+                });
+            })
+        }
+    }
+
+    function fnOpenMap(ret) {
+        var myLatlng = {
+            lat: +ret.lat,
+            lng: +ret.lon
+        };
+        fnLocation_to_address(ret);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: myLatlng,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
+            zoomControl: false
+        });
+
+        // var marker = new google.maps.Marker({
+        //     position: myLatlng,
+        //     map: map,
+        //     title: 'Click to zoom'
+        // });
+
+        map.addListener('center_changed', function() {
+            // 3 seconds after the center of the map has changed, pan back to the
+            // marker.
+            var _data = fnCloneObject_public(map.getCenter());
+            clearTimeout(APP.timer);
+            APP.timer = setTimeout(function() {
+                fnLocation_to_address({
+                    lat: _data.lat,
+                    lon: _data.lng
+                });
+            }, 100);
+        });
+
+        // map.addListener('click', function(ret) {
+        //     debugAlert(2222, ret, map.getCenter())
+        // });
+        //
+        // marker.addListener('click', function() {
+        //     debugAlert(333, arguments, map.getCenter())
+        // });
+    }
+
+    function fnLocation_to_address(_data){
+        fnLocation_to_address_base({
+            lat: _data.lat,
+            lon: _data.lon
+        }, function(ret){
+            fnValue('#address', ret.address);
+            $('#address').attr('data-lat', _data.lat);
+            $('#address').attr('data-lon', _data.lon);
+        })
+    }
+</script>
+
+</html>

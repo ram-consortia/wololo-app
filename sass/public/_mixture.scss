@@ -1,0 +1,316 @@
+@charset "utf-8";
+// === 定义混合宏 begin===
+
+
+//设置输入框placeholder颜色
+@mixin fnPlaceholderColor($color){
+    &::-webkit-input-placeholder{
+        color: $color;
+    }
+    &::-moz-input-placeholder{
+        color: $color;
+    }
+    &::-ms-input-placeholder{
+        color: $color;
+    }
+}
+//当元素宽度使用百分比时，此方法可以使元素宽高保持一致(这里的百分比是根据宽度来计算的,默认100%);
+@mixin fnAutoHeight($height: 100%){
+    &::before {
+        content: "";
+        display: inline-block;
+        padding-bottom: $height;
+    }
+}
+
+// prefixCss3 背景渐变
+@mixin fnGradient($deg: 135deg, $start: rgba(0,194,130,1) 0%, $end: rgba(0,143,75,1) 100%){
+    background: -webkit-linear-gradient($deg, $start, $end);/* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient($deg, $start, $end); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient($deg, $start, $end); /* Firefox 3.6 - 15 */
+    background: linear-gradient($deg, $start, $end); /* 标准的语法 */
+}
+
+// prefixCss3 给属性加前缀
+// 说明：处理css3属性前缀问题（默认  box-sizing:border-box）
+// 调用 无参： @include prefixCss3;
+//      有参： @include prefixCss3( $property: box-sizing , $value: border-box , $prefixes: webkit moz ms o );
+//            @include prefixCss3( box-sizing , border-box , webkit moz ms o );
+//            @include prefixCss3( box-sizing , border-box , webkit moz );
+@mixin prefixCss3( $property: box-sizing , $value: border-box , $prefixes: webkit moz ms o ){
+    @each $prefix in $prefixes {
+        @if $prefix == webkit {
+            -webkit-#{ $property } : $value;
+        } @else if $prefix == moz {
+            -moz-#{ $property } : $value;
+        } @else if $prefix == ms {
+            -ms-#{ $property } : $value;
+        } @else if $prefix == o {
+            -o-#{ $property } : $value;
+        }
+    }
+    #{ $property } : $value;
+}
+
+@mixin prefixValueCss3( $property: box-sizing , $value: border-box , $prefixes: webkit moz ms o ){
+    #{$property}: -webkit-#{ $value };
+    #{$property}: -moz-#{ $value };
+    #{$property}: -ms-#{ $value };
+    #{$property}: -o-#{ $value };
+    #{$property}: #{ $value };
+}
+
+
+// transform 变换属性
+// 说明：处理transform属性兼容问题（默认处理为缩小0.5）
+// 调用 无参： @include transform;
+//      有参： @include transform(scaleY(.5));
+@mixin transform( $value:scale( .5 ) ){
+    -webkit-transform: $value;
+    -moz-transform: $value;
+    -ms-transform: $value;
+    -o-transform: $value;
+    transform: $value;
+}
+
+// transform-origin改变原点坐标属性
+// 说明：处理transform-origin属性兼容问题（默认处理为transform-origin的默认值）
+// 调用 无参： @include transform-origin;
+//      有参： @include transform-origin(10%,10%);
+@mixin transform-origin( $x:50% , $y:50% , $z:0 ){
+    -webkit-transform-origin: $x $y $z;
+    -moz-transform-origin: $x $y $z;
+    -ms-transform-origin: $x $y;
+    -o-transform-origin: $x $y;
+    transform-origin: $x $y $z;
+}
+
+// transform-style 设置子元素是否保留其3D变换
+// 说明：处理transform-style属性兼容问题（默认处理为transform-style的默认值）
+// 调用 无参： @include transform-style;
+//      有参： @include transform-style($value:preserve-3d);
+@mixin transform-style( $value: flat ){
+    -webkit-transform-style: $value;
+    -moz-transform-style: $value;
+    transform-style: $value;
+}
+
+// transition 过度
+// 说明：处理transition过度兼容问题（默认处理为all 0.5s ease-in-out 0的默认值）
+// 调用 无参：@include transition;
+//      有参： @include transition(height 0.5 ease-in-out);
+@mixin transition( $value: all 0.5s ease-in-out 0s ){
+    -webkit-transition: $value;
+    -ms-transition: $value;
+    -moz-transition: $value;
+    -o-transition: $value;
+    transition: $value;
+}
+
+// flex布局处理
+// 各参数取值
+// justify: 弹性盒子元素在主轴方向上的对齐方式。
+//          flex-start(默认) 子元素头部对齐
+//          flex-end 子元素尾部对齐
+//          center 子元素居中对齐
+//          space-around：子容器沿主轴均匀分布，位于首尾两端的子容器到父容器的距离是子容器间距的一半。
+//          space-between：子容器沿主轴均匀分布，位于首尾两端的子容器与父容器紧挨着。
+//
+// align: 弹性盒子元素在侧轴方向上的对齐方式。
+//        stretch（默认）子元素纵向拉伸以适应父容器的高度
+//        flex-start 子元素头部对齐（子元素的高度适应其内部的子元素的高度，不被拉伸）
+//        flex-end 子元素尾部对齐（子元素的高度适应其内部的子元素的高度，不被拉伸）
+//        center 子元素居中对齐 （子元素的高度适应其内部的子元素的高度，不被拉伸）
+//        baseline：基线对齐，这里的 baseline 默认是指首行文字（子元素的高度适应其内部的子元素的高度，不被拉伸）
+//
+// direction：设置flex的主轴方向以及子元素对其方式
+//            row（默认）设置主轴方向为横向 子元素横向排列为一行 顺序与文档流中的顺序一致
+//            row-reverse  设置主轴方向为横向 子元素横向排列为一行 顺序与文档流中的顺序相反
+//            column 设置主轴方向为纵向 子元素纵向排列为一列 顺序与文档流中的顺序一致
+//            column-reverse 设置主轴方向为纵向 子元素纵向排列为一列 顺序与文档流中的顺序相反
+//
+// wrap: 设置flex子元素是否可以折行显示
+//       nowrap （默认）设置flex子元素不折行显示，全部显示在一行
+//       wrap 设置flex子元素可以折行显示，当子元素在一行显示不完的时候会折行到第二行去显示！顺序是文档流到顺序
+//       wrap-reverse 将wrap的顺序反转过来
+@mixin flex-box($justify:flex-start,$align:stretch,$direction:row,$wrap:nowrap){
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    // 设置子元素沿主轴对齐方式
+    -webkit-box-pack: $justify;
+    -webkit-justify-content: $justify;
+    justify-content: $justify;
+    // 设置子元素沿侧轴对齐方式
+    -webkit-box-align: $align;
+    -webkit-align-items: $align;
+    align-items: $align;
+    // 设置flex的主轴方向以及子元素对其方式
+    -webkit-flex-direction: $direction;
+    flex-direction: $direction;
+    // 如果$direction设置了纵向排列！（兼容老版本的）
+    @if $direction == column {
+        -webkit-box-orient: vertical;
+    } @else if $direction == row {
+        -webkit-box-orient: horizontal;
+    } @else {
+        -webkit-box-direction: reverse;
+    }
+    // 设置flex子元素是否可以折行显示（默认是不折行显示）
+    -webkit-flex-wrap: $wrap;
+    flex-wrap: $wrap;
+}
+
+@mixin flex-item($number:1,$width:0%){
+    // 在旧版的规范中，使用比例伸缩布局时，子元素的内容长短不同会导致无法“等分”，这个时候，我们需要给子元素设置一个“width:0%”来解决问题。
+    //width: $width;
+    -webkit-box-flex: $number;
+    -webkit-flex: $number;
+    flex: $number;
+}
+
+//文字益处显示省略号
+//  $line    控制文字为多少行   默认为1行
+@mixin text-overflow($line:1){
+    @if $line == 1{
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        // white-space: nowrap;  //强制文字在一行中显示
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        @include prefixCss3( $property: line-clamp , $value: 1);
+    } @else{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        @include prefixCss3( $property: line-clamp , $value: $line);
+    }
+}
+
+// border一像素移动端处理(适用于倍率为1的移动端的纯按钮类元素)（全边框）适用于倍率为1的移动端
+// 说明：border一像素移动端处理（默认处理为 solid类型 #eee颜色）
+//      调用  无参： @include border-m;
+//            有参： @include border-m(dashed,#000);
+@mixin border-m($style:solid,$color:$border-color,$triangle:false){
+    position: relative;
+    &::after{
+        border: 1px $style $color;
+        width: 200%;
+        height: 200%;
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        @include transform(scale(.5));
+    }
+    @if $triangle != false{
+        &::before{
+            content: "111";
+        }
+    }
+}
+
+// border一像素移动端处理(上边框)
+// 说明：border一像素移动端处理（默认处理为 solid类型 #eee颜色）
+//      调用  无参： @include border-top-m;
+//            有参： @include border-top-m(dashed,#000);
+@mixin border-top-m($style:solid,$color:$border-color,$scale:0.5,$triangle:false){
+    position: relative;
+    &::before{
+        border-top: 1px $style $color;
+        width: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include transform(scaleY($scale));
+        @include transform-origin($y:0);
+    }
+    @if $triangle != false{
+        &::after{
+            border: 1px $style $color;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            width: 1em;
+            height: 1em;
+            content: "";
+            position: absolute;
+            top: -0.5em;
+            background-color: #fff;
+            @include transform(scale($scale) rotate(-45deg));
+            @if $triangle == left {
+                left: 20%;
+            }@else if $triangle == right{
+                right: 20%;
+            }@else if $triangle == center{
+                left: 50%;
+            }@else{
+                left: 20%;
+            }
+        }
+    }
+}
+
+// border一像素移动端处理(右边框)
+// 说明：border一像素移动端处理（默认处理为 solid类型 #eee颜色）
+//      调用  无参： @include border-right-m;
+//            有参： @include border-right-m(dashed,#000);
+@mixin border-right-m($style:solid,$color:$border-color,$scale:0.5){
+    position: relative;
+    &::before{
+        border-right: 1px $style $color;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include transform(scaleX($scale));
+        @include transform-origin($x:100%);
+    }
+}
+
+// border一像素移动端处理(下边框)
+// 说明：border一像素移动端处理（默认处理为 solid类型 #eee颜色）
+//      调用  无参： @include border-bottom-m;
+//            有参： @include border-bottom-m(dashed,#000);
+@mixin border-bottom-m($style:solid,$color:$border-color,$scale:0.5){
+    position: relative;
+    &::after{
+        border-bottom: 1px $style $color;
+        width: 100%;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        @include transform(scaleY($scale));
+        @include transform-origin($y:100%);
+    }
+}
+
+// border一像素移动端处理(左边框)
+// 说明：border一像素移动端处理（默认处理为 solid类型 #eee颜色）
+//      调用  无参： @include border-left-m;
+//            有参： @include border-left-m(dashed,#000);
+@mixin border-left-m($style:solid,$color:$border-color,$scale:0.5){
+    position: relative;
+    &::after{
+        border-left: 1px $style $color;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include transform(scaleX($scale));
+        @include transform-origin($x:0);
+    }
+}
+
+// 设置背景图片
+// 说明：设置背景图片
+//      调用 @include set-bg-img( $name: "img.png" , $position: center , $size: cover , $repeat: no-repeat, $color: #fff )
+@mixin set-bg-img( $name , $position: center , $size: cover , $repeat: no-repeat, $color: transparent ){
+    background: url( $img-src + $name ) $position/$size $repeat $color;
+}
+
+// === 定义混合宏 end===

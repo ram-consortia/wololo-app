@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/city.css" />
+</head>
+<body>
+    <div class="flex-vertical" id="wrap">
+        <!-- <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">选择城市</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="main">
+                <p class="location">当前定位城市</p>
+                <p class="place">北京电影学院</p>
+                <div class="ul">
+                    <p class="letter">A</p>
+                    <div class="li">鞍山</div>
+                    <div class="li">安阳</div>
+                </div>
+                <div class="ul">
+                    <p class="letter">B</p>
+                    <div class="li">北京</div>
+                    <div class="li">北海</div>
+                    <div class="li">白山</div>
+                </div>
+                <div class="word">
+                    <span class="character">A</span>
+                    <span class="character">B</span>
+                    <span class="character">C</span>
+                </div>
+                <div class="ul">
+                    <p class="letter">B</p>
+                    <div class="li">北京</div>
+                    <div class="li">北海</div>
+                    <div class="li">白山</div>
+                </div>
+                <div class="word">
+                    <span class="character">A</span>
+                    <span class="character">B</span>
+                    <span class="character">C</span>
+                </div>
+                <div class="ul">
+                    <p class="letter">B</p>
+                    <div class="li">北京</div>
+                    <div class="li">北海</div>
+                    <div class="li">白山</div>
+                </div>
+                <div class="word">
+                    <span class="character">A</span>
+                    <span class="character">B</span>
+                    <span class="character">C</span>
+                </div>
+                <div class="ul">
+                    <p class="letter">B</p>
+                    <div class="li">北京</div>
+                    <div class="li">北海</div>
+                    <div class="li">白山</div>
+                </div>
+                <div class="word">
+                    <span class="character">A</span>
+                    <span class="character">B</span>
+                    <span class="character">C</span>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnCloseModel();" class="back icon-back"></div>
+            <div class="title">{{'选择城市' | fnLanguage_public}}</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="main">
+                <!-- <p class="location">{{'当前定位城市' | fnLanguage_public}}</p>
+                <p tapmode="hover" onClick="fnSubmit(this)" class="place" id="city">{{'定位中' | fnLanguage_public}}……</p> -->
+                <div id="list">
+                    <!-- <div class="ul">
+                        <p class="letter">A</p>
+                        <div class="li">鞍山</div>
+                        <div class="li">安阳</div>
+                    </div>
+                    <div class="word">
+                        <span class="character">A</span>
+                        <span class="character">B</span>
+                        <span class="character">C</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="list-template">
+        {{if _data._list}}
+            {{each _data._list}}
+                <div class="ul">
+                    <p id="{{$index}}" class="letter">{{$index}}</p>
+                    {{each $value $item}}
+                        <div tapmode="hover" onClick="fnSubmit(this)" class="li">
+                            <i class="hide">{{$item}}</i>
+                            {{$item.city}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+        {{/if}}
+
+        <div class="word">
+            {{each _data.letter}}
+                <span tapmode="hover" onClick="location.href = '#{{$value}}'" class="character">{{$value}}</span>
+            {{/each}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnValue('#wrap', template('wrap-template', APP));
+        APP.fixStatusBar( $('.header')[0] );
+        fnInit();
+    });
+
+    function fnInit(){
+        fnGet(function(){
+            // fnGetLocation_base(function(ret){
+            //     fnLocation_to_address(ret);
+            // })
+        });
+    }
+
+    function fnLocation_to_address(_data){
+        fnLocation_to_address_base({
+            lat: _data.lat,
+            lon: _data.lon
+        }, function(ret){
+            fnValue('#city', ret.city+'<i class="hide">'+JSON.stringify(ret)+'</i>');
+        })
+    }
+
+    function fnGet(_cb){
+        fnGetCityListAjax_base(function(ret){
+            APP._cityList = ret;
+            fnGetLetter_public(function(_data){
+                _data._list = {};
+                for( var x in APP._cityList ){
+                    _data._list[APP._cityList[x].pin_yin] = _data._list[APP._cityList[x].pin_yin] || [];
+                    _data._list[APP._cityList[x].pin_yin].push(APP._cityList[x]);
+                }
+                // debugAlert(11111, _data)
+                _data._list = fnArrayObjSort_base_base({
+                    data: _data._list,
+                    // isDesc: APP.YES
+                })
+
+                APP._data = _data;
+                fnValue('#list', template('list-template', APP));
+                _cb && _cb();
+            })
+        })
+    }
+
+    // 从透明的地方关闭的窗口
+    function fnCloseModel() {
+        fnClosePop({
+            hasModel: true
+        });
+    }
+
+    // 关闭窗口并发送事件
+    function fnClosePop(_data) {
+        _data = _data || {};
+        _data.time = APP._param.time;
+        api.sendEvent({
+            name: APP.EV_NAME.CHOICE_CITY_PAGE,
+            extra: _data || {}
+        });
+        fnClose();
+    }
+
+    function fnSubmit(_el) {
+        if( $(_el).find('i.hide').length ){
+            var _data = JSON.parse(fnValue($(_el).find('i.hide')[0]));
+            fnClosePop(_data);
+        }else{
+
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,674 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/home.css" />
+
+</head>
+<body>
+<div class="main" id="wrap">
+    <div class="title">
+        Popular
+    </div>
+    <div class="classification bkf0">
+        <div tapmode="hover" class="gap w565">
+            <div class="one-third w565">
+                <div class="img-name w560" >
+
+                </div>
+                <p class="names names_left"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/html" id="wrap-template">
+    <!--        index==1 地图模式 ==0 列表模式-->
+    {{if _param.index}}
+    <div class="sw-wrap-map">
+        <div tapmode="hover" onClick="fnSetLocation()" class="location-map"></div>
+        <div tapmode="hover" onClick="fnRefreshStore()" class="location-refresh"></div>
+        <!-- <div class="icon-location "></div> -->
+        <div class="scroll_wrap">
+            <div class="shop-info hide" id="shopInfo">
+            </div>
+        </div>
+
+        <div id="googleMap" class="map"></div>
+    </div>
+    {{else}}
+    <div class="sw sw-wrap-base">
+<!--        <div class="classification hide" id="Category">-->
+        </div>
+        <!--删除swiper-->
+        <div class="hide" id="banner">
+        </div>
+        <div class="collection hide" id="list">
+
+        </div>
+
+        {{if _param.__isHomeSearch}}
+        <div id="no-data" class="search hide">{{'暂无搜索结果' | fnLanguage_public}}</div>
+        {{else}}
+        <div id="no-data" class="height5 hide">{{'暂无数据' | fnLanguage_public}}</div>
+        {{/if}}
+    </div>
+    {{/if}}
+</script>
+
+<script type="text/html" id="list-template">
+    <!--        这里是列表-->
+    {{each _list}}
+    <div class="collection">
+        <div class="con"  tapmode="hover" onclick="fnJump_base('home/storeDetails_win.html', {{$value.id}})">
+            <div class='flag'>
+                {{if $value.store_group === 1}}
+                <div>{{$value.store_group}} Offer</div>
+                {{/if}}
+                {{if $value.store_group !== 1}}
+                <div>{{$value.store_group}} Offers</div>
+                {{/if}}
+                <div>{{$value.store_people}} Claimed</div>
+            </div>
+            <div class="img" data-img-url="{{$value | fnGetStoreImage_base}}" data-img-type="!avatar"></div>
+            <div class="bot botA">
+                {{if +$value.auth.hot_grade}}
+                <span class="hot">hot</span>
+                {{/if}}
+
+
+                <div class="message messageA">
+                    <div class="messLeft">
+                        <div class="til">
+
+                            <p >{{$value | fnShowUserNickname_base}}</p>
+                        </div>
+                        <div class="box boxA bordernone">
+                            <div class="item itemA">
+                                <!--<span class="branch">{{ {'target': $value.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span>-->
+                                <span class="branch ">{{$value.auth.category.name | fnLanguageSwitch_base}}</span>
+                                <span class="stars">
+                                    <!-- 半星加half-star -->
+                                    {{#$value.auth | fnScoreLayout_base}}
+                                </span>
+                                <!--<span class="score">
+                                    <span class="num">{{$value.auth.ev_score}}</span>{{'分' | fnLanguage_public}}
+                                </span>-->
+                            </div>
+                        </div>
+                    </div>
+                    {{if $value.avatar}}
+                    <div class="messRight">
+                        <img width="100%" height="100%" src="{{$value.avatar}}" />
+                    </div>
+                    {{/if}}
+
+                </div>
+                {{if $value.auth.address && $value.auth.lon && $value.auth.lat}}
+                <div class="address">
+                    <p class="addr">{{$value.auth.address || ''}}</p>
+                    <!-- <span class="kilometer">{{$value.auth.store_distance | fnSwitchDistance_base}}</span> -->
+                </div>
+                {{/if}}
+            </div>
+        </div>
+
+    </div>
+    {{/each}}
+</script>
+
+<script type="text/html" id="Category-template">
+    <!--        这里是中间的方块-->
+    {{each _Category}}
+    <div tapmode="hover" onclick="fnJumpHomeSearchResult({{$value}})" class="gap">
+        <div class="one-third">
+            <img src="../../image/icon-background4.png">
+            <div class="img-name" data-img-url="{{$value.image}}" data-img-type="!avatar">
+
+            </div>
+            <p class="names">{{$value.name | fnLanguageSwitch_base}}</p>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+
+<script type="text/html" id="shopInfo-template">
+    <div class="bot bot-border">
+        <div tapmode="hover" onclick="fnJump_base('home/storeDetails_win.html', {{_shopInfo.id}})" class="message message-line">
+            <div class="til">
+                <span data-img-url="{{_shopInfo| fnGetStoreImage_base}}" class="til-img"></span>
+                <p>
+                    {{if +_shopInfo.auth.hot_grade}}
+                    <span class="hot">hot</span>
+                    {{/if}}
+
+                    {{_shopInfo | fnShowUserNickname_base}}
+                </p>
+            </div>
+            <div class="box">
+                <div class="item">
+                        <!--<span class="score score-right">
+                            <span class="num">{{_shopInfo.auth.ev_score}}</span>{{'分' | fnLanguage_public}}
+                        </span>-->
+                    <span class="branch">{{ {'target': _shopInfo.grade, 'key': 'id', 'resKey': 'name', 'data': USER_GRADE} | fnGetRelation_public }}</span>
+                    <span class="stars">
+                            <!-- 半星加half-star -->
+                            {{set temp = [1,2,3,4,5]}}
+                            {{each temp val key}}
+                                <span class="star
+                                    {{if +val < +_shopInfo.auth.ev_score + 1}}
+                                        {{if +val <= +_shopInfo.auth.ev_score}}
+                                            active
+                                        {{else}}
+                                            half-star
+                                        {{/if}}
+                                    {{/if}}
+                                ">{{val}}-{{_shopInfo.auth.ev_score}}</span>
+                            {{/each}}
+                        </span>
+                    <div class="shop"><span class="shop-right">{{_shopInfo.auth.category.name | fnLanguageSwitch_base}}</span><span>{{_shopInfo.auth.store_distance | fnSwitchDistance_base}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="address address-line">
+            <p class="addr">{{_shopInfo.auth.address}}</p>
+            {{if _shopInfo.auth.lat && _shopInfo.auth.lon}}
+            <span tapmode="hover" onClick="fnSelectMap({{_shopInfo.auth.lat}}, {{_shopInfo.auth.lon}})" class="go"></span>
+            {{/if}}
+        </div>
+    </div>
+</script>
+
+
+    <script type="text/html" id="banner-template">
+        <div class="title">
+            {{'精品商家'|fnLanguage_public}}
+        </div>
+        <div class="classification bkf0">
+            {{each _banner}}
+            <div tapmode="hover" onclick="fnJump_base('home/storeDetails_win.html', {{$value.id}})" class="gap w565">
+                <div class="one-third w565">
+<!--                    <img src="../../image/icon-background3.png">-->
+                    <div class="img-name w560" data-img-url="{{$value.auth.images[0].url}}" data-img-type="!avatar">
+
+                    </div>
+                    <p class="names names_left">{{$value | fnShowUserNickname_base}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript">
+  // 页面初始化
+  APP.init(function(){
+    fnValue('#wrap', template('wrap-template', APP));
+    if( APP._param.index ){
+      fnLoadScript_public({
+        src: APP.THREE.GOOGLE.map.value
+      }, function() {
+        fnGetLocation(function(ret){
+          fnOpenMapInit(ret);
+        })
+          fnSetLocation()
+
+        api.addEventListener({
+          name: APP.EV_NAME.CITY_INFO_UPDATE
+        }, function(ret, err){
+          fnCityInit();
+        });
+      })
+    }else {
+      fnInit();
+      fnRefresh(function(){
+        //                      下拉以后则会触发该回调
+        fnInit(true);
+      });
+
+      api.addEventListener({
+        name: APP.EV_NAME.CITY_INFO_UPDATE
+      }, function(ret, err){
+        fnInit();
+      });
+
+      api.addEventListener({
+        name: APP.EV_NAME.EV_EVALUATE_UPDATE
+      }, function(ret, err){
+        fnInit();
+      });
+    }
+
+    api.addEventListener({
+      name: [api.winName, 'homeScreen', APP._param._groupName].join()
+    }, function(ret, err){
+      APP._homeScreen = ret.value;
+      if( APP._param.index ){
+        fnRefreshStore();
+      }else{
+        fnGetListInit();
+      }
+    });
+  });
+
+  function fnCityInit(){
+    fnOperationCityInfo_base(function(ret){
+      debugAlert(99999999999, arguments)
+      if( ret && ret.city ){
+        fnSetCenter(ret);
+      }
+    })
+  }
+
+  function fnOpenMapInit(ret){
+    var myLatlng = {
+      lat: +ret.lat,
+      lng: +ret.lon
+    };
+
+    APP._map = new google.maps.Map($('#googleMap')[0], {
+      zoom: 18,
+      center: myLatlng,
+      fullscreenControl: false,
+      mapTypeControl: false,
+      streetViewControl: false,
+      zoomControl: false
+    });
+
+    fnDeleteMarkersLocation();
+    APP._markersLocation.push(new google.maps.Marker({
+      position: myLatlng,
+      map: APP._map,
+      icon: {
+        url: '../../image/icon-map-location.png',
+        size: new google.maps.Size(30, 30),
+        scaledSize: new google.maps.Size(30, 30)
+      }
+    }));
+
+    APP._map.addListener('center_changed', function() {
+      var _data = fnCloneObject_public(APP._map.getCenter());
+      clearTimeout(APP.timer);
+      APP.timer = setTimeout(function() {
+        // debugAlert(3333, _data)
+        fnRefreshStore(_data);
+      }, 100);
+    });
+
+
+    if( APP._param.lat && APP._param.lon ){
+      fnSetCenter(APP._param);
+    }else{
+      fnCityInit();
+    }
+  }
+
+
+  function fnRefreshStore(_obj){
+    APP._center = _obj || APP._center || {};
+    var _param = fnGetParam({
+      page: APP.YES,
+      limit: 10000,
+      lon: APP._center.lon || APP._center.lng,
+      lat: APP._center.lat,
+      // 5千米范围内
+      distance: 5,
+      hasProgress:{
+        status:0
+      }
+    })
+
+    fnAjax(_param, function(ret){
+      if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+        fnDeleteMarkers();
+
+        var _data = ret.data.data;
+        if( _data.length ){
+          for( var x in _data ){
+            if( _data[x].auth.lat && _data[x].auth.lon ){
+              fnAddMarkers(_data[x]);
+            }
+          }
+        }
+
+
+        if( ! APP._isNotFirstOpen && APP._param.store_id ){
+          APP._isNotFirstOpen = APP.YES;
+          fnGetDetail({
+            id: APP._param.store_id
+          });
+        }
+      }else{
+        fnToast(ret.msg);
+      }
+    })
+  }
+
+  function fnAddMarkers(_data){
+    var _icon = _data.auth.category.icon.split('!')[0];
+    if( _data.auth.hot_grade ){
+      try {
+        _icon = _data.auth.category.hot_icons[_data.auth.hot_grade-1].split('!')[0];
+      } catch (e) {
+
+      } finally {
+
+      }
+    }
+    var _param = {
+      position: {
+        lat: +_data.auth.lat,
+        lng: +_data.auth.lon
+      },
+      map: APP._map,
+      icon: {
+          // url: _icon,
+          url: '../../image/icon-map-location.png',
+        size: new google.maps.Size(40, 45),
+        scaledSize: new google.maps.Size(40, 45),
+      },
+      zIndex: -1
+    }
+    debugAlert('添加图标', _param.position, _param.icon)
+    var _marker = new google.maps.Marker(_param);
+    _marker._data = _data;
+
+    _marker.addListener('click', function() {
+      fnGetDetail(this._data);
+    });
+
+    APP._markers.push(_marker);
+  }
+
+  function fnGetDetail(_data){
+
+    fnGetStoreDetails_base({
+      id: _data.id,
+      lon: APP._currentLocation.lon,
+      lat: APP._currentLocation.lat
+    }, function(ret){
+      fnDeleteMarkersOnclick()
+
+      APP._markersOnclick.push(new google.maps.Marker({
+        position: {
+          lat: +ret.auth.lat,
+          lng: +ret.auth.lon
+        },
+        map: APP._map,
+        icon: {
+            //商家标记
+            url: '../../image/icon-map-location.png',
+          size: new google.maps.Size(30, 40),
+          scaledSize: new google.maps.Size(30, 40)
+        },
+        zIndex: 2
+      }));
+
+      $('#shopInfo').removeClass('hide');
+
+      APP._shopInfo = ret;
+      fnValue('#shopInfo', template('shopInfo-template', APP));
+
+      api.execScript({
+        script: 'typeof fnSetTitle == "function" && fnSetTitle('+JSON.stringify(APP._shopInfo)+');'
+      });
+    })
+  }
+
+  function fnDeleteMarkers() {
+    if( APP._markers && APP._markers.length ){
+      for (var i = 0; i < APP._markers.length; i++) {
+        APP._markers[i].setMap(null);
+      }
+    }
+
+    APP._markers = [];
+    $('#shopInfo').addClass('hide');
+
+    api.execScript({
+      script: 'typeof fnSetTitle == "function" && fnSetTitle();'
+    });
+    fnDeleteMarkersOnclick();
+  }
+
+  function fnDeleteMarkersOnclick(){
+    if( APP._markersOnclick && APP._markersOnclick.length ){
+      for (var i = 0; i < APP._markersOnclick.length; i++) {
+        APP._markersOnclick[i].setMap(null);
+      }
+    }
+    APP._markersOnclick = [];
+  }
+
+  function fnDeleteMarkersLocation(){
+    if( APP._markersLocation && APP._markersLocation.length ){
+      for (var i = 0; i < APP._markersLocation.length; i++) {
+        APP._markersLocation[i].setMap(null);
+      }
+    }
+    APP._markersLocation = [];
+  }
+
+
+  function fnGetLocation(_cb){
+    fnGetLocation_public({
+      isPopFailed: false     //(可选项)布尔值，如果定位失败是否需要弹出定位失败弹窗，默认false
+    }, function(ret){
+      if( ret ){
+        ret.lng = ret.lon;
+        APP._currentLocation = ret;
+        _cb && _cb(ret);
+      }else{
+        fnToast('获取经纬度失败')
+      }
+    })
+  }
+
+  function fnSetLocation(){
+    fnGetLocation(function(ret){
+      fnSetCenter(ret, function(){
+        fnDeleteMarkersLocation();
+        APP._markersLocation.push(new google.maps.Marker({
+          position: {
+            lat: +ret.lat,
+            lng: +ret.lon
+          },
+          map: APP._map,
+          icon: {
+            url: '../../image/icon-map-locationA.png',
+            size: new google.maps.Size(30, 30),
+            scaledSize: new google.maps.Size(30, 30)
+          }
+        }));
+      });
+    })
+  }
+
+  function fnSetCenter(ret, _cb){
+    var _param = {
+      lng: +ret.lon,
+      lat: +ret.lat
+    }
+    debugAlert('设置中心', _param)
+    if( APP._map ){
+      APP._map.setCenter(_param);
+      _cb && _cb();
+    }
+  }
+
+  function fnSelectMap(_lat, _lon) {
+    fnSelectMap_public({
+      end: {
+        lon: _lon,
+        lat: _lat
+      }
+    })
+  }
+
+  function fnInit(_isDropDown){
+    if( APP._param.__isHomeSearch ){
+      fnGetListInit(_isDropDown);
+    }else {
+      if( APP._param.category && APP._param.category.id ){
+        fnCategory(_isDropDown, function(){
+          fnGetListInit(_isDropDown);
+        });
+      }else{
+        fnBanner(_isDropDown);
+        fnCategory(_isDropDown);
+        fnGetListInit(_isDropDown);
+      }
+    }
+  }
+
+  function fnGetListInit(_isDropDown){
+    APP.PAGE.START_PAGE = APP.PAGE.START_PAGE_TEMP;
+    fnGetList(_isDropDown);
+  }
+
+  function fnBanner(_isDropDown){
+    var _param = {
+      url: 'user/user/index',
+      method: 'GET',
+      hasProgress: {
+        status: !_isDropDown
+      },
+      data: {
+        page: APP.YES,
+        limit: 100,
+        is_choice: APP.YES
+      }
+    }
+    // 这个是加载swiper图片的
+    fnAjax(_param, function(ret){
+        if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+            if( ret.data.data && ret.data.data.length ){
+                $('#banner').removeClass('hide');
+
+                APP._banner = ret.data.data;
+                fnValue('#banner', template('banner-template', APP));
+            }else{
+                $('#banner').addClass('hide');
+            }
+        }else{
+            fnToast(ret.msg);
+        }
+    })
+  }
+
+  function fnCategory(_isDropDown, _cb){
+    var _param = {
+      page: APP.YES,
+      limit: 100,
+      hasProgress: !_isDropDown
+    }
+    if( APP._param.category && APP._param.category.id ){
+      APP._param.category_id = APP._param.category.id;
+    }
+
+    if( APP._param.category_id ){
+      _param.parent_id = APP._param.category_id;
+    }else{
+      _param.level = APP.YES;
+    }
+
+    fnGetCategoryAjax_base(_param, function(ret){
+      APP._Category = ret.data;
+      api.execScript({
+        script: 'typeof fnCategoryInit === "function" && fnCategoryInit('+JSON.stringify(APP._Category)+');'
+      });
+
+      if( ret.data && ret.data.length && (! APP._param.category_id || ret.data.length > 1)){
+        $('#Category').removeClass('hide');
+        fnValue('#Category', template('Category-template', APP));
+      }else{
+        $('#Category').addClass('hide');
+      }
+      _cb && _cb();
+    })
+  }
+
+  function fnGetParam(_paramInit){
+    var _param = {
+      url: 'user/user/index',
+      method: 'GET',
+      data: _paramInit
+    }
+    if(  APP._homeScreen ){
+      if( APP._homeScreen.business && + APP._homeScreen.business.active ){
+        _param.data.is_business = APP._homeScreen.business.active;
+      }
+
+      if( APP._homeScreen.popularity && + APP._homeScreen.popularity.active ){
+        _param.data.popularity = APP._homeScreen.popularity.active;
+      }
+
+      if( APP._homeScreen.ev_score && + APP._homeScreen.ev_score.active ){
+        _param.data.ev_score = APP._homeScreen.ev_score.active;
+      }
+
+      if( APP._homeScreen.grade && + APP._homeScreen.grade.active ){
+        _param.data.grade = APP._homeScreen.grade.active;
+      }
+    }
+
+    if( APP._param.keyword ){
+      _param.data.keyword = APP._param.keyword;
+    }
+
+    _param.hasProgress = _paramInit.hasProgress;
+
+    if( APP._param.category && APP._param.category.id ){
+      _param.data.category_id = [APP._param.category.id];
+      for( var x in APP._Category ){
+        _param.data.category_id.push(APP._Category[x].id);
+      }
+      _param.data.category_id = _param.data.category_id.join();
+    }
+
+    if( APP._param.__category_id ){
+      _param.data.category_id = APP._param.__category_id;
+    }
+    return _param;
+  }
+
+  function fnGetList(_isDropDown){
+
+    fnGetLocation(function(ret){
+      var _param = fnGetParam({
+        page: APP.PAGE.START_PAGE,
+        limit: 4,
+        limit: APP.PAGE.SKIP_PAGE,
+        lon: ret.lon,
+        lat: ret.lat, is_list:1,
+        //hasProgress: !_isDropDown
+        hasProgress:true,
+      })
+
+      fnGetList_base(_param, function(ret){
+        // debugAlert(arguments)
+        if( ret.evType == 'scrolltobottom' ){
+          fnGetList();
+        }
+      })
+    })
+  }
+
+  function fnJumpHomeSearchResult(_data){
+    fnJump_base('home/homeSearchResult_win.html', {
+      category: _data
+    })
+  }
+</script>
+</html>

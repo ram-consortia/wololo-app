@@ -1,0 +1,376 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/pay.css" />
+</head>
+<body>
+<div class="content flex-vertical" id="wrap">
+    <div class="coupon-img">
+        <!--<div data-img-url="{{_data | fnGetCouponImage_base}}" data-img-type="!watermark" class="img"></div>-->
+        <div class="coupon">
+            <i class="itemT"></i>
+            <i class="itemY"></i>
+            <div class="coupon-item">
+                <div class="itemTop">
+                    <div class="itemLeft">
+                        <div class="leftHer">
+
+                            <span class="size">￡0</span>
+
+                            <span class="voucher"></span>
+                        </div>
+                    </div>
+                    <!--<div class="itemRight">
+                        <div class="img"></div>
+                    </div>-->
+                </div>
+                <div class="itemButtom">
+                    <p class="shop-name"></p>
+                    <p class="market-price">￡0</p>
+
+                    <p class="time"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pay paypal_hide">
+            <p class="must"></p>
+            <p class="price">￡<span class="size"></span></p>
+        </div>
+        <div class="main flex-item-vertical payGroup">
+
+            <div class="mode paypal_hide">Select payment method</div>
+            <div class="ul" id="paypal_method">
+                <!-- 选中加active -->
+<!--                <div class="li active" >-->
+<!--                    <div class="name alipay">Alipay</div>-->
+<!--                    <div class="sel"></div>-->
+<!--                </div>-->
+<!--                <div class="li">-->
+<!--                    <div class="name weichat">WeChat Pay</div>-->
+<!--                    <div class="sel"></div>-->
+<!--                </div>-->
+                <div class="li" >
+                    <div class="name paypel">PayPal</div>
+                    <div class="sel"></div>
+                </div>
+                <!--            <div tapmode="hover" onclick="fnSwitchTable_base(this)" class="li" data-id="{{ORDER.pay_method.ApplePay.id}}">-->
+                <!--                <div class="name applePay">ApplePay</div>-->
+                <!--                <div class="sel"></div>-->
+                <!--            </div>-->
+                <div class="li active">
+                    <div class="name applePay">Card</div>
+                    <div class="sel"></div>
+                </div>
+
+            </div>
+            <div id="frame" class="hide" style="height: 100vh">
+                <iframe src="" height="100%" frameborder="0" width="100%"></iframe>
+            </div>
+        </div>
+        <div class="bottom">
+            <!-- 邀请好友参团pop/share_pop.html -->
+            <div class="quit" tapmode="hover" onclick="fnSubmit()">Confirm payment</div>
+        </div>
+</div>
+
+
+
+<script type="text/html" id="wrap-template">
+    <div class="coupon-img">
+        <!--<div data-img-url="{{_data | fnGetCouponImage_base}}" data-img-type="!watermark" class="img"></div>-->
+        <div class="coupon">
+            <i class="itemT"></i>
+            <i class="itemY"></i>
+            <div class="coupon-item">
+                <div class="itemTop">
+                    <div class="itemLeft">
+                        <div class="leftHer">
+
+                            <span class="size">￡{{_data.coupon.price_group[_data.group.participants-1]}}</span>
+
+                            <span class="voucher">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</span>
+                        </div>
+                    </div>
+                    <!--<div class="itemRight">
+                        <div class="img"></div>
+                    </div>-->
+                </div>
+                <div class="itemButtom">
+                    <p class="shop-name">{{_data.coupon.name}}</p>
+                    <p class="market-price">{{'门市价' | fnLanguage_public}}￡{{_data.coupon.price}}</p>
+
+                    <p class="time">{{_data.coupon | fnGetCouponDateMsg_base}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="pay paypal_hide">
+            <p class="must">{{'需支付' | fnLanguage_public}}</p>
+            <p class="price">￡<span class="size">{{_data.coupon.price_group[_data.group.participants-1]}}</span></p>
+        </div>
+    <div class="main flex-item-vertical payGroup">
+
+        <div class="mode paypal_hide">{{'选择支付方式' | fnLanguage_public}}</div>
+        <div class="ul" id="paypal_method">
+            <!-- 选中加active -->
+<!--            <div tapmode="hover" onclick="fnSwitchTable_base(this)" class="li active" data-id="{{ORDER.pay_method.aliPay.id}}">-->
+<!--                <div class="name alipay">{{'支付宝' | fnLanguage_public}}</div>-->
+<!--                <div class="sel"></div>-->
+<!--            </div>-->
+<!--            <div tapmode="hover" onclick="fnSwitchTable_base(this)" class="li" data-id="{{ORDER.pay_method.wxPay.id}}">-->
+<!--                <div class="name weichat">{{'微信支付' | fnLanguage_public}}</div>-->
+<!--                <div class="sel"></div>-->
+<!--            </div>-->
+            <div tapmode="hover" onclick="fnSwitchTable_base(this)" class="li" data-id="{{ORDER.pay_method.PayPal.id}}">
+                <div class="name paypel">PayPal</div>
+                <div class="sel"></div>
+            </div>
+            <!--            <div tapmode="hover" onclick="fnSwitchTable_base(this)" class="li" data-id="{{ORDER.pay_method.ApplePay.id}}">-->
+            <!--                <div class="name applePay">ApplePay</div>-->
+            <!--                <div class="sel"></div>-->
+            <!--            </div>-->
+            <div tapmode="hover" onclick="fnSwitchTable_base(this)" class="li active" data-id="{{ORDER.pay_method.bankCard.id}}">
+                <div class="name applePay">{{'银行卡' | fnLanguage_public}}</div>
+                <div class="sel"></div>
+            </div>
+
+        </div>
+        <div id="frame" class="hide" style="height: 100vh">
+            <iframe src="" height="100%" frameborder="0" width="100%"></iframe>
+        </div>
+    </div>
+    <div class="bottom">
+        <!-- 邀请好友参团pop/share_pop.html -->
+        <div class="quit" tapmode="hover" onclick="fnSubmit()">{{'确定支付' | fnLanguage_public}}</div>
+    </div>
+</script>
+</body>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+      fnGet()
+        /*fnValue('#wrap', template('wrap-template', APP));*/
+        APP.fixTabBar('.bottom');
+    });
+
+    function fnGet() {
+      fnGetOrderDetail_base({
+        id: APP._param.id
+      }, function (ret) {
+          // ret={"id":924,"coupon_id":133,"user_id":242,"status":2,"sn":"2020101851984857","success_time":0,"pay_method":0,"store_id":294,"pay_time":0,"group_id":1091,"is_group":1,"create_time":1603016419,"update_time":1603016419,"pay_expire_time":1603102945,"pay_coupon_count":0,"close_time":0,"pay_total_price":"0.00","pay_price":"0.00","write_off_count":0,"order_store_id":0,"pay_sn":"","unit_price":"27.50","coupon":{"id":133,"type":1,"create_time":1602171042,"update_time":1602171553,"store_id":294,"limit_collar":0,"validity_type":1,"total":0,"upper_limit_time":259200,"price":"30.00","price_group":["27.50","25.00","22.50","20.00"],"name":"Drinks and Snacks","image":"","is_upper":1,"total_write_off_count":0,"total_pay":2,"delete_time":0,"validity_start_time":1602086400,"validity_end_time":1603641599,"validity_day":0,"participants":53,"group":[{"id":1090,"coupon_id":133,"participants":1}],"surplus_num":-1,"can_pay_num":-1,"is_expire":0},"store":{"id":294,"user_nickname":"Everyman Cinema","mobile":"","user_email":"m9@wololo.co.uk","code_id":"uwv5wH294","avatar":"","info":{"images":[{"file_name":"web/20201009/86f80626aa5c5f15939e07532978b7cc.jpg","url":"http://qiniucnd.wololo.co.uk/web/20201009/86f80626aa5c5f15939e07532978b7cc.jpg!watermark"},{"file_name":"web/20201008/4c7eb6cdbb09e7ac6525d6861928cb0a.png","url":"http://qiniucnd.wololo.co.uk/web/20201008/4c7eb6cdbb09e7ac6525d6861928cb0a.png!watermark"},{"file_name":"web/20201008/22abc7ad08cb2bce4e17ce5824c3ec30.png","url":"http://qiniucnd.wololo.co.uk/web/20201008/22abc7ad08cb2bce4e17ce5824c3ec30.png!watermark"},{"file_name":"web/20201008/7009c719f0669e26ef2ab57c15258c9e.png","url":"http://qiniucnd.wololo.co.uk/web/20201008/7009c719f0669e26ef2ab57c15258c9e.png!watermark"}],"user_id":294,"address":"1 Crossrail Pl, London E14, UK","lon":"-0.124472500000000","lat":"51.500690200000000","is_delivery":0}},"store_order":[],"order_address":null,"user":{"id":242,"user_nickname":"abc","code_id":"wKOCae242","avatar":"http://qiniucnd.wololo.co.uk/default/20201008/05ff6d5b9d8c402dcefa3fd754efb75b.png!watermark"},"group":{"id":1091,"status":2,"participants":1,"price_coupon_max":20,"clustering_time":1603016545,"coupon_expire_time":1603641599,"virtual_human_count":0,"is_apply_refund":true},"last_write_off":null,"comment":null,"after_sale":null,"surplus_count":0,"pay_expire_time_temp":84403,"is_apply_refund":false};
+          APP._data = ret;
+        fnValue('#wrap', template('wrap-template', APP));
+      })
+    }
+
+    function fnSubmit(){
+        if(!$('.li.active').data('id')){
+            return;
+        }
+        var _param = {
+            url: 'order/order/pay',
+            method: 'POST',
+            data: {
+                id: APP._param.id,
+                //pay_coupon_count: APP._param.pay_coupon_count,
+                pay_coupon_count: 1,
+                pay_method: $('.li.active').data('id'),
+                debug: APP.NO
+            }
+        }
+
+        if(_param.data.pay_method==APP.ORDER.pay_method.bankCard.id){
+            
+            fnOpen('assemble/stripePay.html',{
+                    param:{
+                        id:_param.data.id,
+                    }
+                });
+            return;
+        }
+
+        if( _param.data.pay_method == APP.ORDER.pay_method.ApplePay.id ){
+            var braintreeApplePay = api.require('braintreeApplePay');
+            debugAlert('braintreeApplePay-isSupportPayments-开始')
+            braintreeApplePay.isSupportPayments(function(ret) {
+                alert(debugAlert('braintreeApplePay-isSupportPayments-结束', arguments))
+            });
+
+            debugAlert('braintreeApplePay-canMakePayments-开始')
+            braintreeApplePay.canMakePayments(function(ret) {
+                alert(debugAlert('braintreeApplePay-canMakePayments-结束', arguments))
+            });
+
+            var _param = {
+                token: 'token'
+            }
+            debugAlert('braintreeApplePay-initWithToken-开始', _param)
+            braintreeApplePay.initWithToken(function(ret) {
+                alert(debugAlert('braintreeApplePay-initWithToken-结束', arguments))
+            });
+
+            debugAlert('braintreeApplePay-addCard-开始')
+            braintreeApplePay.addCard();
+        }else{
+            fnAjax(_param, function(ret){
+                // if(_param.data.pay_method==APP.ORDER.pay_method.bankCard.id){
+                //     console.log(JSON.stringify(ret))
+                //     // var stripKey = 'pk_test_51Hek1UFZ19uZrJGnmmyhOlYkICujY9JMerEiDcgMLK3kQ8GX73EhBRHwuqJ6uDdIneec2RMOEjoVOvqNSU16tWyZ00K5vS2EJA';
+                //     // var stripe = Stripe(stripKey);
+                //     // stripe.redirectToCheckout({ sessionId:ret.data.id }).then(function(result){
+                //     //     console.log(1111,result)
+                //     //     if (result.error) {
+                //     //         fnToast(result.error.message);
+                //     //     }
+                //     //     if(result.code==1){
+                //     //         fnCheckStripePaySuccess()
+                //     //     }
+                       
+                //     // })
+
+                   
+                // }
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    if( ret.data.pay_method == APP.ORDER.pay_method.aliPay.id ){
+                        api.execScript({
+                            script: 'fnListenerAlipay();'
+                        });
+                        // location.href = ret.data.qr_code;
+
+                        fnOpen(ret.data.qr_code, {
+                            rect: APP._param._rect
+                        });
+                    }
+                    else if( ret.data.pay_method == APP.ORDER.pay_method.wxPay.id ){
+                        // fnOpen(ret.data.qr_code, {
+                        //     rect: APP._param._rect
+                        // });
+                        var wxPay = api.require('wxPayPlus');
+                        _param = {
+                            apiKey: ret.data.app_data.appid,
+                            orderId: ret.data.app_data.prepayid,
+                            mchId: ret.data.app_data.partnerid,
+                            nonceStr: ret.data.app_data.noncestr,
+                            timeStamp: ret.data.app_data.timestamp,
+                            package: ret.data.app_data.package,
+                            sign: ret.data.app_data.sign
+                        }
+                        debugAlert('wxPay开始', _param)
+                        wxPay.payOrder(_param, function(ret, err) {
+                            // alert(debugAlert('wxPa结束', arguments))
+                            fnCheckWAIsPay();
+                        });
+                    }
+                    else if( ret.data.pay_method == APP.ORDER.pay_method.PayPal.id ){
+                        fnValue('.ul', '');
+                        $('.bottom').remove();
+                        ret.data._selector = '#paypal_method';
+                        $('.paypal_hide').addClass('hide')
+                        $('#frame').removeClass('hide');
+                        $('#frame iframe')[0].src='https://wololo.co.uk/privacy_policy/index.html?params='+encodeURIComponent(JSON.stringify(ret.data))
+                        callback(_param.data.id);
+
+                    }else{
+                        ret.data.type = ret.data.status ? 3 : 4;
+                        fnPaySuccess(ret.data);
+                    }
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+
+
+    function fnPaySuccess(_param){
+        let newParam=_param||{
+            id:1,
+            type:3
+        }
+        api.sendEvent({
+            name: APP.EV_NAME.ORDER_UPDATE,
+            extra: {}
+        });
+        api.sendEvent({
+            name: APP.EV_NAME.PAY_SUCCESS,
+            extra: {}
+        });
+
+        fnOpen('my/refundSubmission_win.html', {
+            param: newParam
+        })
+    }
+
+    function callback(id) {
+        window.addEventListener('message', function(e){
+            if(e.data.orderID){
+                var _param = {
+                    url: 'order/order/check_is_pay',
+                    method: 'POST',
+                    data: {
+                        id,
+                        pay_sn: e.data.orderID
+                    }
+                }
+                fnAjax(_param, function(ret){
+                    if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                        ret.type = ret.data.status ? 3 : 4;
+                        fnPaySuccess(ret);
+                    }else{
+                        fnToast(ret.msg);
+                    }
+                })
+            }
+        }, false);
+
+    }
+    function fnCheckWAIsPay(){
+        fnCheckIsPay(function(ret){
+            // debugAlert(33333, arguments)
+            if( ['TRADE_SUCCESS', 'TRADE_FINISHED'].indexOf(ret.transaction_status) != -1 ){
+                ret.type = 3;
+                fnPaySuccess(ret);
+                // }else if(ret.transaction_status == 'WAIT_BUYER_PAY'){
+                //     setTimeout(function(){
+                //         _checkIsPay();
+                //     }, 1000)
+            }else{
+                ret.type = 4;
+                fnPaySuccess(ret);
+            }
+        })
+    }
+
+    function fnCheckIsPay(_cb){
+        var _param = {
+            url: 'order/order/check_is_pay',
+            method: 'GET',
+            // hasProgress: {
+            //     status: APP.NO
+            // },
+            data: {
+                id: APP._param.id,
+                debug: APP.NO
+            }
+        }
+
+        fnAjax(_param, function(ret){
+            if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                _cb && _cb(ret.data);
+            }else{
+                fnToast(ret.msg);
+            }
+        })
+    }
+
+   
+</script>
+</html>

@@ -1,0 +1,106 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    .top{
+        .back{
+            display: inline-block;
+            width: pxToRem(84);
+            height: pxToRem(88);
+            @include set-bg-img( $name: "icon-back1.png", $size: pxToRem(44) auto, $position: center center);
+        }
+    }
+    .main{
+        position: relative;
+        height: 100%;
+        .center{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include prefixCss3($property: transform, $value: translate(-50%, -50%));
+        }
+        .word{
+            font-size: pxToRem(32);
+            color: #fff;
+            line-height: pxToRem(44);
+            margin-bottom: pxToRem(60);
+            text-align: center;
+        }
+        .scan{
+            /*overflow: hidden;*/
+            position: relative;
+            margin: 0 auto;
+            width: pxToRem(550);
+            height: pxToRem(550);
+            @include prefixValueCss3($property: background-image, $value: radial-gradient(circle, transparent 5px, #bbb 5px, #fff 6px));
+            background-size: 210% 210%;
+            background-position: bottom;
+            background-repeat: repeat-y;
+            .edge{
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                .gradation{
+                    width: 100%;
+                    height: 100%;
+                    @include prefixValueCss3($property: background-image, $value: linear-gradient(180deg,rgba(254,143,49,0) 0%,rgba(254,143,49,0.51) 100%));
+                    border-bottom: pxToRem(2) solid $bg-color;
+                    @include prefixCss3($property: animation, $value: 2s rowup linear infinite normal);
+                    position: relative;
+                }
+                @keyframes rowup {
+                    100% {
+                        @include prefixCss3($property: transform, $value: translate3d(0, 0, 0));
+                    }
+                    0% {
+                        @include prefixCss3($property: transform, $value: translate3d(0, -100%, 0));
+                    }
+                }
+            }
+
+            .top-left{
+                display: inline-block;
+                position: absolute;
+                top: pxToRem(-3);
+                left: pxToRem(-3);
+                width: pxToRem(50);
+                height: pxToRem(50);
+                @include set-bg-img( $name: "top-left.png", $size: pxToRem(50) auto, $position: center center);
+            }
+            .top-right{
+                display: inline-block;
+                position: absolute;
+                top: pxToRem(-3);
+                right: pxToRem(-3);
+                width: pxToRem(50);
+                height: pxToRem(50);
+                @include set-bg-img( $name: "top-right.png", $size: pxToRem(50) auto, $position: center center);
+            }
+            .bottom-left{
+                display: inline-block;
+                position: absolute;
+                bottom: pxToRem(-3);
+                left: pxToRem(-3);
+                width: pxToRem(50);
+                height: pxToRem(50);
+                @include set-bg-img( $name: "bottom-left.png", $size: pxToRem(50) auto, $position: center center);
+            }
+            .bottom-right{
+                display: inline-block;
+                position: absolute;
+                bottom: pxToRem(-3);
+                right: pxToRem(-3);
+                width: pxToRem(50);
+                height: pxToRem(50);
+                @include set-bg-img( $name: "bottom-right.png", $size: pxToRem(50) auto, $position: center center);
+            }
+        }
+        .flashlight{
+            width: pxToRem(92);
+            height: pxToRem(92);
+            margin: pxToRem(70) auto 0;
+            @include set-bg-img( $name: "icon-flashlight.png", $size: pxToRem(92) auto, $position: center center);
+        }
+    }
+}

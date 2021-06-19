@@ -1,0 +1,580 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/home_v2.css" />
+
+</head>
+
+<body style="height: 100%; background: #FBFCFF;">
+    <div class="flex-vertical main" id="wrap">
+
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <!-- 首页头部 -->
+
+    <div class="head-item">
+        <div class="main" id="wrap1">
+            <div class="blank"></div>
+            <div class="flex-item-vertical">
+
+                <div style="min-height: 225px">
+                    <div class="header2">
+                        <div class="header-left">
+                            <div class="logo-container">
+                                <div class="logo">
+                                </div>
+                            </div>
+                            <div class="info">
+                                <div class="text" id="user_name">Morning, Ralph!</div>
+                                <div class="hand"></div>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <div class="cart" tapmode="hover" onclick="toWishList()">
+<!--                                <div class="cart-ic">-->
+<!--                                    <div></div>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="top">
+                        <div class="title bold">
+                            Let's get started
+                        </div>
+                        <div class="search-stores">
+                            <div class="search" tapmode="hover" onclick="fnOpen('home/productSearch_win.html')">
+                                <span class="search-img"></span>
+                                <div class="input">
+                                    <div style="width:100%;">
+                                        <input id="keyword" disabled type="search" placeholder="Search">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="min-height: 170px">
+
+                    <div class="break-line">
+                        <div class="title bold">Deals of the day</div>
+                        <div class="time" tapmode="hover" onclick="footerBarSwitch(1)">See All</div>
+                    </div>
+
+                    <div class="classification" id="list" style="overflow: auto;">
+                        <div class="swiper-wrapper">
+                            <div class="gap swiper-slide">
+                                <div class="left">
+                                    <div class="logo">
+                                        <img src="../../image/v2/img_rayban.png"/>
+                                    </div>
+                                    <div class="name">ray ban</div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="right">
+                                    <div class="title">
+                                        <span class="red">superdeal</span>
+                                    </div>
+                                    <div class="number">
+                                        <div class="percentage">50%</div>
+                                        <span>off</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="title margin_left20 margin_top20 size24 bold">
+                    Categories
+                </div>
+                <div class="promotions">
+                    <div class="promotion orange" tapmode="hover" onclick="toShopping(34,'Food & Drink')" style="background:url('../../image/v2/img_food.png');background-size: 100% 100%">
+                        <div class="logo"></div>
+                        <div class="title" style="z-index: 10">Food & Drink</div>
+
+                    </div>
+                    <div class="promotion orange" tapmode="hover" onclick="toShopping(32,'Beauty')"style="background:url('../../image/v2/img_beauty.png');background-size: 100% 100%">
+                        <div class="logo"></div>
+                        <div class="title" style="z-index: 10">Beauty</div>
+                    </div>
+                    <div class="promotion orange" tapmode="hover" onclick="toShopping(33,'Shopping')"style="background:url('../../image/v2/img_fashion.png');background-size: 100% 100%">
+                        <div class="logo"></div>
+                        <div class="title" style="z-index: 10">Shopping</div>
+                    </div>
+                    <div class="promotion orange" tapmode="hover" onclick="toShopping(37,'Entertainment')"style="background:url('../../image/v2/img_entertainment.png');background-size: 100% 100%">
+                        <div class="logo"></div>
+                        <div class="title" style="z-index: 10;font-size: 17px">Entertainment</div>
+                    </div>
+                    <div class="promotion orange" tapmode="hover" onclick="toShopping(36,'Sport')"style="background:url('../../image/v2/img_sports.png');background-size: 100% 100%">
+                        <div class="logo"></div>
+                        <div class="title" style="z-index: 10">Sports</div>
+                    </div>
+                    <div class="promotion orange" tapmode="hover" onclick="toShopping(35,'Local service')"style="background:url('../../image/v2/img_services.png');background-size: 100% 100%">
+<!--                        <div class="logo"></div>-->
+<!--                        <div class="title" style="z-index: 10">Services</div>-->
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="padding20 bold size12 color_grey">
+                    HOW IT WORKS
+                </div>
+                <div class="size32 bold padding20 padding_top0">
+                    <div>
+                        Welcome to a
+                    </div>
+                    <div>
+                        whole new world of
+                    </div>
+                    <div>
+                        rewards and access
+                    </div>
+                </div>
+                <div class="padding20 padding_top0">
+                    <div class="flex item_center earn_rewards" style="height: 105px">
+                        <div class="earn gift">
+                            <div class="img_gift"></div>
+                        </div>
+                        <div class="flex1 margin_left20">
+                            <div class="title">
+                                EARN REWARDS
+                            </div>
+                            <div class="content">
+                                £10 = 200 loyalty points-
+                                That's a £10 reward for every
+                                £250 spent.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex item_center earn_rewards margin_top20" style="height: 105px">
+                        <div class="flex1 ">
+                            <div class="title">
+                                AFFORDABLE DEALS
+                            </div>
+                            <div class="content ">
+                                Get exclusive deals on various
+                                products.
+                            </div>
+                        </div>
+                        <div class="earn couponq margin_left20"></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- 全部拼团头部 -->
+    <div class="head-item hide">
+        <div class="top-header margin_top20 order">
+            <header>
+                <div class="padding20 size32 bold">Explore</div>
+            </header>
+            <div class="box tabbar">
+                <div data-path="home/exploreDeals_frm.html" class="item">
+                    Deals</div>
+<!--                <div data-path="home/exploreProduct_frm.html" class="item">-->
+<!--                    Products</div>-->
+                <div data-path="home/exploreMerchants_frm.html" class="item">
+                    Merchants</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 我的订单头部 -->
+    <div class="head-item hide">
+        <div class="top-header margin_top20 order">
+            <header>
+                <div class="padding20 size32 bold">Orders</div>
+            </header>
+            <div class="box tabbar">
+                <div data-path="order/myOrder_frm.html" data-param="1" class="item itemPTZ">
+                    Active</div>
+                <div data-path="order/myOrder_frm.html" data-param="{{ORDER.status.wait.id}}" class="item itemDFZ">
+                    Expired</div>
+                <div data-path="order/myOrder_frm.html" data-param="2" class="item itemWXF">
+                    To Pay</div>
+                <div data-path="order/myOrder_frm.html" data-param="3" class="item itemYXF">
+                    Paid</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-item-vertical">
+    </div>
+    </script>
+    <script type="text/html" id="list-template">
+        {{each _list _value}}
+        <div class="swiper-wrapper" onclick="toCouponDetail({{_value}})" tapmode="hover">
+            <div class="gap swiper-slide">
+                <div class="left">
+                    <div class="logo">
+                        <img src="{{_value.product.images[0]}}" style="width: 100%;height: 100%"/>
+                    </div>
+                    <div class="name" style="width: 50px">{{_value.store.user_nickname}}</div>
+                </div>
+                <div class="line"></div>
+                <div class="right">
+                    <div class="title">
+                        <span class="red">{{_value.group_type==2?'+1 DEAL':'SUPERDEAL'}}</span>
+                    </div>
+                    <div class="specs size12 color_grey margin_top10 ellipsis" style="color: #1E1E1E">{{_value.name}}</div>
+                    <div class="margin_top10">
+                        <span class="bold size20">£{{_value.now_price}}</span>
+                        <span class="size16 through grey">£{{_value.product.price}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{/each}}
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+
+    function groupChange() {
+        fnOpenLinkageWindow_public({
+            headerSelector: '.head-item',                    //选填  |    ''    |    String    |  头部组 css3 选择器
+            headBarSelector: '.head-bar',                     //选填  |    ''    |    String    |  头部组需要加沉浸式子元素 css3 选择器
+            group: {                                          //选填  |    '    |    Object    |  内部参数同 fnOpenGroup 方法
+                navSeletor: '.box .item',                                    //必填  |    ''    |    String    |  导航选择器
+                // marginTop: $('.header-top').height(),                            //选填  |    0     |    Number    |  group 距离顶部距离
+                scrollEnabled: false,                                             //选填  |  false   |    Boolean   |  frame 组是否可以左右滑动
+                preload: 0,                                                      //选填  |    0     |    Number    |  预加载的 frame 个数
+                param: {                                                         //选填  |    {}    |    Object    |  公共参数
+
+                },
+            }
+        }, function (ret) {
+            // ret.navIndex                                  //必反  |    Number    |  底部导航 item 索引
+            // ret.htmlPath                                  //必反  |    String    |  底部导航 item html地址
+            // ret.navHeight                                 //必反  |    Number    |  底部导航高度
+            debugAlert('头部结果', arguments)
+            APP._win = ret;
+            fnSetFrame(ret);
+            api.execScript({
+                script: 'fnCurrentWin(' + JSON.stringify(APP._win) + ');'
+            });
+
+
+        })
+    }
+    function toCouponDetail(e){
+        fnOpen("home/couponDetail_win.html",{
+            param:e
+        })
+    }
+    function setOrderIndex(index) {
+        APP.exitApp();
+        api.setFrameGroupIndex({
+            name: 'home_win,fnOpenLinkageWindow_public_group2',
+            index
+        });
+    }
+
+    APP.init(function () {
+        fnValue('#wrap', template('wrap-template', APP));
+        fnGet();
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function (_user) {
+            if (_user) {
+                // 当前登陆了用户
+                const {user={}} = _user;
+                $('#user_name').text(user.user_nickname|| user.user_email||"");
+            } else {
+                // 当前没有登陆用户
+            }
+        })
+        $("#wrap1").css({
+            height:window.innerHeight - APP._param.footerHeight-8 +'px'
+        })
+        fnCityInit(function () {
+            fnGetLocation_public({
+                isPopFailed: false     //(可选项)布尔值，如果定位失败是否需要弹出定位失败弹窗，默认false
+            }, function (ret) {
+                if (ret) {
+                   //TODO 获取到经纬度
+                } else {
+                    fnToast('获取经纬度失败')
+                }
+                var _param = {
+                    url: 'base/category/index',
+                    method: 'GET',
+                    data: {
+                        page:1,
+                        level:1,
+                        limit:100
+                    }
+                }
+                // fnAjax(_param,function (res){
+                //     let str='';
+                //     res.data.forEach((item,key)=>{
+                //         str+=`
+                //         <div class="promotion orange" tapmode="hover" onclick="toShopping(${key})">
+                //         <div class="logo"></div>
+                //         <div class="title" style="z-index: 10">${item.name.en_us}</div>
+                //         <div class="photo">
+                //             <img src="${item.image}"/>
+                //         </div>
+                //     </div>`
+                //     });
+                //     $('#promotions').html(str);
+                // })
+            })
+        });
+
+
+
+        groupChange();
+        api.execScript({
+            script: 'fnInitTableBar();'
+        });
+
+
+        fnStatisticInit();
+
+        api.addEventListener({
+            name: APP.EV_NAME.MESSAGE
+        }, function (ret, err) {
+            fnStatisticInit();
+        });
+
+        api.addEventListener({
+            name: APP.EV_NAME.JPUSH_JUMP
+        }, function (ret, err) {
+            fnStatisticInit();
+        });
+
+        // fnFocus_public("#keyword");
+
+        fnInputListener_public(["#keyword"], function (ret) {
+            fnInput();
+        })
+
+    });
+
+    function fnClear(_el) {
+        var _input = $(_el).parent().find('input');
+        fnValue(_input[0], '');
+        fnInput();
+    }
+
+    function footerBarSwitch(index){
+        api.execScript({
+            script: `fnInitTableBar(${index});`
+        });
+    }
+    function fnStatisticInit() {
+        fnGetMsgTotal_base(function (ret) {
+            if (ret.un_read_news_ids && ret.un_read_news_ids.length) {
+                $('#notification').removeClass('hide');
+            } else {
+                $('#notification').addClass('hide');
+            }
+        })
+    }
+
+
+    function fnInput() {
+        $('.clear-input').each(function (_index, _el) {
+            var _input = $(_el).parent().find('input');
+            if (fnValue(_input[0]).length) {
+                $(_el).removeClass('hide');
+            } else {
+                $(_el).addClass('hide');
+            }
+        })
+    }
+
+    // 设置 frame marginTop
+    function fnSetFrame(ret) {
+        var _param = {
+            name: api.frameName,
+            rect: {
+                marginBottom: api.winHeight - (ret.headerHeight + 10)
+            }
+        }
+        debugAlert('设置头部frame', _param)
+        api.setFrameAttr(_param);
+
+        api.bringFrameToFront({
+            from: api.frameName
+        });
+    }
+
+    function fnCityInit(_cb) {
+        fnOperationCityInfo_base(function (ret) {
+            APP._city = ret;
+            if (ret && ret.city) {
+                fnValue('#city', ret.city);
+            } else {
+                fnValue('#city', '未选择城市');
+            }
+            _cb && _cb();
+        })
+    }
+    function toShopping(index,name){
+        fnOpen('home/shopping_win.html',{
+            param:{
+                key:index,
+                name:name
+            }
+        })
+    }
+
+    function fnChoiceCity(_el) {
+        fnChoiceCity_base(function (ret) {
+            fnOperationCityInfo_base(ret, function (ret) {
+                fnCityInit();
+            })
+        })
+    }
+
+    function fnOpenScreen(_key) {
+        api.execScript({
+            script: 'fnOpenScreen("' + (_key || '') + '");'
+        });
+    }
+    function toWishList(){
+        fnOpen('home/wishList_win.html')
+    }
+    //获取 deals of the day数据
+    function fnGet() {
+        var _param = {
+            url: 'base/deal/index',
+            data: {
+                page: 1,
+                limit: 10,
+                is_home:1
+            }
+        };
+        fnGetList_base(_param)
+    }
+    //拼团搜索
+    function fnSearchGroup(_keyword) {
+        // var _keyword = fnValue('#keyword');
+        api.sendEvent({
+            name: APP.EV_NAME.GROUP_SEARCH,
+            extra: {
+                keyword: _keyword,
+            }
+        });
+        return false;
+    }
+
+    function fnSearch(_el) {
+        var _param = {
+            searchKey: $(_el).attr('data-search-key')
+        }
+        if (_param.searchKey == 'group') {
+            // _param.resultHtmlPath = 'order/discountCode_win.html';
+        } else {
+            _param.resultHtmlPath = 'home/homeSearchResult_win.html';
+            _param.__isMap = APP._isMap;
+            _param.__isHomeSearch = APP.YES;
+        }
+
+        fnSearch_base(_param, function (ret) {
+            // debugAlert(111111, arguments)
+            if (_param.searchKey == 'group') {
+                fnValue($(_el).find('input')[0], ret.keyword);
+                fnInput();
+
+                fnSendSearch();
+            }
+        })
+    }
+
+    function fnSendSearch() {
+        api.sendEvent({
+            name: [api.winName, 'search'].join(),
+            extra: {
+                keyword: fnValue($(APP.dom('[data-search-key="group"]')).find('input')[0])
+            }
+        });
+    }
+
+    function fnOpenScreenCategory(_key) {
+        api.execScript({
+            script: 'fnOpenScreenCategory("' + _key + '");'
+        });
+    }
+
+    function fnTimeSelector() {
+        api.execScript({
+            script: 'fnTimeSelector();'
+        });
+    }
+
+    function fnSwitchViewMode() {
+        APP._isMap = +(!$('#viewMode').hasClass('active'));
+        if (APP._isMap) {
+            $('#viewMode').addClass('active');
+            $('.patP').text('List');
+        } else {
+            $('.patP').text('Map');
+            $('#viewMode').removeClass('active');
+        }
+        // debugAlert(3333, APP._isMap, APP._win)
+        if (APP._win.groupName) {
+            api.setFrameGroupIndex({
+                name: APP._win.groupName,
+                index: APP._isMap,
+                scroll: false
+            });
+        }
+    }
+    function fnOpenBarCode() {
+        fnOpenBarCode_public(function (ret) {
+            debugAlert('扫码完成啊')
+            setTimeout(function () {
+                debugAlert('扫码完成开始啊')
+                // alert(1)
+                try {
+                    var _data = JSON.parse(ret.content);
+                } catch (err) {
+                    var _data = ret.content;
+                }
+                debugAlert(2222, _data)
+
+                if (_data.CURRENT_APP_ID == APP.CURRENT_APP_ID) {
+                    if (_data.store_id && _data.type == 2) {
+                        _start();
+                    } else {
+                        fnToast(fnLanguage_public('二维码有误，识别无效'))
+                    }
+                } else {
+                    fnToast([fnLanguage_public('请认准'), fnLanguage_public(api.appName), fnLanguage_public('二维码')].join(''))
+                }
+
+                function _start() {
+                    fnOpen('business/writeOff_win.html', {
+                        param: _data
+                    })
+                }
+            }, 500)
+        })
+    }
+</script>
+
+</html>

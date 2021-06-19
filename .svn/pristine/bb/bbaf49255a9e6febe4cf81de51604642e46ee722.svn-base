@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+// === 定义函数 ===
+// px单位转rem单位
+// 调用栗子：pxToRem(150);
+@function pxToRem($number){
+    @return $number / 2 + px;
+}
+
+@function pxToRem1($number){
+    @return $number + px;
+}
+
+ /*@function pxToRem($number){
+     @return ( $number ) / ( $design-diagram / 10 ) * 1rem;
+ }*/

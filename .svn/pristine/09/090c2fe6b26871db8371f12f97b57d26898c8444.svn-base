@@ -1,0 +1,54 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    background-color: #fff;
+    .success{
+        padding: pxToRem(110) 0 pxToRem(20);
+        .img{
+            width: pxToRem(200);
+            height: pxToRem(200);
+            margin: 0 auto;
+            @include set-bg-img( $name: "success_new.png", $size: pxToRem(200) auto, $position: center center);
+            &.fail{
+                @include set-bg-img( $name: "fail_new.png", $size: pxToRem(200) auto, $position: center center);
+            }
+        }
+    }
+    .examine{
+        padding: 0 pxToRem(30);
+        font-size: pxToRem(32);
+        color: #333;
+        @extend .font-m;
+        line-height: pxToRem(44);
+        text-align: center;
+    }   
+    .time{
+        padding: pxToRem(30) pxToRem(30) pxToRem(22);
+        font-size: pxToRem(28);
+        color: #666;
+        line-height: pxToRem(40);
+        text-align: center;
+    }
+    .number{
+        padding: 0 pxToRem(30);
+        font-size: pxToRem(28);
+        color: #666;
+        line-height: pxToRem(40);
+        text-align: center;
+    }
+    .look{
+        margin: pxToRem(120) pxToRem(92) pxToRem(120);
+        height: pxToRem(84);
+        text-align: center;
+        line-height: pxToRem(84);
+        font-size: pxToRem(30);
+        color: rgba(255,255,255,1);
+        border-radius: pxToRem(40);
+        background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+        box-shadow: 5px 10px 40px rgba(255,174,85,0.5);
+        &:first-of-type{
+            margin: pxToRem(92) pxToRem(92) pxToRem(34);
+        };
+
+    }
+}

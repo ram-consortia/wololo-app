@@ -1,0 +1,480 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    position: relative;
+    height: 100%;
+    background-color: #F7F6F6;
+    .main{
+        .content{
+            width: pxToRem(2400);
+            margin: 0 auto;
+            .con{
+                @include flex-box($justify: center);
+                .img{
+                    margin-top: pxToRem(540);
+                    width: pxToRem(1486);
+                    img{
+                        width: 100%;
+                    }
+                }
+                .role{
+                    width: pxToRem(1160);
+                    height: pxToRem(1202);
+                    margin-left: pxToRem(-84);
+                    margin-top: pxToRem(254);
+                    margin-bottom: pxToRem(124);
+                    background-color: #fff;
+                    border-radius: pxToRem(20);
+                    .title{
+                        padding: pxToRem(174) 0 pxToRem(70);
+                        margin-left: pxToRem(140);
+                        font-size: pxToRem(80);
+                        color: #333;
+                        line-height: pxToRem(112);
+                        font-weight: 500;
+                    }
+                    .user{
+                        position: relative;
+                        @include flex-box();
+                        margin: pxToRem(32) 0;
+                        margin-left: pxToRem(140);
+                        margin-right: pxToRem(140);
+                        font-size: pxToRem(48);
+                        color: $bg-color;
+                        line-height: pxToRem(139);
+                        height: pxToRem(284);
+                        border-radius: pxToRem(12);
+                        box-shadow: 0px 20px 48px 0px rgba(223,214,207,0.3);
+                        @include prefixCss3($property: align-items, $value: center);
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            width: pxToRem(139);
+                            height: pxToRem(139);
+                            margin-left: pxToRem(76);
+                            margin-right: pxToRem(52);
+                            @include set-bg-img( $name: "web-user.png", $size: pxToRem(139) auto, $position: center center);
+                        };
+                        &.business{
+                            &::before{
+                                @include set-bg-img( $name: "web-business.png", $size: pxToRem(139) auto, $position: center center);
+                            };
+                        }
+                        &.active,&:hover{
+                            background-color: $bg-color;
+                            color: #fff;
+                            box-shadow:0px 10px 18px 0px rgba(254,143,49,0.3);
+                            &::after{
+                                content: '';
+                                display: inline-block;
+                                position: absolute;
+                                right: pxToRem(120);
+                                width: pxToRem(50);
+                                height: pxToRem(50);
+                                @include set-bg-img( $name: "web-sel.png", $size: pxToRem(50) auto, $position: center center);
+                            };
+                        }
+                    }
+                }
+                .websign{
+                    width: pxToRem(816);
+                    min-height: pxToRem(972);
+                    margin-top: pxToRem(334);
+                    margin-bottom: pxToRem(274);
+                    background-color: #fff;
+                    border-radius: pxToRem(8);
+                    .top{
+                        text-align: right;
+                        background: no-repeat;
+                        .close{
+                            display: inline-block;
+                            width: pxToRem(66);
+                            height: pxToRem(66);
+                            margin-top: pxToRem(37);
+                            margin-right: pxToRem(27);
+                            @include set-bg-img( $name: "web-close.png", $size: pxToRem(44) auto, $position: center center);
+                        }
+                    }
+                    .signin{
+                        @include flex-box();
+                        padding: pxToRem(17) pxToRem(112) pxToRem(68);
+                        .sign{
+                            @include flex-item();
+                            font-size: pxToRem(60);
+                            color: #333;
+                            line-height: pxToRem(84);
+                            font-weight: 500;
+                        }
+                        .register{
+                            font-size: pxToRem(26);
+                            color: #333;
+                            line-height: pxToRem(50);
+                            @include prefixCss3($property: align-self, $value: flex-end);
+                            .color{
+                                color: $bg-color;
+                            }
+                        }
+                    }
+                    .main{
+                        padding: 0 pxToRem(114);
+                        .sel{
+                            padding-bottom: pxToRem(32);
+                            font-size: pxToRem(36);
+                            color: #999;
+                            line-height: pxToRem(50);
+                            .phone{
+                                position: relative;
+                                display: inline-block;
+                                margin-right: pxToRem(40);
+                                &.active{
+                                    color: #333;
+                                    font-weight: 500;
+                                    &:after{
+                                        content: '';
+                                        display: block;
+                                        position: absolute;
+                                        left: 50%;
+                                        @include prefixCss3($property: transform, $value: translateX(-50%));
+                                        width: pxToRem(56);
+                                        height: pxToRem(16);
+                                        margin-top: pxToRem(2);
+                                        @include set-bg-img( $name: "web-sel1.png", $size: pxToRem(56) auto, $position: center center);
+                                    }
+                                }
+                            }
+                        }
+                        .ul{
+                            .li{
+                                @include flex-box();
+                                padding: pxToRem(62) 0 pxToRem(24);
+                                font-size: pxToRem(32);
+                                color: #333;
+                                line-height: pxToRem(54);
+                                border-bottom: pxToRem(2) solid #eee;
+                                .name{
+                                    min-width: pxToRem1(62);
+                                    padding-right: pxToRem1(20);
+                                    .star{
+                                        font-size: pxToRem1(16);
+                                        color: #FF4F00;
+                                    }
+                                    &.down{
+                                        &::after{
+                                            content: '';
+                                            display: inline-block;
+                                            width: pxToRem1(12);
+                                            height: pxToRem1(12);
+                                            margin-left: pxToRem1(5);
+                                            @include set-bg-img( $name: "icon-down.png", $size: pxToRem1(12) auto, $position: center center);
+                                        };
+                                    }
+                                }
+                                .input{
+                                    @include flex-item();
+                                    input{
+                                        width: 100%;
+                                    }
+
+                                }
+                                /*.eliminate{
+                                    width: pxToRem1(22);
+                                    height: pxToRem1(22);
+                                    margin-left: pxToRem1(10);
+                                    @include set-bg-img( $name: "icon-close1.png", $size: pxToRem1(18) auto, $position: center center);
+                                    @include prefixCss3($property: align-self, $value: center);
+                                }*/
+                                .eye{
+                                    width: pxToRem(44);
+                                    height: pxToRem(54);
+                                    margin-left: pxToRem(20);
+                                    @include set-bg-img( $name: "web-eye2.png", $size: pxToRem(44) auto, $position: center center);
+                                    @include prefixCss3($property: align-self, $value: center);
+                                    &.active{
+                                        @include set-bg-img( $name: "web-eye.png", $size: pxToRem(44) auto, $position: center center);
+                                    }
+                                }
+                                .code{
+                                    border: pxToRem(2) solid $bg-color;
+                                    width: pxToRem(156);
+                                    height: pxToRem(50);
+                                    font-size: pxToRem(24);
+                                    color: $bg-color;
+                                    border-radius: pxToRem(4);
+                                    line-height: pxToRem(50);
+                                    text-align: center;
+                                    margin-left: pxToRem(10);
+                                    &.no-onclick{
+                                        border: pxToRem(2) solid #ccc;
+                                        color: #ccc;
+                                    }
+                                }
+                            }
+                        }
+                        .submint{
+                            margin: pxToRem(48) 0 pxToRem(34);
+                            width: 100%;
+                            height: pxToRem(88);
+                            border-radius: pxToRem(8);
+                            @include set-bg-img( $name: "web-sign.png");
+                            font-size: pxToRem(30);
+                            color: #fff;
+                            line-height: pxToRem(88);
+                            text-align: center;
+                            &.no-onclick{
+                                opacity: 0.5;
+                            }
+                        }
+                        .read{
+                            padding-top: pxToRem(26);
+                            font-size: pxToRem(26);
+                            color: #666;
+                            line-height: pxToRem(36);
+                            .color{
+                                color: $bg-color;
+                            }
+                            &::before{
+                                content: '';
+                                display: inline-block;
+                                width: pxToRem(36);
+                                height: pxToRem(36);
+                                margin-right: pxToRem(12);
+                                vertical-align: bottom;
+                                @include set-bg-img( $name: "web-sel3.png", $size: pxToRem(28) auto, $position: center center);
+                            };
+                            &.active{
+                                &::before{
+                                    @include set-bg-img( $name: "web-sel4.png", $size: pxToRem(28) auto, $position: center center);
+                                };
+                            }
+                        }
+                        .password{
+                            text-align: right;
+                            padding-top: pxToRem(20);
+                            font-size: pxToRem(26);
+                            color: #666;
+                            line-height: pxToRem(36);
+                            .color{
+                                color: $bg-color;
+                            }
+                        }
+                        .quick{
+                            @include flex-box();
+                            font-size: pxToRem(26);
+                            color: #666;
+                            line-height: pxToRem(36);
+                            /*text-align: center;*/
+                            .quick-item{
+                                @include flex-item();
+                                /*&:first-of-type{
+                                    content: '';
+                                    display: inline-block;
+                                    text-align: left;
+                                };
+                                &:last-of-type{
+                                    content: '';
+                                    display: inline-block;
+                                    text-align: right;
+                                };*/
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .flex{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: rgba(0,0,0,0.5);
+        .business-firm{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include prefixCss3($property: transform, $value: translate(-50%, -50%));
+            background-color: #fff;
+            max-height: 70%;
+            width: 75%;
+            .account{
+                @include flex-box();
+                height: pxToRem(118);
+                border-bottom: pxToRem(2) solid #EAEAEA;
+                .account-number{
+                    @include flex-item();
+                    font-size: pxToRem(32);
+                    color: #333;
+                    line-height: pxToRem(118);
+                    padding-left: pxToRem(100);
+                    &::before{
+                        content: '';
+                        display: inline-block;
+                        width: pxToRem(6);
+                        height: pxToRem(28);
+                        background-color: $bg-color;
+                        margin-right: pxToRem(12);
+                        border-top-left-radius: pxToRem(3);
+                        border-top-right-radius: pxToRem(3);
+                        border-bottom-left-radius: pxToRem(3);
+                        border-bottom-right-radius: pxToRem(3);
+                        vertical-align: unset;
+                    };
+                }
+                .close{
+                    display: inline-block;
+                    width: pxToRem(118);
+                    height: pxToRem(118);
+                    margin-right: pxToRem(48);
+                    float: right;
+                    @include set-bg-img( $name: "web-close.png", $size: pxToRem(44) auto, $position: center center);
+                }
+            }
+
+        }
+        .business-center{
+            @extend  %scroll;
+            margin: 0 auto;
+            .center{
+                padding: pxToRem(18) 0 pxToRem(20) 0;
+                margin: 0 pxToRem(200);
+                .entering{
+                    @include flex-box();
+                    margin-top: pxToRem(40);
+                    .entering-name{
+                        font-size: pxToRem(28);
+                        color: #666;
+                        line-height: pxToRem(40);
+                        width: pxToRem(200);
+                        margin-right: pxToRem(32);
+                        margin-top: pxToRem(20);
+                        text-align: right;
+                        /*@include prefixCss3($property: align-self, $value: center);*/
+                        .color{
+                            color: #FF4F00;
+                        }
+                    }
+                    .input-width{
+                        // width: pxToRem(936);
+                        @include flex-item();
+                        .img-input{
+                            padding: pxToRem(20) 0;
+                            min-height: pxToRem(32);
+                            width: 100%;
+                            border-radius: pxToRem(8);
+                            @include set-bg-img( $name: "web-background1.png");
+                            .img-til{
+                                padding: pxToRem(4) pxToRem(42) ;
+                                font-size: pxToRem(28);
+                                color: #fff;
+                                line-height: pxToRem(40);
+                            }
+                            .img-submint{
+                                padding: 0 pxToRem(42);
+                                font-size: pxToRem(28);
+                                color: #fff;
+                                line-height: pxToRem(40);
+                            }
+                        }
+                        .input-box{
+                            @include flex-box();
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            border: pxToRem(2) solid #D0D0D0;
+                            border-radius: pxToRem(4);
+                            padding: pxToRem(20);
+                            .input{
+                                @include flex-item();
+                                select{
+                                    color: #333;
+                                    // font-size: pxToRem;
+                                }
+                            }
+                            .down{
+                                width: pxToRem(40);
+                                height: pxToRem(40);
+                                margin-left: pxToRem(10);
+                                @include set-bg-img( $name: "web-down.png", $size: pxToRem(28) auto, $position: center center);
+                            }
+                        }
+                        .textarea{
+                            border: pxToRem(2) solid #D0D0D0;
+                            border-radius: pxToRem(4);
+                            padding: pxToRem(20);
+                            height: pxToRem(320);
+                            font-size: pxToRem(28);
+                            color: #666;
+                            line-height: pxToRem(40);
+                            textarea{
+                                height: 90%;
+                            }
+                            .number{
+                                text-align: right;
+                                font-size: pxToRem(24);
+                                color: #ccc;
+                                line-height: pxToRem(34);
+                            }
+                        }
+                        .imgs{
+                            overflow: hidden;
+                            margin-right: pxToRem(-26);
+                            .img{
+                                display: inline-block;
+                                position: relative;
+                                float: left;
+                                width: pxToRem(208);
+                                height: pxToRem(208);
+                                margin: pxToRem(20) pxToRem(26) pxToRem(20) 0;
+                                @include set-bg-img( $name: "web-add.png", $size: pxToRem(208) auto, $position: center center);
+                                .close{
+                                    display: inline-block;
+                                    position: absolute;
+                                    top: pxToRem(-22);
+                                    right: pxToRem(-22);
+                                    width: pxToRem(48);
+                                    height: pxToRem(48);
+                                    @include set-bg-img( $name: "web-close1.png", $size: pxToRem(28) auto, $position: center center);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .explain{
+                // width: pxToRem(1614);
+                padding: pxToRem(42) pxToRem(40);
+                background-color: #F6F6F6;
+                font-size: pxToRem(24);
+                color: #666;
+                line-height: pxToRem(34);
+            }
+            .bottom-button{
+                margin: pxToRem(60) auto pxToRem(48);
+                text-align: center;
+                .quit{
+                    display: inline-block;
+                    border: pxToRem(2) solid #ccc;
+                    border-radius: pxToRem(8);
+                    margin: 0 pxToRem(16);
+                    width: pxToRem(204);
+                    height: pxToRem(68);
+                    font-size: pxToRem(24);
+                    color: #333;
+                    line-height: pxToRem(68);
+                    text-align: center;
+                    &.submint{
+                        border: none;
+                        width: pxToRem(208);
+                        height: pxToRem(72);
+                        font-size: pxToRem(24);
+                        color: #fff;
+                        line-height: pxToRem(72);
+                        @include set-bg-img( $name: "web-submint.png");
+                    }
+                }
+            }
+        }
+    }
+
+}

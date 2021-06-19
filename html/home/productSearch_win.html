@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/wishList.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/home_v2.css" />
+</head>
+
+<body style="height: 100%; background: initial;">
+<div id="wrap" style="overflow-x: hidden">
+
+    <div class="search-stores padding20">
+        <div class="search margin_top20" style="background: none">
+            <span class="search-img"></span>
+            <div class="input">
+                <div style="width:100%;">
+                    <input autofocus id="keyword" type="search" placeholder="Search">
+                </div>
+            </div>
+            <div class="after-btn" tapmode="hover" onclick="fnClose()">Cancel</div>
+        </div>
+    </div>
+    <hr color="#ccc" size="1">
+    <div class="flex box padding20">
+        <div class="wish_item">
+            <div class="wish_img">
+                <div class="like_btn">
+                    <div class="nolike"></div>
+                </div>
+            </div>
+            <div class="commodity">
+                <div class="commodity_name">harrods</div>
+                <div class="commodity_type">Oversized Jacket akjdnakjfnaksjnfkjasnfkjsn</div>
+                <div class="commodity_price">
+                    £49.00
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script>
+    $('#keyword').keydown(function(event) {
+        if (event.keyCode == 13) {
+            const searchVal=$(this).val();
+            fnGetList(searchVal)
+        }
+    });
+    function fnGetList(searchVal){
+        if( searchVal ){
+            var _param = {
+                url: 'user/user/index',
+                method: 'GET',
+                isBlur: APP.NO,
+                hasProgress: {
+                    status: APP.NO
+                },
+                data: {
+                    page: APP.YES,
+                    limit: 1000,
+                    keyword: searchVal
+                }
+            }
+            fnAjax(_param, function(ret){
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    APP._search = ret.data.data;
+                    console.log(JSON.stringify(ret))
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+</script>
+</body>
+</html>

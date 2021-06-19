@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/set.css" />
+</head>
+
+<body>
+    <div class="main flex-vertical" id="wrap">
+
+    </div>
+
+    <script type="text/html" id="wrap-template">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">Settings</div>
+        </header>
+
+        <div class="content flex-item-vertical">
+            <div class="ul">
+                <!-- <div tapmode="hover" onclick="fnActionSheet()" class="li">
+                    <p class="account">{{'语种切换' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly value="{{_lang.value || English}}">
+                    </div>
+                    <div class="right"></div>
+                </div> -->
+                <!-- <div tapmode="hover" onclick="fnCheckVersionUpdate_public()" class="li">
+                    <p class="account">{{'检查更新' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly value="V{{_version}}">
+                    </div>
+                    <div class="right"></div>
+                </div> -->
+<!--                <div tapmode="hover" onclick="fnCache()" class="li">-->
+<!--                    <p class="account">{{'清除缓存' | fnLanguage_public}}</p>-->
+<!--                    <div class="input">-->
+<!--                        <input id="cache" type="text" readonly value="0M">-->
+<!--                    </div>-->
+<!--                    <div class="right"></div>-->
+<!--                </div>-->
+<!--                <div tapmode="hover" onclick="fnSwitchRedio()" class="li">-->
+<!--                    <p class="account">{{'消息推送' | fnLanguage_public}}</p>-->
+<!--                    <div class="input">-->
+<!--                        <input type="text" readonly placeholder="">-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; 默认关闭按钮，打开加active &ndash;&gt;-->
+<!--                    &lt;!&ndash;<div id="push_is_open" class="switch {{_user.push_is_open && 'active'}}"></div>&ndash;&gt;-->
+<!--                    <div id="push_is_open" class="switch active"></div>-->
+<!--                </div>-->
+                <!-- <div class="avt">
+
+                </div> -->
+                <div class="li yjfk" tapmode="hover" onclick="fnOpen('my/feedback_win.html')">
+                    <p class="account">{{'意见反馈' | fnLanguage_public}}</p>
+                    <!-- <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div> -->
+                    <!-- <div class="right"></div> -->
+                </div>
+                <!-- <div class="avt">
+
+                </div> -->
+                <div tapmode="hover" onclick="fnOpenRichText_public({{GET_OPTION.agreementuser}})" class="li">
+                    <p class="account">{{'用户协议' | fnLanguage_public}}</p>
+                    <!-- <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div>
+                    <div class="right"></div> -->
+                </div>
+                <div tapmode="hover" onclick="fnOpenRichText_public({{GET_OPTION.privacyuser}})" class="li">
+                    <p class="account">{{'隐私协议' | fnLanguage_public}}</p>
+                    <!-- <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div>
+                    <div class="right"></div> -->
+                </div>
+                <!-- <div tapmode="hover" onclick="fnOpen('my/collection_win.html')" class="li">
+                    <p class="account">{{'收藏的店铺' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div>
+                    <div class="right"></div>
+                </div> -->
+                <!-- <div tapmode="hover" onclick="fnOpen('my/afterSale_win.html')" class="li">
+                    <p class="account">{{'退款/售后' | fnLanguage_public}}</p>
+                    <div class="input">
+                        <input type="text" readonly placeholder="">
+                    </div>
+                    <div class="right"></div>
+                </div> -->
+            </div>
+            <div class='buttom_wrap'>
+                <p>V{{_version}}</p>
+                <div tapmode="hover" onclick="fnLogout_public()" class="bottom">
+                    <div class="quit">{{'退出登录' | fnLanguage_public}}</div>
+                </div>
+            </div>
+          
+        </div>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    // const state={
+    //   _lang:{
+    //     value:"English"
+    //   },
+    //   _version:"1.0.0",
+    //   _user:{push_is_open:false}
+    // }
+    // let api={getPrefs(){}};
+    // fnValue('#wrap', template('wrap-template', Object.assign(APP,state)));
+
+    APP.init(function () {
+        fnInit();
+    });
+
+    function fnInit() {
+
+        fnUser_public({
+            isLastData: true,        //选填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+            hasProgress: false       //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）,
+        }, function (_user) {
+            if (_user) {
+                // 当前登陆了用户
+                APP._user = _user.user;
+
+                fnGetLangData_base(function (ret) {
+                    debugAlert(55555, arguments)
+                    APP._lang = ret;
+                    APP._version = APP.appVersion();
+                    fnValue('#wrap', template('wrap-template', APP));
+                    APP.fixStatusBar($('.header')[0]);
+                    APP.fixTabBar('.bottom');
+
+                    fnGetCacheSize_public(function (_size) {
+                        fnValue('#cache', _size + 'M');
+                    });
+                })
+            } else {
+                // 当前没有登陆用户
+            }
+        })
+    }
+
+
+    function fnCache() {
+        fnClearCache_public(function (_size) {
+            fnValue('#cache', _size + 'M');
+        });
+    }
+
+    function fnSwitchRedio() {
+        fnSwitchRedio_base({
+            el: $('#push_is_open')[0]
+        }, function (ret) {
+            fnUserUpdate_public({
+                push_is_open: ret.isChoice        //必填     |      |     Boolean  |  是否使用上一次的数据（如果为true返回数据速度更快）
+            }, function (_user) {
+                // _user.user         //更新后的用户信息。也可以监听 APP.EV_NAME.USER_UPDATE 事件
+            })
+            debugAlert(1111, arguments)
+        })
+    }
+
+    function fnActionSheet() {
+        fnMultistageSelector_public({
+            active: [APP._lang.id], //必填 |               | Array |  默认被选中的值，对应 data 中的 id，数组长度与 data 长度一致
+            data: [APP.LANGUAGE_LIST], //必填 |               | Array |  需要选择的数据源，数组中一组数据表示一组选项
+            title: ''
+        }, function (ret) {
+            // ret                             // Array |  如果点击确定按钮该回调则会触发，并返回数组数据，数组索引与传入数据源 data 一一对应
+            _set(ret[0]);
+        })
+
+        // fnActionSheet_public({
+        //     buttons: _buttons
+        // }, function() { //如果设置回调函数，打开的弹窗有取消按钮，并触发该回调函数
+        //     debugAlert('取消按钮')
+        // });
+
+        function _set(_data) {
+            fnCookie(APP.LC_NAME.LANGUAGE, _data, function () {
+                APP.rebootApp();
+            })
+        }
+    }
+</script>
+
+</html>

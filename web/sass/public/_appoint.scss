@@ -1,0 +1,53 @@
+@charset "utf-8";
+// === 定义占位placeholder begin===
+
+//跳转类按钮，不单独占行
+%butt{
+	display: inline-block;
+}
+
+//跳转类按钮及区域，单独占行
+%block{
+	display: block;
+}
+
+//图片容器类，图片撑满容器
+%img-box{
+	img{
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+}
+
+%font-DIN{
+    font-family: Alternate;
+}
+
+//禁用元素点击事件
+%no-onclick{
+	pointer-events: none;
+}
+
+// 滚动区域（需要自己固定宽高）
+%scroll{
+	// 滚动
+	overflow: auto;/* winphone8和android4+ */
+	-webkit-overflow-scrolling: touch; /* ios5+ */
+	&::-webkit-scrollbar{
+	    width: 0;
+	    height: 0;
+	}
+}
+
+
+// 阴影
+%shadow{
+	box-shadow: 2px 2px 2px #c1e0f6;
+}
+%shadows{
+	box-shadow: 2px 1px 2px #757575;
+}
+
+
+// === 定义占位placeholder end===

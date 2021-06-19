@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/discountCode.css" />
+</head>
+<body>
+    <div class="background-img">
+        <header class="header">
+            <div tapmode="hover" onclick="fnClose();" class="back icon-back"></div>
+            <div class="title">优惠券二维码</div>
+        </header>
+
+        <div class="flex-item-vertical">
+            <div class="main">
+                <p class="id-center">ID：WE43535423</p>
+                <div class="code"></div>
+                <p class="save" tapmode="hover" onclick="fnEmpty()">保存至相册</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        APP.fixStatusBar( $('.header')[0] );
+        APP._htmlPath = 'home/scan_frm.html';
+        // fnOpen(APP._htmlPath, {
+        //     rect: {
+        //         marginTop: $('.header').height()
+        //     }
+        // });
+
+    });
+
+
+</script>
+</html>

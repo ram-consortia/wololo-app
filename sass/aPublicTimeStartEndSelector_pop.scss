@@ -1,0 +1,47 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    .ios-select-widget-box{
+        #iosSelectTitle{
+            color: #000;
+            font-size: pxToRem(34);
+        }
+        header.iosselect-header{
+            // display: none;
+            background-color: white;
+             @include border-bottom-m(solid, #ddd);
+            height: pxToRem(100);
+            line-height: pxToRem(100);
+            a{
+                color: #EF5B23;
+                &.close{
+                    color: #999999;
+               }
+            }
+        }
+        .iosselect-box{
+            @include flex-box();
+            &>div{
+                @include flex-item();
+            }
+        }
+    }
+    .choice{
+        background-color: white;
+        @include flex-box($align: center);
+        .item{
+            @include flex-item();
+            text-align: center;
+            padding: pxToRem(16);
+            color: #999;
+            span{
+                padding: pxToRem(20) pxToRem(30);
+                display: block;
+                @include border-bottom-m(solid, #ddd);
+            }
+            &.active{
+                color: #000;
+            }
+        }
+    }
+}

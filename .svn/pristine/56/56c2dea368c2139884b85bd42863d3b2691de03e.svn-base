@@ -1,0 +1,784 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    height: 100%;
+    background-color: #fff;
+    .bt10{
+        padding-bottom: pxToRem(10);
+    }
+    .header{
+        padding-top: pxToRem(50);
+        background-color: #fff;
+        .back{
+            &.share{
+                padding: pxToRem(22) pxToRem(20);
+                width: pxToRem(44);
+                height: pxToRem(44);
+                @include set-bg-img( $name: 'icon-share.png', $size: pxToRem(44) auto, $position: center center);
+            }
+        }
+        .size20{
+            font-size: pxToRem(34)!important;
+        }
+    }
+    .content{
+        position: relative;
+        height: 100%;
+    }
+    .content-img{
+        width: 100%;
+        height: 100%;
+        //@include set-bg-img( $name: "icon-background00.png");
+    }
+    .pd20{
+        padding: pxToRem(30) 0;
+    }
+    .guize{
+        text-align: center;
+        /*position: absolute;
+        left: 0;
+        top: pxToRem(28);*/
+        .preferential-rules{
+
+            height: pxToRem(48);
+            line-height: pxToRem(48);
+            font-size: pxToRem(30);
+            color: rgba(51,51,51,1);
+            text-align: center;
+            margin: 0 pxToRem(22);
+            //background-color: #FE8F31;
+            //border-radius:0px 200px 200px 0px;
+            /*&::after{
+                content: '';
+                display: inline-block;
+                width: pxToRem(18);
+                height: pxToRem(18);
+                margin-left: pxToRem(4);
+                @include set-bg-img( $name: "icon-right3.png", $size: pxToRem(18) auto, $position: center center);
+            };*/
+        }
+        i{
+            display: inline-block;
+            width: pxToRem(40);
+            height: pxToRem(24);
+            &.gzleft{
+                @include set-bg-img( $name: "yhleft.png");
+            }
+            &.gzright{
+                @include set-bg-img( $name: "yhright.png");
+            }
+        }
+    }
+    .main{
+        // padding-top: pxToRem(20);
+        background-color: rgba(244,244,244,1);
+        padding-top: pxToRem(40);
+        .coupon-img{
+            //margin:pxToRem(100) pxToRem(20);
+
+            .img{
+                width: 100%;
+                height: pxToRem(290);
+                border-top-left-radius: pxToRem(16);
+                border-top-right-radius: pxToRem(16);
+                @include set-bg-img( $name: "icon-background5.png");
+            }
+
+            .coupon{
+                margin:0 pxToRem(20) pxToRem(40);
+                height: pxToRem(400);
+                //@include set-bg-img( $name: "bolangtu.png");
+                @include set-bg-img( $name: "bolang33.png");
+                border-radius: pxToRem(80);
+                //margin-top: pxToRem(-16);
+                position: relative;
+                color: #fff;
+                .itemT{
+                    position: absolute;
+                    left: pxToRem(-20);
+                    bottom: pxToRem(180);
+                    display: inline-block;
+                    width: pxToRem(40);
+                    height: pxToRem(40);
+                    background-color: rgba(244,244,244,1);
+                    border-radius: 50%;
+                }
+                .itemY{
+                    position: absolute;
+                    right: pxToRem(-20);
+                    bottom: pxToRem(180);
+                    display: inline-block;
+                    width: pxToRem(40);
+                    height: pxToRem(40);
+                    background-color: rgba(244,244,244,1);
+                    border-radius: 50%;
+                }
+                .coupon-item{
+                    @include flex-box($direction: column);
+
+                    .itemTop{
+                        @include flex-box($justify:space-between);
+                        height: pxToRem(200);
+                        border-bottom: pxToRem(4) dashed rgba(244,244,244,1);
+                        .itemRight{
+                            height: pxToRem(124);
+                            width: pxToRem(224);
+                            margin-top: pxToRem(40);
+                            margin-right: pxToRem(50);
+                            .img{
+                                width: 100%;
+                                height: 100%;
+                                /*@include set-bg-img( $name: "WololoWhiteTransparent.png");*/
+                                @include set-bg-img( $name: "WololoWhiteTransparent.png", $size: 100% 100%, $position: center center);
+                            }
+
+                        }
+                    }
+                    .itemButtom{
+                        height: pxToRem(200);
+                        color: #fff;
+                        margin: 0 pxToRem(50);
+                        .shop-name{
+                            font-size: pxToRem(34);
+                            font-weight:600;
+
+                            line-height:pxToRem(48);
+                        }
+                        .market-price{
+                            font-size: pxToRem(22);
+                            font-family:PingFangSC-Regular,PingFang SC;
+                            font-weight:400;
+
+                            line-height: pxToRem(30);
+                            margin-top: pxToRem(10);
+                        }
+                        .time{
+                            font-size: pxToRem(22);
+                            font-family:PingFangSC-Regular,PingFang SC;
+                            font-weight:400;
+
+                            margin-top: pxToRem(10);
+                            margin-top: pxToRem(60);
+                        }
+                    }
+
+                    .itemLeft{
+                        @include flex-box($direction: column);
+                        margin-left: pxToRem(50);
+                        .leftHer{
+                            margin-top: pxToRem(50);
+                            margin-bottom: pxToRem(12);
+                            .size{
+                                font-size: pxToRem(80);
+                                font-weight:900;
+
+                            }
+                            .voucher{
+                                font-size: pxToRem(24);
+                                font-family:PingFangSC-Regular,PingFang SC;
+                                font-weight:400;
+
+                            }
+                        }
+
+                    }
+                    .itemRight{
+
+                    }
+                }
+            }
+        }
+
+        .group{
+            @include flex-box();
+            margin: 0 pxToRem(30);
+            padding: pxToRem(20) 0 pxToRem(26);
+            @include border-bottom-m;
+            &::after{
+                border-color: #EAEAEA;
+            };
+            .people{
+                @include flex-item();
+                font-size: pxToRem(28);
+                color: #333;
+                line-height: pxToRem(56);
+                @extend .font-m;
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    width: pxToRem(56);
+                    height: pxToRem(56);
+                    margin-right: pxToRem(32);
+                    vertical-align: bottom;
+                    @include set-bg-img( $name: "icon-people1.png", $size: pxToRem(56) auto, $position: center center);
+                };
+            }
+            .right{
+                width: pxToRem(28);
+                height: pxToRem(56);
+                @include set-bg-img( $name: "icon-right1.png", $size: pxToRem(28) auto, $position: center center);
+            }
+        }
+        .hahah{
+            width: 100%;
+            background: #fff;
+            position: fixed;
+            bottom: 0;
+        }
+        .regiment{
+            margin: pxToRem(28) pxToRem(30);
+            height: pxToRem(88);
+            line-height: pxToRem(88);
+            text-align: center;
+            font-size: pxToRem(30);
+            color: #fff;
+            @extend .font-m;
+            border-radius: pxToRem(40);
+            //@include set-bg-img( $name: "icon-submint.png");
+            background:linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+            &.invalid{
+                background-color: #ccc;
+                background-image: none;
+            }
+            &.consumption{
+                background-color: #fff;
+                background-image: none;
+                height: pxToRem(84);
+                line-height: pxToRem(84);
+                color: #333;
+                border: pxToRem(2) solid #979797;
+            }
+        }
+        .rule{
+            background-color: #fff;
+            margin: pxToRem(20);
+            box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+            border-radius: 0px 0px 4px 4px;
+            border: pxToRem(2) solid #EAEAEA;
+            &.no-line{
+                border-radius: pxToRem(16);
+                border: none;
+                box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+            }
+            .discount{
+                padding: pxToRem(30) pxToRem(32) pxToRem(20);
+                font-size: pxToRem(36);
+                text-align: center;
+                color: #333;
+                line-height: pxToRem(50);
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    width: pxToRem(8);
+                    height: pxToRem(36);
+                    margin-right: pxToRem(16);
+                    vertical-align: middle;
+                    @include set-bg-img( $name: "icon-line.png", $size: pxToRem(8) auto, $position: center center);
+                };
+            }
+            .text{
+                padding: 0 pxToRem(26) pxToRem(22) pxToRem(56);
+                font-size: pxToRem(30);
+                color: #666;
+                line-height: pxToRem(56);
+            }
+
+            .regiment-rules{
+                position: relative;
+                //padding-top: pxToRem(126);
+                padding: pxToRem(40) pxToRem(40) 0 pxToRem(40);
+
+
+                .five{
+                    font-size: 0;
+                    //text-align: center;
+
+                    border-bottom: pxToRem(2) solid #EAEAEA;
+                    border-top: pxToRem(2) solid #EAEAEA;
+                    padding: pxToRem(42) 0 pxToRem(38) 0;
+                    @include flex-box($justify:space-between);
+
+
+                    .fiveTo{
+                        width: 20%;
+                    }
+                    .fiveCt{
+                        width: 40%;
+                        @include flex-box();
+                        .a0{
+                            z-index: 10;
+                        }
+                        .a1{
+                            z-index: 9;
+                        }
+                        .a2{
+                            z-index: 8;
+                        }
+                        .a3{
+                            z-index: 7;
+                        }
+                        .a4{
+                            z-index: 6;
+                        }
+                        .a5{
+                            z-index: 5;
+                        }
+                        .a6{
+                            z-index: 4;
+                        }
+                        .a7{
+                            z-index: 3;
+                        }
+                        .a8{
+                            z-index: 2;
+                        }
+                        .a9{
+                            z-index: 1;
+                        }
+                    }
+                    .fiveTx{
+                        width: 40%;
+                        padding-right: pxToRem(24);
+                        @include flex-box($direction:row-reverse);
+                    }
+                    .ellipsis{
+                        position: relative;
+                        display: inline-block;
+                        font-size: pxToRem(28);
+                        color: #333;
+                        width: pxToRem(84);
+                        line-height: pxToRem(84);
+                        margin: 0 pxToRem(16);
+                        vertical-align: bottom;
+                        &.five-img{
+                            display: inline-block;
+                            font-size: pxToRem(28);
+                            color: #333;
+                            margin: 0 pxToRem(-24) 0 0 ;
+                            width: pxToRem(70);
+                            height: pxToRem(70);
+                            border-radius: 50%;
+                            border: pxToRem(2) solid #fff;
+                            @include set-bg-img( $name: "icon-photo.png");
+                        }
+                        &.a0{
+                            z-index: 15;
+                        }
+                        &.a1{
+                            z-index: 14;
+                        }
+                        &.a2{
+                            z-index: 13;
+                        }
+                        &.a3{
+                            z-index: 12;
+                        }
+                        &.a4{
+                            z-index: 11;
+                        }
+                        &.a5{
+                            z-index: 10;
+                        }
+                        &.a6{
+                            z-index: 9;
+                        }
+                        &.a7{
+                            z-index: 8;
+                        }
+                        &.a8{
+                            z-index: 7;
+                        }
+                        &.a9{
+                            z-index: 6;
+                        }
+                        &.a10{
+                            z-index: 5;
+                        }
+                        &.a11{
+                            z-index: 4;
+                        }
+                        &.a12{
+                            z-index: 3;
+                        }
+                        &.a13{
+                            z-index: 2;
+                        }
+                        &.a14{
+                            z-index: 1;
+                        }
+
+                        .commander{
+                            position: absolute;
+                            bottom: 0;
+                            left: pxToRem(12);
+                            //text-align: center;
+                            display: inline-block;
+                            /*background-color: $bg-color;
+                            font-size: pxToRem(14);
+                            color: #fff;*/
+                            //line-height: pxToRem(22);
+                            height: pxToRem(22);
+                            width: pxToRem(48);
+                            @include set-bg-img( $name: "tuanzhang.png");
+                            //padding: 0 pxToRem(10);
+                            //border-radius:15px 15px 15px 0px;
+                            //border-radius: pxToRem(15) pxToRem(15) pxToRem(15) 0;
+                        }
+                        &.commanderA{
+                            z-index: 3;
+                        }
+                    }
+                }
+                .assemble-success{
+                    padding: pxToRem(39) pxToRem(39);
+                    text-align: center;
+                    font-size: pxToRem(30);
+                    color: #666;
+                    line-height: pxToRem(44);
+                    i{
+                        vertical-align: middle;
+                        margin-right: pxToRem(10);
+                        display: inline-block;
+                        width: pxToRem(36);
+                        height: pxToRem(36);
+                        @include set-bg-img( $name: "chenggong.png");
+                    }
+                }
+                .assemble{
+                    padding: pxToRem(52) pxToRem(30) pxToRem(28);
+                    text-align: center;
+                    font-size: 0;
+                    .people{
+                        display: inline-block;
+                        font-size: pxToRem(28);
+                        color:rgba(102,102,102,1);
+                        line-height: pxToRem(40);
+                        .color{
+                            color: #FF7C4A;
+                            @extend .font-m;
+                            margin: 0 pxToRem(8);
+                        }
+                    }
+                    .hour-center{
+                        display: inline-block;
+                        text-align: center;
+                    }
+                    .hour{
+                        display: inline-block;
+                        padding-top: pxToRem(38);
+                        margin-left: pxToRem(20);
+                        font-size: pxToRem(28);
+                        color: rgba(102,102,102,1);
+                        line-height: pxToRem(44);
+                        .time{
+                            font-size: 0;
+                            padding-top: pxToRem(16);
+                            text-align: center;
+                            margin: 0 pxToRem(16) 0 pxToRem(8);
+                            .number{
+                                position: relative;
+                                display: inline-block;
+                                font-size: pxToRem(28);
+                                color: #fff;
+                                line-height: pxToRem(44);
+                                height: pxToRem(44);
+                                width: pxToRem(44);
+                                text-align: center;
+                                background-color: rgba(255,96,67,1);
+                                border-radius: pxToRem(10);
+                                margin-right: pxToRem(18);
+                                &:last-of-type{
+                                    content: '';
+                                    margin-right: 0;
+                                };
+                                .gap{
+                                    width: pxToRem(20);
+                                    &::before{
+                                        content: '';
+                                        display: inline-block;
+                                        position: absolute;
+                                        top: pxToRem(14);
+                                        right: pxToRem(-11);
+                                        width: pxToRem(4);
+                                        height: pxToRem(4);
+                                        background-color: #666;
+                                        border-radius: 50%;
+                                    };
+                                    &::after{
+                                        content: '';
+                                        display: inline-block;
+                                        position: absolute;
+                                        bottom: pxToRem(14);
+                                        right: pxToRem(-11);
+                                        width: pxToRem(4);
+                                        height: pxToRem(4);
+                                        background-color: #666;
+                                        border-radius: 50%;
+                                    };
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+                .person{
+                    // div:nth-child(odd){background:#FFF3EE;}
+                     @include flex-box($direction:column);
+                     color: #666;
+                    padding-top: pxToRem(40);
+                    padding-bottom: pxToRem(40);
+                     //line-height: pxToRem(56);
+                     /*&::before{
+                         content: '';
+                         display: block;
+                         min-width: pxToRem(56);
+                         height: pxToRem(56);
+                         margin-right: pxToRem(22);
+                         @include prefixCss3($property: align-self, $value: center);
+                         @include set-bg-img( $name: "icon-people1.png", $size: pxToRem(56) auto, $position: center center);
+                     };*/
+                     .switch-count{
+                         text-align: center;
+                         margin-top: pxToRem(10);
+                         font-size:  pxToRem(32);
+                         color:#464646;
+                         font-family: PingFang SC;
+                         text-decoration: underline;
+                     }
+                     .hidden{
+                        display: none !important;
+                     }
+                     .personD{
+                         @include flex-box($justify:center);
+                         margin-bottom: pxToRem(30);
+                         font-weight: bold;
+                     }
+                     .personP{
+                         @include flex-box($justify:center,$direction:column,$align:center);
+                        //  @include border-bottom-m($color:#ccc);
+                         /*width: 100%;*/
+                         line-height: pxToRem(80);
+                         padding: 0 pxToRem(10);
+                         .personPLift{
+                             @include flex-box()
+                         }
+                         .personPRight{
+                             @include flex-box()
+                         }
+                         .spanJT{
+                             display: inline-block;
+                             width: pxToRem(14);
+                             height: pxToRem(30);
+                             vertical-align: middle;
+                             @include set-bg-img( $name: "lujingJT.png", $size: pxToRem(14) pxToRem(30), $position: center center);
+                            /* background: url("../image/lujingJT.png");
+                             background-size: 100%;*/
+
+                         }
+                     }
+
+                 }
+            }
+        }
+        .hei50{
+            height: pxToRem(60);
+            width: 100%;
+            left: 0;
+            top: 0;
+            position: relative;
+
+        }
+        .curlocation{
+            position: absolute;
+            width: pxToRem(100);
+            height: pxToRem(100);
+            right: pxToRem(50);
+            top: pxToRem(-0);
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+
+         .address{
+             position: relative;
+             background-color: #fff;
+             margin: 0 pxToRem(20) pxToRem(20);
+             box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+             border-radius: pxToRem(4);
+             border: pxToRem(2) solid #EAEAEA;
+             &.addressA{
+                 margin-bottom: pxToRem(144);
+             }
+
+             &.no-line{
+                 border-radius: pxToRem(16);
+                 border: none;
+                 box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+             }
+             .address-name{
+                 padding: pxToRem(26) pxToRem(34) pxToRem(10);
+                 font-size: pxToRem(32);
+                 color: #333;
+                 line-height: pxToRem(44);
+                 @extend .font-m;
+             }
+             .curlocation1{
+                 position: absolute;
+                 width: pxToRem(100);
+                 height: pxToRem(100);
+                 right: pxToRem(50);
+                 bottom: pxToRem(80);
+                 img{
+                     width: 100%;
+                     height: auto;
+                 }
+             }
+             .curlocation2{
+                 position: absolute;
+                 width: pxToRem(100);
+                 height: pxToRem(100);
+                 right: pxToRem(50);
+                 top: pxToRem(400);
+                 img{
+                     width: 100%;
+                     height: auto;
+                 }
+             }
+             .curlocation3{
+                 position: absolute;
+                 width: pxToRem(100);
+                 height: pxToRem(100);
+                 right: pxToRem(50);
+                 top: pxToRem(-50);
+                 img{
+                     width: 100%;
+                     height: auto;
+                 }
+             }
+             .sitePer{
+                 position: relative;
+             }
+             .map{
+                 height: pxToRem(360);
+                 @include set-bg-img( $name: "icon-background2.png");
+             }
+             .site{
+                 @include flex-box();
+                 padding: pxToRem(22) pxToRem(20) pxToRem(20);
+                 font-size: pxToRem(26);
+                 color: #333;
+                 height: pxToRem(100);
+                 width: 70%;
+                 line-height: pxToRem(36);
+                 &::before{
+                     content: '';
+                     display: block;
+                     min-width: pxToRem(32);
+                     height: pxToRem(32);
+                     margin-right: pxToRem(20);
+                     margin-top: pxToRem(6);
+                     @include set-bg-img( $name: "icon-location.png", $size: pxToRem(32) auto, $position: center center);
+                 };
+             }
+         }
+    }
+    .evaluate_content{
+        padding: 0 30px;
+    }
+    .bottom{
+        overflow: hidden;
+        background-color: #fff;
+        @include border-top-m;
+        @include flex-box();
+        &::before{
+            border-color: #EAEAEA;
+        };
+        .quit{
+            margin: pxToRem(30) pxToRem(20);
+            height: pxToRem(80);
+            font-size: pxToRem(30);
+            color: #fff;
+            @extend .font-m;
+            line-height: pxToRem(80);
+            text-align: center;
+            border-radius: pxToRem(40);
+            background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+            //background: black;
+            //@include set-bg-img( $name: "icon-submint.png");
+            @include flex-item();
+            &.active{
+                // width: 30vw;
+                padding: 0 20px;
+                margin-left: 0;
+
+                @include prefixCss3($property: flex, $value: initial);
+            }
+            &.no-onclick{
+                opacity: 0.5;
+            }
+        }
+    }
+    .fixed-top{
+        z-index: 10;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        @include flex-box();
+        padding: pxToRem(16) pxToRem(46);
+        background-color: white;
+        .logo{
+            width: pxToRem(88);
+            height: pxToRem(88);
+            border-radius: pxToRem(8);
+            @include set-bg-img( $name: "icon-logo.png");
+        }
+        .text{
+            @include flex-item();
+            padding: pxToRem(6) pxToRem(32);
+            @include flex-box($direction: column);
+            .title{
+                font-size: pxToRem(30);
+                color: #272D35;
+                @include flex-item();
+            }
+            .tip{
+                font-size: pxToRem(24);
+                color: #666;
+            }
+        }
+        .btn-app{
+            height: pxToRem(68);
+            width: pxToRem(168);
+            font-size: pxToRem(30);
+            color: #fff;
+            line-height: pxToRem(68);
+            border-radius: pxToRem(68);
+            text-align: center;
+            @include prefixValueCss3($property:background, $value: linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%));
+            box-shadow:0px 6px 12px -2px rgba(255,79,0,0.34);
+        }
+    }
+}
+
+
+
+
+.share-app{
+    height: pxToRem(88);
+    width: 80%;
+    font-size: pxToRem(30);
+    color: #fff;
+    line-height: pxToRem(88);
+    border-radius: pxToRem(88);
+    text-align: center;
+    background:linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+    box-shadow:0px 6px 12px -2px rgba(255,79,0,0.34);
+    position: fixed;
+    left: 50%;
+    bottom: pxToRem(60);
+    @include prefixCss3($property: transform, $value: translateX(-50%));
+    z-index: 10;
+}

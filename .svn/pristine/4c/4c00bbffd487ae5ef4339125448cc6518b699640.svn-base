@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+    <link rel="stylesheet" href="../../css/webpublic.css">
+    <link rel="stylesheet" href="../../css/weballOrder.css">
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="top">
+            <div class="top-box">
+                <div class="top-item">
+                    <div class="photo"></div>
+                </div>
+                <div class="home-box">
+                    <span class="home-item active" tapmode="hover" onclick="fnOpen('home.html')">首页</span>
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('allAssemble.html')">全部拼团</span>
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单</span>
+                </div>
+                <div class="picture">
+                    <div class="all-picture">
+                        <div class="picture-box">
+                            <div class="picture-item active" tapmode="hover" onclick="fnOpen('personal.html')">个人资料</div>
+                            <div class="picture-item" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                            <div class="picture-item">中文/English</div>
+                            <div class="picture-item">下载APP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content flex-item-vertical">
+            <div class="content-center">
+                <div class="select-left">
+                    <!-- 默认关闭，加active打开 -->
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item">个人信息</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('personal.html')">个人资料</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('code.html')">我的二维码</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item order-img">我的订单</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li active" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单（105）</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">待付款（105）</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">已付款</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">未消费</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">已消费</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('afterSale.html')">退款售后</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item collection-img">我的收藏</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('collection.html')">我收藏的店铺</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item other-img">其他</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('opinion.html')">意见反馈</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('contact.html')">联系我们</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('rule.html')">规则协议</div>
+                            <div class="li">在线客服</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="box">
+                        <!-- 选中加active -->
+                        <div class="box-wrap">
+                            <div class="item active">全部</div>
+                            <div class="item">拼团中</div>
+                            <div class="item">待付款</div>
+                            <div class="item">未消费</div>
+                            <div class="item">已消费</div>
+                            <div class="item">退款售后</div>
+                        </div>
+                    </div>
+                    <div class="tables">
+                        <div class="rule">
+                            <div class="agreement">4月份</div>
+                            <div class="ul">
+                                <div class="li">1月份</div>
+                                <div class="li">2月份</div>
+                            </div>
+                        </div>
+                        <div class="table">
+                            <div class="tr">
+                                <div class="th forty-percent">商品信息</div>
+                                <div class="th twenty-percent">类型</div>
+                                <div class="th twenty-percent">数量</div>
+                                <div class="th twenty-percent">操作</div>
+                            </div>
+                            <div class="tr">
+                                <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                                    <div class="message-item">
+                                        <div class="img"></div>
+                                        <div class="base">
+                                            <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                            <p class="subtitle">特色单品节日优惠</p>
+                                            <p class="time">2019.01.04 - 2019.01.03</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="cash-coupon">
+                                        <p class="size">￡120</p>
+                                        <p>代金券</p>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <p class="number">数量：2</p>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="td-box">
+                                        <div class="td-item" tapmode="hover" onclick="fnOpen('code.html')">打开二维码</div>
+                                        <div class="receipt">待接单</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tr">
+                                <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                                    <div class="message-item">
+                                        <div class="img"></div>
+                                        <div class="base">
+                                            <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                            <p class="subtitle">特色单品节日优惠</p>
+                                            <p class="time">2019.01.04 - 2019.01.03</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="cash-coupon">
+                                        <p class="size">￡120</p>
+                                        <p>代金券</p>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <p class="number">数量：2</p>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="td-box">
+                                        <!-- 已关闭加close -->
+                                        <div class="receipt close">已关闭</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tr">
+                                <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                                    <div class="message-item">
+                                        <div class="img"></div>
+                                        <div class="base">
+                                            <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                            <p class="subtitle">特色单品节日优惠</p>
+                                            <p class="time">2019.01.04 - 2019.01.03</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="cash-coupon">
+                                        <p class="size">￡120</p>
+                                        <p>代金券</p>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <p class="number">数量：2</p>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="td-box">
+                                        <div class="td-item" tapmode="hover" onclick="fnOpen('code.html')">立即使用</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 商家端我的订单列表 -->
+                            <div class="tr">
+                                <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                                    <div class="message-item">
+                                        <div class="img"></div>
+                                        <div class="base">
+                                            <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                            <p class="subtitle">特色单品节日优惠</p>
+                                            <p class="time">2019.01.04 - 2019.01.03</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="cash-coupon">
+                                        <p>折扣券</p>
+                                    </div>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <p class="number">门市价￡120</p>
+                                </div>
+                                <div class="td twenty-percent">
+                                    <div class="td-box">
+                                        <div class="receipt close">数量：2</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-number">
+                        <span class="start"></span>
+                        <span class="num active">1</span>
+                        <span class="num">2</span>
+                        <span class="num">3</span>
+                        <span class="num">4</span>
+                        <span class="num">5</span>
+                        <span class="num">...</span>
+                        <span class="num">7</span>
+                        <span class="num">8</span>
+                        <span class="num">9</span>
+                        <span class="end"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-width">
+                <div class="bottom">
+                    <div class="bot-box">
+                        <div class="bot-item">
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">合作伙伴</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">关于我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">联系我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="record">
+                    <div class="agreement">
+                        <span class="treaty">用户协议</span>
+                        <span class="treaty">隐私协议</span>
+                        <span class="treaty">下载APP</span>
+                        <span class="treaty">意见反馈</span>
+                    </div>
+                    <div class="serve">©2014-2016 APICloud 京ICP备14027692号 京ICP证151131号 京公网安备 11010802020063号  |  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(_page) {
+
+    });
+
+
+    var mySwiper = new Swiper('.swiper .swiper-container', {
+        autoplay:true,//等同于以下设置
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: '.swiper .swiper-pagination',
+        },
+    });
+
+</script>
+</html>

@@ -1,0 +1,112 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body{
+    height: 100%;
+    .fixed{
+
+        height: 20%;
+        background:rgba(0,0,0,0.4);
+    }
+    .screen{
+        background-color: #fff;
+        @include flex-box();
+        .left{
+            width: pxToRem(180);
+            height: 100%;
+            background-color: rgba(255,255,255,1);
+            @extend %scroll;
+            .classification{
+                margin: pxToRem(40) 0 pxToRem(70);
+                .img{
+                    display: inline-block;
+                    width: pxToRem(48);
+                    height: pxToRem(48);
+                    margin: 0 auto pxToRem(10);
+                    @include set-bg-img( $name: "icon-background1.png", $size: pxToRem(48) auto, $position: center center);
+                }
+                .name{
+                    text-align: center;
+                    font-size: pxToRem(26);
+                    color: rgba(117,117,117,1);
+                    line-height: pxToRem(36);
+                }
+                &.active{
+                    border-left: 2px solid red;
+                    .name{
+                        color: rgba(254,143,49,1);
+                    }
+
+                }
+            }
+        }
+        .content{
+            @include flex-item();
+            padding: pxToRem(2) 0;
+            @extend  %scroll;
+            background-color: #F9F9F9;
+            .con{
+                padding: pxToRem(20) pxToRem(32) 0;
+                .state{
+                    padding: pxToRem(28) 0 pxToRem(20);
+                    font-size: pxToRem(30);
+                    color: #333;
+                    line-height: pxToRem(40);
+                    @extend .font-m;
+                }
+                .sort{
+                    overflow: hidden;
+                    margin: 0 pxToRem(-14);
+                    .status{
+                        float: left;
+                        padding: pxToRem(8) pxToRem(40);
+                        // width: pxToRem(144);
+                        // height: pxToRem(52);
+                        font-size: pxToRem(24);
+                        color: #333;
+                        line-height: pxToRem(32);
+                        border: pxToRem(2) solid #999;
+                        border-radius: pxToRem(4);
+                        margin: pxToRem(10) pxToRem(14);
+                        text-align: center;
+                        &.active{
+                            color: rgba(254,143,49,1);
+                            border: pxToRem(2) solid #FE8F31;
+                            background-color: rgba(254,143,49,0.2);;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .bottom{
+            overflow: hidden;
+            @include border-top-m;
+            &::before{
+                border-color: #eee;
+            };
+            background-color: white;
+            .bot-box{
+                @include flex-box();
+                margin: pxToRem(10) pxToRem(17);
+                text-align: center;
+                background-color: rgba(255,255,255,1);
+                .bot-item{
+                    @include flex-item();
+                    height: pxToRem(88);
+                    line-height: pxToRem(88);
+                    //border: pxToRem(2) solid #979797;
+                    border-radius: pxToRem(40);
+                    background:linear-gradient(135deg,rgba(221,221,221,1) 0%,rgba(198,198,198,1) 100%);
+                    margin: 0 pxToRem(13);
+                    font-size: pxToRem(30);
+                    color: #fff;
+                    &.bot-sure{
+                        height: pxToRem(92);
+                        border: none;
+
+                        background:linear-gradient(135deg,rgba(255,174,85,1) 0%,rgba(255,123,34,1) 100%);
+                    }
+                }
+            }
+        }
+}

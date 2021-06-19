@@ -1,0 +1,388 @@
+@charset "utf-8";
+
+// === 定义公共类样式 begin ===
+.show{
+	display: block;
+}
+
+.hide{
+	display: none!important;
+}
+
+.hover{
+	opacity: .8;
+}
+
+
+// 禁止点击事件
+.no-onclick{
+	@extend %no-onclick;
+}
+
+// 将一个区域定义为flex容器（横向布局）
+.flex-wrap{
+	@include flex-box();
+}
+
+// 将一个区域定义为flex容器（纵向布局）
+.flex-vertical{
+	@include flex-box($direction: column);
+	height: 100%;
+}
+
+// 将一个区域定义为flex子元素 占比例为1
+.flex-item{
+	@include flex-item();
+}
+
+// 将一个区域定义为flex子元素（纵向布局）
+.flex-item-vertical{
+	@include flex-item($width:auto);
+	@extend %scroll;
+}
+
+.font-m{
+    font-family: 'PingFangSC-Medium';
+}
+
+.font-l{
+    font-family: 'PingFangSC-Light';
+}
+
+.font-t{
+    font-family: 'PingFangSC-Thin';
+}
+
+.font-r{
+    font-family: 'PingFangSC-Regular';
+}
+
+.font-b{
+    font-family: 'PingFangSC-Bold';
+}
+
+.font-s{
+    font-family: 'PingFangSC-Semibold';
+}
+
+.font-din{
+    font-family: 'DINAlternateBold';
+}
+
+/*优惠券css样式*/
+.coupon{
+    border-radius: pxToRem(6);
+    .coupon-item{
+        @include flex-box();
+        .line{
+            width: 12px;
+            @include prefixValueCss3($property: background-image, $value: radial-gradient(circle, transparent 5px, #bbb 5px, #fff 6px));
+            background-size: 100% 50%;
+            background-position: center;
+            background-repeat: repeat-y;
+            position: relative;
+            &::before{
+                content: '';
+                display: block;
+                width: 1px;
+                @include prefixValueCss3($property: background-image, $value: repeating-linear-gradient(0deg, #ccc, #ccc 4px, #fff 0, #fff 8px));
+                position: absolute;
+                left: 50%;
+                top: 5px;
+                bottom: 5px;
+                z-index: 1;
+                @include prefixCss3($property: transform, $value: translateX(-50%));
+            };
+            &::after{
+                content: '';
+                display: block;
+                width: 100%;
+                position: absolute;
+                top: 8%;
+                bottom: 8%;
+                background-color: #fff;
+            };
+        }
+        .price{
+            position: relative;
+            min-width: pxToRem(152);
+            padding: pxToRem(20) pxToRem(18) pxToRem(20) pxToRem(20);
+            border: pxToRem(2) solid #EAEAEA;
+            box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+            border-right: 0;
+            border-top-left-radius: pxToRem(6);
+            border-bottom-left-radius: pxToRem(6);
+            background-color: #fff;
+            .num{
+                font-size: pxToRem(24);
+                color: #fff;
+                // height: pxToRem(100);
+                // line-height: pxToRem(100);
+                background-color: $bg-color;
+                text-align: center;
+                @extend .font-s;
+				padding: pxToRem(28) 0 pxToRem(6);
+                .size{
+                    font-size: pxToRem(40);
+                    @extend .font-b;
+                    @extend .font-din;
+					display: inline-block;
+                }
+            }
+            .voucher{
+                font-size: pxToRem(22);
+                color: $bg-color;
+                line-height: pxToRem(50);
+                text-align: center;
+                border: pxToRem(2) solid $bg-color;
+            }
+        }
+        .message{
+            @include flex-box();
+            background-color: #fff;
+            @include flex-item();
+            border: pxToRem(2) solid #EAEAEA;
+            border-left: 0;
+            box-shadow:0px 4px 16px -4px rgba(0,0,0,0.08);
+            border-top-right-radius: pxToRem(6);
+            border-bottom-right-radius: pxToRem(6);
+            padding: pxToRem(20) pxToRem(34);
+			position: relative;
+            .message-item{
+                @include flex-box($direction: column);
+                @include flex-item();
+                .shop-name{
+                    @include flex-item();
+                    font-size: pxToRem(28);
+                    color: #333;
+                    line-height: pxToRem(40);
+                    @include text-overflow(2);
+                }
+                .base{
+                    .subtitle{
+                        font-size: pxToRem(24);
+                        color: #666;
+                        line-height: pxToRem(34);
+                        @include text-overflow(1);
+						del{
+							background-color: #F6F6F6;
+							border-radius: pxToRem(6);
+							font-size: pxToRem(22);
+							color: #999;
+							padding: pxToRem(4) pxToRem(8);
+						}
+                    }
+                    .market-price{
+                        .market{
+                            display: inline-block;
+                            padding: 0 pxToRem(6);
+                            font-size: pxToRem(22);
+                            color: #FF4F00;
+                            line-height: pxToRem(44);
+                            background-color: rgba(255,79,0,0.05);
+                            border-radius: pxToRem(5);
+                        }
+                    }
+                    .time{
+                        padding-top: pxToRem(10);
+                        font-size: pxToRem(24);
+                        color: #666;
+                        line-height: pxToRem(34);
+                        // @include text-overflow(1);
+				        // text-overflow: ellipsis;
+				        // overflow: hidden;
+				        // white-space: nowrap;  //强制文字在一行中显示
+                    }
+                }
+            }
+
+			.use-right{
+				@include flex-box($direction: column);
+				position: absolute;
+				right: 17px;
+				top: 10px;
+			}
+
+            .use{
+                display: inline-block;
+                width: pxToRem(96);
+                height: pxToRem(96);
+                border-radius: 50%;
+                text-align: center;
+                margin-left: pxToRem(20);
+                @include prefixCss3($property: align-self, $value: flex-end);
+                background:linear-gradient(286deg,rgba(255,124,74,1) 0%,rgba(251,167,94,1) 100%);
+                box-shadow:0px 8px 20px -4px rgba(255,124,74,0.3);
+                @include flex-box($align: center,$justify: center);
+                .use-word{
+                    display: inline-block;
+                    // padding-top: pxToRem(18);
+                    font-size: pxToRem(20);
+                    color: #fff;
+                    @extend .font-m;
+                    line-height: pxToRem(28);
+                    text-align: center;
+					width: 63%;
+					text-indent: 1px;
+					&.active{
+						text-indent: initial;
+					}
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// 遮罩层(弹窗会用到)
+.model-fixd{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	// z-index: 2;
+}
+
+#toast{
+    z-index: 2;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(56,56,56,0.8);
+    border-radius: pxToRem(90);
+    // height: pxToRem(90);
+    // line-height: pxToRem(90);
+    max-width: 90%;
+    font-size: pxToRem(28);
+    color: #fff;
+    text-align: center;
+    // white-space: nowrap;
+    word-break: break-all;
+    padding: pxToRem(6) pxToRem(20);
+}
+
+.gradient{
+    background:linear-gradient(134deg,rgba(239,89,33,1) 0%,rgba(244,140,91,1) 100%);
+    background:-webkit-linear-gradient(134deg,rgba(239,89,33,1) 0%,rgba(244,140,91,1) 100%);
+}
+
+.header{
+    @include flex-box();
+    position: relative;
+    background-color: #fff;
+    color: #333;
+	&:not(:empty){
+	    min-height: pxToRem(88);
+	}
+    @include border-bottom-m;
+    &::after{
+        border-color: #EAEAEA;
+    };
+    .back{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        &.right{
+            right: 0;
+            left: auto;
+        }
+        &.word{
+            line-height: pxToRem(88);
+            padding: 0 pxToRem(30);
+            font-size: pxToRem(26);
+			color: $bg-color;
+        }
+        &.icon-back{
+            padding: pxToRem(22) pxToRem(20);
+            width: pxToRem(44);
+            height: pxToRem(44);
+            z-index: 1;
+            @include set-bg-img( $name: 'icon-back.png', $size: pxToRem(44) auto, $position: center center);
+            @include prefixCss3($property: align-self, $value: center);
+        }
+
+    }
+
+    .title{
+        @include flex-item();
+        font-size: pxToRem(36);
+        height: pxToRe(88);
+        line-height: pxToRem(88);
+        text-align: center;
+        color: #333;
+        /*@include prefixCss3($property: align-self, $value: center);*/
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+#no-data{
+    height: 100vh;
+    text-align: center;
+    color: #666;
+    font-size: pxToRem(36);
+    line-height: pxToRem(50);
+    @include flex-box($direction: column, $justify: center);
+    &.height1{
+        height: 10vh;
+    }
+    &.height2{
+        height: 20vh;
+    }
+    &.height3{
+        height: 30vh;
+    }
+    &.height4{
+        height: 40vh;
+    }
+    &.height5{
+        height: 50vh;
+    }
+    &.height6{
+        height: 60vh;
+    }
+    &.height7{
+        height: 70vh;
+    }
+    &.height8{
+        height: 80vh;
+    }
+    &.height9{
+        height: 90vh;
+    }
+
+    &::after{
+        content: '';
+        display: block;
+        height: pxToRem(320);
+        width: pxToRem(320);
+        margin: pxToRem(16) auto;
+        @include set-bg-img( $name: "icon-nodata1.png", $size: pxToRem(320) auto, $position: center bottom);
+    };
+}
+.add{
+
+}
+
+.rich-text{
+    max-width: 100%;
+	word-break: break-all;
+    *{
+        max-width: 100%!important;
+    }
+}
+.pre-text{
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+.cursor-pointer{
+	cursor: pointer;
+}
+// === 定义公共类样式 end ===

@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/couponsDetails.css" />
+</head>
+<body>
+    <div class="main" id="wrap">
+        <div class="coupon-img">
+            <div class="coupon">
+                <i class="itemT"></i>
+                <i class="itemY"></i>
+                <div class="coupon-item">
+                    <div class="itemTop">
+                        <div class="itemLeft">
+                            <div class="leftHer">
+
+                                <span class="size">￡0</span>
+
+                                <span class="voucher"></span>
+                            </div>
+                        </div>
+                        <!--<div class="itemRight">
+                            <div class="img"></div>
+                        </div>-->
+                    </div>
+                    <div class="itemButtom">
+                        <p class="shop-name"></p>
+                        <p class="market-price">Retail price￡0</p>
+
+                        <p class="time"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="rule no-line">
+            <div class="regiment-rules">
+                <div class="guize">
+                    <i class="gzleft"></i>
+                    <span class="preferential-rules">How it works</span>
+                    <i class="gzright"></i>
+                </div>
+
+                <div class="person">
+                    <p class="personD">More people join = more discounts you get</p>
+
+
+
+                </div>
+
+
+                <div class="five">
+                    <!-- 加five-img显示头像,ellipsis省略号样式 -->
+                    <div class="fiveCt">
+
+                    </div>
+
+                    <div class="fiveWct">
+
+                        <span class="ellipsis">……</span>
+
+
+
+                    </div>
+                    <div class="fiveTx">
+
+                            <span class="ellipsis five-img">
+
+                                    </span>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="address no-line">
+            <p class="address-name"></p>
+
+
+            <div class="map" id="googleMap" ></div>
+            <!--<div class="hei50">-->
+            <div >
+                <div class="curlocation2">
+                    <img src="../../image/curlocation.png" >
+                </div>
+                <p class="site"></p>
+            </div>
+        </div>
+
+        <!-- <p class="share-app">前往APP查看</p> -->
+
+        <div class="bottom">
+            <!-- 只有发起人可以操作  该功能暂时隐藏-->
+
+
+            <!-- 邀请好友参团pop/share_pop.html -->
+            <div class="quit bt10" tapmode="hover" onclick="fnSubmit()"></div>
+        </div>
+    </div>
+
+
+    <script type="text/html" id="wrap-template">
+        <div class="coupon-img">
+
+            <div class="coupon">
+                <i class="itemT"></i>
+                <i class="itemY"></i>
+                <div class="coupon-item">
+                    <div class="itemTop">
+                        <div class="itemLeft">
+                            <div class="leftHer">
+
+                                <span class="size">￡{{_data.coupon.price_group | fnGetMaxPrice_base}}</span>
+
+                                <span class="voucher">{{ {'target': _data.coupon.type, 'key': 'id', 'resKey': 'name', 'data': COUPON.type} | fnGetRelation_public }}</span>
+                            </div>
+                        </div>
+                        <!--<div class="itemRight">
+                            <div class="img"></div>
+                        </div>-->
+                    </div>
+                    <div class="itemButtom">
+                        <p class="shop-name">{{_data.coupon.name}}</p>
+                        <p class="market-price">{{'门市价' | fnLanguage_public}}￡{{_data.coupon.price}}</p>
+
+                        <p class="time">{{_data.coupon | fnGetCouponDateMsg_base}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="rule no-line">
+            <div class="regiment-rules">
+                <div class="guize">
+                    <i class="gzleft"></i>
+                    <span class="preferential-rules">{{'优惠规则' | fnLanguage_public}}</span>
+                    <i class="gzright"></i>
+                </div>
+                <div class="person">
+                    <p class="personD">{{'越多的人参团，价格越优惠' | fnLanguage_public}}</p>
+
+                    {{#_data | fnGetCouponPriceRule_base}}
+
+                    {{if _data.coupon.price_group.length>1}} 
+                    <div class='switch-count' tapmode="hover" onclick="switchCount(this)">See more</div>
+                    {{/if}}
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div class="address addressA">
+            <p class="address-name" tapmode="hover" onclick="fnJump_base('home/storeDetails_win.html', {{_data.coupon.store.id}})">{{_data.coupon.store | fnShowUserNickname_base}}</p>
+            {{if _data.coupon.store && _data.coupon.store.info && _data.coupon.store.info.lon && _data.coupon.store.info.lat && _data.coupon.store.info.address}}
+            <div tapmode="hover" onclick="fnOpenStoreMap_base({{_data.coupon.store.id}}, '{{_data.coupon.store.info.lat}}', '{{_data.coupon.store.info.lon}}')">
+                <div class="map" id="googleMap" data-lat="{{_data.coupon.store.info.lat}}" data-lon="{{_data.coupon.store.info.lon}}"></div>
+                <div class="curlocation1" tapmode="hover" onclick="toMaps();event.cancelBubble=true">
+                    <img src="../../image/curlocation.png" >
+                </div>
+                <p class="site">{{_data.coupon.store.info.address}}</p>
+            </div>
+            {{/if}}
+
+        </div>
+
+        {{if _param.orderId}}
+        <!-- 默认我要开团、打开二维码,已失效加invalid,消费中、已消费加consumption -->
+        {{if +_data.coupon.is_expire}}
+        <div class="hahah">
+            <div class="regiment invalid">{{'已失效' | fnLanguage_public}}</div>
+        </div>
+        {{else}}
+        {{if _data.status == ORDER.status.not.id}}
+        {{if _data.store_order && _data.store_order.id }}
+        <div class="hahah">
+            <div class="regiment consumption">{{'消费中' | fnLanguage_public}}</div>
+        </div>
+        {{else}}
+        {{if +_data.surplus_count > 0}}
+        {{if _data.coupon.store.info.is_delivery}}
+        <div class="hahah">
+            <div class="regiment" tapmode="hover" onclick="fnJump_base('order/orderInformation_win.html', {{_data.id}})">{{'立即使用' | fnLanguage_public}}</div>
+        </div>
+        {{else}}
+        <div class="hahah">
+            <div class="regiment" tapmode="hover" onclick="fnJump_base('order/discountCode_win.html', {{_data.id}})">{{'打开二维码' | fnLanguage_public}}</div>
+        </div>
+        {{/if}}
+        {{/if}}
+        {{/if}}
+        {{else if _data.status == ORDER.status.already.id}}
+        <div class="hahah">
+            <div class="regiment consumption">{{'已消费' | fnLanguage_public}}</div>
+        </div>
+        {{else if _data.status == ORDER.status.close.id}}
+        <div class="hahah">
+            <div class="regiment invalid">{{'已失效' | fnLanguage_public}}</div>
+        </div>
+        {{else if _data.status == ORDER.status.wait.id}}
+        <div class="group hide" tapmode="hover" onclick="fnJump_base('home/openingRegiment_win.html', {{_data.coupon.id}})">
+            <div class="people"><span id="participants">{{_data.coupon.group.length}}</span>{{'个开团' | fnLanguage_public}}</div>
+            <div class="right"></div>
+        </div>
+        <div class="hahah">
+            <div class="regiment" tapmode="hover" onclick="fnSubmit()">{{'我要开团2222' | fnLanguage_public}}</div>
+        </div>
+        {{else}}
+        <div class="hahah">
+            <div class="regiment consumption">{{'消费中' | fnLanguage_public}}</div>
+        </div>
+        {{/if}}
+        {{/if}}
+        {{else}}
+        <div class="group hide" tapmode="hover" onclick="fnJump_base('home/openingRegiment_win.html', {{_data.coupon.id}})">
+            <div class="people"><span id="participants">{{_data.coupon.group.length}}</span>{{'个开团' | fnLanguage_public}}</div>
+            <div class="right"></div>
+        </div>
+        <div class="hahah">
+            <div class="regiment" tapmode="hover" onclick="fnSubmit()">{{'Start Group' | fnLanguage_public}}</div>
+        </div>
+        {{/if}}
+        <div class="bt10"/>
+    </script>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(){
+        fnGet();
+
+      //couponsDetails_win
+
+        api.addEventListener({
+            name: APP.EV_NAME.GROUP_UPDATE
+        }, function(ret, err){
+            if( ret.value.currentWinName != api.winName ){
+                fnGet();
+            }
+        });
+    });
+
+
+    function fnGet(_isUpdateGroup){
+        if( APP._param.orderId ){
+            fnGetOrderDetail_base({
+                id: APP._param.orderId
+            }, function(ret){
+                APP._data = ret;
+                fnLayout();
+            })
+        }else{
+            var _param = {
+                url: 'base/coupon/detail',
+                method: 'GET',
+                data: {
+                    id: APP._param.id
+                }
+            }
+            fnAjax(_param, function(ret){
+                // APP._param = {};
+                // _isUpdateGroup = false;
+                // ret = {"code":1,"msg":"查询成功","data":{"id":96,"type":2,"create_time":1590537951,"update_time":1590537957,"store_id":221,"limit_collar":1,"validity_type":2,"rule":"1 person 5% off, 2 person 10% off, 3 person 12% off, 4 person 15% off, 5 person 18%off, 6 person 20% off, 7 person 25% of, 8 person 30% off, 9 person 35% off. 10 person 40% off, 11 person 45% off, up to 12 person 50% off","total":100,"upper_limit_time":604800,"price":"100.00","price_group":["95","90","88","85","82","80","75","70","65","60","55","50"],"name":"HANNAH Menu","image":"http://qiniucnd.wololo.co.uk/system/20200527/460e29c2f2bca1f32e9da876b8c07c67.png!watermark","is_upper":1,"total_write_off_count":0,"total_pay":0,"delete_time":0,"validity_start_time":0,"validity_end_time":0,"validity_day":60,"participants":7,"store":{"id":221,"user_nickname":"HANNAH","mobile":"16000000","user_email":"","code_id":"pFL9IS221","avatar":"","info":{"user_id":221,"address":"252 Westminster Bridge Rd, South Bank, London SE1 7PD英国","lon":"-0.118517995986940","lat":"51.501224497375000","is_delivery":0,"images":[{"file_name":"web/20200527/ac4d5f81ebaa6a55a2ffaf7268a1e62a.png","url":"http://qiniucnd.wololo.co.uk/web/20200527/ac4d5f81ebaa6a55a2ffaf7268a1e62a.png!watermark"},{"file_name":"web/20200527/c27af2c78dd9bac397996c3a1df2814b.png","url":"http://qiniucnd.wololo.co.uk/web/20200527/c27af2c78dd9bac397996c3a1df2814b.png!watermark"},{"file_name":"web/20200527/1b57d1ae0593ab9b6d11fd3b55f04621.png","url":"http://qiniucnd.wololo.co.uk/web/20200527/1b57d1ae0593ab9b6d11fd3b55f04621.png!watermark"},{"file_name":"web/20200527/60f299edae066491670b153b73b9a51e.png","url":"http://qiniucnd.wololo.co.uk/web/20200527/60f299edae066491670b153b73b9a51e.png!watermark"},{"file_name":"web/20200527/9a888d2dfa27541d7bdd4603a01aadce.png","url":"http://qiniucnd.wololo.co.uk/web/20200527/9a888d2dfa27541d7bdd4603a01aadce.png!watermark"}]}},"group":[],"is_expire":0,"surplus_num":100,"upper_limit_time_temp":604800}}
+                // console.log( ret )
+                if( ret.code == APP.HTTP_STATUS.SUCCESS ){
+                    APP._data = ret.data;
+                    fnLayout(_isUpdateGroup);
+                }else{
+                    fnToast(ret.msg);
+                }
+            })
+        }
+    }
+    function toMaps(e) {
+        fnSelectMap_public({
+            end: {
+                lon: APP._data.store.info.lon,
+                lat:  APP._data.store.info.lat,
+            }
+        });
+        return false;
+    }
+    function fnOpenShare(){
+        APP._shareUrl = [APP.getHost().replace(/api\//, 'web/')].join('');
+        APP._shareUrl = [APP._shareUrl, 'share/couponsdetails'].join('');
+        APP._shareUrl = [APP._shareUrl, fnConvertParam_public(APP._param.shareParam)].join('');
+        fnCopy(APP._shareUrl)
+        return;
+        fnOpenShare_base({
+            title: APP._data.coupon.name,
+            msg: APP._data.coupon.name,
+            type: 3,
+            shareParam: {
+                id: APP._data.coupon.id
+            }
+        })
+    }
+
+    function fnLayout(_isUpdateGroup){
+        if( APP._param.orderId ){
+            APP._data.coupon.store = fnCloneObject_public(APP._data.store);
+        }else{
+            APP._data.coupon = fnCloneObject_public(APP._data);
+        }
+
+        if( _isUpdateGroup ){
+            var _count = APP._data.coupon.group && APP._data.coupon.group.length ? APP._data.coupon.group.length : 0;
+            fnValue('#participants', _count);
+        }else{
+            $('#wrap').html(template('wrap-template', APP))
+            var _map = {
+                el: $('#googleMap')[0],
+                lat: $('#googleMap').data('lat'),
+                lon: $('#googleMap').data('lon'),
+            }
+            if( _map.el && _map.lat && _map.lon ){
+                fnOpenGoogleMap_base(_map, function(){
+
+                })
+            }
+        }
+    }
+
+    function switchCount(dom) {
+        if ($(dom).html().trim() === 'See more') {
+            $(dom).html('See less');
+            $('.personP').each(function (index, item) {
+                if (index > 1) {
+                    $(item).removeClass('hidden');
+                }
+            })
+        } else {
+            $(dom).html('See more');
+            $('.personP').each(function (index, item) {
+                if (index > 1) {
+                    $(item).addClass('hidden');
+                }
+            })
+        }
+    }
+
+    function fnSubmit(){
+        fnGroupCreate_base({
+            coupon_id: APP._data.coupon.id
+        }, function(ret){
+            // fnValue('#participants', +fnValue('#participants') + 1)
+            fnGet(true);
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/lijie.css" />
+
+</head>
+<style>
+    .content{
+
+    }
+    .bank_card{
+        width: 100%;
+        height: 188px;
+    }
+    .bank_card img{
+        width: 100%;
+        height: 100%;
+    }
+    .cvv>div{
+        width: 12px;
+        height: 12px;
+        background: #99989B;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .cvv{
+        width: 50px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .title{
+        width: 90%;
+        position: absolute;
+        left: 5%;
+        top: 24px;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 10;
+    }
+    .title img{
+        width:42px;
+    }
+</style>
+<body style="display: flex;flex-direction: column;height: 100%">
+<div class="margin_top20"></div>
+<div class="flex item_center margin_left20 margin_top20 margin_bottom20">
+    <div class="back margin0" onclick="fnClose()"></div>
+    <div class="bold size24">Saved Cards</div>
+</div>
+<div class="content flex1 padding20" id="list" style="overflow-y: auto">
+
+</div>
+<div class="padding20">
+    <div class="btn btn_default" tapmode="hover" onclick="fnOpen('my/addCard_win.html')">
+        ADD NEW CARD
+    </div>
+</div>
+
+</body>
+<script type="text/html" id="list-template">
+    {{each _list _value}}
+    <div class="bank_card relative">
+        <img src="../../image/v2/{{_value.type=='visa'?'img_card_visa':'img_card'}}.png" alt="" class="absolute">
+        <div class="title">
+            <img src="../../image/v2/{{_value.type=='visa'?'visa_card.png':'ic_master.png'}}" alt="">
+        </div>
+        <div class="absolute flex flex_between bold1 size24" style="width: 90%;left: 5%;top:45%;color:{{_value.type=='visa'?'#333':'#99989B'}}">
+            <div>{{_value.number,0,4 | subs}}</div>
+            <div>{{_value.number,4,4 | subs}}</div>
+            <div>{{_value.number,8,4 | subs}}</div>
+            <div>{{_value.number,12,4 | subs}}</div>
+        </div>
+        <div class="absolute flex flex_between color_white size12"style="width: 90%;left: 5%;top:68%">
+            <div>CVV</div>
+            <div>VALID THRU</div>
+        </div>
+        <div class="absolute flex flex_between size12 bold1"style="width: 90%;left: 5%;top:80%;color: #99989B">
+            <div class="cvv">
+                <div style="{{_value.type=='visa'?'background:#333':''}}"></div>
+                <div style="{{_value.type=='visa'?'background:#333':''}}"></div>
+                <div style="{{_value.type=='visa'?'background:#333':''}}"></div>
+            </div>
+            <div id="date" style="{{_value.type=='visa'?'color:#333':''}}">{{_value.year,2,2 | subs}} / {{_value.month}}</div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/base.js"></script>
+<script type="text/javascript">
+    APP.init(()=>{
+        getList();
+    });
+    function subs(num,index,len){
+        return String(num).substr(index,len)
+    }
+    function getList(){
+        var _param = {
+            url: 'user/cards',
+            data: {
+                page: APP.PAGE.START_PAGE,
+                limit: 20,
+            },
+            method:"get"
+        };
+        fnGetList_base(_param, function (ret) {
+            console.log(JSON.stringify(ret))
+            // if (ret.evType == 'scrolltobottom') {
+            //     getList();
+            // }
+        })
+    }
+</script>
+
+</html>

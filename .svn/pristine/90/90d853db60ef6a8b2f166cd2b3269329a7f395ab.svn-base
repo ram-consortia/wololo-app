@@ -1,0 +1,81 @@
+@charset 'utf-8';
+@import "public/_config.scss";
+body {
+    .wrap{
+        width: 85%;
+        text-align: center;
+        background-color: white;
+        border-radius: pxToRem(14);
+        @include prefixCss3( $property: transform, $value: translate(-50%, -50%));
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        .text{
+            // padding: pxToRem(42) pxToRem(30) pxToRem(28);
+            .title{
+                // padding: pxToRem(10) 0;
+                padding: pxToRem(32) 0;
+                font-size: pxToRem(36);
+                color: #262525;
+                line-height: pxToRem(50)
+            }
+            .msg{
+                text-align: left;
+                // color: #666;
+                // line-height: pxToRem(40);
+                max-height: 75vh;
+                @extend %scroll;
+                // font-size: pxToRem(34);
+                margin: pxToRem(28) pxToRem(42);
+            }
+        }
+        .footer{
+            @include border-top-m(solid, #eee);
+            @include flex-box();
+            .item{
+                @include flex-item();
+                line-height: pxToRem(100);
+                color: #000;
+                font-size: pxToRem(32);
+                &:not(:first-child){
+                    // border-left: pxToRem(2) solid #e5e5e5;
+                    @include border-left-m(solid, #eee);
+                }
+                &.active{
+                    color: $bg-color;
+                }
+            }
+        }
+    }
+
+    .sel{
+        padding-bottom: pxToRem(40);
+        font-size: pxToRem(32);
+        color: #999;
+        line-height: pxToRem(56);
+        @include flex-box();
+        @include border-bottom-m(solid, #eee);
+        .phone{
+            @include flex-item();
+            position: relative;
+            &.active{
+                color: #FE8F31;
+                @extend .font-m;
+                &:after{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    @include prefixCss3($property: transform, $value: translateX(-50%));
+                    width: pxToRem(40);
+                    height: pxToRem(8);
+                    margin-top: pxToRem(1);
+                    background-color:#FE8F31;
+
+                    //@include set-bg-img( $name: "icon-sel.png", $size: pxToRem1(28) auto, $position: center center);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,515 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../framework/swiper.min.css" />
+    <link rel="stylesheet" href="../../css/webpublic.css">
+    <link rel="stylesheet" href="../../css/weborderDetails.css">
+</head>
+<body>
+    <div class="main flex-vertical">
+        <div class="top">
+            <div class="top-box">
+                <div class="top-item">
+                    <div class="photo"></div>
+                </div>
+                <div class="home-box">
+                    <span class="home-item active" tapmode="hover" onclick="fnOpen('home.html')">首页</span>
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('allAssemble.html')">全部拼团</span>
+                    <span class="home-item" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单</span>
+                </div>
+                <div class="picture">
+                    <div class="all-picture">
+                        <div class="picture-box">
+                            <div class="picture-item active" tapmode="hover" onclick="fnOpen('personal.html')">个人资料</div>
+                            <div class="picture-item" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                            <div class="picture-item">中文/English</div>
+                            <div class="picture-item">下载APP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content flex-item-vertical">
+            <p class="pagination">
+                <span class="page">全部订单</span>
+                <span class="page">订单详情</span>
+            </p>
+            <div class="content-center">
+                <div class="select-left">
+                    <!-- 默认关闭，加active打开 -->
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item">个人信息</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('personal.html')">个人资料</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('account.html')">帐号管理</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('code.html')">我的二维码</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item order-img">我的订单</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li active" tapmode="hover" onclick="fnOpen('allOrder.html')">全部订单（105）</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">待付款（105）</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">已付款</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">未消费</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('allOrder.html')">已消费</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('afterSale.html')">退款售后</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item collection-img">我的收藏</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('collection.html')">我收藏的店铺</div>
+                        </div>
+                    </div>
+                    <div class="block active">
+                        <div class="block-box">
+                            <div class="block-item other-img">其他</div>
+                            <span class="down"></span>
+                        </div>
+                        <div class="ul">
+                            <div class="li" tapmode="hover" onclick="fnOpen('opinion.html')">意见反馈</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('contact.html')">联系我们</div>
+                            <div class="li" tapmode="hover" onclick="fnOpen('rule.html')">规则协议</div>
+                            <div class="li">在线客服</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="order-title">订单详情<span class="del">删除</span></div>
+                    <div class="order-details">
+                        <div class="order-top">
+                            <div class="subtitle">
+                                <p>在路上</p>
+                                <p class="time">还剩29分自动关闭</p>
+                            </div>
+                            <div class="order-right">查看拼团订单</div>
+                        </div>
+                        <div class="address">
+                            <p class="add-name">收货信息</p>
+                            <div class="site">
+                                <div class="site-img"></div>
+                                <div class="site-message">
+                                    <p class="site-name">韩梅梅<span class="phone">18518883029</span></p>
+                                    <p class="location">北京市海淀区北三环中路 44 号院文教产业园东门 F 座 4 层</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tables">
+                            <div class="table">
+                                <div class="tr">
+                                    <div class="th">商品信息</div>
+                                </div>
+                                <div class="tr">
+                                    <div class="td forty-percent">
+                                        <div class="message-item">
+                                            <div class="img"></div>
+                                            <div class="base">
+                                                <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                                <p class="subtitle">特色单品节日优惠</p>
+                                                <p class="time">2019.01.04 - 2019.01.03</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="td thirty-percent">
+                                        <div class="cash-coupon">
+                                            <p class="size">￡120</p>
+                                            <p>代金券</p>
+                                        </div>
+                                    </div>
+                                    <div class="td thirty-percent">
+                                        <p class="number">门市价：￡120</p>
+                                    </div>
+                                </div>
+                                <!-- 商家端我的订单列表 -->
+                                <div class="tr">
+                                    <div class="td forty-percent" tapmode="hover" onclick="fnOpen('orderDetails.html')">
+                                        <div class="message-item">
+                                            <div class="img"></div>
+                                            <div class="base">
+                                                <p class="shop-name">西单大悦城美食城西单大悦城美食城</p>
+                                                <p class="subtitle">特色单品节日优惠</p>
+                                                <p class="time">2019.01.04 - 2019.01.03</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="td twenty-percent">
+                                        <div class="cash-coupon">
+                                            <p>折扣券</p>
+                                        </div>
+                                    </div>
+                                    <div class="td twenty-percent">
+                                        <p class="number">门市价￡120</p>
+                                    </div>
+                                    <div class="td twenty-percent">
+                                        <div class="td-box">
+                                            <div class="receipt close">数量：2</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="information">
+                                    <p class="add-name">收货信息</p>
+                                    <div class="order">
+                                        <div class="order-box">
+                                            <div class="border-item">订单编号：73482694566474</div>
+                                        </div>
+                                    </div>
+                                    <div class="order">
+                                        <div class="order-box">
+                                            <div class="border-item">成团时间：2019-10-31 12:56</div>
+                                            <div class="price">单价<span class="width">￡120</span></div>
+                                        </div>
+                                        <div class="order-box">
+                                            <div class="border-item">支付方式：支付宝</div>
+                                            <div class="price">优惠券数量<span class="width">x2</span></div>
+                                        </div>
+                                        <div class="order-box">
+                                            <div class="border-item">支付时间：2019-10-31 12:56</div>
+                                            <div class="price">已支付<span class="width color">￡120</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="write-off">
+                                    <div class="verification">已核销数量：3</div>
+                                    <!-- 默认在线客服、申请退款，加color立即使用、打开二维码 -->
+                                    <span class="refund">在线客服</span>
+                                    <span class="refund">申请退款</span>
+                                    <span class="refund color">立即使用</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-width">
+                <div class="bottom">
+                    <div class="bot-box">
+                        <div class="bot-item">
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">合作伙伴</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">关于我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                        <div class="bot-item">
+                            <p class="enterprise">联系我们</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                            <p class="enterprise">企业管理</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="record">
+                    <div class="agreement">
+                        <span class="treaty">用户协议</span>
+                        <span class="treaty">隐私协议</span>
+                        <span class="treaty">下载APP</span>
+                        <span class="treaty">意见反馈</span>
+                    </div>
+                    <div class="serve">©2014-2016 APICloud 京ICP备14027692号 京ICP证151131号 京公网安备 11010802020063号  |  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 选择付款方式 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">选择支付方式</div>
+                <span class="close"></span>
+            </div>
+            <div class="pay flex-item-vertical">
+                <div class="pay-box">
+                    <div class="pay-item">
+                        <p class="pending-payment">待付款</p>
+                        <p class="remaining">还剩23时29分自动关闭</p>
+                    </div>
+                    <div class="need-pay">需支付：<span class="color">￡120</span></div>
+                </div>
+                <p class="select-type">选择一下支付方式付款</p>
+                <div class="type">
+                    <!-- 选中加active -->
+                    <div class="type-half active">
+                        <p class="type-name alipay">支付宝</p>
+                    </div>
+                    <div class="type-half">
+                        <p class="type-name weixinpay">微信</p>
+                    </div>
+                    <div class="type-half">
+                        <p class="type-name payPal">PayPal</p>
+                    </div>
+                    <div class="type-half">
+                        <p class="type-name applePay">ApplePay</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 支付成功   -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">评价成功</div>
+                <span class="close"></span>
+            </div>
+            <div class="success">
+                <!-- 支付失败加fail -->
+                <div class="success-img"></div>
+                <p class="cessful">评价成功，期待再次为您服务！</p>
+                <p class="pay-submint">支付方式：微信支付</p>
+                <p class="pay-submint">支付金额：￡200</p>
+            </div>
+        </div>
+    </div>
+    <!-- 核销数量   -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">已核销数量： 3</div>
+                <span class="close"></span>
+            </div>
+            <div class="verification-ul">
+                <div class="verification-li">
+                    <p class="verification-til">核销数量：3</p>
+                    <div class="verification-box">
+                        <p class="verification-half">下单时间：2019-10-31 15:43</p>
+                        <p class="verification-half">下单时间：2019-10-31 15:43</p>
+                    </div>
+                </div>
+                <div class="verification-li">
+                    <p class="verification-til">核销数量：3</p>
+                    <div class="verification-box">
+                        <p class="verification-half">下单时间：2019-10-31 15:43</p>
+                        <p class="verification-half">下单时间：2019-10-31 15:43</p>
+                        <p class="verification-half">下单时间：2019-10-31 15:43</p>
+                        <p class="verification-half">下单时间：2019-10-31 15:43</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 去评价 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">给商铺点评</div>
+                <span class="close"></span>
+            </div>
+            <div class="business-center flex-item-vertical">
+                <div class="center no-left">
+                    <div class="entering">
+                        <div class="entering-name">给商铺评分</div>
+                        <div class="stars">
+                            <!-- 默认空心，加full满心，加half半心 -->
+                            <span class="star full"></span>
+                            <span class="star half"></span>
+                            <span class="star"></span>
+                            <span class="star"></span>
+                            <span class="star"></span>
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name">你的点评</div>
+                        <div class="input-width">
+                            <div class="textarea">
+                                <textarea type="text" placeholder="请输入商家信息介绍，方便平台进一步审核"></textarea>
+                                <p class="number">0/500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-button">
+                    <span class="quit submint">提交</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 已评价   -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">评价成功</div>
+                <span class="close"></span>
+            </div>
+            <div class="public-evaluate">
+                <div class="con">
+                    <div class="pho"></div>
+                    <div class="evaluate-con">
+                        <div class="evaluate-box">
+                            <div class="evaluate-message">
+                                <p class="evaluate-name">Karl Kalagin</p>
+                                <span class="stars">
+                                    <!-- 半星加half-star -->
+                                    <span class="star"></span>
+                                    <span class="star"></span>
+                                    <span class="star half-star"></span>
+                                </span>
+                            </div>
+                            <div class="time">2018/06/14</div>
+                        </div>
+                        <div class="text">质量很好，很柔软。买了加绒的，天冷就可以穿，非常值得购买。</div>
+                        <div class="reply"><span class="color">商家回复：</span>如果你无法简介的表达你的想法，那说明你还不够了解他。</div>
+                        <div class="reply-textara">
+                            <textarea type="text" placeholder="回复一下吧"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 去使用 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">填写下单信息</div>
+                <span class="close"></span>
+            </div>
+            <div class="business-center flex-item-vertical">
+                <div class="center no-left">
+                    <div class="entering">
+                        <div class="entering-name"><span class="color">*</span>姓名</div>
+                        <div class="input">
+                            <input type="text" placeholder="请输入姓名">
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name"><span class="color">*</span>手机号</div>
+                        <div class="input">
+                            <input type="text" placeholder="请输入手机号">
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name"><span class="color">*</span>收货地址</div>
+                        <div class="input-width">
+                            <div class="textarea">
+                                <textarea type="text" placeholder="请输入商家信息介绍，方便平台进一步审核"></textarea>
+                                <p class="number">0/100</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name"><span class="color">*</span>优惠券数量</div>
+                        <div class="quantity">
+                            <span class="quantity-reduce"></span>
+                            <div class="quantity-input">
+                                <input type="text" value="5">
+                            </div>
+                            <span class="quantity-add"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-button">
+                    <span class="quit submint">提交</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 申请售后 -->
+    <div class="flex hide">
+        <div class="business-firm flex-vertical">
+            <div class="account">
+                <div class="account-number">申请售后</div>
+                <span class="close"></span>
+            </div>
+            <div class="business-center flex-item-vertical">
+                <div class="tip-center">
+                    <p class="tip">很遗憾，当前订单已经不能申请退款…</p>
+                </div>
+                <div class="center no-left">
+                    <div class="entering">
+                        <div class="entering-name">问题描述</div>
+                        <div class="input-width">
+                            <div class="textarea min-textarea">
+                                <textarea type="text" placeholder="请输入售后问题描述"></textarea>
+                                <p class="number">0/100</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name">优惠券数量</div>
+                        <div class="quantity">
+                            <span class="quantity-reduce"></span>
+                            <div class="quantity-input">
+                                <input type="text" value="5">
+                            </div>
+                            <span class="quantity-add"></span>
+                        </div>
+                    </div>
+                    <div class="entering">
+                        <div class="entering-name">上传图片(1/3)</div>
+                        <div class="input-width">
+                            <div class="imgs">
+                                <span class="img">
+                                    <span class="close"></span>
+                                </span>
+                                <span class="img">
+                                    <span class="close"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="after-sale">
+                <p>售后说明</p>
+                 1、作为国内低代码开发平台的践行者，Apicloud（柚子（北京）科技有限公司）正在以高效的生产力工具与混合开发技术，为数以百万的企业与开发者构建高效的 T 环境 2、Apicloudl 以北京总部为中心，将业务团队延伸至上海、深圳、重庆、青岛等 10 余个城市，服务能力辐射全国 3、凭借创新的开发技术和商业模式，早在 2016 年，Apicloud 被全球最具权威的 T 研究与顾问咨询机构 Gartner 评为中国区 Cool Vendor，成为全球企业客户部署移动战略时的推荐选择
+                </div>
+                <div class="bottom-button">
+                    <span class="quit submint">提交</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../framework/template-web.js"></script>
+<script type="text/javascript" src="../../framework/swiper.min.js"></script>
+<script type="text/javascript" src="../../framework/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/language.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript" src="../../script/web_public.js"></script>
+<script type="text/javascript" src="../../script/web_base.js"></script>
+<script type="text/javascript">
+    // 页面初始化
+    APP.init(function(_page) {
+
+    });
+
+
+    var mySwiper = new Swiper('.swiper .swiper-container', {
+        autoplay:true,//等同于以下设置
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: '.swiper .swiper-pagination',
+        },
+    });
+
+</script>
+</html>
