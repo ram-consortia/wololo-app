@@ -791,3 +791,9 @@ textarea::-webkit-input-placeholder {
       font-weight: bold;
       margin-top: 10px;
       color: #000; }
+      #list_m
+      {
+          text-align: center;
+          font-size: 1.2 rem;
+          margin-top:50%;
+      }

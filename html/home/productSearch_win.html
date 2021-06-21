@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/wishList.css" />
     <link rel="stylesheet" type="text/css" href="../../css/home_v2.css" />
     <link rel="stylesheet" href="../../css/ic_img.css" />
+
 </head>
 
 <body style="height: 100%; background: initial;">
@@ -26,6 +27,7 @@
     </div>
     <div id="list">
     </div>
+    <div id="list_m"></div>
 </body>
 <script type="text/javascript" src="../../framework/template-web.js"></script>
 <script type="text/javascript" src="../../framework/zepto.min.js"></script>
@@ -61,8 +63,10 @@
             <div class="grey size12">Tap to view more details</div>
         </div>
     </div>
+    
     {{/each}}
 </script>
+<div></div>
 <script>
     let current_page = 0, last_page = 1, timer = [];
 
@@ -74,7 +78,7 @@
     $('#keyword').keydown(function (event) {
         if (event.keyCode == 13) {
             const searchVal = $(this).val();
-            if (searchVal) {
+            if (searchVal && searchVal.trim()) {
                 fnGetList(searchVal)
             }
             function fnGetList() {
@@ -93,6 +97,13 @@
                 };
                 document.getElementById('list').innerHTML = "";
                 fnGetList_base(_param, function (ret) {
+                    inputA = APP._list;
+                    inputB = inputA.length;
+                    if (inputB == 0) {
+                        document.getElementById('list_m').innerHTML = "No result found";
+                    } else {
+                        document.getElementById('list_m').innerHTML = "";
+                    }
                     timer.push(...APP._list);
                     setInterval(() => {
                         for (let i = 0; i < timer.length; i++) {
@@ -100,11 +111,11 @@
                             try {
                                 $(".time").eq(i).text(formatduring(timer[i].expire_time * 1000 - parseInt(date / 1000) * 1000))
                             } catch (err) {
-
                             };
                         }
                     }, 1000)
                     // console.log('APP._list', APP._list.length);
+
                 })
             }
         }
