@@ -19,7 +19,7 @@
             <div style="margin-right: 22px">
                 <img src="../../image/v2/deals_search.png">
             </div>
-            <div>
+            <div onclick="toFilterDetail()">
                 <img src="../../image/v2/deals_set.png">
             </div>
         </div>
@@ -65,7 +65,9 @@
 <script type="text/javascript" src="../../script/base.js"></script>
 <script>
     let current_page = 0,last_page=1,timer=[];
-
+    function toFilterDetail(){
+        // fnOpen("home/merchantsFilter_win.html")
+    }
     function toCouponDetail(e){
         fnOpen("home/couponDetail_win.html",{
             param:e

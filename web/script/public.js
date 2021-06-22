@@ -434,7 +434,7 @@ var APP = {
                 } else {
                     api.toast({
                         //msg: fnLanguage_public('再按一次退出') + api.appName
-                        msg: fnLanguage_public("Press again to exit") + api.appName
+                        msg: fnLanguage_public("再按一次退出") + api.appName
                     });
                     APP._keybackStatus = true;
                 }
