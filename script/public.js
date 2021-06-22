@@ -8,11 +8,11 @@ var APP = {
         // 开发环境
         // dev: 'http://www.wololo.co.uk/api/',
         //  dev:'https://wololo.co.uk/api/',
-        dev:'http://192.168.225.69/api/',
+        dev:'http://192.168.1.85/api/',
         // dev: 'https://jf2.suuzi.cn/api/',域名  改为 http://www.wololo.co.uk/    发布一版  测试下?
 
         // 正式环境
-        formal: 'http://192.168.225.69/api/'
+        formal: 'http://192.168.1.85/api/'
         // formal: 'https://wololo.co.uk/api/'
     },
 
@@ -479,7 +479,7 @@ var APP = {
                     } else {
                         api.toast({
                             //msg: fnLanguage_public('再按一次退出') + api.appName
-                            msg: fnLanguage_public("再按一次退出") + api.appName
+                            msg: fnLanguage_public("Press again to exit") + api.appName
                         });
                         APP._keybackStatus = true;
                     }
