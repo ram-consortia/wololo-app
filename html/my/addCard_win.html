@@ -16,7 +16,7 @@
     }
 
     .b-1 {
-        border: 1px solid #000;
+        border: 1px solid #F00 !important;
     }
 </style>
 
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="input_item b-0">
+            <div class="input_item b-0"  id="cd">
                 <div class="icon ic_dob"></div>
                 <div class="input_content">
                     <div class="label">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="input_item b-0">
+            <div class="input_item b-0" id="cv">
                 <div class="icon ic_key"></div>
                 <div class="input_content">
                     <div class="label">
@@ -88,10 +88,61 @@
         fnClose();
     }
     function addCard() {
+
         let cardNo = $('#card_number').val();
         if ($.payform.validateCardNumber(cardNumber.val())) {
             $("#cn").removeClass("b-1");
             $("#cn").addClass("b-0");
+        } else {
+            $("#cn").removeClass("b-0");
+            $("#cn").addClass("b-1");
+            return false;
+        }
+
+        let checkDate=$('#date').val();
+        let isDateValid=true;
+        if(checkDate.split('/').length===2){
+            let date=checkDate.split('/');
+            let today=new Date();
+            if(date[1]<today.getFullYear().toString().slice(-2)){
+                isDateValid=false;
+            } else{
+                if(Number(date[0]) <= 12 && Number(date[0]) >= 1){
+                    if(date[1]==today.getFullYear().toString().slice(-2)){
+                        if((today.getMonth()+1)<Number(date[0])){
+                            
+                        } else if((today.getMonth()+1)==Number(date[0])){
+                            isDateValid=false;
+                        } else{
+                            isDateValid=false;
+                        }
+                    }
+                } else{
+                    isDateValid=false;
+                }
+
+            }
+        } else {
+            isDateValid=false;
+        }
+        if (isDateValid) {
+            $("#cd").removeClass("b-1");
+            $("#cd").addClass("b-0");
+        } else {
+            $("#cd").removeClass("b-0");
+            $("#cd").addClass("b-1");
+            return false;
+        }
+
+        if ($('#cvv').val() && $('#cvv').val().trim()) {
+            $("#cv").removeClass("b-1");
+            $("#cv").addClass("b-0");
+        } else {
+            $("#cv").removeClass("b-0");
+            $("#cv").addClass("b-1");
+            return false;
+        }
+        
             const date = $('#date').val();
             const params = {
                 number: $('#card_number').val(),
@@ -105,21 +156,17 @@
                 data: params
             }, res => {
                 fnToast(res.msg)
-                if (res.code) {
-                    if (APP._param.fromWin != 'checkout') {
-                        api.execScript({
-                            name: "saveCards_win",
-                            script: "getList()"
-                        })
-                    }
-                    close();
-                }
+                // if (res.code) {
+                //     if (APP._param.fromWin != 'checkout') {
+                //         api.execScript({
+                //             name: "saveCards_win",
+                //             script: "getList()"
+                //         })
+                //     }
+                //     close();
+                // }
             })
-        } else {
-            $("#cn").removeClass("b-0");
-            $("#cn").addClass("b-1");
-            // alert("This is not a valid card");
-        }
+        
     }
     $('#date').on('keyup', function (e) {
         if (e.target.value.length > 5) {
