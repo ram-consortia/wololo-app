@@ -433,9 +433,9 @@ var APP = {
                     });
                 } else {
                     api.toast({
-                        //msg: fnLanguage_public('再按一次退出') + api.appName
-                        msg: fnLanguage_public("再按一次退出") + api.appName
-                    });
+                        //msg: fnLanguage_public('Exit for sure') + api.appName
+                        msg: "Exit for sure" + api.appName
+                    })
                     APP._keybackStatus = true;
                 }
                 setTimeout(function() {
