@@ -7,12 +7,12 @@ var APP = {
     HOST: {
         // 开发环境
         // dev: 'http://www.wololo.co.uk/api/',
-         dev:'http://192.168.1.55/api/',
+         dev:'https://wololo.co.uk/api/',
         //dev:'http://123.206.203.71:81/api/',
         // dev: 'https://jf2.suuzi.cn/api/',域名  改为 http://www.wololo.co.uk/    发布一版  测试下?
 
         // 正式环境
-        formal: 'http://192.168.1.55/api/'
+        formal: 'https://wololo.co.uk/api/'
     },
 
      // 分页相关
@@ -478,7 +478,7 @@ var APP = {
                     } else {
                         api.toast({
                             //msg: fnLanguage_public('再按一次退出') + api.appName
-                            msg: "Exit for sure?"+ api.appName
+                            msg: fnLanguage_public("再按一次退出") + api.appName
                         });
                         APP._keybackStatus = true;
                     }
